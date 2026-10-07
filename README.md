@@ -14,3 +14,12 @@ y el historial de decisiones en [CHANGELOG.md](CHANGELOG.md).
 
 El contenido contable sale del texto refundido del PGC (versión 2021), que está en
 [sources/](sources/).
+
+## Sobre este proyecto
+
+Es un proyecto de aprendizaje doble: estudiar contabilidad mientras construyo la
+herramienta, y aprender a programar mientras lo hago.
+
+Lo desarrollo con la ayuda de Claude (Claude Code, de Anthropic), que explica cada
+paso antes de escribirlo. Las reglas de esa forma de trabajar están en
+[CLAUDE.md](CLAUDE.md).

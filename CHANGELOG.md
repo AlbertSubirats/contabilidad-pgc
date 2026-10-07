@@ -10,6 +10,14 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-08
+
+### Cambio · Explicar en el README qué tipo de proyecto es
+**Qué:** una sección nueva, "Sobre este proyecto", en el `README.md`.
+**Por qué:** que quien llegue al repositorio sepa que es un proyecto de
+aprendizaje, de contabilidad y de programación, y que está hecho con ayuda de
+Claude.
+
 ## 2026-10-07
 
 ### Cambio · Paso 3: publicar en GitHub Pages
