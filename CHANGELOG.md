@@ -12,6 +12,19 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-07
 
+### Cambio · Paso 3: publicar en GitHub Pages
+**Qué:** el repositorio se sube a GitHub como `contabilidad-pgc` (público) y la
+web se publica con GitHub Pages.
+**Por qué:** a partir de aquí cada mejora se puede ver publicada el mismo día y
+compartir con un enlace.
+
+### Decisión · Firmar los commits con el correo noreply de GitHub
+**Qué:** git usa `202819105+AlbertSubirats@users.noreply.github.com` como correo,
+y los dos primeros commits se rehicieron con `git rebase` para llevarlo.
+**Por qué:** el repositorio es público y el correo de cada commit lo puede ver
+cualquiera, incluidos los programas que buscan correos para enviar spam. Se hizo
+antes del primer `push` porque reescribir commits ya publicados rompe la historia.
+
 ### Cambio · Paso 2: la primera página
 **Qué:** `web/index.html` con un título y un párrafo. Escrita a mano por Albert.
 **Por qué:** es la base sobre la que se construirá toda la web, y la página que
