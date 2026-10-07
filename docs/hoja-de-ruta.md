@@ -43,7 +43,7 @@ esté "desplegado".
 > publicada el mismo día, y eso cambia mucho las ganas de seguir.
 
 ### Paso 4 · Un poco de estilo
-**Qué:** `web/estilos.css` con el fondo de papel, las tipografías y poco más.
+**Qué:** `web/styles.css` con el fondo de papel, las tipografías y poco más.
 **Aprendes:** qué es CSS, cómo se enlaza, qué es un selector, qué son las
 variables CSS y por qué los colores se declaran una sola vez.
 **Compruebas:** la página cambia de aspecto.
@@ -75,11 +75,11 @@ código en funciones pequeñas con un nombre que diga lo que hacen.
 
 ### Paso 7 · Extraer el cuadro de cuentas
 **Qué:** recorrer el texto y sacar grupos, subgrupos y cuentas con su código y su
-denominación. Guardarlo en `data/cuentas.json`.
+denominación. Guardarlo en `data/accounts.json`.
 **Aprendes:** diccionarios y listas de diccionarios, cómo se diseña la forma de
 unos datos antes de escribirlos, `json.dump`.
 **Compruebas:** el JSON tiene los 9 grupos y la cuenta 430 se llama "Clientes".
-`feat: extraer el cuadro de cuentas a data/cuentas.json`
+`feat: extraer el cuadro de cuentas a data/accounts.json`
 
 > Aquí se decide la forma del dato. Es la decisión más importante de todo el
 > proyecto. Deja sitio para el campo `plan` desde ahora, aunque solo haya un plan.
@@ -122,7 +122,7 @@ corrigen los fallos que aparezcan.
 ## Fase 2 · El buscador y las fichas (módulo 1)
 
 ### Paso 12 · Cargar los datos desde el navegador
-**Qué:** JavaScript que lee `cuentas.json` y pinta una lista sin formato.
+**Qué:** JavaScript que lee `accounts.json` y pinta una lista sin formato.
 **Aprendes:** qué es el DOM, `fetch`, por qué hace falta `python -m http.server`
 para esto y no basta con abrir el fichero (la primera lección de seguridad web).
 **Compruebas:** ves la lista de cuentas en la página.

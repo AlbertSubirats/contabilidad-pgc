@@ -1,0 +1,15 @@
+/* Los colores de toda la web. Se declaran una sola vez, aquí */
+:root {
+    --color-papel: #FBF9F4;
+    --color-tinta: #2B2722;
+}
+
+body {
+    background-color: var(--color-papel);
+    color: var(--color-tinta);
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    font-family: Georgia, serif;
+}

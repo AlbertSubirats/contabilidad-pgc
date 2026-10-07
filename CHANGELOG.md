@@ -12,6 +12,24 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-08
 
+### Cambio · Paso 4: la hoja de estilos base
+**Qué:** `web/styles.css` con el fondo de papel, el color de la tinta y las dos
+tipografías (Georgia para los títulos, la letra del sistema para el resto),
+enlazado desde `index.html`. Escrito a mano por Albert.
+**Por qué:** separar el aspecto del contenido desde el principio. Los colores van
+en variables para declararlos una sola vez.
+
+### Decisión · Tipografías del sistema, sin Google Fonts
+**Qué:** se usan las letras que ya tiene instalado el dispositivo.
+**Por qué:** cargan al instante, no dependen de un servicio externo y no hay ningún
+problema que justifique añadir una dependencia. Se revisa en el paso 20.
+
+### Decisión · Nombres de fichero también en inglés
+**Qué:** la regla de los nombres en inglés se amplía de las carpetas a los
+ficheros (`styles.css`, `accounts.json`). El contenido sigue en castellano.
+**Por qué:** Albert se siente más cómodo así, y una sola regla para carpetas y
+ficheros evita mezclas.
+
 ### Cambio · Explicar en el README qué tipo de proyecto es
 **Qué:** una sección nueva, "Sobre este proyecto", en el `README.md`.
 **Por qué:** que quien llegue al repositorio sepa que es un proyecto de
