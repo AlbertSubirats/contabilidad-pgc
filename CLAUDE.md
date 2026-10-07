@@ -33,7 +33,7 @@ hacer algo y una forma comprensible — gana la comprensible. Siempre.
 
 ### 3.1 Un paso, un commit, y parar
 
-- La hoja de ruta está en `docs/hoja-de-ruta.md`. Los pasos se hacen **en orden**.
+- La hoja de ruta está en `docs/roadmap.md`. Los pasos se hacen **en orden**.
 - **Un paso = un commit.** Ni medio, ni dos.
 - Al terminar un paso, **te paras**. No empiezas el siguiente hasta que Albert lo
   pida explícitamente. Aunque sea pequeño. Aunque sea obvio. Aunque te parezca
@@ -242,7 +242,7 @@ ramas son un concepto que llegará más adelante, cuando haga falta de verdad.
 
 ## 9. Al empezar cada sesión
 
-1. Mira `docs/hoja-de-ruta.md` y `git log --oneline` para saber por dónde vais.
+1. Mira `docs/roadmap.md` y `git log --oneline` para saber por dónde vais.
 2. Dile a Albert en qué paso estáis y cuál es el siguiente.
 3. Pregúntale si quiere seguir por ahí o hacer otra cosa.
 4. Y entonces, y solo entonces, empezad.

@@ -12,6 +12,11 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-08
 
+### Cambio · Renombrar la hoja de ruta a `docs/roadmap.md`
+**Qué:** `docs/hoja-de-ruta.md` pasa a llamarse `docs/roadmap.md`, y se
+actualizan los enlaces de CLAUDE.md y del README.
+**Por qué:** era el único fichero que no seguía la regla de nombres en inglés.
+
 ### Cambio · Paso 4: la hoja de estilos base
 **Qué:** `web/styles.css` con el fondo de papel, el color de la tinta y las dos
 tipografías (Georgia para los títulos, la letra del sistema para el resto),

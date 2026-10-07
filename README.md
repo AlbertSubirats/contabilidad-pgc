@@ -9,7 +9,7 @@ Una web para estudiar contabilidad con el Plan General de Contabilidad (PGC):
 - **Wiki del articulado**: el Marco Conceptual y las normas de registro y
   valoración.
 
-Está en construcción. El plan está en [docs/hoja-de-ruta.md](docs/hoja-de-ruta.md)
+Está en construcción. El plan está en [docs/roadmap.md](docs/roadmap.md)
 y el historial de decisiones en [CHANGELOG.md](CHANGELOG.md).
 
 El contenido contable sale del texto refundido del PGC (versión 2021), que está en
