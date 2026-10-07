@@ -115,8 +115,10 @@ Todo en castellano: explicaciones, comentarios, nombres del dominio, mensajes de
 commit, texto de la interfaz. Las palabras clave de los lenguajes y las
 convenciones universales, en inglés, que es como son.
 
-**Excepción: los nombres de carpeta van en inglés** (`data/`, `sources/`,
-`tools/`...). Lo que va *dentro* de las carpetas sigue la regla general.
+**Excepción: los nombres de carpeta y de fichero van en inglés** (`data/`,
+`tools/`, `styles.css`, `accounts.json`...). Lo que va *dentro* de los ficheros
+sigue la regla general: comentarios, textos, nombres de variables del dominio
+(`--color-papel`, `cuenta`, `asiento`), todo en castellano.
 
 ---
 
