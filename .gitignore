@@ -1,0 +1,9 @@
+# Configuración de Claude Code que solo vale para este ordenador
+.claude/settings.local.json
+
+# Python crea esta carpeta solo al ejecutar un script; se regenera sola
+__pycache__/
+
+# Ficheros que Windows deja por las carpetas
+Thumbs.db
+desktop.ini
