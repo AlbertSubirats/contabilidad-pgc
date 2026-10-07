@@ -12,6 +12,11 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-07
 
+### Cambio · Paso 2: la primera página
+**Qué:** `web/index.html` con un título y un párrafo. Escrita a mano por Albert.
+**Por qué:** es la base sobre la que se construirá toda la web, y la página que
+se publicará en el paso 3.
+
 ### Cambio · Paso 1: arrancar el repositorio
 **Qué:** la carpeta pasa a ser un repositorio de git, con un `.gitignore` y un
 `README.md`. Primer commit del proyecto.
