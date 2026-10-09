@@ -12,6 +12,13 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-09
 
+### Decisión · Albert es el único que usa git
+**Qué:** Claude ya no ejecuta comandos de git que cambien el repositorio. Da los
+comandos explicados y Albert los escribe. Queda escrito en la sección 8 de
+CLAUDE.md.
+**Por qué:** git se aprende repitiéndolo, y si lo hace Claude, Albert no lo
+practica.
+
 ### Cambio · Paso 5: leer el texto fuente del PGC
 **Qué:** `tools/parser.py` abre `sources/Texto refundido PGC 2021.md`, lo lee
 entero y dice cuántas líneas tiene (9689).

@@ -238,6 +238,17 @@ chore: añadir .gitignore
 **Rama:** se trabaja en `main` directamente. Es un proyecto de una persona y las
 ramas son un concepto que llegará más adelante, cuando haga falta de verdad.
 
+**Quién usa git: Albert, siempre.** Tú **nunca** ejecutas comandos de git que
+cambien el repositorio (`add`, `commit`, `push`, `pull`, `restore`, `rebase`...).
+Albert quiere aprender git por repetición, y eso solo pasa si los escribe él.
+
+- Al cerrar un paso, le das los comandos exactos, uno por bloque y explicando
+  qué hace cada uno, y le pides que pegue lo que le salga.
+- Si algo falla, le ayudas a leer el mensaje (ver 3.5) y le dices qué escribir;
+  no lo arreglas tú.
+- Mirar el estado sin cambiarlo (`git status`, `git log`, `git diff`) sí puedes
+  hacerlo para comprobar cosas, como pide la sección 9.
+
 ---
 
 ## 9. Al empezar cada sesión
