@@ -12,6 +12,48 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-09
 
+### Cambio · Paso 8: extraer las definiciones y los movimientos
+**Qué:** el parser lee la Quinta Parte con una máquina de estados y añade a
+cada cuenta su `definicion`, su `presentacion` ("Figurará en..."), sus
+`cargos` y sus `abonos`. La 430 sale con 3 cargos y 9 abonos. De las 421
+cuentas de tres cifras, 308 tienen definición y 220 tienen movimientos en
+columnas.
+**Por qué:** es el contenido de las fichas que mostrará la web (pasos 15 y 16).
+
+### Decisión · La forma de la ficha
+**Qué:** cuatro campos nuevos en cada cuenta del mismo `accounts.json`, con
+estas reglas:
+1. `cargos` y `abonos`, no `a` y `b`: se decide por el verbo ("cargará" o
+   "abonará"), porque en las cuentas de pasivo el `a)` es el abono.
+2. Todo son listas, aunque haya un solo elemento o ninguno. Una lista vacía
+   quiere decir que el texto no dice nada de eso.
+3. Las etiquetas `a1)`, `b2)` se quitan: la posición en la lista ya las da.
+4. Lo que no encaja en cargos o abonos se queda en `definicion` tal cual: los
+   movimientos en prosa, el "análogo al señalado para la cuenta 430" y las
+   frases que hablan de cargo y abono a la vez.
+5. Las fichas compartidas (`600/601/602/607`) se copian a cada cuenta.
+6. Mismo fichero: una cuenta es una ficha.
+
+**Por qué:** que la web tenga siempre la misma forma, y que no se pierda ni
+se invente nada (sección 7 de CLAUDE.md).
+
+### Problema conocido · Fichas que el OCR desordenó
+**Qué:**
+- El título `570/571. Caja` no está en el texto. Su definición acaba en el
+  subgrupo 57, y la 570 y la 571 se quedan sin ficha.
+- El trozo de `230/237` está desordenado: falta el "a) Se cargarán:" antes
+  de los `a1) a2)`, y el texto de la 239 se queda en la 230 y la 237.
+  Además, `230/237` seguramente quiere decir "de la 230 a la 237", y el
+  parser lo lee como "la 230 y la 237".
+- En la 400, el OCR escribió `a<sup>3</sup> )` en vez de `a3)`, y el tercer
+  abono queda pegado al segundo.
+- En el subgrupo 44, una definición empieza por un `305` que sobra.
+- 113 cuentas de tres cifras no tienen definición. Muchas porque el PGC las
+  define a nivel de subgrupo, pero no todas.
+
+**Por qué se deja:** son casos sueltos, cada uno distinto. El verificador del
+paso 10 los tiene que sacar a la luz, y se corrigen en el paso 11.
+
 ### Cambio · Paso 7: extraer el cuadro de cuentas a `data/accounts.json`
 **Qué:** el parser recorta la Cuarta Parte del PGC y saca cada grupo,
 subgrupo, cuenta y subcuenta con su código y su nombre. Salen 9 grupos, 78
