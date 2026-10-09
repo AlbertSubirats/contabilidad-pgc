@@ -12,6 +12,42 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-09
 
+### Cambio · Paso 7: extraer el cuadro de cuentas a `data/accounts.json`
+**Qué:** el parser recorta la Cuarta Parte del PGC y saca cada grupo,
+subgrupo, cuenta y subcuenta con su código y su nombre. Salen 9 grupos, 78
+subgrupos, 421 cuentas y 407 subcuentas, y la 430 se llama "Clientes".
+**Por qué:** es la base de todo lo demás: el buscador, las fichas y el
+simulador leen de este fichero.
+
+### Decisión · La forma del dato: una lista plana de cuentas
+**Qué:** cada cuenta es una ficha con `plan`, `codigo`, `nivel`, `nombre` y
+`padre`. Todas van en una sola lista, sin anidar. Se incluyen las subcuentas
+de 4 y 5 cifras. El plan se llama `pgc-general`.
+**Por qué:**
+- **Lista plana:** es fácil de recorrer para buscar (paso 13) y de ampliar
+  con la definición y los movimientos (paso 8). El árbol se reconstruye con
+  `padre` cuando haga falta (paso 14).
+- **`codigo` como texto:** un código no es una cantidad, nunca se suma.
+- **`plan` en cada cuenta:** cuando llegue el PGC de PYMES, sus cuentas
+  (`pgc-pymes`) podrán vivir en la misma lista sin mezclarse, aunque repitan
+  código.
+- **`pgc-general` y no `pgc-normal`:** es el nombre oficial del plan, a
+  propuesta de Albert.
+- **Subcuentas incluidas:** son parte oficial del cuadro y el simulador las
+  necesitará (paso 27).
+- **Nombres de campo en castellano y sin tildes:** son vocabulario del
+  dominio, y sin tildes se escriben sin problemas en JavaScript.
+- **Los nombres, tal como vienen:** los subgrupos en mayúsculas y las cuentas
+  no. El texto es la fuente de verdad; cómo se muestran lo decide la web.
+
+### Problema conocido · El subgrupo 53 sale con basura y fuera de orden
+**Qué:** el OCR leyó la línea como `# 212 53. INVERSIONES FINANCIERAS A CORTO
+PLAZO EN PARTES VINCULADAS grupo asociadas`, antes del subgrupo 52. El `212`
+(un número de página) se descarta solo, pero el nombre se queda con
+"grupo asociadas" al final, y en la lista el 53 aparece antes que el 52.
+**Por qué se deja:** es un caso único. Lo tiene que encontrar el verificador
+del paso 10, y se corregirá en el paso 11.
+
 ### Cambio · Paso 6: limpiar las marcas de página del OCR
 **Qué:** el parser quita las 406 marcas `{N}-----`, recorta los espacios del
 final de cada línea y deja una sola línea en blanco donde había varias. El

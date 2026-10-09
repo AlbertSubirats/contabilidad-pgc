@@ -1,0 +1,6407 @@
+[
+  {
+    "plan": "pgc-general",
+    "codigo": "1",
+    "nivel": "grupo",
+    "nombre": "FINANCIACIÓN BÁSICA",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "10",
+    "nivel": "subgrupo",
+    "nombre": "CAPITAL",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "100",
+    "nivel": "cuenta",
+    "nombre": "Capital social",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "101",
+    "nivel": "cuenta",
+    "nombre": "Fondo social",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "102",
+    "nivel": "cuenta",
+    "nombre": "Capital",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "103",
+    "nivel": "cuenta",
+    "nombre": "Socios por desembolsos no exigidos",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1030",
+    "nivel": "subcuenta",
+    "nombre": "Socios por desembolsos no exigidos, capital social",
+    "padre": "103"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1034",
+    "nivel": "subcuenta",
+    "nombre": "Socios por desembolsos no exigidos, capital pendiente de inscripción",
+    "padre": "103"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "104",
+    "nivel": "cuenta",
+    "nombre": "Socios por aportaciones no dinerarias pendientes",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1040",
+    "nivel": "subcuenta",
+    "nombre": "Socios por aportaciones no dinerarias pendientes, capital social",
+    "padre": "104"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1044",
+    "nivel": "subcuenta",
+    "nombre": "Socios por aportaciones no dinerarias pendientes, capital pendiente de inscripción",
+    "padre": "104"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "108",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones propias en situaciones especiales",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "109",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones propias para reducción de capital",
+    "padre": "10"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "11",
+    "nivel": "subgrupo",
+    "nombre": "RESERVAS Y OTROS INSTRUMENTOS DE PATRIMONIO",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "110",
+    "nivel": "cuenta",
+    "nombre": "Prima de emisión o asunción",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "111",
+    "nivel": "cuenta",
+    "nombre": "Otros instrumentos de patrimonio neto",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1110",
+    "nivel": "subcuenta",
+    "nombre": "Patrimonio neto por emisión de instrumentos financieros compuestos",
+    "padre": "111"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1111",
+    "nivel": "subcuenta",
+    "nombre": "Resto de instrumentos de patrimonio neto",
+    "padre": "111"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "112",
+    "nivel": "cuenta",
+    "nombre": "Reserva legal",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "113",
+    "nivel": "cuenta",
+    "nombre": "Reservas voluntarias",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "114",
+    "nivel": "cuenta",
+    "nombre": "Reservas especiales",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1140",
+    "nivel": "subcuenta",
+    "nombre": "Reservas para acciones o participaciones de la sociedad dominante",
+    "padre": "114"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1141",
+    "nivel": "subcuenta",
+    "nombre": "Reservas estatutarias",
+    "padre": "114"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1142",
+    "nivel": "subcuenta",
+    "nombre": "Reserva por capital amortizado",
+    "padre": "114"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1143",
+    "nivel": "subcuenta",
+    "nombre": "Reserva por fondo de comercio",
+    "padre": "114"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1144",
+    "nivel": "subcuenta",
+    "nombre": "Reservas por acciones propias aceptadas en garantía",
+    "padre": "114"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "115",
+    "nivel": "cuenta",
+    "nombre": "Reservas por pérdidas y ganancias actuariales y otros ajustes",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "118",
+    "nivel": "cuenta",
+    "nombre": "Aportaciones de socios o propietarios",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "119",
+    "nivel": "cuenta",
+    "nombre": "Diferencias por ajuste del capital a euros",
+    "padre": "11"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "12",
+    "nivel": "subgrupo",
+    "nombre": "RESULTADOS PENDIENTES DE APLICACIÓN",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "120",
+    "nivel": "cuenta",
+    "nombre": "Remanente",
+    "padre": "12"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "121",
+    "nivel": "cuenta",
+    "nombre": "Resultados negativos de ejercicios anteriores",
+    "padre": "12"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "129",
+    "nivel": "cuenta",
+    "nombre": "Resultado del ejercicio",
+    "padre": "12"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "13",
+    "nivel": "subgrupo",
+    "nombre": "SUBVENCIONES, DONACIONES Y AJUSTES POR CAMBIOS DE VALOR",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "130",
+    "nivel": "cuenta",
+    "nombre": "Subvenciones oficiales de capital",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "131",
+    "nivel": "cuenta",
+    "nombre": "Donaciones y legados de capital",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "132",
+    "nivel": "cuenta",
+    "nombre": "Otras subvenciones, donaciones y legados",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "133",
+    "nivel": "cuenta",
+    "nombre": "Ajustes por valoración en activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "134",
+    "nivel": "cuenta",
+    "nombre": "Operaciones de cobertura",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1340",
+    "nivel": "subcuenta",
+    "nombre": "Cobertura de flujos de efectivo",
+    "padre": "134"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1341",
+    "nivel": "subcuenta",
+    "nombre": "Cobertura de una inversión neta en un negocio en el extranjero",
+    "padre": "134"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "135",
+    "nivel": "cuenta",
+    "nombre": "Diferencias de conversión",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "136",
+    "nivel": "cuenta",
+    "nombre": "Ajustes por valoración en activos no corrientes y grupos enajenables de elementos, mantenidos para la venta",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "137",
+    "nivel": "cuenta",
+    "nombre": "Ingresos fiscales a distribuir en varios ejercicios",
+    "padre": "13"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1370",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos fiscales por diferencias permanentes a distribuir en varios ejercicios",
+    "padre": "137"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1371",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos fiscales por deducciones y bonificaciones a distribuir en varios ejercicios",
+    "padre": "137"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "14",
+    "nivel": "subgrupo",
+    "nombre": "PROVISIONES",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "140",
+    "nivel": "cuenta",
+    "nombre": "Provisión por retribuciones a largo plazo al personal",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "141",
+    "nivel": "cuenta",
+    "nombre": "Provisión para impuestos",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "142",
+    "nivel": "cuenta",
+    "nombre": "Provisión para otras responsabilidades",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "143",
+    "nivel": "cuenta",
+    "nombre": "Provisión por desmantelamiento, retiro o rehabilitación del inmovilizado",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "145",
+    "nivel": "cuenta",
+    "nombre": "Provisión para actuaciones medioambientales",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "146",
+    "nivel": "cuenta",
+    "nombre": "Provisión para reestructuraciones",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "147",
+    "nivel": "cuenta",
+    "nombre": "Provisión por transacciones con pagos basados en instrumentos de patrimonio",
+    "padre": "14"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "15",
+    "nivel": "subgrupo",
+    "nombre": "DEUDAS A LARGO PLAZO CON CARACTERÍSTICAS ESPECIALES",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "150",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones a largo plazo consideradas como pasivos financieros",
+    "padre": "15"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "153",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos no exigidos por acciones o participaciones consideradas como pasivos financieros",
+    "padre": "15"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1533",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos no exigidos, empresas del grupo",
+    "padre": "153"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1534",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos no exigidos, empresas asociadas",
+    "padre": "153"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1535",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos no exigidos, otras partes vinculadas",
+    "padre": "153"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1536",
+    "nivel": "subcuenta",
+    "nombre": "Otros desembolsos no exigidos",
+    "padre": "153"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "154",
+    "nivel": "cuenta",
+    "nombre": "Aportaciones no dinerarias pendientes por acciones o participaciones consideradas como pasivos financieros",
+    "padre": "15"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1543",
+    "nivel": "subcuenta",
+    "nombre": "Aportaciones no dinerarias pendientes, empresas del grupo",
+    "padre": "154"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1544",
+    "nivel": "subcuenta",
+    "nombre": "Aportaciones no dinerarias pendientes, empresas asociadas",
+    "padre": "154"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1545",
+    "nivel": "subcuenta",
+    "nombre": "Aportaciones no dinerarias pendientes, otras partes vinculadas",
+    "padre": "154"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1546",
+    "nivel": "subcuenta",
+    "nombre": "Otras aportaciones no dinerarias pendientes",
+    "padre": "154"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "16",
+    "nivel": "subgrupo",
+    "nombre": "DEUDAS A LARGO PLAZO CON PARTES VINCULADAS",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "160",
+    "nivel": "cuenta",
+    "nombre": "Deudas a largo plazo con entidades de crédito vinculadas",
+    "padre": "16"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1603",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a largo plazo con entidades de crédito, empresas del grupo",
+    "padre": "160"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1604",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a largo plazo con entidades de crédito, empresas asociadas",
+    "padre": "160"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1605",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a largo plazo con otras entidades de crédito vinculadas",
+    "padre": "160"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "161",
+    "nivel": "cuenta",
+    "nombre": "Proveedores de inmovilizado a largo plazo, partes vinculadas",
+    "padre": "16"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1613",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a largo plazo, empresas del grupo",
+    "padre": "161"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1614",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a largo plazo, empresas asociadas",
+    "padre": "161"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1615",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a largo plazo, otras partes vinculadas",
+    "padre": "161"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "162",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por arrendamiento financiero a largo plazo, partes vinculadas",
+    "padre": "16"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1623",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a largo plazo, empresas de grupo",
+    "padre": "162"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1624",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a largo plazo, empresas asociadas",
+    "padre": "162"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1625",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a largo plazo, otras partes vinculadas",
+    "padre": "162"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "163",
+    "nivel": "cuenta",
+    "nombre": "Otras deudas a largo plazo con partes vinculadas",
+    "padre": "16"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1633",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a largo plazo, empresas del grupo",
+    "padre": "163"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1634",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a largo plazo, empresas asociadas",
+    "padre": "163"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1635",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a largo plazo, con otras partes vinculadas",
+    "padre": "163"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "17",
+    "nivel": "subgrupo",
+    "nombre": "DEUDAS A LARGO PLAZO POR PRÉSTAMOS RECIBIDOS, EMPRÉSTITOS Y OTROS CONCEPTOS",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "170",
+    "nivel": "cuenta",
+    "nombre": "Deudas a largo plazo con entidades de crédito",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "171",
+    "nivel": "cuenta",
+    "nombre": "Deudas a largo plazo",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "172",
+    "nivel": "cuenta",
+    "nombre": "Deudas a largo plazo transformables en subvenciones, donaciones y legados",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "173",
+    "nivel": "cuenta",
+    "nombre": "Proveedores de inmovilizado a largo plazo",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "174",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por arrendamiento financiero a largo plazo",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "175",
+    "nivel": "cuenta",
+    "nombre": "Efectos a pagar a largo plazo",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "176",
+    "nivel": "cuenta",
+    "nombre": "Pasivos por derivados financieros a largo plazo",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1765",
+    "nivel": "subcuenta",
+    "nombre": "Pasivos por derivados financieros a largo plazo, cartera de negociación",
+    "padre": "176"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "1768",
+    "nivel": "subcuenta",
+    "nombre": "Pasivos por derivados financieros a largo plazo, instrumentos de cobertura",
+    "padre": "176"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "177",
+    "nivel": "cuenta",
+    "nombre": "Obligaciones y bonos",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "178",
+    "nivel": "cuenta",
+    "nombre": "Obligaciones y bonos convertibles",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "179",
+    "nivel": "cuenta",
+    "nombre": "Deudas representadas en otros valores negociables",
+    "padre": "17"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "18",
+    "nivel": "subgrupo",
+    "nombre": "PASIVOS POR FIANZAS, GARANTÍAS Y OTROS CONCEPTOS A LARGO PLAZO",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "180",
+    "nivel": "cuenta",
+    "nombre": "Fianzas recibidas a largo plazo",
+    "padre": "18"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "181",
+    "nivel": "cuenta",
+    "nombre": "Anticipos recibidos por ventas o prestaciones de servicios a largo plazo",
+    "padre": "18"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "185",
+    "nivel": "cuenta",
+    "nombre": "Depósitos recibidos a largo plazo",
+    "padre": "18"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "189",
+    "nivel": "cuenta",
+    "nombre": "Garantías financieras a largo plazo",
+    "padre": "18"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "19",
+    "nivel": "subgrupo",
+    "nombre": "SITUACIONES TRANSITORIAS DE FINANCIACIÓN",
+    "padre": "1"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "190",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones emitidas",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "192",
+    "nivel": "cuenta",
+    "nombre": "Suscriptores de acciones",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "194",
+    "nivel": "cuenta",
+    "nombre": "Capital emitido pendiente de inscripción",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "195",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones emitidas consideradas como pasivos financieros",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "197",
+    "nivel": "cuenta",
+    "nombre": "Suscriptores de acciones consideradas como pasivos financieros",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "199",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones emitidas consideradas como pasivos financieros pendientes de inscripción",
+    "padre": "19"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2",
+    "nivel": "grupo",
+    "nombre": "ACTIVO NO CORRIENTE",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "20",
+    "nivel": "subgrupo",
+    "nombre": "INMOVILIZACIONES INTANGIBLES",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "200",
+    "nivel": "cuenta",
+    "nombre": "Investigación",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "201",
+    "nivel": "cuenta",
+    "nombre": "Desarrollo",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "202",
+    "nivel": "cuenta",
+    "nombre": "Concesiones administrativas",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "203",
+    "nivel": "cuenta",
+    "nombre": "Propiedad industrial",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "204",
+    "nivel": "cuenta",
+    "nombre": "Fondo de comercio",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "205",
+    "nivel": "cuenta",
+    "nombre": "Derechos de traspaso",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "206",
+    "nivel": "cuenta",
+    "nombre": "Aplicaciones informáticas",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "209",
+    "nivel": "cuenta",
+    "nombre": "Anticipos para inmovilizaciones intangibles",
+    "padre": "20"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "21",
+    "nivel": "subgrupo",
+    "nombre": "INMOVILIZACIONES MATERIALES",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "210",
+    "nivel": "cuenta",
+    "nombre": "Terrenos y bienes naturales",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "211",
+    "nivel": "cuenta",
+    "nombre": "Construcciones",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "212",
+    "nivel": "cuenta",
+    "nombre": "Instalaciones técnicas",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "213",
+    "nivel": "cuenta",
+    "nombre": "Maquinaria",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "214",
+    "nivel": "cuenta",
+    "nombre": "Utillaje",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "215",
+    "nivel": "cuenta",
+    "nombre": "Otras instalaciones",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "216",
+    "nivel": "cuenta",
+    "nombre": "Mobiliario",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "217",
+    "nivel": "cuenta",
+    "nombre": "Equipos para procesos de información",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "218",
+    "nivel": "cuenta",
+    "nombre": "Elementos de transporte",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "219",
+    "nivel": "cuenta",
+    "nombre": "Otro inmovilizado material",
+    "padre": "21"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "22",
+    "nivel": "subgrupo",
+    "nombre": "INVERSIONES INMOBILIARIAS",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "220",
+    "nivel": "cuenta",
+    "nombre": "Inversiones en terrenos y bienes naturales",
+    "padre": "22"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "221",
+    "nivel": "cuenta",
+    "nombre": "Inversiones en construcciones",
+    "padre": "22"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "23",
+    "nivel": "subgrupo",
+    "nombre": "INMOVILIZACIONES MATERIALES EN CURSO",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "230",
+    "nivel": "cuenta",
+    "nombre": "Adaptación de terrenos y bienes naturales",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "231",
+    "nivel": "cuenta",
+    "nombre": "Construcciones en curso",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "232",
+    "nivel": "cuenta",
+    "nombre": "Instalaciones técnicas en montaje",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "233",
+    "nivel": "cuenta",
+    "nombre": "Maquinaria en montaje",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "237",
+    "nivel": "cuenta",
+    "nombre": "Equipos para procesos de información en montaje",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "239",
+    "nivel": "cuenta",
+    "nombre": "Anticipos para inmovilizaciones materiales",
+    "padre": "23"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "24",
+    "nivel": "subgrupo",
+    "nombre": "INVERSIONES FINANCIERAS A LARGO PLAZO EN PARTES VINCULADAS",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "240",
+    "nivel": "cuenta",
+    "nombre": "Participaciones a largo plazo en partes vinculadas",
+    "padre": "24"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2403",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a largo plazo en empresas del grupo",
+    "padre": "240"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2404",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a largo plazo en empresas asociadas",
+    "padre": "240"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2405",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a largo plazo en otras partes vinculadas",
+    "padre": "240"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "241",
+    "nivel": "cuenta",
+    "nombre": "Valores representativos de deuda a largo plazo de partes vinculadas",
+    "padre": "24"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2413",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a largo plazo de empresas del grupo",
+    "padre": "241"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2414",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a largo plazo de empresas asociadas",
+    "padre": "241"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2415",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a largo plazo de otras partes vinculadas",
+    "padre": "241"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "242",
+    "nivel": "cuenta",
+    "nombre": "Créditos a largo plazo a partes vinculadas",
+    "padre": "24"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2423",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a largo plazo a empresas del grupo",
+    "padre": "242"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2424",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a largo plazo a empresas asociadas",
+    "padre": "242"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2425",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a largo plazo a otras partes vinculadas",
+    "padre": "242"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "249",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a largo plazo en partes vinculadas",
+    "padre": "24"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2493",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a largo plazo en empresas del grupo",
+    "padre": "249"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2494",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a largo plazo en empresas asociadas",
+    "padre": "249"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2495",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a largo plazo en otras partes vinculadas",
+    "padre": "249"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "25",
+    "nivel": "subgrupo",
+    "nombre": "OTRAS INVERSIONES FINANCIERAS A LARGO PLAZO",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "250",
+    "nivel": "cuenta",
+    "nombre": "Inversiones financieras a largo plazo en instrumentos de patrimonio",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "251",
+    "nivel": "cuenta",
+    "nombre": "Valores representativos de deuda a largo plazo",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "252",
+    "nivel": "cuenta",
+    "nombre": "Créditos a largo plazo",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "253",
+    "nivel": "cuenta",
+    "nombre": "Créditos a largo plazo por enajenación de inmovilizado",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "254",
+    "nivel": "cuenta",
+    "nombre": "Créditos a largo plazo al personal",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "255",
+    "nivel": "cuenta",
+    "nombre": "Activos por derivados financieros a largo plazo",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2550",
+    "nivel": "subcuenta",
+    "nombre": "Activos por derivados financieros a largo plazo, cartera de negociación",
+    "padre": "255"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2553",
+    "nivel": "subcuenta",
+    "nombre": "Activos por derivados financieros a largo plazo, instrumentos de cobertura",
+    "padre": "255"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "257",
+    "nivel": "cuenta",
+    "nombre": "Derechos de reembolso derivados de contratos de seguro relativos a retribuciones a largo plazo al personal",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "258",
+    "nivel": "cuenta",
+    "nombre": "Imposiciones a largo plazo",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "259",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones en el patrimonio neto a largo plazo",
+    "padre": "25"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "26",
+    "nivel": "subgrupo",
+    "nombre": "FIANZAS Y DEPÓSITOS CONSTITUIDOS A LARGO PLAZO",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "260",
+    "nivel": "cuenta",
+    "nombre": "Fianzas constituidas a largo plazo",
+    "padre": "26"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "265",
+    "nivel": "cuenta",
+    "nombre": "Depósitos constituidos a largo plazo",
+    "padre": "26"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "28",
+    "nivel": "subgrupo",
+    "nombre": "AMORTIZACIÓN ACUMULADA DEL INMOVILIZADO",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "280",
+    "nivel": "cuenta",
+    "nombre": "Amortización acumulada del inmovilizado intangible",
+    "padre": "28"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2800",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de investigación",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2801",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de desarrollo",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2802",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de concesiones administrativas",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2803",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de propiedad industrial",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2804",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de fondo de comercio",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2805",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de derechos de traspaso",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2806",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de aplicaciones informáticas",
+    "padre": "280"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "281",
+    "nivel": "cuenta",
+    "nombre": "Amortización acumulada del inmovilizado material",
+    "padre": "28"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2811",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de construcciones",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2812",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de instalaciones técnicas",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2813",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de maquinaria",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2814",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de utillaje",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2815",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de otras instalaciones",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2816",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de mobiliario",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2817",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de equipos para procesos de información",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2818",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de elementos de transporte",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2819",
+    "nivel": "subcuenta",
+    "nombre": "Amortización acumulada de otro inmovilizado material",
+    "padre": "281"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "282",
+    "nivel": "cuenta",
+    "nombre": "Amortización acumulada de las inversiones inmobiliarias",
+    "padre": "28"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "29",
+    "nivel": "subgrupo",
+    "nombre": "DETERIORO DE VALOR DE ACTIVOS NO CORRIENTES",
+    "padre": "2"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "290",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor del inmovilizado intangible",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2900",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de investigación",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2901",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro del valor de desarrollo",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2902",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de concesiones administrativas",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2903",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de propiedad industrial",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2905",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de derechos de traspaso",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2906",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de aplicaciones informáticas",
+    "padre": "290"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "291",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor del inmovilizado material",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2910",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de terrenos y bienes naturales",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2911",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de construcciones",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2912",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de instalaciones técnicas",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2913",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de maquinaria",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2914",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de utillaje",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2915",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de otras instalaciones",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2916",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de mobiliario",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2917",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de equipos para procesos de información",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2918",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de elementos de transporte",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2919",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de otro inmovilizado material",
+    "padre": "291"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "292",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de las inversiones inmobiliarias",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2920",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de los terrenos y bienes naturales",
+    "padre": "292"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2921",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de construcciones",
+    "padre": "292"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "293",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de participaciones a largo plazo",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2933",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a largo plazo en empresas del grupo",
+    "padre": "293"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2934",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a largo plazo en empresas asociadas",
+    "padre": "293"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2935",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a largo plazo en otras partes vinculadas",
+    "padre": "293"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2936",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a largo plazo en otras empresas",
+    "padre": "293"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "294",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a largo plazo de partes vinculadas",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2943",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a largo plazo de empresas del grupo",
+    "padre": "294"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2944",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a largo plazo de empresas asociadas",
+    "padre": "294"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2945",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a largo plazo de otras partes vinculadas",
+    "padre": "294"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "295",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos a largo plazo a partes vinculadas",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2953",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a largo plazo a empresas del grupo",
+    "padre": "295"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2954",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a largo plazo a empresas asociadas",
+    "padre": "295"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "2955",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a largo plazo a otras partes vinculadas",
+    "padre": "295"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "297",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a largo plazo",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "298",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos a largo plazo",
+    "padre": "29"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "3",
+    "nivel": "grupo",
+    "nombre": "EXISTENCIAS",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "30",
+    "nivel": "subgrupo",
+    "nombre": "COMERCIALES",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "300",
+    "nivel": "cuenta",
+    "nombre": "Mercaderías A",
+    "padre": "30"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "301",
+    "nivel": "cuenta",
+    "nombre": "Mercaderías B",
+    "padre": "30"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "31",
+    "nivel": "subgrupo",
+    "nombre": "MATERIAS PRIMAS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "310",
+    "nivel": "cuenta",
+    "nombre": "Materias primas A",
+    "padre": "31"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "311",
+    "nivel": "cuenta",
+    "nombre": "Materias primas B",
+    "padre": "31"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "32",
+    "nivel": "subgrupo",
+    "nombre": "OTROS APROVISIONAMIENTOS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "320",
+    "nivel": "cuenta",
+    "nombre": "Elementos y conjuntos incorporables",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "321",
+    "nivel": "cuenta",
+    "nombre": "Combustibles",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "322",
+    "nivel": "cuenta",
+    "nombre": "Repuestos",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "325",
+    "nivel": "cuenta",
+    "nombre": "Materiales diversos",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "326",
+    "nivel": "cuenta",
+    "nombre": "Embalajes",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "327",
+    "nivel": "cuenta",
+    "nombre": "Envases",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "328",
+    "nivel": "cuenta",
+    "nombre": "Material de oficina",
+    "padre": "32"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "33",
+    "nivel": "subgrupo",
+    "nombre": "PRODUCTOS EN CURSO",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "330",
+    "nivel": "cuenta",
+    "nombre": "Productos en curso A",
+    "padre": "33"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "331",
+    "nivel": "cuenta",
+    "nombre": "Productos en curso B",
+    "padre": "33"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "34",
+    "nivel": "subgrupo",
+    "nombre": "PRODUCTOS SEMITERMINADOS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "340",
+    "nivel": "cuenta",
+    "nombre": "Productos semiterminados A",
+    "padre": "34"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "341",
+    "nivel": "cuenta",
+    "nombre": "Productos semiterminados B",
+    "padre": "34"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "35",
+    "nivel": "subgrupo",
+    "nombre": "PRODUCTOS TERMINADOS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "350",
+    "nivel": "cuenta",
+    "nombre": "Productos terminados A",
+    "padre": "35"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "351",
+    "nivel": "cuenta",
+    "nombre": "Productos terminados B",
+    "padre": "35"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "36",
+    "nivel": "subgrupo",
+    "nombre": "SUBPRODUCTOS, RESIDUOS Y MATERIALES RECUPERADOS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "360",
+    "nivel": "cuenta",
+    "nombre": "Subproductos A",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "361",
+    "nivel": "cuenta",
+    "nombre": "Subproductos B",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "365",
+    "nivel": "cuenta",
+    "nombre": "Residuos A",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "366",
+    "nivel": "cuenta",
+    "nombre": "Residuos B",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "368",
+    "nivel": "cuenta",
+    "nombre": "Materiales recuperados A",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "369",
+    "nivel": "cuenta",
+    "nombre": "Materiales recuperados B",
+    "padre": "36"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "39",
+    "nivel": "subgrupo",
+    "nombre": "DETERIORO DE VALOR DE LAS EXISTENCIAS",
+    "padre": "3"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "390",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de las mercaderías",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "391",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de las materias primas",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "392",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de otros aprovisionamientos",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "393",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de los productos en curso",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "394",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de los productos semiterminados",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "395",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de los productos terminados",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "396",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de los subproductos, residuos y materiales recuperados",
+    "padre": "39"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4",
+    "nivel": "grupo",
+    "nombre": "ACREEDORES Y DEUDORES POR OPERACIONES COMERCIALES",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "40",
+    "nivel": "subgrupo",
+    "nombre": "PROVEEDORES",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "400",
+    "nivel": "cuenta",
+    "nombre": "Proveedores",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4000",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores (euros)",
+    "padre": "400"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4004",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores (moneda extranjera)",
+    "padre": "400"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4009",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores, facturas pendientes de recibir o de formalizar",
+    "padre": "400"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "401",
+    "nivel": "cuenta",
+    "nombre": "Proveedores, efectos comerciales a pagar",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "403",
+    "nivel": "cuenta",
+    "nombre": "Proveedores, empresas del grupo",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4030",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores, empresas del grupo (euros)",
+    "padre": "403"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4031",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales a pagar, empresas del grupo",
+    "padre": "403"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4034",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores, empresas del grupo (moneda extranjera)",
+    "padre": "403"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4036",
+    "nivel": "subcuenta",
+    "nombre": "Envases y embalajes a devolver a proveedores, empresas del grupo",
+    "padre": "403"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4039",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores, empresas del grupo, facturas pendientes de recibir o de formalizar",
+    "padre": "403"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "404",
+    "nivel": "cuenta",
+    "nombre": "Proveedores, empresas asociadas",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "405",
+    "nivel": "cuenta",
+    "nombre": "Proveedores, otras partes vinculadas",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "406",
+    "nivel": "cuenta",
+    "nombre": "Envases y embalajes a devolver a proveedores",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "407",
+    "nivel": "cuenta",
+    "nombre": "Anticipos a proveedores",
+    "padre": "40"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "41",
+    "nivel": "subgrupo",
+    "nombre": "ACREEDORES VARIOS",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "410",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por prestaciones de servicios",
+    "padre": "41"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4100",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por prestaciones de servicios (euros)",
+    "padre": "410"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4104",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por prestaciones de servicios, (moneda extranjera)",
+    "padre": "410"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4109",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar",
+    "padre": "410"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "411",
+    "nivel": "cuenta",
+    "nombre": "Acreedores, efectos comerciales a pagar",
+    "padre": "41"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "419",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por operaciones en común",
+    "padre": "41"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "43",
+    "nivel": "subgrupo",
+    "nombre": "CLIENTES",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "430",
+    "nivel": "cuenta",
+    "nombre": "Clientes",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4300",
+    "nivel": "subcuenta",
+    "nombre": "Clientes (euros)",
+    "padre": "430"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4304",
+    "nivel": "subcuenta",
+    "nombre": "Clientes (moneda extranjera)",
+    "padre": "430"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4309",
+    "nivel": "subcuenta",
+    "nombre": "Clientes, facturas pendientes de formalizar",
+    "padre": "430"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "431",
+    "nivel": "cuenta",
+    "nombre": "Clientes, efectos comerciales a cobrar",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4310",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales en cartera",
+    "padre": "431"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4311",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales descontados",
+    "padre": "431"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4312",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales en gestión de cobro",
+    "padre": "431"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4315",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales impagados",
+    "padre": "431"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "432",
+    "nivel": "cuenta",
+    "nombre": "Clientes, operaciones de \"factoring\"",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "433",
+    "nivel": "cuenta",
+    "nombre": "Clientes, empresas del grupo",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4330",
+    "nivel": "subcuenta",
+    "nombre": "Clientes empresas del grupo (euros)",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4331",
+    "nivel": "subcuenta",
+    "nombre": "Efectos comerciales a cobrar, empresas del grupo",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4332",
+    "nivel": "subcuenta",
+    "nombre": "Clientes empresas del grupo, operaciones de \"factoring\"",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4334",
+    "nivel": "subcuenta",
+    "nombre": "Clientes empresas del grupo (moneda extranjera)",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4336",
+    "nivel": "subcuenta",
+    "nombre": "Clientes empresas del grupo de dudoso cobro",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4337",
+    "nivel": "subcuenta",
+    "nombre": "Envases y embalajes a devolver a clientes, empresas del grupo",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4339",
+    "nivel": "subcuenta",
+    "nombre": "Clientes empresas del grupo, facturas pendientes de formalizar",
+    "padre": "433"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "434",
+    "nivel": "cuenta",
+    "nombre": "Clientes, empresas asociadas",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "435",
+    "nivel": "cuenta",
+    "nombre": "Clientes, otras partes vinculadas",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "436",
+    "nivel": "cuenta",
+    "nombre": "Clientes de dudoso cobro",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "437",
+    "nivel": "cuenta",
+    "nombre": "Envases y embalajes a devolver por clientes",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "438",
+    "nivel": "cuenta",
+    "nombre": "Anticipos de clientes",
+    "padre": "43"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "44",
+    "nivel": "subgrupo",
+    "nombre": "DEUDORES VARIOS",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "440",
+    "nivel": "cuenta",
+    "nombre": "Deudores",
+    "padre": "44"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4400",
+    "nivel": "subcuenta",
+    "nombre": "Deudores (euros)",
+    "padre": "440"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4404",
+    "nivel": "subcuenta",
+    "nombre": "Deudores (moneda extranjera)",
+    "padre": "440"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4409",
+    "nivel": "subcuenta",
+    "nombre": "Deudores, facturas pendientes de formalizar",
+    "padre": "440"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "441",
+    "nivel": "cuenta",
+    "nombre": "Deudores, efectos comerciales a cobrar",
+    "padre": "44"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4410",
+    "nivel": "subcuenta",
+    "nombre": "Deudores, efectos comerciales en cartera",
+    "padre": "441"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4411",
+    "nivel": "subcuenta",
+    "nombre": "Deudores, efectos comerciales descontados",
+    "padre": "441"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4412",
+    "nivel": "subcuenta",
+    "nombre": "Deudores, efectos comerciales en gestión de cobro",
+    "padre": "441"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4415",
+    "nivel": "subcuenta",
+    "nombre": "Deudores, efectos comerciales impagados",
+    "padre": "441"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "446",
+    "nivel": "cuenta",
+    "nombre": "Deudores de dudoso cobro",
+    "padre": "44"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "449",
+    "nivel": "cuenta",
+    "nombre": "Deudores por operaciones en común",
+    "padre": "44"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "46",
+    "nivel": "subgrupo",
+    "nombre": "PERSONAL",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "460",
+    "nivel": "cuenta",
+    "nombre": "Anticipos de remuneraciones",
+    "padre": "46"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "465",
+    "nivel": "cuenta",
+    "nombre": "Remuneraciones pendientes de pago",
+    "padre": "46"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "466",
+    "nivel": "cuenta",
+    "nombre": "Remuneraciones mediante sistemas de aportación definida pendientes de pago",
+    "padre": "46"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "47",
+    "nivel": "subgrupo",
+    "nombre": "ADMINISTRACIONES PÚBLICAS",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "470",
+    "nivel": "cuenta",
+    "nombre": "Hacienda Pública, deudora por diversos conceptos",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4700",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, deudora por IVA",
+    "padre": "470"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4708",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, deudora por subvenciones concedidas",
+    "padre": "470"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4709",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, deudora por devolución de impuestos",
+    "padre": "470"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "471",
+    "nivel": "cuenta",
+    "nombre": "Organismos de la Seguridad Social, deudores",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "472",
+    "nivel": "cuenta",
+    "nombre": "Hacienda Pública, IVA soportado",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "473",
+    "nivel": "cuenta",
+    "nombre": "Hacienda Pública, retenciones y pagos a cuenta",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "474",
+    "nivel": "cuenta",
+    "nombre": "Activos por impuesto diferido",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4740",
+    "nivel": "subcuenta",
+    "nombre": "Activos por diferencias temporarias deducibles",
+    "padre": "474"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4742",
+    "nivel": "subcuenta",
+    "nombre": "Derechos por deducciones y bonificaciones pendientes de aplicar",
+    "padre": "474"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4745",
+    "nivel": "subcuenta",
+    "nombre": "Crédito por pérdidas a compensar del ejercicio",
+    "padre": "474"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "475",
+    "nivel": "cuenta",
+    "nombre": "Hacienda Pública, acreedora por conceptos fiscales",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4750",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, acreedora por IVA",
+    "padre": "475"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4751",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, acreedora por retenciones practicadas",
+    "padre": "475"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4752",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, acreedora por impuesto sobre sociedades",
+    "padre": "475"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4758",
+    "nivel": "subcuenta",
+    "nombre": "Hacienda Pública, acreedora por subvenciones a reintegrar",
+    "padre": "475"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "476",
+    "nivel": "cuenta",
+    "nombre": "Organismos de la Seguridad Social, acreedores",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "477",
+    "nivel": "cuenta",
+    "nombre": "Hacienda Pública, IVA repercutido",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "479",
+    "nivel": "cuenta",
+    "nombre": "Pasivos por diferencias temporarias imponibles",
+    "padre": "47"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "48",
+    "nivel": "subgrupo",
+    "nombre": "AJUSTES POR PERIODIFICACIÓN",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "480",
+    "nivel": "cuenta",
+    "nombre": "Gastos anticipados",
+    "padre": "48"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "485",
+    "nivel": "cuenta",
+    "nombre": "Ingresos anticipados",
+    "padre": "48"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "49",
+    "nivel": "subgrupo",
+    "nombre": "DETERIORO DE VALOR DE CRÉDITOS COMERCIALES Y PROVISIONES A CORTO PLAZO",
+    "padre": "4"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "490",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos por operaciones comerciales",
+    "padre": "49"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "493",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos por operaciones comerciales con partes vinculadas",
+    "padre": "49"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4933",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos por operaciones comerciales con empresas del grupo",
+    "padre": "493"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4934",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos por operaciones comerciales con empresas asociadas",
+    "padre": "493"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4935",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos por operaciones comerciales con otras partes vinculadas",
+    "padre": "493"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "499",
+    "nivel": "cuenta",
+    "nombre": "Provisiones por operaciones comerciales",
+    "padre": "49"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4994",
+    "nivel": "subcuenta",
+    "nombre": "Provisión por contratos onerosos",
+    "padre": "499"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "4999",
+    "nivel": "subcuenta",
+    "nombre": "Provisión para otras operaciones comerciales",
+    "padre": "499"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5",
+    "nivel": "grupo",
+    "nombre": "CUENTAS FINANCIERAS",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "50",
+    "nivel": "subgrupo",
+    "nombre": "EMPRÉSTITOS, DEUDAS CON CARÁCTERÍSTICAS ESPECIALES Y OTRAS EMISIONES ANÁLOGAS A CORTO PLAZO",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "500",
+    "nivel": "cuenta",
+    "nombre": "Obligaciones y bonos a corto plazo",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "501",
+    "nivel": "cuenta",
+    "nombre": "Obligaciones y bonos convertibles a corto plazo",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "502",
+    "nivel": "cuenta",
+    "nombre": "Acciones o participaciones a corto plazo consideradas como pasivos financieros",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "505",
+    "nivel": "cuenta",
+    "nombre": "Deudas representadas en otros valores negociables a corto plazo",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "506",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de empréstitos y otras emisiones análogas",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "507",
+    "nivel": "cuenta",
+    "nombre": "Dividendos de acciones o participaciones consideradas como pasivos financieros",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "509",
+    "nivel": "cuenta",
+    "nombre": "Valores negociables amortizados",
+    "padre": "50"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5090",
+    "nivel": "subcuenta",
+    "nombre": "Obligaciones y bonos amortizados",
+    "padre": "509"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5091",
+    "nivel": "subcuenta",
+    "nombre": "Obligaciones y bonos convertibles amortizados",
+    "padre": "509"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5095",
+    "nivel": "subcuenta",
+    "nombre": "Otros valores negociables amortizados",
+    "padre": "509"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "51",
+    "nivel": "subgrupo",
+    "nombre": "DEUDAS A CORTO PLAZO CON PARTES VINCULADAS",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "510",
+    "nivel": "cuenta",
+    "nombre": "Deudas a corto plazo con entidades de crédito vinculadas",
+    "padre": "51"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5103",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a corto plazo con entidades de crédito, empresas del grupo",
+    "padre": "510"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5104",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a corto plazo con entidades de crédito, empresas asociadas",
+    "padre": "510"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5105",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a corto plazo con otras entidades de crédito vinculadas",
+    "padre": "510"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "511",
+    "nivel": "cuenta",
+    "nombre": "Proveedores de inmovilizado a corto plazo, partes vinculadas",
+    "padre": "51"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5113",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a corto plazo, empresas del grupo",
+    "padre": "511"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5114",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a corto plazo, empresas asociadas",
+    "padre": "511"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5115",
+    "nivel": "subcuenta",
+    "nombre": "Proveedores de inmovilizado a corto plazo, otras partes vinculadas",
+    "padre": "511"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "512",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por arrendamiento financiero a corto plazo, partes vinculadas",
+    "padre": "51"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5123",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a corto plazo, empresas del grupo",
+    "padre": "512"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5124",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a corto plazo, empresas asociadas",
+    "padre": "512"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5125",
+    "nivel": "subcuenta",
+    "nombre": "Acreedores por arrendamiento financiero a corto plazo, otras partes vinculadas",
+    "padre": "512"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "513",
+    "nivel": "cuenta",
+    "nombre": "Otras deudas a corto plazo con partes vinculadas",
+    "padre": "51"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5133",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a corto plazo con empresas del grupo",
+    "padre": "513"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5134",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a corto plazo con empresas asociadas",
+    "padre": "513"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5135",
+    "nivel": "subcuenta",
+    "nombre": "Otras deudas a corto plazo con otras partes vinculadas",
+    "padre": "513"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "514",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de deudas con partes vinculadas",
+    "padre": "51"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5143",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de deudas, empresas del grupo",
+    "padre": "514"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5144",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de deudas, empresas asociadas",
+    "padre": "514"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5145",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de deudas, otras partes vinculadas",
+    "padre": "514"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "53",
+    "nivel": "subgrupo",
+    "nombre": "INVERSIONES FINANCIERAS A CORTO PLAZO EN PARTES VINCULADAS grupo asociadas",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "52",
+    "nivel": "subgrupo",
+    "nombre": "DEUDAS A CORTO PLAZO POR PRÉSTAMOS RECIBIDOS Y OTROS CONCEPTOS",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "520",
+    "nivel": "cuenta",
+    "nombre": "Deudas a corto plazo con entidades de crédito",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5200",
+    "nivel": "subcuenta",
+    "nombre": "Préstamos a corto plazo de entidades de crédito",
+    "padre": "520"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5201",
+    "nivel": "subcuenta",
+    "nombre": "Deudas a corto plazo por crédito dispuesto",
+    "padre": "520"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5208",
+    "nivel": "subcuenta",
+    "nombre": "Deudas por efectos descontados",
+    "padre": "520"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5209",
+    "nivel": "subcuenta",
+    "nombre": "Deudas por operaciones de \"factoring\"",
+    "padre": "520"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "521",
+    "nivel": "cuenta",
+    "nombre": "Deudas a corto plazo",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "522",
+    "nivel": "cuenta",
+    "nombre": "Deudas a corto plazo transformables en subvenciones, donaciones y legados",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "523",
+    "nivel": "cuenta",
+    "nombre": "Proveedores de inmovilizado a corto plazo",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "524",
+    "nivel": "cuenta",
+    "nombre": "Acreedores por arrendamiento financiero a corto plazo",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "525",
+    "nivel": "cuenta",
+    "nombre": "Efectos a pagar a corto plazo",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "526",
+    "nivel": "cuenta",
+    "nombre": "Dividendo activo a pagar",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "527",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de deudas con entidades de crédito",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "528",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de deudas",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "529",
+    "nivel": "cuenta",
+    "nombre": "Provisiones a corto plazo",
+    "padre": "52"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5290",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo por retribuciones al personal",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5291",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo para impuestos",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5292",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo para otras responsabilidades",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5293",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo por desmantelamiento, retiro o rehabilitación del inmovilizado",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5295",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo para actuaciones medioambientales",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5296",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo para reestructuraciones",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5297",
+    "nivel": "subcuenta",
+    "nombre": "Provisión a corto plazo por transacciones con pagos basados en instrumentos de patrimonio",
+    "padre": "529"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "530",
+    "nivel": "cuenta",
+    "nombre": "Participaciones a corto plazo en partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5303",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a corto plazo, en empresas del grupo",
+    "padre": "530"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5304",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a corto plazo, en empresas asociadas",
+    "padre": "530"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5305",
+    "nivel": "subcuenta",
+    "nombre": "Participaciones a corto plazo, en otras partes vinculadas",
+    "padre": "530"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "531",
+    "nivel": "cuenta",
+    "nombre": "Valores representativos de deuda a corto plazo de partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5313",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a corto plazo de empresas del grupo",
+    "padre": "531"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5314",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a corto plazo de empresas asociadas",
+    "padre": "531"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5315",
+    "nivel": "subcuenta",
+    "nombre": "Valores representativos de deuda a corto plazo de otras partes vinculadas",
+    "padre": "531"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "532",
+    "nivel": "cuenta",
+    "nombre": "Créditos a corto plazo a partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5323",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a corto plazo a empresas del grupo",
+    "padre": "532"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5324",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a corto plazo a empresas asociadas",
+    "padre": "532"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5325",
+    "nivel": "subcuenta",
+    "nombre": "Créditos a corto plazo a otras partes vinculadas",
+    "padre": "532"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "533",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de valores representativos de deuda de partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5333",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de valores representativos de deuda de empresas del",
+    "padre": "533"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5334",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de valores representativos de deuda de empresas",
+    "padre": "533"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5335",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de valores representativos de deuda de otras partes vinculadas",
+    "padre": "533"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "534",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de créditos a partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5343",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de créditos a empresas del grupo",
+    "padre": "534"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5344",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de créditos a empresas asociadas",
+    "padre": "534"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5345",
+    "nivel": "subcuenta",
+    "nombre": "Intereses a corto plazo de créditos a otras partes vinculadas",
+    "padre": "534"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "535",
+    "nivel": "cuenta",
+    "nombre": "Dividendo a cobrar de inversiones financieras en partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5353",
+    "nivel": "subcuenta",
+    "nombre": "Dividendo a cobrar de empresas del grupo",
+    "padre": "535"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5354",
+    "nivel": "subcuenta",
+    "nombre": "Dividendo a cobrar de empresas asociadas",
+    "padre": "535"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5355",
+    "nivel": "subcuenta",
+    "nombre": "Dividendo a cobrar de otras partes vinculadas",
+    "padre": "535"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "539",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a corto plazo en partes vinculadas",
+    "padre": "53"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5393",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a corto plazo en empresas del grupo",
+    "padre": "539"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5394",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a corto plazo en empresas asociadas",
+    "padre": "539"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5395",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones a corto plazo en otras partes vinculadas",
+    "padre": "539"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "54",
+    "nivel": "subgrupo",
+    "nombre": "OTRAS INVERSIONES FINANCIERAS A CORTO PLAZO",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "540",
+    "nivel": "cuenta",
+    "nombre": "Inversiones financieras a corto plazo en instrumentos de patrimonio",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "541",
+    "nivel": "cuenta",
+    "nombre": "Valores representativos de deuda a corto plazo",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "542",
+    "nivel": "cuenta",
+    "nombre": "Créditos a corto plazo",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "543",
+    "nivel": "cuenta",
+    "nombre": "Créditos a corto plazo por enajenación de inmovilizado",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "544",
+    "nivel": "cuenta",
+    "nombre": "Créditos a corto plazo al personal",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "545",
+    "nivel": "cuenta",
+    "nombre": "Dividendo a cobrar",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "546",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de valores representativos de deudas",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "547",
+    "nivel": "cuenta",
+    "nombre": "Intereses a corto plazo de créditos",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "548",
+    "nivel": "cuenta",
+    "nombre": "Imposiciones a corto plazo",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "549",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos pendientes sobre participaciones en el patrimonio neto a corto plazo",
+    "padre": "54"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "55",
+    "nivel": "subgrupo",
+    "nombre": "OTRAS CUENTAS NO BANCARIAS",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "550",
+    "nivel": "cuenta",
+    "nombre": "Titular de la explotación",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "551",
+    "nivel": "cuenta",
+    "nombre": "Cuenta corriente con socios y administradores",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "552",
+    "nivel": "cuenta",
+    "nombre": "Cuenta corriente con otras personas y entidades vinculadas",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5523",
+    "nivel": "subcuenta",
+    "nombre": "Cuenta corriente con empresas del grupo",
+    "padre": "552"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5524",
+    "nivel": "subcuenta",
+    "nombre": "Cuenta corriente con empresas asociadas",
+    "padre": "552"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5525",
+    "nivel": "subcuenta",
+    "nombre": "Cuenta corriente con otras partes vinculadas",
+    "padre": "552"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "553",
+    "nivel": "cuenta",
+    "nombre": "Cuentas corrientes en fusiones y escisiones",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5530",
+    "nivel": "subcuenta",
+    "nombre": "Socios de sociedad disuelta",
+    "padre": "553"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5531",
+    "nivel": "subcuenta",
+    "nombre": "Socios, cuenta de fusión",
+    "padre": "553"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5532",
+    "nivel": "subcuenta",
+    "nombre": "Socios de sociedad escindida",
+    "padre": "553"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5533",
+    "nivel": "subcuenta",
+    "nombre": "Socios, cuenta de escisión",
+    "padre": "553"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "554",
+    "nivel": "cuenta",
+    "nombre": "Cuenta corriente con uniones temporales de empresas y comunidades de bienes",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "555",
+    "nivel": "cuenta",
+    "nombre": "Partidas pendientes de aplicación",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "556",
+    "nivel": "cuenta",
+    "nombre": "Desembolsos exigidos sobre participaciones en el patrimonio neto",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5563",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos exigidos sobre participaciones, empresas del grupo",
+    "padre": "556"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5564",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos exigidos sobre participaciones, empresas asociadas",
+    "padre": "556"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5565",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos exigidos sobre participaciones, otras partes vinculadas",
+    "padre": "556"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5566",
+    "nivel": "subcuenta",
+    "nombre": "Desembolsos exigidos sobre participaciones de otras empresas",
+    "padre": "556"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "557",
+    "nivel": "cuenta",
+    "nombre": "Dividendo activo a cuenta",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "558",
+    "nivel": "cuenta",
+    "nombre": "Socios por desembolsos exigidos",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5580",
+    "nivel": "subcuenta",
+    "nombre": "Socios por desembolsos exigidos sobre acciones o participaciones ordinarias",
+    "padre": "558"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5585",
+    "nivel": "subcuenta",
+    "nombre": "Socios por desembolsos exigidos sobre acciones o participaciones consideradas como pasivos financieros",
+    "padre": "558"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "559",
+    "nivel": "cuenta",
+    "nombre": "Derivados financieros a corto plazo",
+    "padre": "55"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5590",
+    "nivel": "subcuenta",
+    "nombre": "Activos por derivados financieros a corto plazo, cartera de negociación",
+    "padre": "559"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5593",
+    "nivel": "subcuenta",
+    "nombre": "Activos por derivados financieros a corto plazo, instrumentos de cobertura",
+    "padre": "559"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5595",
+    "nivel": "subcuenta",
+    "nombre": "Pasivos por derivados financieros a corto plazo, cartera de negociación",
+    "padre": "559"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5598",
+    "nivel": "subcuenta",
+    "nombre": "Pasivos por derivados financieros a corto plazo, instrumentos de cobertura",
+    "padre": "559"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "56",
+    "nivel": "subgrupo",
+    "nombre": "FIANZAS Y DEPÓSITOS RECIBIDOS Y CONSTITUIDOS A CORTO PLAZO Y AJUSTES POR PERIODIFICACIÓN",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "560",
+    "nivel": "cuenta",
+    "nombre": "Fianzas recibidas a corto plazo",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "561",
+    "nivel": "cuenta",
+    "nombre": "Depósitos recibidos a corto plazo",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "565",
+    "nivel": "cuenta",
+    "nombre": "Fianzas constituidas a corto plazo",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "566",
+    "nivel": "cuenta",
+    "nombre": "Depósitos constituidos a corto plazo",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "567",
+    "nivel": "cuenta",
+    "nombre": "Intereses pagados por anticipado",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "568",
+    "nivel": "cuenta",
+    "nombre": "Intereses cobrados por anticipado",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "569",
+    "nivel": "cuenta",
+    "nombre": "Garantías financieras a corto plazo",
+    "padre": "56"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "57",
+    "nivel": "subgrupo",
+    "nombre": "TESORERÍA",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "570",
+    "nivel": "cuenta",
+    "nombre": "Caja, euros",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "571",
+    "nivel": "cuenta",
+    "nombre": "Caja, moneda extranjera",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "572",
+    "nivel": "cuenta",
+    "nombre": "Bancos e instituciones de crédito c/c vista, euros",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "573",
+    "nivel": "cuenta",
+    "nombre": "Bancos e instituciones de crédito c/c vista, moneda extranjera",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "574",
+    "nivel": "cuenta",
+    "nombre": "Bancos e instituciones de crédito, cuentas de ahorro, euros",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "575",
+    "nivel": "cuenta",
+    "nombre": "Bancos e instituciones de crédito, cuentas de ahorro, moneda extranjera",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "576",
+    "nivel": "cuenta",
+    "nombre": "Inversiones a corto plazo de gran liquidez",
+    "padre": "57"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "58",
+    "nivel": "subgrupo",
+    "nombre": "ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA Y ACTIVOS Y PASIVOS ASOCIADOS",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "580",
+    "nivel": "cuenta",
+    "nombre": "Inmovilizado",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "581",
+    "nivel": "cuenta",
+    "nombre": "Inversiones con personas y entidades vinculadas",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "582",
+    "nivel": "cuenta",
+    "nombre": "Inversiones financieras",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "583",
+    "nivel": "cuenta",
+    "nombre": "Existencias, deudores comerciales y otras cuentas a cobrar",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "584",
+    "nivel": "cuenta",
+    "nombre": "Otros activos",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "585",
+    "nivel": "cuenta",
+    "nombre": "Provisiones",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "586",
+    "nivel": "cuenta",
+    "nombre": "Deudas con características especiales",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "587",
+    "nivel": "cuenta",
+    "nombre": "Deudas con personas y entidades vinculadas",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "588",
+    "nivel": "cuenta",
+    "nombre": "Acreedores comerciales y otras cuentas a pagar",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "589",
+    "nivel": "cuenta",
+    "nombre": "Otros pasivos",
+    "padre": "58"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "59",
+    "nivel": "subgrupo",
+    "nombre": "DETERIORO DEL VALOR DE INVERSIONES FINANCIERAS A CORTO PLAZO Y DE ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA",
+    "padre": "5"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "593",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de participaciones a corto plazo",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5933",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a corto plazo en empresas del grupo",
+    "padre": "593"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5934",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a corto plazo en empresas asociadas",
+    "padre": "593"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5935",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a corto plazo en otras partes vinculadas",
+    "padre": "593"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5936",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de participaciones a corto plazo en otras empresas",
+    "padre": "593"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "594",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a corto plazo de partes vinculadas",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5943",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a corto plazo de empresas del grupo",
+    "padre": "594"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5944",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a corto plazo de empresas asociadas",
+    "padre": "594"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5945",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a corto plazo de otras partes vinculadas",
+    "padre": "594"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "595",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos a corto plazo a partes vinculadas",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5953",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a corto plazo a empresas del grupo",
+    "padre": "595"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5954",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a corto plazo a empresas asociadas",
+    "padre": "595"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5955",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de créditos a corto plazo a otras partes vinculadas",
+    "padre": "595"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "597",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de valores representativos de deuda a corto plazo",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "598",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de créditos a corto plazo",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "599",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de valor de activos no corrientes mantenidos para la venta",
+    "padre": "59"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5990",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de inmovilizado no corriente mantenido para la venta",
+    "padre": "599"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5991",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de inversiones con personas y entidades vinculadas no corrientes mantenidas para la venta",
+    "padre": "599"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5992",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de inversiones financieras no corrientes mantenidas para la venta",
+    "padre": "599"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5993",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de existencias, deudores comerciales y otras cuentas a cobrar integrados en un grupo enajenable mantenido para la venta",
+    "padre": "599"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "5994",
+    "nivel": "subcuenta",
+    "nombre": "Deterioro de valor de otros activos mantenidos para la venta",
+    "padre": "599"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6",
+    "nivel": "grupo",
+    "nombre": "COMPRAS Y GASTOS",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "60",
+    "nivel": "subgrupo",
+    "nombre": "COMPRAS",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "600",
+    "nivel": "cuenta",
+    "nombre": "Compras de mercaderías",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "601",
+    "nivel": "cuenta",
+    "nombre": "Compras de materias primas",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "602",
+    "nivel": "cuenta",
+    "nombre": "Compras de otros aprovisionamientos",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "606",
+    "nivel": "cuenta",
+    "nombre": "Descuentos sobre compras por pronto pago",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6060",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre compras por pronto pago de mercaderías",
+    "padre": "606"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6061",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre compras por pronto pago de materias primas",
+    "padre": "606"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6062",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre compras por pronto pago de otros aprovisionamientos",
+    "padre": "606"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "607",
+    "nivel": "cuenta",
+    "nombre": "Trabajos realizados por otras empresas",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "608",
+    "nivel": "cuenta",
+    "nombre": "Devoluciones de compras y operaciones similares",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6080",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de compras de mercaderías",
+    "padre": "608"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6081",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de compras de materias primas",
+    "padre": "608"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6082",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de compras de otros aprovisionamientos",
+    "padre": "608"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "609",
+    "nivel": "cuenta",
+    "nombre": "\"Rappels\" por compras",
+    "padre": "60"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6090",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" por compras de mercaderías",
+    "padre": "609"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6091",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" por compras de materias primas",
+    "padre": "609"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6092",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" por compras de otros aprovisionamientos",
+    "padre": "609"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "61",
+    "nivel": "subgrupo",
+    "nombre": "VARIACIÓN DE EXISTENCIAS",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "610",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de mercaderías",
+    "padre": "61"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "611",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de materias primas",
+    "padre": "61"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "612",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de otros aprovisionamientos",
+    "padre": "61"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "62",
+    "nivel": "subgrupo",
+    "nombre": "SERVICIOS EXTERIORES",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "620",
+    "nivel": "cuenta",
+    "nombre": "Gastos en investigación y desarrollo del ejercicio",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "621",
+    "nivel": "cuenta",
+    "nombre": "Arrendamientos y cánones",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "622",
+    "nivel": "cuenta",
+    "nombre": "Reparaciones y conservación",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "623",
+    "nivel": "cuenta",
+    "nombre": "Servicios de profesionales independientes",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "624",
+    "nivel": "cuenta",
+    "nombre": "Transportes",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "625",
+    "nivel": "cuenta",
+    "nombre": "Primas de seguros",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "626",
+    "nivel": "cuenta",
+    "nombre": "Servicios bancarios y similares",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "627",
+    "nivel": "cuenta",
+    "nombre": "Publicidad, propaganda y relaciones públicas",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "628",
+    "nivel": "cuenta",
+    "nombre": "Suministros",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "629",
+    "nivel": "cuenta",
+    "nombre": "Otros servicios",
+    "padre": "62"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "63",
+    "nivel": "subgrupo",
+    "nombre": "TRIBUTOS",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "630",
+    "nivel": "cuenta",
+    "nombre": "Impuesto sobre beneficios",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6300",
+    "nivel": "subcuenta",
+    "nombre": "Impuesto corriente",
+    "padre": "630"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6301",
+    "nivel": "subcuenta",
+    "nombre": "Impuesto diferido",
+    "padre": "630"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "631",
+    "nivel": "cuenta",
+    "nombre": "Otros tributos",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "633",
+    "nivel": "cuenta",
+    "nombre": "Ajustes negativos en la imposición sobre beneficios",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "634",
+    "nivel": "cuenta",
+    "nombre": "Ajustes negativos en la imposición indirecta",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6341",
+    "nivel": "subcuenta",
+    "nombre": "Ajustes negativos en IVA de activo corriente",
+    "padre": "634"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6342",
+    "nivel": "subcuenta",
+    "nombre": "Ajustes negativos en IVA de inversiones",
+    "padre": "634"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "636",
+    "nivel": "cuenta",
+    "nombre": "Devolución de impuestos",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "638",
+    "nivel": "cuenta",
+    "nombre": "Ajustes positivos en la imposición sobre beneficios",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "639",
+    "nivel": "cuenta",
+    "nombre": "Ajustes positivos en la imposición indirecta",
+    "padre": "63"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6391",
+    "nivel": "subcuenta",
+    "nombre": "Ajustes positivos en IVA de activo corriente",
+    "padre": "639"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6392",
+    "nivel": "subcuenta",
+    "nombre": "Ajustes positivos en IVA de inversiones",
+    "padre": "639"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "64",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS DE PERSONAL",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "640",
+    "nivel": "cuenta",
+    "nombre": "Sueldos y salarios",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "641",
+    "nivel": "cuenta",
+    "nombre": "Indemnizaciones",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "642",
+    "nivel": "cuenta",
+    "nombre": "Seguridad Social a cargo de la empresa",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "643",
+    "nivel": "cuenta",
+    "nombre": "Retribuciones a largo plazo mediante sistemas de aportación definida",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "644",
+    "nivel": "cuenta",
+    "nombre": "Retribuciones a largo plazo mediante sistemas de prestación definida",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6440",
+    "nivel": "subcuenta",
+    "nombre": "Contribuciones anuales",
+    "padre": "644"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6442",
+    "nivel": "subcuenta",
+    "nombre": "Otros costes",
+    "padre": "644"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "645",
+    "nivel": "cuenta",
+    "nombre": "Retribuciones al personal mediante instrumentos de patrimonio",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6450",
+    "nivel": "subcuenta",
+    "nombre": "Retribuciones al personal liquidados con instrumentos de patrimonio",
+    "padre": "645"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6457",
+    "nivel": "subcuenta",
+    "nombre": "Retribuciones al personal liquidados en efectivo basado en instrumentos de patrimonio",
+    "padre": "645"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "649",
+    "nivel": "cuenta",
+    "nombre": "Otros gastos sociales",
+    "padre": "64"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "65",
+    "nivel": "subgrupo",
+    "nombre": "OTROS GASTOS DE GESTIÓN",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "650",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas de créditos comerciales incobrables",
+    "padre": "65"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "651",
+    "nivel": "cuenta",
+    "nombre": "Resultados de operaciones en común",
+    "padre": "65"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6510",
+    "nivel": "subcuenta",
+    "nombre": "Beneficio transferido (gestor)",
+    "padre": "651"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6511",
+    "nivel": "subcuenta",
+    "nombre": "Pérdida soportada (partícipe o asociado no gestor)",
+    "padre": "651"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "659",
+    "nivel": "cuenta",
+    "nombre": "Otras pérdidas en gestión corriente",
+    "padre": "65"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "66",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS FINANCIEROS",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "660",
+    "nivel": "cuenta",
+    "nombre": "Gastos financieros por actualización de provisiones",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "661",
+    "nivel": "cuenta",
+    "nombre": "Intereses de obligaciones y bonos",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6610",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a largo plazo, empresas del grupo",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6611",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a largo plazo, empresas asociadas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6612",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a largo plazo, otras partes vinculadas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6613",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a largo plazo, otras empresas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6615",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a corto plazo, empresas del grupo",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6616",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a corto plazo, empresas asociadas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6617",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a corto plazo, otras partes vinculadas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6618",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de obligaciones y bonos a corto plazo, otras empresas",
+    "padre": "661"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "662",
+    "nivel": "cuenta",
+    "nombre": "Intereses de deudas",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6620",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de deudas, empresas del grupo",
+    "padre": "662"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6621",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de deudas, empresas asociadas",
+    "padre": "662"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6622",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de deudas, otras partes vinculadas",
+    "padre": "662"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6623",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de deudas con entidades de crédito",
+    "padre": "662"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6624",
+    "nivel": "subcuenta",
+    "nombre": "Intereses de deudas, otras empresas",
+    "padre": "662"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "663",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por valoración de instrumentos financieros por su valor razonable",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6630",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de cartera de negociación",
+    "padre": "663"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6631",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de designados por la empresa",
+    "padre": "663"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6632",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "663"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6633",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de instrumentos de cobertura",
+    "padre": "663"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6634",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de otros instrumentos financieros",
+    "padre": "663"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "664",
+    "nivel": "cuenta",
+    "nombre": "Gastos por dividendos de acciones o participaciones consideradas como pasivos financieros",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6640",
+    "nivel": "subcuenta",
+    "nombre": "Dividendos de pasivos, empresas del grupo",
+    "padre": "664"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6641",
+    "nivel": "subcuenta",
+    "nombre": "Dividendos de pasivos, empresas asociadas",
+    "padre": "664"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6642",
+    "nivel": "subcuenta",
+    "nombre": "Dividendos de pasivos, otras partes vinculadas",
+    "padre": "664"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6643",
+    "nivel": "subcuenta",
+    "nombre": "Dividendos de pasivos, otras empresas",
+    "padre": "664"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "665",
+    "nivel": "cuenta",
+    "nombre": "Intereses por descuento de efectos y operaciones de \"factoring\"",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6650",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por descuento de efectos en entidades de crédito del grupo",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6651",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por descuento de efectos en entidades de crédito asociadas",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6652",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por descuento de efectos en otras entidades de crédito vinculadas",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6653",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por descuento de efectos en otras entidades de crédito",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6654",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por operaciones de \"factoring\" con entidades de crédito del grupo",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6655",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por operaciones de \"factoring\" con entidades de crédito asociadas",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6656",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por operaciones de \"factoring\" con otras entidades de crédito vinculadas",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6657",
+    "nivel": "subcuenta",
+    "nombre": "Intereses por operaciones de \"factoring\" con otras entidades de crédito",
+    "padre": "665"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "666",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas en participaciones y valores representativos de deuda",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6660",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en valores representativos de deuda a largo plazo, empresas del grupo",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6661",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en valores representativos de deuda a largo plazo, empresas asociadas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6662",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en valores representativos de deuda a largo plazo, otras partes vinculadas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6663",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en participaciones y valores representativos de deuda a largo plazo, otras empresas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6665",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en participaciones y valores representativos de deuda a corto plazo, empresas del grupo",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6666",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en participaciones y valores representativos de deuda a corto plazo, empresas asociadas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6667",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en valores representativos de deuda a corto plazo, otras partes vinculadas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6668",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas en valores representativos de deuda a corto plazo, otras empresas",
+    "padre": "666"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "667",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas de créditos no comerciales",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6670",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a largo plazo, empresas del grupo",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6671",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a largo plazo, empresas asociadas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6672",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a largo plazo, otras partes vinculadas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6673",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a largo plazo, otras empresas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6675",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a corto plazo, empresas del grupo",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6676",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a corto plazo, empresas asociadas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6677",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a corto plazo, otras partes vinculadas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6678",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas de créditos a corto plazo, otras empresas",
+    "padre": "667"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "668",
+    "nivel": "cuenta",
+    "nombre": "Diferencias negativas de cambio",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "669",
+    "nivel": "cuenta",
+    "nombre": "Otros gastos financieros",
+    "padre": "66"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "67",
+    "nivel": "subgrupo",
+    "nombre": "PÉRDIDAS PROCEDENTES DE ACTIVOS NO CORRIENTES Y GASTOS EXCEPCIONALES",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "670",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas procedentes del inmovilizado intangible",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "671",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas procedentes del inmovilizado material",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "672",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas procedentes de las inversiones inmobiliarias",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "673",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas procedentes de participaciones a largo plazo en partes vinculadas",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6733",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas procedentes de participaciones a largo plazo, empresas del grupo",
+    "padre": "673"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6734",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas procedentes de participaciones a largo plazo, empresas asociadas",
+    "padre": "673"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6735",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas procedentes de participaciones a largo plazo, otras partes vinculadas",
+    "padre": "673"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "675",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por operaciones con obligaciones propias",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "678",
+    "nivel": "cuenta",
+    "nombre": "Gastos excepcionales",
+    "padre": "67"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "68",
+    "nivel": "subgrupo",
+    "nombre": "DOTACIONES PARA AMORTIZACIONES",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "680",
+    "nivel": "cuenta",
+    "nombre": "Amortización del inmovilizado intangible",
+    "padre": "68"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "681",
+    "nivel": "cuenta",
+    "nombre": "Amortización del inmovilizado material",
+    "padre": "68"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "682",
+    "nivel": "cuenta",
+    "nombre": "Amortización de las inversiones inmobiliarias",
+    "padre": "68"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "69",
+    "nivel": "subgrupo",
+    "nombre": "PÉRDIDAS POR DETERIORO Y OTRAS DOTACIONES",
+    "padre": "6"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "690",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro del inmovilizado intangible",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "691",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro del inmovilizado material",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "692",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de las inversiones inmobiliarias",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "693",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de existencias",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6930",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de productos terminados y en curso de fabricación",
+    "padre": "693"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6931",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de mercaderías",
+    "padre": "693"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6932",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de materias primas",
+    "padre": "693"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6933",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de otros aprovisionamientos",
+    "padre": "693"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "694",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de créditos por operaciones comerciales",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "695",
+    "nivel": "cuenta",
+    "nombre": "Dotación a la provisión por operaciones comerciales",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6954",
+    "nivel": "subcuenta",
+    "nombre": "Dotación a la provisión por contratos onerosos",
+    "padre": "695"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6959",
+    "nivel": "subcuenta",
+    "nombre": "Dotación a la provisión para otras operaciones comerciales",
+    "padre": "695"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "696",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de participaciones y valores representativos de deuda a largo plazo",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6960",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, empresas del grupo",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6961",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, empresas asociadas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6962",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, otras partes vinculadas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6963",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, otras empresas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6965",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a largo plazo, empresas del grupo",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6966",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a largo plazo, empresas asociadas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6967",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a largo plazo, otras partes vinculadas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6968",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a largo plazo, de otras empresas",
+    "padre": "696"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "697",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de créditos a largo plazo",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6970",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a largo plazo, empresas del grupo",
+    "padre": "697"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6971",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a largo plazo, empresas asociadas",
+    "padre": "697"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6972",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a largo plazo, otras partes vinculadas",
+    "padre": "697"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6973",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a largo plazo, otras empresas",
+    "padre": "697"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "698",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de participaciones y valores representativos de deuda a corto plazo",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6980",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a corto plazo, empresas del grupo",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6981",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de participaciones en instrumentos de patrimonio neto a corto plazo, empresas asociadas",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6985",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a corto plazo, empresas del grupo",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6986",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a corto plazo, empresas asociadas",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6987",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a corto plazo, otras partes vinculadas",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6988",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro en valores representativos de deuda a corto plazo, de otras empresas",
+    "padre": "698"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "699",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro de créditos a corto plazo",
+    "padre": "69"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6990",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a corto plazo, empresas del grupo",
+    "padre": "699"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6991",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a corto plazo, empresas asociadas",
+    "padre": "699"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6992",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a corto plazo, otras partes vinculadas",
+    "padre": "699"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "6993",
+    "nivel": "subcuenta",
+    "nombre": "Pérdidas por deterioro de créditos a corto plazo, otras empresas",
+    "padre": "699"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7",
+    "nivel": "grupo",
+    "nombre": "VENTAS E INGRESOS",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "70",
+    "nivel": "subgrupo",
+    "nombre": "VENTAS DE MERCADERÍAS, DE PRODUCCIÓN PROPIA, DE SERVICIOS, ETC",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "700",
+    "nivel": "cuenta",
+    "nombre": "Ventas de mercaderías",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "701",
+    "nivel": "cuenta",
+    "nombre": "Ventas de productos terminados",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "702",
+    "nivel": "cuenta",
+    "nombre": "Ventas de productos semiterminados",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "703",
+    "nivel": "cuenta",
+    "nombre": "Ventas de subproductos y residuos",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "704",
+    "nivel": "cuenta",
+    "nombre": "Ventas de envases y embalajes",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "705",
+    "nivel": "cuenta",
+    "nombre": "Prestaciones de servicios",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "706",
+    "nivel": "cuenta",
+    "nombre": "Descuentos sobre ventas por pronto pago",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7060",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre ventas por pronto pago de mercaderías",
+    "padre": "706"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7061",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre ventas por pronto pago de productos terminados",
+    "padre": "706"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7062",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre ventas por pronto pago de productos semiterminados",
+    "padre": "706"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7063",
+    "nivel": "subcuenta",
+    "nombre": "Descuentos sobre ventas por pronto pago de subproductos y residuos",
+    "padre": "706"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "708",
+    "nivel": "cuenta",
+    "nombre": "Devoluciones de ventas y operaciones similares",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7080",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de ventas de mercaderías",
+    "padre": "708"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7081",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de ventas de productos terminados",
+    "padre": "708"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7082",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de ventas de productos semiterminados",
+    "padre": "708"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7083",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de ventas de subproductos y residuos",
+    "padre": "708"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7084",
+    "nivel": "subcuenta",
+    "nombre": "Devoluciones de ventas de envases y embalajes",
+    "padre": "708"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "709",
+    "nivel": "cuenta",
+    "nombre": "\"Rappels\" sobre ventas",
+    "padre": "70"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7090",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" sobre ventas de mercaderías",
+    "padre": "709"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7091",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" sobre ventas de productos terminados",
+    "padre": "709"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7092",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" sobre ventas de productos semiterminados",
+    "padre": "709"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7093",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" sobre ventas de subproductos y residuos",
+    "padre": "709"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7094",
+    "nivel": "subcuenta",
+    "nombre": "\"Rappels\" sobre ventas de envases y embalajes",
+    "padre": "709"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "71",
+    "nivel": "subgrupo",
+    "nombre": "VARIACIÓN DE EXISTENCIAS",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "710",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de productos en curso",
+    "padre": "71"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "711",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de productos semiterminados",
+    "padre": "71"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "712",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de productos terminados",
+    "padre": "71"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "713",
+    "nivel": "cuenta",
+    "nombre": "Variación de existencias de subproductos, residuos y materiales recuperados",
+    "padre": "71"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "73",
+    "nivel": "subgrupo",
+    "nombre": "TRABAJOS REALIZADOS PARA LA EMPRESA",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "730",
+    "nivel": "cuenta",
+    "nombre": "Trabajos realizados para el inmovilizado intangible",
+    "padre": "73"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "731",
+    "nivel": "cuenta",
+    "nombre": "Trabajos realizados para el inmovilizado material",
+    "padre": "73"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "732",
+    "nivel": "cuenta",
+    "nombre": "Trabajos realizados en inversiones inmobiliarias",
+    "padre": "73"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "733",
+    "nivel": "cuenta",
+    "nombre": "Trabajos realizados para el inmovilizado material en curso",
+    "padre": "73"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "74",
+    "nivel": "subgrupo",
+    "nombre": "SUBVENCIONES, DONACIONES Y LEGADOS",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "740",
+    "nivel": "cuenta",
+    "nombre": "Subvenciones, donaciones y legados a la explotación",
+    "padre": "74"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "746",
+    "nivel": "cuenta",
+    "nombre": "Subvenciones, donaciones y legados de capital transferidos al resultado del ejercicio",
+    "padre": "74"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "747",
+    "nivel": "cuenta",
+    "nombre": "Otras subvenciones, donaciones y legados transferidos al resultado del ejercicio",
+    "padre": "74"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "75",
+    "nivel": "subgrupo",
+    "nombre": "OTROS INGRESOS DE GESTIÓN",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "751",
+    "nivel": "cuenta",
+    "nombre": "Resultados de operaciones en común",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7510",
+    "nivel": "subcuenta",
+    "nombre": "Pérdida transferida (gestor)",
+    "padre": "751"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7511",
+    "nivel": "subcuenta",
+    "nombre": "Beneficio atribuido (partícipe o asociado no gestor)",
+    "padre": "751"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "752",
+    "nivel": "cuenta",
+    "nombre": "Ingresos por arrendamientos",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "753",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de propiedad industrial cedida en explotación",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "754",
+    "nivel": "cuenta",
+    "nombre": "Ingresos por comisiones",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "755",
+    "nivel": "cuenta",
+    "nombre": "Ingresos por servicios al personal",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "759",
+    "nivel": "cuenta",
+    "nombre": "Ingresos por servicios diversos",
+    "padre": "75"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS FINANCIEROS",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "760",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de participaciones en instrumentos de patrimonio",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7600",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de participaciones en instrumentos de patrimonio, empresas del grupo",
+    "padre": "760"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7601",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de participaciones en instrumentos de patrimonio, empresas asociadas",
+    "padre": "760"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7602",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de participaciones en instrumentos de patrimonio, otras partes vinculadas",
+    "padre": "760"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7603",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de participaciones en instrumentos de patrimonio, otras empresas",
+    "padre": "760"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "761",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de valores representativos de deuda",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7610",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de valores representativos de deuda, empresas del grupo",
+    "padre": "761"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7611",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de valores representativos de deuda, empresas asociadas",
+    "padre": "761"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7612",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de valores representativos de deuda, otras partes vinculadas",
+    "padre": "761"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7613",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de valores representativos de deuda, otras empresas",
+    "padre": "761"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "762",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de créditos",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7620",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a largo plazo",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76200",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a largo plazo, empresas del grupo",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76201",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a largo plazo, empresas asociadas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76202",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a largo plazo, otras partes vinculadas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76203",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a largo plazo, otras empresas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7621",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a corto plazo",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76210",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a corto plazo, empresas del grupo",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76211",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a corto plazo, empresas asociadas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76212",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a corto plazo, otras partes vinculadas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "76213",
+    "nivel": "subcuenta",
+    "nombre": "Ingresos de créditos a corto plazo, otras empresas",
+    "padre": "762"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "763",
+    "nivel": "cuenta",
+    "nombre": "Beneficios por valoración de instrumentos financieros por su valor razonable",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7630",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios de cartera de negociación",
+    "padre": "763"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7631",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios de designados por la empresa",
+    "padre": "763"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7632",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios de activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "763"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7633",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios de instrumentos de cobertura",
+    "padre": "763"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7634",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios de otros instrumentos financieros",
+    "padre": "763"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "766",
+    "nivel": "cuenta",
+    "nombre": "Beneficios en participaciones y valores representativos de deuda",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7660",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en valores representativos de deuda a largo plazo, empresas del grupo",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7661",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en valores representativos de deuda a largo plazo, empresas asociadas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7662",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en valores representativos de deuda a largo plazo, otras partes vinculadas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7663",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en participaciones y valores representativos de deuda a largo plazo, otras empresas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7665",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en participaciones y valores representativos de deuda a corto plazo, empresas del grupo",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7666",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en participaciones y valores representativos de deuda a corto plazo, empresas asociadas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7667",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en valores representativos de deuda a corto plazo, otras partes vinculadas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7668",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios en valores representativos de deuda a corto plazo, otras empresas",
+    "padre": "766"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "767",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de activos afectos y de derechos de reembolso relativos a retribuciones a largo plazo",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "768",
+    "nivel": "cuenta",
+    "nombre": "Diferencias positivas de cambio",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "769",
+    "nivel": "cuenta",
+    "nombre": "Otros ingresos financieros",
+    "padre": "76"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "77",
+    "nivel": "subgrupo",
+    "nombre": "BENEFICIOS PROCEDENTES DE ACTIVOS NO CORRIENTES E INGRESOS EXCEPCIONALES",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "770",
+    "nivel": "cuenta",
+    "nombre": "Beneficios procedentes del inmovilizado intangible",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "771",
+    "nivel": "cuenta",
+    "nombre": "Beneficios procedentes del inmovilizado material",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "772",
+    "nivel": "cuenta",
+    "nombre": "Beneficios procedentes de las inversiones inmobiliarias",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "773",
+    "nivel": "cuenta",
+    "nombre": "Beneficios procedentes de participaciones a largo plazo en partes vinculadas",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7733",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios procedentes de participaciones a largo plazo, empresas del grupo",
+    "padre": "773"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7734",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios procedentes de participaciones a largo plazo, empresas asociadas",
+    "padre": "773"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7735",
+    "nivel": "subcuenta",
+    "nombre": "Beneficios procedentes de participaciones a largo plazo, otras partes vinculadas",
+    "padre": "773"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "774",
+    "nivel": "cuenta",
+    "nombre": "Diferencia negativa en combinaciones de negocios",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "775",
+    "nivel": "cuenta",
+    "nombre": "Beneficios por operaciones con obligaciones propias",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "778",
+    "nivel": "cuenta",
+    "nombre": "Ingresos excepcionales",
+    "padre": "77"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "79",
+    "nivel": "subgrupo",
+    "nombre": "EXCESOS Y APLICACIONES DE PROVISIONES Y DE PÉRDIDAS POR DETERIORO",
+    "padre": "7"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "790",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro del inmovilizado intangible",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "791",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro del inmovilizado material",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "792",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de las inversiones inmobiliarias",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "793",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de existencias",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7930",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de productos terminados y en curso de fabricación",
+    "padre": "793"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7931",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de mercaderías",
+    "padre": "793"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7932",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de materias primas",
+    "padre": "793"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7933",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de otros aprovisionamientos",
+    "padre": "793"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "794",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de créditos por operaciones comerciales",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "795",
+    "nivel": "cuenta",
+    "nombre": "Exceso de provisiones",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7950",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión por retribuciones al personal",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7951",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión para impuestos",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7952",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión para otras responsabilidades",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7954",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión por operaciones comerciales",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "79544",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión por contratos onerosos",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "79549",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión para otras operaciones comerciales",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7955",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión para actuaciones medioambientales",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7956",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión para reestructuraciones",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7957",
+    "nivel": "subcuenta",
+    "nombre": "Exceso de provisión por transacciones con pagos basados en instrumentos de patrimonio",
+    "padre": "795"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "796",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de participaciones y valores representativos de deuda a largo plazo",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7960",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, empresas del grupo",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7961",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de participaciones en instrumentos de patrimonio neto a largo plazo, empresas asociadas",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7965",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de valores representativos de deuda a largo plazo, empresas del grupo",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7966",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de valores representativos de deuda a largo plazo, empresas asociadas",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7967",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de valores representativos de deuda a largo plazo, otras partes vinculadas",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7968",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de valores representativos de deuda a largo plazo, otras empresas",
+    "padre": "796"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "797",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de créditos a largo plazo",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7970",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a largo plazo, empresas del grupo",
+    "padre": "797"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7971",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a largo plazo, empresas asociadas",
+    "padre": "797"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7972",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a largo plazo, otras partes vinculadas",
+    "padre": "797"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7973",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a largo plazo, otras empresas",
+    "padre": "797"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "798",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de participaciones y valores representativos de deuda a corto plazo",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7980",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de participaciones en instrumentos de patrimonio neto a corto plazo, empresas del grupo",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7981",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de participaciones en instrumentos de patrimonio neto a corto plazo, empresas asociadas",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7985",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro en valores representativos de deuda a corto plazo, empresas del grupo",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7986",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro en valores representativos de deuda a corto plazo, empresas asociadas",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7987",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro en valores representativos de deuda a corto plazo, otras partes vinculadas",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7988",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro en valores representativos de deuda a corto plazo, otras empresas",
+    "padre": "798"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "799",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro de créditos a corto plazo",
+    "padre": "79"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7990",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a corto plazo, empresas del grupo",
+    "padre": "799"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7991",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a corto plazo, empresas asociadas",
+    "padre": "799"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7992",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a corto plazo, otras partes vinculadas",
+    "padre": "799"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "7993",
+    "nivel": "subcuenta",
+    "nombre": "Reversión del deterioro de créditos a corto plazo, otras empresas",
+    "padre": "799"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "8",
+    "nivel": "grupo",
+    "nombre": "GASTOS IMPUTADOS AL PATRIMONIO NETO",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "80",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS FINANCIEROS POR VALORACIÓN DE ACTIVOS Y PASIVOS",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "800",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas de activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "80"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "802",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de beneficios en activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "80"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "81",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS EN OPERACIONES DE COBERTURA",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "810",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por coberturas de flujos de efectivo",
+    "padre": "81"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "811",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por coberturas de inversiones netas en un negocio en el extranjero",
+    "padre": "81"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "812",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de beneficios por coberturas de flujos de efectivo",
+    "padre": "81"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "813",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de beneficios por coberturas de inversiones netas en un negocio en el extranjero",
+    "padre": "81"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "82",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS POR DIFERENCIAS DE CONVERSIÓN",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "820",
+    "nivel": "cuenta",
+    "nombre": "Diferencias de conversión negativas",
+    "padre": "82"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "821",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de diferencias de conversión positivas",
+    "padre": "82"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "83",
+    "nivel": "subgrupo",
+    "nombre": "IMPUESTO SOBRE BENEFICIOS",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "830",
+    "nivel": "cuenta",
+    "nombre": "Impuesto sobre beneficios",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "8300",
+    "nivel": "subcuenta",
+    "nombre": "Impuesto corriente",
+    "padre": "830"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "8301",
+    "nivel": "subcuenta",
+    "nombre": "Impuesto diferido",
+    "padre": "830"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "833",
+    "nivel": "cuenta",
+    "nombre": "Ajustes negativos en la imposición sobre beneficios",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "834",
+    "nivel": "cuenta",
+    "nombre": "Ingresos fiscales por diferencias permanentes",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "835",
+    "nivel": "cuenta",
+    "nombre": "Ingresos fiscales por deducciones y bonificaciones",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "836",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de diferencias permanentes",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "837",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de deducciones y bonificaciones",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "838",
+    "nivel": "cuenta",
+    "nombre": "Ajustes positivos en la imposición sobre beneficios",
+    "padre": "83"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "84",
+    "nivel": "subgrupo",
+    "nombre": "TRANSFERENCIAS DE SUBVENCIONES, DONACIONES Y LEGADOS",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "840",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de subvenciones oficiales de capital",
+    "padre": "84"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "841",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de donaciones y legados de capital",
+    "padre": "84"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "842",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de otras subvenciones, donaciones y legados",
+    "padre": "84"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "85",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS POR PÉRDIDAS ACTUARIALES Y AJUSTES EN LOS ACTIVOS POR RETRIBUCIONES A LARGO PLAZO DE PRESTACIÓN DEFINIDA",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "850",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas actuariales",
+    "padre": "85"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "851",
+    "nivel": "cuenta",
+    "nombre": "Ajustes negativos en activos por retribuciones a largo plazo de prestación definida",
+    "padre": "85"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "86",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS POR ACTIVOS NO CORRIENTES EN VENTA",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "860",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta",
+    "padre": "86"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "862",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta",
+    "padre": "86"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "89",
+    "nivel": "subgrupo",
+    "nombre": "GASTOS DE PARTICIPACIONES EN EMPRESAS DEL GRUPO O ASOCIADAS CON AJUSTES VALORATIVOS POSITIVOS PREVIOS",
+    "padre": "8"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "891",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de participaciones en el patrimonio, empresas del grupo",
+    "padre": "89"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "892",
+    "nivel": "cuenta",
+    "nombre": "Deterioro de participaciones en el patrimonio, empresas asociadas",
+    "padre": "89"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "9",
+    "nivel": "grupo",
+    "nombre": "INGRESOS IMPUTADOS AL PATRIMONIO NETO",
+    "padre": null
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "90",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS FINANCIEROS POR VALORACIÓN DE ACTIVOS Y PASIVOS",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "900",
+    "nivel": "cuenta",
+    "nombre": "Beneficios en activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "90"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "902",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de pérdidas de activos financieros a valor razonable con cambios en el patrimonio neto",
+    "padre": "90"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "91",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS EN OPERACIONES DE COBERTURA",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "910",
+    "nivel": "cuenta",
+    "nombre": "Beneficios por coberturas de flujos de efectivo",
+    "padre": "91"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "911",
+    "nivel": "cuenta",
+    "nombre": "Beneficios por coberturas de una inversión neta en un negocio en el extranjero",
+    "padre": "91"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "912",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de pérdidas por coberturas de flujos de efectivo",
+    "padre": "91"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "913",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de pérdidas por coberturas de una inversión neta en un negocio en el extranjero",
+    "padre": "91"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "92",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS POR DIFERENCIAS DE CONVERSIÓN",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "920",
+    "nivel": "cuenta",
+    "nombre": "Diferencias de conversión positivas",
+    "padre": "92"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "921",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de diferencias de conversión negativas",
+    "padre": "92"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "94",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS POR SUBVENCIONES, DONACIONES Y LEGADOS",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "940",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de subvenciones oficiales de capital",
+    "padre": "94"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "941",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de donaciones y legados de capital",
+    "padre": "94"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "942",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de otras subvenciones, donaciones y legados",
+    "padre": "94"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "95",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS POR GANANCIAS ACTUARIALES Y AJUSTES EN LOS ACTIVOS POR RETRIBUCIONES A LARGO PLAZO DE PRESTACIÓN DEFINIDA",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "950",
+    "nivel": "cuenta",
+    "nombre": "Ganancias actuariales",
+    "padre": "95"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "951",
+    "nivel": "cuenta",
+    "nombre": "Ajustes positivos en activos por retribuciones a largo plazo de prestación definida",
+    "padre": "95"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "96",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS POR ACTIVOS NO CORRIENTES EN VENTA",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "960",
+    "nivel": "cuenta",
+    "nombre": "Beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta",
+    "padre": "96"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "962",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta",
+    "padre": "96"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "99",
+    "nivel": "subgrupo",
+    "nombre": "INGRESOS DE PARTICIPACIONES EN EMPRESAS DEL GRUPO O ASOCIADAS CON AJUSTES VALORATIVOS NEGATIVOS PREVIOS",
+    "padre": "9"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "991",
+    "nivel": "cuenta",
+    "nombre": "Recuperación de ajustes valorativos negativos previos, empresas del grupo",
+    "padre": "99"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "992",
+    "nivel": "cuenta",
+    "nombre": "Recuperación de ajustes valorativos negativos previos, empresas asociadas",
+    "padre": "99"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "993",
+    "nivel": "cuenta",
+    "nombre": "Transferencia por deterioro de ajustes valorativos negativos previos, empresas del grupo",
+    "padre": "99"
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "994",
+    "nivel": "cuenta",
+    "nombre": "Transferencia por deterioro de ajustes valorativos negativos previos, empresas asociadas",
+    "padre": "99"
+  }
+]
