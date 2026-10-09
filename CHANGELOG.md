@@ -10,6 +10,33 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-10
+
+### Cambio · Paso 9: detectar las referencias entre cuentas
+**Qué:** cada cuenta tiene dos campos nuevos, `contrapartidas_cargos` y
+`contrapartidas_abonos`, con los códigos que mencionan sus movimientos. La
+430 da 437, 70 y 762 en los cargos, y 431, 432, 436, 437, 57, 650, 706, 708 y
+709 en los abonos: las 11 que pedía la hoja de ruta. 361 cuentas tienen
+alguna contrapartida.
+**Por qué:** son las etiquetas de colores clicables de la ficha (pasos 16 y
+17). Así la web no tiene que buscarlas en el texto.
+
+### Decisión · Una contrapartida es cualquier número de un movimiento que sea una cuenta
+**Qué:** se cogen todos los números de cada movimiento y se quedan los que
+son el código de una cuenta que existe. Sin repetir, ordenados y separados
+por columna.
+**Por qué:** se miró qué palabra va delante de cada número de los movimientos
+y casi siempre es "cuenta", "subgrupo", "cuentas", "ó" o "y". Una regla así
+de sencilla basta, y el filtro de "que exista" evita que se cuelen números
+sueltos. Los códigos se ordenan como texto ("437" antes que "57"), que para
+unas etiquetas da igual.
+
+### Problema conocido · Una contrapartida falsa en la 400
+**Qué:** por el `a<sup>3</sup>` del OCR, la 400 tiene el grupo 3 entre sus
+contrapartidas de abono.
+**Por qué se deja:** es el mismo fallo del OCR ya apuntado en el paso 8. Al
+corregirlo en el paso 11 desaparece también este.
+
 ## 2026-10-09
 
 ### Cambio · Paso 8: extraer las definiciones y los movimientos

@@ -338,6 +338,31 @@ def extraer_fichas(lineas, cuentas):
             cuentas_por_codigo[codigo][campo].append(texto)
 
 
+def detectar_contrapartidas(movimientos, codigos_existentes):
+    # Recibe una lista de movimientos (los cargos o los abonos de una cuenta)
+    # y devuelve, ordenados y sin repetir, los códigos de cuenta que aparecen
+    # en ellos: "...con abono a la cuenta 437" → "437".
+
+    # Un conjunto, y no una lista, porque no admite repetidos: la 430
+    # menciona la 437 en dos movimientos y solo la queremos una vez.
+    codigos_encontrados = set()
+
+    for movimiento in movimientos:
+        # Todos los números del movimiento, en una lista:
+        # "a las cuentas 130, 131 ó 132" → ["130", "131", "132"]
+        numeros = re.findall(r"\d+", movimiento)
+
+        for numero in numeros:
+            # Solo cuenta si es el código de una cuenta que existe. Así no se
+            # cuela un número suelto que haya dejado el OCR.
+            if numero in codigos_existentes:
+                codigos_encontrados.add(numero)
+
+    # JSON no sabe guardar conjuntos, solo listas. Además, un conjunto no
+    # tiene un orden fijo: ordenado, el resultado sale siempre igual.
+    return sorted(codigos_encontrados)
+
+
 # La ruta se calcula a partir de dónde está este script, no de la carpeta
 # desde la que se ejecuta. Así funciona igual lo lances desde donde lo lances.
 carpeta_del_script = Path(__file__).parent
@@ -373,6 +398,18 @@ cuentas = extraer_cuadro_de_cuentas(lineas_del_cuadro)
 
 lineas_de_las_fichas = recortar_quinta_parte(lineas)
 extraer_fichas(lineas_de_las_fichas, cuentas)
+
+# Los códigos de todas las cuentas, para saber si un número es una cuenta.
+codigos_existentes = set()
+for cuenta in cuentas:
+    codigos_existentes.add(cuenta["codigo"])
+
+# A cada cuenta se le añaden dos campos nuevos con sus contrapartidas,
+# separadas por columna: la web pinta las de los cargos y las de los abonos
+# en sitios y colores distintos.
+for cuenta in cuentas:
+    cuenta["contrapartidas_cargos"] = detectar_contrapartidas(cuenta["cargos"], codigos_existentes)
+    cuenta["contrapartidas_abonos"] = detectar_contrapartidas(cuenta["abonos"], codigos_existentes)
 
 # ensure_ascii=False deja las tildes como tildes; si no, "ó" se guardaría
 # como "ó". indent=2 pone cada campo en su línea para poder leerlo.
@@ -410,3 +447,5 @@ for cuenta in cuentas:
         print("La 430 se llama:", cuenta["nombre"])
         print("  cargos:", len(cuenta["cargos"]))
         print("  abonos:", len(cuenta["abonos"]))
+        print("  contrapartidas en cargos:", cuenta["contrapartidas_cargos"])
+        print("  contrapartidas en abonos:", cuenta["contrapartidas_abonos"])
