@@ -10,6 +10,28 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-09
+
+### Cambio · Paso 5: leer el texto fuente del PGC
+**Qué:** `tools/parser.py` abre `sources/Texto refundido PGC 2021.md`, lo lee
+entero y dice cuántas líneas tiene (9689).
+**Por qué:** es la base del parser. Antes de limpiar y extraer nada hay que
+poder leer el texto sin que se rompan las tildes ni las eñes.
+
+### Decisión · Decir siempre `encoding="utf-8"` al leer y escribir ficheros
+**Qué:** todas las lecturas y escrituras de texto dicen la codificación de forma
+explícita.
+**Por qué:** sin ella, Python en Windows usa la tabla `cp1252` y este fichero
+falla con un `UnicodeDecodeError`. Se comprobó a propósito. Las versiones más
+nuevas de Python ya usan UTF-8 por defecto, pero decirlo deja claro qué se
+espera y funciona igual en cualquier versión.
+
+### Decisión · Las rutas se calculan desde el propio script
+**Qué:** el parser busca el texto a partir de dónde está `parser.py`
+(`Path(__file__)`), no de la carpeta desde la que se lanza.
+**Por qué:** así funciona igual desde la raíz del proyecto, desde `tools/` o
+desde cualquier otro sitio.
+
 ## 2026-10-08
 
 ### Cambio · Renombrar la hoja de ruta a `docs/roadmap.md`
