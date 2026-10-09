@@ -12,6 +12,32 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-09
 
+### Cambio · Paso 6: limpiar las marcas de página del OCR
+**Qué:** el parser quita las 406 marcas `{N}-----`, recorta los espacios del
+final de cada línea y deja una sola línea en blanco donde había varias. El
+texto pasa de 9689 a 8875 líneas y no queda ninguna llave `{`. Cada limpieza es
+una función con su nombre.
+**Por qué:** es la basura más regular del OCR y la que estorba a todo lo
+demás. Los dobles espacios no se tocan: están todos dentro de tablas y sirven
+para alinear las columnas.
+
+### Decisión · El texto se limpia en el código, no en el fichero fuente
+**Qué:** `sources/` sigue intacto. La limpieza se hace en memoria cada vez que
+se ejecuta el parser. Se descartó tanto limpiar el `.md` y guardarlo encima
+como regenerarlo desde el PDF sin paginado.
+**Por qué:** si la limpieza tiene un fallo, se corrige el código y se vuelve a
+ejecutar; el original sigue ahí para comprobar. Regenerar desde el PDF solo
+quitaba las marcas, que son lo más fácil, y traía un texto nuevo con errores
+desconocidos. Además, las marcas dicen en qué página está cada cosa, por si un
+día se quiere citar la página.
+
+### Problema conocido · Párrafos partidos por un salto de página
+**Qué:** unas 46 veces el PGC cambiaba de página a media frase. Al quitar la
+marca, la frase queda partida en dos párrafos.
+**Por qué se deja:** el paso 6 ya trae dos conceptos nuevos, y unirlos bien
+tiene trampas (abreviaturas, tablas). Se arreglará cuando estorbe: en el paso
+8, si parte alguna definición, o en el paso 11.
+
 ### Decisión · Albert es el único que usa git
 **Qué:** Claude ya no ejecuta comandos de git que cambien el repositorio. Da los
 comandos explicados y Albert los escribe. Queda escrito en la sección 8 de
