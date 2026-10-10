@@ -12,6 +12,33 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-10
 
+### Cambio · Paso 10: el verificador de los datos extraídos
+**Qué:** `tools/verify.py` lee `data/accounts.json` y saca un informe con seis
+apartados: resumen, cuentas sin ninguna ficha (80), números de los movimientos
+que no son ninguna cuenta (2), contrapartidas de una sola cifra (55), textos
+sospechosos (12) y subgrupos fuera de orden (1).
+**Por qué:** el parser falla en casos raros, y este informe es lo que los
+enseña. Es la lista de trabajo del paso 11.
+
+### Decisión · El verificador es un script aparte y no arregla nada
+**Qué:** no forma parte de `parser.py`, solo lee el JSON y solo informa.
+**Por qué:** revisa el resultado sin depender de cómo se hizo, y se puede
+ejecutar después de cada corrección para ver que el problema desaparece.
+Arreglar se decide a mano, caso por caso, en el paso 11.
+
+### Decisión · Buscar los números que el filtro dejó fuera, no las referencias rotas
+**Qué:** la hoja de ruta pedía contar "referencias que apuntan a cuentas que no
+existen". Se cambia por "números de los movimientos que no son ninguna cuenta".
+**Por qué:** el filtro del paso 9 impide guardar referencias a cuentas que no
+existen, así que esa cifra sería siempre 0. Lo que sí informa es lo que el
+filtro descartó: así han salido dos números de página pegados a un movimiento.
+
+### Problema conocido · Movimientos con etiquetas `i) ii)`
+**Qué:** algunas cuentas (1768, 2553, 5593, 5598) numeran los movimientos con
+`i) ii)` en vez de `a1) a2)`. El parser no lo reconoce y deja las dos columnas
+pegadas en una.
+**Por qué se deja:** lo ha encontrado el verificador; se corrige en el paso 11.
+
 ### Cambio · Paso 9: detectar las referencias entre cuentas
 **Qué:** cada cuenta tiene dos campos nuevos, `contrapartidas_cargos` y
 `contrapartidas_abonos`, con los códigos que mencionan sus movimientos. La
