@@ -12,6 +12,21 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Cambio · Ordenar las cuentas por código antes de guardar el JSON
+**Qué:** el parser hace `cuentas.sort(key=codigo_de_la_cuenta)` justo antes de
+escribir `data/accounts.json`. Resuelve el pendiente del subgrupo 53, que salía
+antes que el 52. El `git diff` del JSON solo mueve el bloque del 53 a su sitio,
+y el verificador da el mismo informe.
+**Por qué en el parser:** arreglarlo en la web habría dejado el JSON mal y
+obligado a ordenar en cada sitio que lo use. Una errata más en
+`FE_DE_ERRATAS` solo habría arreglado este caso. El orden del cuadro de cuentas
+lo marca el propio código, así que ordenar por él es una regla, no un parche, y
+cubre también cualquier desorden futuro del OCR.
+**Por qué funciona:** los códigos son texto, y el texto se ordena como en un
+diccionario (`"52"` < `"520"` < `"5209"` < `"53"`), que es exactamente el orden
+del árbol: cada código va seguido de todo lo que cuelga de él. Si los códigos
+fueran números, este orden no saldría.
+
 ### Cambio · Paso 14: añadir el árbol del cuadro de cuentas
 **Qué:** un `<nav>` con el cuadro de cuentas plegable: grupos → subgrupos →
 cuentas. `agruparPorPadre` recorre las cuentas una vez y construye un índice

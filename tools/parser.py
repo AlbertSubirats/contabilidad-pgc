@@ -424,6 +424,12 @@ def detectar_contrapartidas(movimientos, codigos_existentes):
     return sorted(codigos_encontrados)
 
 
+def codigo_de_la_cuenta(cuenta):
+    # La usa sort() para saber por qué campo ordenar las cuentas. El código es
+    # texto, así que se ordena como en un diccionario: "52" < "520" < "5209" < "53".
+    # Ese es justo el orden del árbol del cuadro de cuentas.
+    return cuenta["codigo"]
+
 # La ruta se calcula a partir de dónde está este script, no de la carpeta
 # desde la que se ejecuta. Así funciona igual lo lances desde donde lo lances.
 carpeta_del_script = Path(__file__).parent
@@ -473,6 +479,11 @@ for cuenta in cuentas:
 for cuenta in cuentas:
     cuenta["contrapartidas_cargos"] = detectar_contrapartidas(cuenta["cargos"], codigos_existentes)
     cuenta["contrapartidas_abonos"] = detectar_contrapartidas(cuenta["abonos"], codigos_existentes)
+
+# El OCR dejó algún título fuera de sitio: el subgrupo 53 salía antes que el
+# 52. El orden del cuadro lo marca el propio código, así que se ordena por él
+# antes de guardar.
+cuentas.sort(key=codigo_de_la_cuenta)
 
 # ensure_ascii=False deja las tildes como tildes; si no, "ó" se guardaría
 # como "ó". indent=2 pone cada campo en su línea para poder leerlo.

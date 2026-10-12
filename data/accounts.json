@@ -7938,22 +7938,6 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "53",
-    "nivel": "subgrupo",
-    "nombre": "INVERSIONES FINANCIERAS A CORTO PLAZO EN PARTES VINCULADAS",
-    "padre": "5",
-    "definicion": [
-      "Inversiones financieras a corto plazo en empresas del grupo, multigrupo, asociadas y otras partes vinculadas, cualquiera que sea su forma de instrumentación, incluidos los dividendos e intereses devengados, con vencimiento no superior a un año, o sin vencimiento (como los instrumentos de patrimonio), cuando la empresa tenga la intención de venderlos en el corto plazo. También se incluirán en este subgrupo las fianzas y depósitos a corto plazo constituidos con estas personas o entidades y demás tipos de activos financieros e inversiones a corto plazo con estas personas o entidades. Estas inversiones se recogerán en las cuentas de tres o más cifras que se desarrollen.",
-      "La parte de las inversiones a largo plazo, con personas o entidades vinculadas, que tenga vencimiento a corto deberá figurar en el activo corriente del balance, en el epígrafe \"Inversiones en empresas del grupo y asociadas a corto plazo\"; a estos efectos se traspasará a este subgrupo el importe que represente la inversión a largo plazo con vencimiento a corto plazo de las cuentas correspondientes del subgrupo 24."
-    ],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "52",
     "nivel": "subgrupo",
     "nombre": "DEUDAS A CORTO PLAZO POR PRÉSTAMOS RECIBIDOS Y OTROS CONCEPTOS",
@@ -8400,6 +8384,22 @@
     "nombre": "Provisión a corto plazo por transacciones con pagos basados en instrumentos de patrimonio",
     "padre": "529",
     "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "53",
+    "nivel": "subgrupo",
+    "nombre": "INVERSIONES FINANCIERAS A CORTO PLAZO EN PARTES VINCULADAS",
+    "padre": "5",
+    "definicion": [
+      "Inversiones financieras a corto plazo en empresas del grupo, multigrupo, asociadas y otras partes vinculadas, cualquiera que sea su forma de instrumentación, incluidos los dividendos e intereses devengados, con vencimiento no superior a un año, o sin vencimiento (como los instrumentos de patrimonio), cuando la empresa tenga la intención de venderlos en el corto plazo. También se incluirán en este subgrupo las fianzas y depósitos a corto plazo constituidos con estas personas o entidades y demás tipos de activos financieros e inversiones a corto plazo con estas personas o entidades. Estas inversiones se recogerán en las cuentas de tres o más cifras que se desarrollen.",
+      "La parte de las inversiones a largo plazo, con personas o entidades vinculadas, que tenga vencimiento a corto deberá figurar en el activo corriente del balance, en el epígrafe \"Inversiones en empresas del grupo y asociadas a corto plazo\"; a estos efectos se traspasará a este subgrupo el importe que represente la inversión a largo plazo con vencimiento a corto plazo de las cuentas correspondientes del subgrupo 24."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
