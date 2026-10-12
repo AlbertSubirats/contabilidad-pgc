@@ -12,6 +12,42 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Cambio · Paso 13: añadir el buscador de cuentas
+**Qué:** una caja de búsqueda encima de la lista. Cada vez que cambia su texto
+(evento `input`), `filtrarCuentas` se queda con las cuentas que encajan y
+`pintarLista` vacía el `<ul>` y lo vuelve a llenar solo con ellas. `app.js` se
+reorganizó para separar *cargar* (una vez) de *pintar* (en cada búsqueda), y las
+cuentas se guardan en una variable de fuera, `todasLasCuentas`. Escrito por
+Albert, trozo a trozo.
+**Por qué:** es la puerta de entrada al módulo 1. Más adelante, de un resultado
+se llegará a su ficha.
+
+### Decisión · El código se busca por el principio y el nombre en cualquier posición
+**Qué:** el código usa `startsWith` y el nombre usa `includes`.
+**Por qué:** así "43" da el subgrupo 43 y todo lo que cuelga de él (430, 4300...)
+y no cuentas como 143, que llevan "43" en medio. Sigue la lógica del cuadro de
+cuentas. En los nombres, en cambio, la palabra buscada puede estar en cualquier
+sitio ("Anticipos de clientes").
+
+### Decisión · Comparar sin mayúsculas ni tildes
+**Qué:** el texto escrito y el nombre de la cuenta pasan los dos por
+`normalizar`: minúsculas, `normalize("NFD")` para separar letra y tilde, y una
+expresión regular que borra las tildes sueltas.
+**Por qué:** sin esto, "clien" no encontraba "Clientes" ni "caja" encontraba
+"Caja, euros". Nadie escribe con mayúsculas y tildes cuando busca deprisa. Como
+efecto secundario, "ñ" se convierte en "n" ("campana" encuentra "campaña"). Se
+acepta, porque en un buscador es más una ayuda que un problema.
+
+### Decisión · Filtrar con `filter` en vez de con el bucle
+**Qué:** primero se escribió el filtro con `for`, `if` y `push`. Después se
+cambió por `todasLasCuentas.filter(function (cuenta) { ... })` y se comprobó que
+daba los mismos resultados.
+**Por qué:** hace lo mismo con menos piezas: la condición queda sola y el
+trabajo de recorrer y apuntar lo hace `filter`. Además, es la forma en que se
+escribe en casi todo el código JavaScript y va a aparecer mucho en los pasos
+siguientes. Albert la lee sin problemas, que es el criterio del proyecto. Las
+funciones flecha (`=>`) quedan para más adelante.
+
 ### Cambio · Paso 12: cargar y listar las cuentas en la web
 **Qué:** `web/app.js` lee `data/accounts.json` con `fetch` y escribe cada
 elemento como `codigo · nombre` dentro de un `<ul>` vacío de `web/index.html`.
