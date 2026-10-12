@@ -12,6 +12,16 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Decisión · Respetar la errata "CARÁCTERÍSTICAS" del subgrupo 50
+**Qué:** el nombre del subgrupo 50 se deja como "EMPRÉSTITOS, DEUDAS CON
+CARÁCTERÍSTICAS ESPECIALES Y OTRAS EMISIONES ANÁLOGAS A CORTO PLAZO", con la
+tilde de más.
+**Por qué:** la errata está en el texto oficial. Albert la comprobó en el BOE, y
+también aparece en el PDF del ICAC y en el texto refundido. La herramienta
+reproduce la norma tal como está publicada, y `FE_DE_ERRATAS` solo corrige lo
+que estropeó el OCR, no el texto oficial. El mismo texto lo escribe bien en el
+subgrupo 15 ("CARACTERÍSTICAS").
+
 ### Cambio · Ordenar las cuentas por código antes de guardar el JSON
 **Qué:** el parser hace `cuentas.sort(key=codigo_de_la_cuenta)` justo antes de
 escribir `data/accounts.json`. Resuelve el pendiente del subgrupo 53, que salía
