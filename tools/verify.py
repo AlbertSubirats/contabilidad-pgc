@@ -109,9 +109,11 @@ def textos_sospechosos(cuentas):
                 # Restos del formato del OCR.
                 elif "<sup>" in texto or "**" in texto or "#" in texto or "{" in texto:
                     problemas.append(inicio)
-                # Un movimiento que lleva dentro "Se cargará:" o "Se abonará:"
-                # tiene pegadas las dos columnas.
+                # Un movimiento que lleva dentro "Se cargará:", "Se abonará:"
+                # o "b) Se abonará por..." tiene pegadas las dos columnas.
                 elif campo in ["cargos", "abonos"] and re.search(r"Se (cargar|abonar)án?[:,]", texto):
+                    problemas.append(inicio)
+                elif campo in ["cargos", "abonos"] and re.search(r"[a-z]\) Se (cargar|abonar)", texto):
                     problemas.append(inicio)
     return problemas
 

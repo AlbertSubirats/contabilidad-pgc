@@ -10,6 +10,66 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-12
+
+### Cambio · Paso 11: corregir los casos que el parser no cogía bien
+**Qué:** con el informe del verificador delante se revisaron los avisos contra
+el texto y el PDF original, y se corrigió:
+- **Fichas compartidas detrás del índice** (`680/681/682`, `770/771/772`,
+  `790/791/792`...): la regla de la racha comparaba títulos enteros y ahora
+  compara código a código.
+- **Números de página pegados al principio de una línea** (`305 Cuando...`,
+  `#### 222 23. INMOVILIZACIONES...`): 6 líneas, todas números de página. Se
+  recupera, entre otros, el título del subgrupo 23.
+- **Columnas cambiadas en 108, 109, 472 y 477**: la regla que detecta frases
+  mixtas ("se cargarán ... y se abonarán") miraba la línea entera, y un "se
+  cargará" dentro de un abono hacía que los abonos acabaran en los cargos.
+  Ahora mira solo la primera frase de la cabecera, y una cabecera mixta ya no
+  se pega al movimiento anterior.
+- **Tres erratas del OCR**, comprobadas en el PDF: el `a3)` de la 400, el
+  nombre del subgrupo 53 y el título perdido de la 570/571.
+- **El verificador** detecta también "b) Se abonará por..." dentro de un
+  movimiento, que antes se le escapaba.
+
+Resultado: las cuentas de tres cifras sin ninguna ficha bajan de 80 a 53, las
+que tienen definición suben de 308 a 330 y las que tienen movimientos, de 220
+a 240. No queda ningún número de movimiento que no sea una cuenta.
+**Por qué:** es la revisión que pedía la hoja de ruta para cerrar la fase 1.
+
+### Decisión · Una fe de erratas para los fallos únicos del OCR
+**Qué:** `parser.py` tiene una tabla `FE_DE_ERRATAS` con pares "texto del
+OCR → texto corregido", que se aplica al texto entero nada más leerlo. Cada
+entrada indica la página del PDF donde se comprobó. Si una errata deja de
+aparecer en el texto, el parser avisa.
+**Por qué:** una regla para un caso único sería un patrón que nadie entendería.
+Así la corrección queda a la vista y documentada, y `sources/` sigue sin
+tocarse. Ninguna errata se escribe sin comprobarla en el PDF (sección 7 de
+CLAUDE.md).
+
+### Decisión · El PDF original entra en `sources/`
+**Qué:** se añade `PLAN_GENERAL_DE_CONTABILIDAD_accesible.pdf` (1,7 MB).
+**Por qué:** es el original contra el que se comprueba todo. Su numeración de
+páginas no coincide con las marcas `{N}` del `.md`, que viene del OCR de otra
+edición: para buscar algo, mejor una frase con Ctrl+F.
+
+### Problema conocido · Lo que el OCR desordenó a fondo
+**Qué:** quedan sin arreglar, a propósito:
+- **230/237/239:** un trozo desordenado, con un título perdido.
+- **El bloque inicial del grupo 7** ("En general, todas las cuentas del grupo
+  7...") aparece antes del título GRUPO 7, con el índice del subgrupo 70
+  aplastado dentro. Por eso 700–706 no tienen ficha y ese texto cae en la 699.
+- **490:** tiene dos alternativas de movimiento ("1. Cuando..." / "2.
+  Cuando...") que no caben en dos columnas sin inventar cómo separarlas.
+- **1768, 2553, 5593 y 5598:** movimientos en tres niveles (`b1) Se cargará:
+  i) ii)`) que la forma de los datos no contempla.
+- **El 53 aparece antes que el 52** en la lista. Solo afecta al orden.
+- **Un párrafo partido en el grupo 1** ("...a las cuentas 663 y" / "763.").
+- **53 cuentas sin ficha.** Muchas no la tienen en el PGC porque se explican
+  en su subgrupo (por ejemplo, las del grupo 3).
+
+**Por qué se deja:** arreglarlos exigiría reescribir párrafos enteros a mano.
+Se retomarán si alguno estorba de verdad en la fase 2.
+
 ## 2026-10-10
 
 ### Cambio · Paso 10: el verificador de los datos extraídos

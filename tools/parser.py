@@ -34,6 +34,50 @@ PATRON_ETIQUETA_DE_MOVIMIENTO = r"[a-z]\d+\) "
 
 PLAN = "pgc-general"
 
+# Un número de página que el OCR pegó al principio de una línea, delante del
+# texto: "305 Cuando los deudores..." o "#### 222 23. INMOVILIZACIONES...".
+# Tres cifras y un espacio, sin punto (un código de cuenta lleva punto: "430.").
+# Grupo 1: los "#" y espacios de delante, que hay que conservar.
+PATRON_NUMERO_DE_PAGINA_PEGADO = r"^(#*\s*)\d{3} "
+
+# Fe de erratas: fallos del OCR que ocurren una sola vez y que no merecen una
+# regla. Cada entrada es "texto tal como lo dejó el OCR" → "texto corregido".
+# Todas se han comprobado contra el PDF original (sources/), cuya página se
+# indica. El fichero .md de sources/ no se toca: la corrección vive aquí.
+FE_DE_ERRATAS = {
+    # 400 Proveedores, PDF p. 465. El OCR tomó el 3 de "a3)" por un
+    # superíndice y el tercer abono se pegaba al segundo.
+    "a<sup>3</sup> )": "a3)",
+    # Subgrupo 53 en el cuadro de cuentas, PDF p. 363. Restos de otra línea
+    # pegados al final del nombre.
+    "EN PARTES VINCULADAS grupo asociadas": "EN PARTES VINCULADAS",
+    # 570/571 Caja, PDF p. 527. El OCR se comió el título de la ficha y su
+    # texto acababa en el subgrupo 57.
+    "\nDisponibilidades de medios líquidos en caja.": "\n570/571. Caja, . . .\n\nDisponibilidades de medios líquidos en caja.",
+}
+
+
+def aplicar_fe_de_erratas(texto):
+    # Se aplica al texto entero, antes de partirlo en líneas, porque alguna
+    # corrección añade una línea nueva (el "\n" es un salto de línea).
+    for texto_del_ocr, texto_corregido in FE_DE_ERRATAS.items():
+        if texto_del_ocr not in texto:
+            # Si un día cambia el fichero fuente y una errata ya no aparece,
+            # mejor enterarse que creer que se ha corregido.
+            print("AVISO: la errata no aparece en el texto:", texto_del_ocr)
+        texto = texto.replace(texto_del_ocr, texto_corregido)
+    return texto
+
+
+def quitar_numeros_de_pagina_pegados(lineas):
+    lineas_corregidas = []
+    for linea in lineas:
+        # re.sub sustituye lo que encaja con el patrón. r"\1" quiere decir "lo
+        # que capturó el grupo 1": así se quitan las tres cifras y se
+        # conservan los "#" de delante.
+        lineas_corregidas.append(re.sub(PATRON_NUMERO_DE_PAGINA_PEGADO, r"\1", linea))
+    return lineas_corregidas
+
 
 def quitar_marcas_de_pagina(lineas):
     lineas_sin_marcas = []
@@ -215,12 +259,17 @@ def elegir_titulo_de_la_racha(racha):
         return racha[0]
     # Si hay varios, es el índice con el que empieza cada subgrupo:
     #   43. CLIENTES / 430. Clientes / 431. ... / 438. Anticipos de clientes
-    # Si el último repite un código del índice, es el título de la primera
-    # ficha, que viene justo detrás del índice (como "430. Clientes").
+    # Si el último repite algún código del índice, es el título de la primera
+    # ficha, que viene justo detrás del índice (como "430. Clientes"). Se
+    # compara código a código porque la ficha puede ser compartida: el título
+    # "680/681/682" no es igual a ningún título del índice, pero el 680 sí
+    # está en el índice.
     ultimo = racha[-1]
     anteriores = racha[:-1]
-    if ultimo in anteriores:
-        return ultimo
+    for titulo in anteriores:
+        for codigo in titulo:
+            if codigo in ultimo:
+                return ultimo
     # Si no, el texto que sigue es del subgrupo, que va el primero.
     return racha[0]
 
@@ -240,8 +289,15 @@ def habla_de_cargo_y_abono(texto):
     # Frases como "Se cargarán a la entrada ... y se abonarán a su salida"
     # describen las dos columnas a la vez y no se pueden repartir sin
     # inventar. Esas se quedan enteras en la definición.
-    texto_en_minusculas = texto.lower()
-    return "se cargar" in texto_en_minusculas and "se abonar" in texto_en_minusculas
+    # Solo se mira la cabecera: lo que va antes del primer "b1)" y, de eso,
+    # solo la primera frase. Más allá puede salir la otra palabra sin que la
+    # cabecera sea mixta: "b) Se abonará: b1) ... el importe del mismo se
+    # cargará a la cuenta 4700" o "b) Se abonará por la reducción de capital
+    # ... La diferencia ... se cargará o abonará, según proceda".
+    cabecera = re.split(PATRON_ETIQUETA_DE_MOVIMIENTO, texto)[0]
+    primera_frase = cabecera.split(". ")[0]
+    cabecera_en_minusculas = primera_frase.lower()
+    return "se cargar" in cabecera_en_minusculas and "se abonar" in cabecera_en_minusculas
 
 
 def extraer_fichas(lineas, cuentas):
@@ -306,6 +362,11 @@ def extraer_fichas(lineas, cuentas):
                 cuenta = cuentas_por_codigo[codigo]
                 cuenta[parte_actual].extend(partir_movimientos(coincidencia.group(3)))
             continue
+        if coincidencia:
+            # Una cabecera mixta ("c) Se cargará o se abonará, ...") no va a
+            # ninguna columna, pero tampoco es la continuación del último
+            # movimiento: cierra los movimientos y va a la definición (paso 5).
+            parte_actual = None
 
         # 4. Dentro de los movimientos.
         if parte_actual is not None:
@@ -373,6 +434,7 @@ ruta_del_json = raiz_del_proyecto / "data" / "accounts.json"
 # El fichero está guardado en UTF-8. Si no se dice, Windows usa otra tabla
 # (cp1252) y las tildes y las eñes salen rotas o el programa falla.
 texto = ruta_del_texto.read_text(encoding="utf-8")
+texto = aplicar_fe_de_erratas(texto)
 
 lineas = texto.splitlines()
 print("Fichero:", ruta_del_texto)
@@ -381,6 +443,7 @@ print("Líneas del texto original:", len(lineas))
 # El orden importa: los espacios se recortan antes de juntar las líneas en
 # blanco, para que una línea que solo tenía espacios cuente como blanca.
 lineas = quitar_marcas_de_pagina(lineas)
+lineas = quitar_numeros_de_pagina_pegados(lineas)
 lineas = quitar_espacios_al_final(lineas)
 lineas = juntar_lineas_en_blanco(lineas)
 print("Líneas después de limpiar:", len(lineas))

@@ -235,17 +235,20 @@
       "Figurarán en el patrimonio neto, con signo negativo."
     ],
     "cargos": [
-      "por el importe de la adquisición de las acciones o participaciones, con abono, generalmente, a cuentas del subgrupo 57. b) Se abonará:",
+      "por el importe de la adquisición de las acciones o participaciones, con abono, generalmente, a cuentas del subgrupo 57."
+    ],
+    "abonos": [
       "Por la enajenación de las acciones o participaciones, con cargo, generalmente, a cuentas del subgrupo 57. La diferencia entre la cantidad obtenida en la enajenación de las acciones o participaciones propias y su valor contable se cargará o abonará, según proceda, a cuentas del subgrupo 11.",
       "Por la reducción de capital, con cargo a la cuenta 100 por el importe del nominal de las acciones o participaciones. La diferencia entre el importe de adquisición de las acciones o participaciones y su valor nominal se cargará o abonará, según proceda, a cuentas del subgrupo 11."
     ],
-    "abonos": [],
     "contrapartidas_cargos": [
+      "57"
+    ],
+    "contrapartidas_abonos": [
       "100",
       "11",
       "57"
-    ],
-    "contrapartidas_abonos": []
+    ]
   },
   {
     "plan": "pgc-general",
@@ -260,15 +263,18 @@
       "Figurarán en el patrimonio neto, con signo negativo."
     ],
     "cargos": [
-      "por el importe de la adquisición de las acciones, con abono, generalmente, a cuentas del subgrupo 57. b) Se abonará por la reducción de capital, con cargo a la cuenta 100 por el importe del nominal de las acciones o participaciones. La diferencia entre el importe de adquisición de las acciones o participaciones y su valor nominal se cargará o abonará, según proceda, a cuentas del subgrupo 11."
+      "por el importe de la adquisición de las acciones, con abono, generalmente, a cuentas del subgrupo 57."
     ],
-    "abonos": [],
+    "abonos": [
+      "por la reducción de capital, con cargo a la cuenta 100 por el importe del nominal de las acciones o participaciones. La diferencia entre el importe de adquisición de las acciones o participaciones y su valor nominal se cargará o abonará, según proceda, a cuentas del subgrupo 11."
+    ],
     "contrapartidas_cargos": [
-      "100",
-      "11",
       "57"
     ],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "100",
+      "11"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -2824,7 +2830,7 @@
       "Activos no corrientes que sean inmuebles y que se posean para obtener rentas, plusvalías o ambas, en lugar de para:",
       "Su uso en la producción o suministro de bienes o servicios, o bien para fines administrativos; o",
       "Su venta en el curso ordinario de las operaciones.",
-      "275 Trabajos de adaptación, construcción o montaje al cierre del ejercicio realizados con anterioridad a la puesta en condiciones de funcionamiento de los distintos elementos del inmovilizado material, incluidos los realizados en inmuebles. Su movimiento es el siguiente: a) Se cargarán: en curso. a la cuenta 733. subgrupo 21. 239. Anticipos para inmovilizaciones materiales",
+      "Trabajos de adaptación, construcción o montaje al cierre del ejercicio realizados con anterioridad a la puesta en condiciones de funcionamiento de los distintos elementos del inmovilizado material, incluidos los realizados en inmuebles. Su movimiento es el siguiente: a) Se cargarán: en curso. a la cuenta 733. subgrupo 21. 239. Anticipos para inmovilizaciones materiales",
       "Las cuentas de este subgrupo figurarán en el activo no corriente del balance."
     ],
     "presentacion": [],
@@ -2832,7 +2838,7 @@
       "por el precio de adquisición o coste de producción o por su cambio de uso, con abono, generalmente, a cuentas de los subgrupos 21 ó 57 ó a la cuenta 732."
     ],
     "abonos": [
-      "por las enajenaciones, por su cambio de uso y en general por su baja del activo, con cargo, generalmente, a cuentas de los subgrupos 21 ó 57 y en caso de pérdidas a la cuenta 672. 222 23. INMOVILIZACIONES MATERIALES EN CURSO"
+      "por las enajenaciones, por su cambio de uso y en general por su baja del activo, con cargo, generalmente, a cuentas de los subgrupos 21 ó 57 y en caso de pérdidas a la cuenta 672."
     ],
     "contrapartidas_cargos": [
       "21",
@@ -2841,7 +2847,6 @@
     ],
     "contrapartidas_abonos": [
       "21",
-      "23",
       "57",
       "672"
     ]
@@ -2878,7 +2883,9 @@
     "nivel": "subgrupo",
     "nombre": "INMOVILIZACIONES MATERIALES EN CURSO",
     "padre": "2",
-    "definicion": [],
+    "definicion": [
+      "Las cuentas de este subgrupo figurarán en el activo no corriente del balance."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -2892,7 +2899,6 @@
     "nombre": "Adaptación de terrenos y bienes naturales",
     "padre": "23",
     "definicion": [
-      "Las cuentas de este subgrupo figurarán en el activo no corriente del balance.",
       "a1) Por la recepción de obras y trabajos que corresponden a las inmovilizaciones a2) Por las obras y trabajos que la empresa lleve a cabo para sí misma, con abono",
       "Entregas a proveedores y otros suministradores de elementos de inmovilizado material, normalmente en efectivo, en concepto de \"a cuenta\" de suministros o de trabajos futuros."
     ],
@@ -5388,7 +5394,8 @@
     ],
     "abonos": [
       "Por la recepción \"a conformidad\" de las remesas de los proveedores, con cargo a cuentas del subgrupo 60.",
-      "Por los envases y embalajes cargados en factura por los proveedores con facultad de su devolución a éstos, con cargo a la cuenta 406. a<sup>3</sup> ) En su caso, por el gasto financiero devengado, con cargo, generalmente, a la cuenta 662."
+      "Por los envases y embalajes cargados en factura por los proveedores con facultad de su devolución a éstos, con cargo a la cuenta 406.",
+      "En su caso, por el gasto financiero devengado, con cargo, generalmente, a la cuenta 662."
     ],
     "contrapartidas_cargos": [
       "401",
@@ -5399,7 +5406,6 @@
       "609"
     ],
     "contrapartidas_abonos": [
-      "3",
       "406",
       "60",
       "662"
@@ -6232,7 +6238,7 @@
     "nombre": "DEUDORES VARIOS",
     "padre": "4",
     "definicion": [
-      "305 Cuando los deudores sean empresas del grupo, multigrupo o asociadas u otras partes vinculadas, se abrirán cuentas de tres cifras que específicamente recojan los créditos con las mismas, incluidos los formalizados en efectos de giro. 440. Deudores Créditos con compradores de servicios que no tienen la condición estricta de clientes y con otros deudores de tráfico no incluidos en otras cuentas de este grupo. En esta cuenta se contabilizará también el importe de las donaciones y legados a la explotación concedidos a la empresa, que se liquiden mediante la entrega de efectivo u otros activos financieros, excluidas las subvenciones que deben registrarse en cuentas del subgrupo 47. Figurará en el activo corriente del balance. Su movimiento es el siguiente: a) Se cargará: a1) Por la prestación de servicios, con abono a cuentas del subgrupo 75. a2) Por la donación o legado de explotación concedido, con abono a cuentas del subgrupo 74. a3) En su caso, para reflejar el ingreso financiero devengado, con abono, generalmente, a la cuenta 762. b) Se abonará: b1) Por la formalización del crédito en efectos de giro aceptados por el deudor, con cargo a la cuenta 441. b2) Por la cancelación total o parcial de las deudas, con cargo, generalmente, a cuentas del subgrupo 57. b3) Por su clasificación como deudores de dudoso cobro, con cargo a la cuenta 446. b4) Por la parte que resultara definitivamente incobrable, con cargo a la cuenta 650. 441. Deudores, efectos comerciales a cobrar Créditos con deudores, formalizados en efectos de giro aceptados."
+      "Cuando los deudores sean empresas del grupo, multigrupo o asociadas u otras partes vinculadas, se abrirán cuentas de tres cifras que específicamente recojan los créditos con las mismas, incluidos los formalizados en efectos de giro. 440. Deudores Créditos con compradores de servicios que no tienen la condición estricta de clientes y con otros deudores de tráfico no incluidos en otras cuentas de este grupo. En esta cuenta se contabilizará también el importe de las donaciones y legados a la explotación concedidos a la empresa, que se liquiden mediante la entrega de efectivo u otros activos financieros, excluidas las subvenciones que deben registrarse en cuentas del subgrupo 47. Figurará en el activo corriente del balance. Su movimiento es el siguiente: a) Se cargará: a1) Por la prestación de servicios, con abono a cuentas del subgrupo 75. a2) Por la donación o legado de explotación concedido, con abono a cuentas del subgrupo 74. a3) En su caso, para reflejar el ingreso financiero devengado, con abono, generalmente, a la cuenta 762. b) Se abonará: b1) Por la formalización del crédito en efectos de giro aceptados por el deudor, con cargo a la cuenta 441. b2) Por la cancelación total o parcial de las deudas, con cargo, generalmente, a cuentas del subgrupo 57. b3) Por su clasificación como deudores de dudoso cobro, con cargo a la cuenta 446. b4) Por la parte que resultara definitivamente incobrable, con cargo a la cuenta 650. 441. Deudores, efectos comerciales a cobrar Créditos con deudores, formalizados en efectos de giro aceptados."
     ],
     "presentacion": [],
     "cargos": [],
@@ -6657,29 +6663,32 @@
     "nombre": "Hacienda Pública, IVA soportado",
     "padre": "47",
     "definicion": [
-      "IVA devengado con motivo de la adquisición de bienes y servicios y de otras operaciones comprendidas en el texto legal, que tenga carácter deducible."
+      "IVA devengado con motivo de la adquisición de bienes y servicios y de otras operaciones comprendidas en el texto legal, que tenga carácter deducible.",
+      "c) Se cargará o se abonará, con abono o cargo a cuentas de los grupos 1, 2, 4 ó 5, por el importe del IVA deducible que corresponda en los casos de alteraciones de precios posteriores al momento en que se hubieren realizado las operaciones gravadas, o cuando éstas quedaren sin efecto total o parcialmente, o cuando deba reducirse la base imponible en virtud de descuentos y bonificaciones otorgadas después del devengo del impuesto."
     ],
     "presentacion": [],
     "cargos": [
       "Por el importe del IVA deducible cuando se devengue el impuesto, con abono a cuentas de acreedores o proveedores de los grupos 1, 4 ó 5 o a cuentas del subgrupo 57. En los casos de cambio de afectación de bienes, con abono a la cuenta 477.",
-      "Por las diferencias positivas que resulten en el IVA deducible correspondiente a operaciones de bienes o servicios del activo corriente o de bienes de inversión al practicarse las regularizaciones previstas en la Regla de Prorrata, con abono a la cuenta 639. b) Se abonará:",
-      "Por el importe del IVA deducible que se compensa en la declaración-liquidación del periodo de liquidación, con cargo a la cuenta 477. Si después de formulado este asiento subsistiera saldo en la cuenta 472, el importe del mismo se cargará a la cuenta 4700.",
-      "Por las diferencias negativas que resulten en el IVA deducible correspondiente a operaciones de bienes o servicios del activo corriente o de bienes de inversión al practicarse las regularizaciones previstas en la Regla de Prorrata, con cargo a la cuenta 634. c) Se cargará o se abonará, con abono o cargo a cuentas de los grupos 1, 2, 4 ó 5, por el importe del IVA deducible que corresponda en los casos de alteraciones de precios posteriores al momento en que se hubieren realizado las operaciones gravadas, o cuando éstas quedaren sin efecto total o parcialmente, o cuando deba reducirse la base imponible en virtud de descuentos y bonificaciones otorgadas después del devengo del impuesto."
+      "Por las diferencias positivas que resulten en el IVA deducible correspondiente a operaciones de bienes o servicios del activo corriente o de bienes de inversión al practicarse las regularizaciones previstas en la Regla de Prorrata, con abono a la cuenta 639."
     ],
-    "abonos": [],
+    "abonos": [
+      "Por el importe del IVA deducible que se compensa en la declaración-liquidación del periodo de liquidación, con cargo a la cuenta 477. Si después de formulado este asiento subsistiera saldo en la cuenta 472, el importe del mismo se cargará a la cuenta 4700.",
+      "Por las diferencias negativas que resulten en el IVA deducible correspondiente a operaciones de bienes o servicios del activo corriente o de bienes de inversión al practicarse las regularizaciones previstas en la Regla de Prorrata, con cargo a la cuenta 634."
+    ],
     "contrapartidas_cargos": [
       "1",
-      "2",
       "4",
-      "4700",
-      "472",
       "477",
       "5",
       "57",
-      "634",
       "639"
     ],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "4700",
+      "472",
+      "477",
+      "634"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -6965,21 +6974,26 @@
     "nombre": "Hacienda Pública, IVA repercutido",
     "padre": "47",
     "definicion": [
-      "IVA devengado con motivo de la entrega de bienes o de la prestación de servicios y de otras operaciones comprendidas en el texto legal."
+      "IVA devengado con motivo de la entrega de bienes o de la prestación de servicios y de otras operaciones comprendidas en el texto legal.",
+      "c) Se abonará o se cargará, con cargo o abono a cuentas de los grupos 2, 4 ó 5, por el importe del IVA repercutido que corresponda en los casos de alteraciones de precios posteriores al momento en que se hubieren realizado las operaciones gravadas o cuando éstas quedaren sin efecto total o parcialmente o cuando deba reducirse la base imponible en virtud de descuentos y bonificaciones otorgados después del devengo del impuesto."
     ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por el importe del IVA soportado deducible que se compense en la declaración liquidación del periodo de liquidación, con abono a la cuenta 472. Si después de formulado este asiento subsistiera saldo en la cuenta 477, el importe del mismo se abonará a la cuenta 4750."
+    ],
     "abonos": [
       "Por el importe del IVA repercutido cuando se devengue el impuesto, con cargo a cuentas de deudores o clientes de los grupos 2, 4 ó 5 o a cuentas del subgrupo 57. En los casos de cambio de afectación de bienes, con cargo a la cuenta 472 y a la cuenta del activo de que se trate.",
-      "Por el importe del IVA repercutido cuando se devengue el impuesto, en el caso de retirada de bienes de inversión o de bienes del activo corriente con destino al patrimonio personal del titular de la explotación o al consumo final del mismo, con cargo a la cuenta 550. b) Se cargará por el importe del IVA soportado deducible que se compense en la declaración liquidación del periodo de liquidación, con abono a la cuenta 472. Si después de formulado este asiento subsistiera saldo en la cuenta 477, el importe del mismo se abonará a la cuenta 4750. c) Se abonará o se cargará, con cargo o abono a cuentas de los grupos 2, 4 ó 5, por el importe del IVA repercutido que corresponda en los casos de alteraciones de precios posteriores al momento en que se hubieren realizado las operaciones gravadas o cuando éstas quedaren sin efecto total o parcialmente o cuando deba reducirse la base imponible en virtud de descuentos y bonificaciones otorgados después del devengo del impuesto."
+      "Por el importe del IVA repercutido cuando se devengue el impuesto, en el caso de retirada de bienes de inversión o de bienes del activo corriente con destino al patrimonio personal del titular de la explotación o al consumo final del mismo, con cargo a la cuenta 550."
     ],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "472",
+      "4750",
+      "477"
+    ],
     "contrapartidas_abonos": [
       "2",
       "4",
       "472",
-      "4750",
-      "477",
       "5",
       "550",
       "57"
@@ -7926,7 +7940,7 @@
     "plan": "pgc-general",
     "codigo": "53",
     "nivel": "subgrupo",
-    "nombre": "INVERSIONES FINANCIERAS A CORTO PLAZO EN PARTES VINCULADAS grupo asociadas",
+    "nombre": "INVERSIONES FINANCIERAS A CORTO PLAZO EN PARTES VINCULADAS",
     "padre": "5",
     "definicion": [
       "Inversiones financieras a corto plazo en empresas del grupo, multigrupo, asociadas y otras partes vinculadas, cualquiera que sea su forma de instrumentación, incluidos los dividendos e intereses devengados, con vencimiento no superior a un año, o sin vencimiento (como los instrumentos de patrimonio), cuando la empresa tenga la intención de venderlos en el corto plazo. También se incluirán en este subgrupo las fianzas y depósitos a corto plazo constituidos con estas personas o entidades y demás tipos de activos financieros e inversiones a corto plazo con estas personas o entidades. Estas inversiones se recogerán en las cuentas de tres o más cifras que se desarrollen.",
@@ -10119,6 +10133,19 @@
     "nivel": "subgrupo",
     "nombre": "TESORERÍA",
     "padre": "5",
+    "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "570",
+    "nivel": "cuenta",
+    "nombre": "Caja, euros",
+    "padre": "57",
     "definicion": [
       "Disponibilidades de medios líquidos en caja.",
       "Se cargarán a la entrada de los medios líquidos y se abonarán a su salida, con abono y cargo a las cuentas que han de servir de contrapartida, según la naturaleza de la operación que provoca el cobro o el pago."
@@ -10133,25 +10160,17 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "570",
-    "nivel": "cuenta",
-    "nombre": "Caja, euros",
-    "padre": "57",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "571",
     "nivel": "cuenta",
     "nombre": "Caja, moneda extranjera",
     "padre": "57",
-    "definicion": [],
-    "presentacion": [],
+    "definicion": [
+      "Disponibilidades de medios líquidos en caja.",
+      "Se cargarán a la entrada de los medios líquidos y se abonarán a su salida, con abono y cargo a las cuentas que han de servir de contrapartida, según la naturaleza de la operación que provoca el cobro o el pago."
+    ],
+    "presentacion": [
+      "Figurarán en el activo corriente del balance."
+    ],
     "cargos": [],
     "abonos": [],
     "contrapartidas_cargos": [],
@@ -11224,10 +11243,7 @@
     "nivel": "subgrupo",
     "nombre": "VARIACIÓN DE EXISTENCIAS",
     "padre": "6",
-    "definicion": [
-      "Cuentas destinadas a registrar, al cierre de ejercicio, las variaciones entre las existencias finales y las iniciales, correspondientes a los subgrupos 30, 31 y 32 (mercaderías, materias primas y otros aprovisionamientos).",
-      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 30, 31 y 32. El saldo que resulte en estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
-    ],
+    "definicion": [],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -11240,7 +11256,10 @@
     "nivel": "cuenta",
     "nombre": "Variación de existencias de mercaderías",
     "padre": "61",
-    "definicion": [],
+    "definicion": [
+      "Cuentas destinadas a registrar, al cierre de ejercicio, las variaciones entre las existencias finales y las iniciales, correspondientes a los subgrupos 30, 31 y 32 (mercaderías, materias primas y otros aprovisionamientos).",
+      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 30, 31 y 32. El saldo que resulte en estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -11253,7 +11272,10 @@
     "nivel": "cuenta",
     "nombre": "Variación de existencias de materias primas",
     "padre": "61",
-    "definicion": [],
+    "definicion": [
+      "Cuentas destinadas a registrar, al cierre de ejercicio, las variaciones entre las existencias finales y las iniciales, correspondientes a los subgrupos 30, 31 y 32 (mercaderías, materias primas y otros aprovisionamientos).",
+      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 30, 31 y 32. El saldo que resulte en estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -11266,7 +11288,10 @@
     "nivel": "cuenta",
     "nombre": "Variación de existencias de otros aprovisionamientos",
     "padre": "61",
-    "definicion": [],
+    "definicion": [
+      "Cuentas destinadas a registrar, al cierre de ejercicio, las variaciones entre las existencias finales y las iniciales, correspondientes a los subgrupos 30, 31 y 32 (mercaderías, materias primas y otros aprovisionamientos).",
+      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 30, 31 y 32. El saldo que resulte en estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -12922,6 +12947,19 @@
     "nivel": "subgrupo",
     "nombre": "PÉRDIDAS PROCEDENTES DE ACTIVOS NO CORRIENTES Y GASTOS EXCEPCIONALES",
     "padre": "6",
+    "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "670",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas procedentes del inmovilizado intangible",
+    "padre": "67",
     "definicion": [
       "Pérdidas producidas en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias o por su baja del activo, como consecuencia de pérdidas irreversibles de dichos activos."
     ],
@@ -12938,28 +12976,22 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "670",
-    "nivel": "cuenta",
-    "nombre": "Pérdidas procedentes del inmovilizado intangible",
-    "padre": "67",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "671",
     "nivel": "cuenta",
     "nombre": "Pérdidas procedentes del inmovilizado material",
     "padre": "67",
-    "definicion": [],
+    "definicion": [
+      "Pérdidas producidas en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias o por su baja del activo, como consecuencia de pérdidas irreversibles de dichos activos."
+    ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por la pérdida producida en la enajenación o baja, con abono a las cuentas del grupo 2 que correspondan o a la cuenta 580."
+    ],
     "abonos": [],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "2",
+      "580"
+    ],
     "contrapartidas_abonos": []
   },
   {
@@ -12968,11 +13000,18 @@
     "nivel": "cuenta",
     "nombre": "Pérdidas procedentes de las inversiones inmobiliarias",
     "padre": "67",
-    "definicion": [],
+    "definicion": [
+      "Pérdidas producidas en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias o por su baja del activo, como consecuencia de pérdidas irreversibles de dichos activos."
+    ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por la pérdida producida en la enajenación o baja, con abono a las cuentas del grupo 2 que correspondan o a la cuenta 580."
+    ],
     "abonos": [],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "2",
+      "580"
+    ],
     "contrapartidas_abonos": []
   },
   {
@@ -13076,6 +13115,19 @@
     "nivel": "subgrupo",
     "nombre": "DOTACIONES PARA AMORTIZACIONES",
     "padre": "6",
+    "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "680",
+    "nivel": "cuenta",
+    "nombre": "Amortización del inmovilizado intangible",
+    "padre": "68",
     "definicion": [
       "Expresión de la depreciación sistemática anual efectiva sufrida por el inmovilizado intangible y material, por su aplicación al proceso productivo, y por las inversiones inmobiliarias."
     ],
@@ -13093,28 +13145,23 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "680",
-    "nivel": "cuenta",
-    "nombre": "Amortización del inmovilizado intangible",
-    "padre": "68",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "681",
     "nivel": "cuenta",
     "nombre": "Amortización del inmovilizado material",
     "padre": "68",
-    "definicion": [],
+    "definicion": [
+      "Expresión de la depreciación sistemática anual efectiva sufrida por el inmovilizado intangible y material, por su aplicación al proceso productivo, y por las inversiones inmobiliarias."
+    ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por la dotación del ejercicio, con abono a las cuentas 280, 281 y 282."
+    ],
     "abonos": [],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "280",
+      "281",
+      "282"
+    ],
     "contrapartidas_abonos": []
   },
   {
@@ -13123,6 +13170,27 @@
     "nivel": "cuenta",
     "nombre": "Amortización de las inversiones inmobiliarias",
     "padre": "68",
+    "definicion": [
+      "Expresión de la depreciación sistemática anual efectiva sufrida por el inmovilizado intangible y material, por su aplicación al proceso productivo, y por las inversiones inmobiliarias."
+    ],
+    "presentacion": [],
+    "cargos": [
+      "por la dotación del ejercicio, con abono a las cuentas 280, 281 y 282."
+    ],
+    "abonos": [],
+    "contrapartidas_cargos": [
+      "280",
+      "281",
+      "282"
+    ],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "69",
+    "nivel": "subgrupo",
+    "nombre": "PÉRDIDAS POR DETERIORO Y OTRAS DOTACIONES",
+    "padre": "6",
     "definicion": [],
     "presentacion": [],
     "cargos": [],
@@ -13132,10 +13200,10 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "69",
-    "nivel": "subgrupo",
-    "nombre": "PÉRDIDAS POR DETERIORO Y OTRAS DOTACIONES",
-    "padre": "6",
+    "codigo": "690",
+    "nivel": "cuenta",
+    "nombre": "Pérdidas por deterioro del inmovilizado intangible",
+    "padre": "69",
     "definicion": [
       "Corrección valorativa por deterioro de carácter reversible en el inmovilizado intangible y material y las inversiones inmobiliarias. Las correcciones valorativas por deterioro reconocidas en el fondo de comercio no serán objeto de reversión."
     ],
@@ -13155,28 +13223,25 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "690",
-    "nivel": "cuenta",
-    "nombre": "Pérdidas por deterioro del inmovilizado intangible",
-    "padre": "69",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "691",
     "nivel": "cuenta",
     "nombre": "Pérdidas por deterioro del inmovilizado material",
     "padre": "69",
-    "definicion": [],
+    "definicion": [
+      "Corrección valorativa por deterioro de carácter reversible en el inmovilizado intangible y material y las inversiones inmobiliarias. Las correcciones valorativas por deterioro reconocidas en el fondo de comercio no serán objeto de reversión."
+    ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por el importe del deterioro estimado, con abono a la cuenta 204 o a las cuentas 290, 291 y 292, respectivamente o a la cuenta 599."
+    ],
     "abonos": [],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "204",
+      "290",
+      "291",
+      "292",
+      "599"
+    ],
     "contrapartidas_abonos": []
   },
   {
@@ -13185,11 +13250,21 @@
     "nivel": "cuenta",
     "nombre": "Pérdidas por deterioro de las inversiones inmobiliarias",
     "padre": "69",
-    "definicion": [],
+    "definicion": [
+      "Corrección valorativa por deterioro de carácter reversible en el inmovilizado intangible y material y las inversiones inmobiliarias. Las correcciones valorativas por deterioro reconocidas en el fondo de comercio no serán objeto de reversión."
+    ],
     "presentacion": [],
-    "cargos": [],
+    "cargos": [
+      "por el importe del deterioro estimado, con abono a la cuenta 204 o a las cuentas 290, 291 y 292, respectivamente o a la cuenta 599."
+    ],
     "abonos": [],
-    "contrapartidas_cargos": [],
+    "contrapartidas_cargos": [
+      "204",
+      "290",
+      "291",
+      "292",
+      "599"
+    ],
     "contrapartidas_abonos": []
   },
   {
@@ -13646,31 +13721,18 @@
     "nombre": "Pérdidas por deterioro de créditos a corto plazo",
     "padre": "69",
     "definicion": [
-      "Corrección valorativa por deterioro del valor en créditos de los subgrupos 53 y 54 o, en su caso, del subgrupo 58."
+      "Corrección valorativa por deterioro del valor en créditos de los subgrupos 53 y 54 o, en su caso, del subgrupo 58.",
+      "En general, todas las cuentas del grupo 7 se cargan al cierre del ejercicio, con abono a la cuenta 129; por ello, al exponer el juego de las sucesivas del grupo, sólo se hará referencia al abono. En las excepciones se citarán los motivos de cargo y cuentas de contrapartida. 70. VENTAS DE MERCADERÍAS, DE PRODUCCIÓN PROPIA, DE SERVICIOS, ETC 700. Ventas de mercaderías 701. Ventas de productos terminados 702. Ventas de productos semiterminados 703. Ventas de subproductos y residuos 704. Ventas de envases y embalajes 705. Prestaciones de servicios 706. Descuentos sobre ventas por pronto pago 708. Devoluciones de ventas y operaciones similares 709. \"Rappels\" sobre ventas Las cuentas del subgrupo 70 se adaptarán por las empresas a las características de las operaciones que realizan, con la denominación específica que a éstas corresponda. 700/705. Ventas de . . . . . . . . Transacciones, con salida o entrega de los bienes o servicios objeto de tráfico de la empresa, mediante precio. Estas cuentas se abonarán por el importe de las ventas con cargo a las cuentas del subgrupo 43 ó 57. 706. Descuentos sobre ventas por pronto pago Descuentos y asimilados que conceda la empresa a sus clientes, por pronto pago, no incluidos en factura. Su movimiento es el siguiente: a) Se cargará por los descuentos y asimilados concedidos, con abono, generalmente, a cuentas del subgrupo 43. b) Se abonará por el saldo al cierre de ejercicio, con cargo a la cuenta 129."
     ],
     "presentacion": [],
     "cargos": [
-      "por el importe del deterioro estimado, con abono a las cuentas 595, 598 ó 599. 379 En general, todas las cuentas del grupo 7 se cargan al cierre del ejercicio, con abono a la cuenta 129; por ello, al exponer el juego de las sucesivas del grupo, sólo se hará referencia al abono. En las excepciones se citarán los motivos de cargo y cuentas de contrapartida. 70. VENTAS DE MERCADERÍAS, DE PRODUCCIÓN PROPIA, DE SERVICIOS, ETC 700. Ventas de mercaderías 701. Ventas de productos terminados 702. Ventas de productos semiterminados 703. Ventas de subproductos y residuos 704. Ventas de envases y embalajes 705. Prestaciones de servicios 706. Descuentos sobre ventas por pronto pago 708. Devoluciones de ventas y operaciones similares 709. \"Rappels\" sobre ventas Las cuentas del subgrupo 70 se adaptarán por las empresas a las características de las operaciones que realizan, con la denominación específica que a éstas corresponda. 700/705. Ventas de . . . . . . . . Transacciones, con salida o entrega de los bienes o servicios objeto de tráfico de la empresa, mediante precio. Estas cuentas se abonarán por el importe de las ventas con cargo a las cuentas del subgrupo 43 ó 57. 706. Descuentos sobre ventas por pronto pago Descuentos y asimilados que conceda la empresa a sus clientes, por pronto pago, no incluidos en factura. Su movimiento es el siguiente: a) Se cargará por los descuentos y asimilados concedidos, con abono, generalmente, a cuentas del subgrupo 43. b) Se abonará por el saldo al cierre de ejercicio, con cargo a la cuenta 129."
+      "por el importe del deterioro estimado, con abono a las cuentas 595, 598 ó 599."
     ],
     "abonos": [],
     "contrapartidas_cargos": [
-      "129",
-      "43",
-      "57",
       "595",
       "598",
-      "599",
-      "7",
-      "70",
-      "700",
-      "701",
-      "702",
-      "703",
-      "704",
-      "705",
-      "706",
-      "708",
-      "709"
+      "599"
     ],
     "contrapartidas_abonos": []
   },
@@ -14081,10 +14143,7 @@
     "nivel": "subgrupo",
     "nombre": "VARIACIÓN DE EXISTENCIAS",
     "padre": "7",
-    "definicion": [
-      "Cuentas destinadas a registrar, al cierre del ejercicio, las variaciones entre las existencias finales y las iniciales correspondientes a los subgrupos 33, 34, 35 y 36 (productos en curso, productos semiterminados, productos terminados y subproductos, residuos y materiales recuperados).",
-      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 33, 34, 35 y 36. El saldo que resulte de estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
-    ],
+    "definicion": [],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -14097,7 +14156,10 @@
     "nivel": "cuenta",
     "nombre": "Variación de existencias de productos en curso",
     "padre": "71",
-    "definicion": [],
+    "definicion": [
+      "Cuentas destinadas a registrar, al cierre del ejercicio, las variaciones entre las existencias finales y las iniciales correspondientes a los subgrupos 33, 34, 35 y 36 (productos en curso, productos semiterminados, productos terminados y subproductos, residuos y materiales recuperados).",
+      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 33, 34, 35 y 36. El saldo que resulte de estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -14136,7 +14198,10 @@
     "nivel": "cuenta",
     "nombre": "Variación de existencias de subproductos, residuos y materiales recuperados",
     "padre": "71",
-    "definicion": [],
+    "definicion": [
+      "Cuentas destinadas a registrar, al cierre del ejercicio, las variaciones entre las existencias finales y las iniciales correspondientes a los subgrupos 33, 34, 35 y 36 (productos en curso, productos semiterminados, productos terminados y subproductos, residuos y materiales recuperados).",
+      "Se cargarán por el importe de las existencias iniciales y se abonarán por el de las existencias finales, con abono y cargo, respectivamente, a cuentas de los subgrupos 33, 34, 35 y 36. El saldo que resulte de estas cuentas se cargará o abonará, según los casos, a la cuenta 129."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -15060,6 +15125,19 @@
     "nivel": "subgrupo",
     "nombre": "BENEFICIOS PROCEDENTES DE ACTIVOS NO CORRIENTES E INGRESOS EXCEPCIONALES",
     "padre": "7",
+    "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "770",
+    "nivel": "cuenta",
+    "nombre": "Beneficios procedentes del inmovilizado intangible",
+    "padre": "77",
     "definicion": [
       "Beneficios producidos en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias."
     ],
@@ -15075,29 +15153,22 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "770",
-    "nivel": "cuenta",
-    "nombre": "Beneficios procedentes del inmovilizado intangible",
-    "padre": "77",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "771",
     "nivel": "cuenta",
     "nombre": "Beneficios procedentes del inmovilizado material",
     "padre": "77",
-    "definicion": [],
+    "definicion": [
+      "Beneficios producidos en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias."
+    ],
     "presentacion": [],
     "cargos": [],
-    "abonos": [],
+    "abonos": [
+      "por el beneficio obtenido en la enajenación con cargo, generalmente, a las cuentas del grupo 5 que correspondan."
+    ],
     "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "5"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -15105,12 +15176,18 @@
     "nivel": "cuenta",
     "nombre": "Beneficios procedentes de las inversiones inmobiliarias",
     "padre": "77",
-    "definicion": [],
+    "definicion": [
+      "Beneficios producidos en la enajenación de inmovilizado intangible, material o las inversiones inmobiliarias."
+    ],
     "presentacion": [],
     "cargos": [],
-    "abonos": [],
+    "abonos": [
+      "por el beneficio obtenido en la enajenación con cargo, generalmente, a las cuentas del grupo 5 que correspondan."
+    ],
     "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "5"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -15228,6 +15305,19 @@
     "nivel": "subgrupo",
     "nombre": "EXCESOS Y APLICACIONES DE PROVISIONES Y DE PÉRDIDAS POR DETERIORO",
     "padre": "7",
+    "definicion": [],
+    "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "790",
+    "nivel": "cuenta",
+    "nombre": "Reversión del deterioro del inmovilizado intangible",
+    "padre": "79",
     "definicion": [
       "Corrección valorativa, por la recuperación de valor, del inmovilizado intangible y material y de las inversiones inmobiliarias, hasta el límite de las pérdidas contabilizadas con anterioridad."
     ],
@@ -15246,29 +15336,25 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "790",
-    "nivel": "cuenta",
-    "nombre": "Reversión del deterioro del inmovilizado intangible",
-    "padre": "79",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "791",
     "nivel": "cuenta",
     "nombre": "Reversión del deterioro del inmovilizado material",
     "padre": "79",
-    "definicion": [],
+    "definicion": [
+      "Corrección valorativa, por la recuperación de valor, del inmovilizado intangible y material y de las inversiones inmobiliarias, hasta el límite de las pérdidas contabilizadas con anterioridad."
+    ],
     "presentacion": [],
     "cargos": [],
-    "abonos": [],
+    "abonos": [
+      "por el importe de la corrección de valor, con cargo a las cuentas 290, 291, 292 o a la cuenta 599."
+    ],
     "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "290",
+      "291",
+      "292",
+      "599"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -15276,12 +15362,21 @@
     "nivel": "cuenta",
     "nombre": "Reversión del deterioro de las inversiones inmobiliarias",
     "padre": "79",
-    "definicion": [],
+    "definicion": [
+      "Corrección valorativa, por la recuperación de valor, del inmovilizado intangible y material y de las inversiones inmobiliarias, hasta el límite de las pérdidas contabilizadas con anterioridad."
+    ],
     "presentacion": [],
     "cargos": [],
-    "abonos": [],
+    "abonos": [
+      "por el importe de la corrección de valor, con cargo a las cuentas 290, 291, 292 o a la cuenta 599."
+    ],
     "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "contrapartidas_abonos": [
+      "290",
+      "291",
+      "292",
+      "599"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -16270,6 +16365,19 @@
     "padre": "8",
     "definicion": [],
     "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "840",
+    "nivel": "cuenta",
+    "nombre": "Transferencia de subvenciones oficiales de capital",
+    "padre": "84",
+    "definicion": [],
+    "presentacion": [],
     "cargos": [
       "en el momento de la imputación a la cuenta de pérdidas y ganancias de la subvención recibida, con abono a la cuenta 746."
     ],
@@ -16286,29 +16394,25 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "840",
-    "nivel": "cuenta",
-    "nombre": "Transferencia de subvenciones oficiales de capital",
-    "padre": "84",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "841",
     "nivel": "cuenta",
     "nombre": "Transferencia de donaciones y legados de capital",
     "padre": "84",
     "definicion": [],
     "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "cargos": [
+      "en el momento de la imputación a la cuenta de pérdidas y ganancias de la subvención recibida, con abono a la cuenta 746."
+    ],
+    "abonos": [
+      "al cierre del ejercicio, con cargo a la cuenta 130 ó 131, según corresponda."
+    ],
+    "contrapartidas_cargos": [
+      "746"
+    ],
+    "contrapartidas_abonos": [
+      "130",
+      "131"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -16737,6 +16841,19 @@
     "padre": "9",
     "definicion": [],
     "presentacion": [],
+    "cargos": [],
+    "abonos": [],
+    "contrapartidas_cargos": [],
+    "contrapartidas_abonos": []
+  },
+  {
+    "plan": "pgc-general",
+    "codigo": "940",
+    "nivel": "cuenta",
+    "nombre": "Ingresos de subvenciones oficiales de capital",
+    "padre": "94",
+    "definicion": [],
+    "presentacion": [],
     "cargos": [
       "al cierre del ejercicio, con abono a las cuentas 130, 131 ó 132, según corresponda."
     ],
@@ -16758,29 +16875,30 @@
   },
   {
     "plan": "pgc-general",
-    "codigo": "940",
-    "nivel": "cuenta",
-    "nombre": "Ingresos de subvenciones oficiales de capital",
-    "padre": "94",
-    "definicion": [],
-    "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
-  },
-  {
-    "plan": "pgc-general",
     "codigo": "941",
     "nivel": "cuenta",
     "nombre": "Ingresos de donaciones y legados de capital",
     "padre": "94",
     "definicion": [],
     "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "cargos": [
+      "al cierre del ejercicio, con abono a las cuentas 130, 131 ó 132, según corresponda."
+    ],
+    "abonos": [
+      "Por la subvención, donación o legado concedidos a la empresa con cargo, generalmente, a cuentas del subgrupo 47 ó 57.",
+      "Por las deudas que se transforman en subvenciones donaciones o legados, con cargo a las cuentas 172 ó 522."
+    ],
+    "contrapartidas_cargos": [
+      "130",
+      "131",
+      "132"
+    ],
+    "contrapartidas_abonos": [
+      "172",
+      "47",
+      "522",
+      "57"
+    ]
   },
   {
     "plan": "pgc-general",
@@ -16790,10 +16908,24 @@
     "padre": "94",
     "definicion": [],
     "presentacion": [],
-    "cargos": [],
-    "abonos": [],
-    "contrapartidas_cargos": [],
-    "contrapartidas_abonos": []
+    "cargos": [
+      "al cierre del ejercicio, con abono a las cuentas 130, 131 ó 132, según corresponda."
+    ],
+    "abonos": [
+      "Por la subvención, donación o legado concedidos a la empresa con cargo, generalmente, a cuentas del subgrupo 47 ó 57.",
+      "Por las deudas que se transforman en subvenciones donaciones o legados, con cargo a las cuentas 172 ó 522."
+    ],
+    "contrapartidas_cargos": [
+      "130",
+      "131",
+      "132"
+    ],
+    "contrapartidas_abonos": [
+      "172",
+      "47",
+      "522",
+      "57"
+    ]
   },
   {
     "plan": "pgc-general",
