@@ -12,6 +12,48 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Cambio · Paso 14: añadir el árbol del cuadro de cuentas
+**Qué:** un `<nav>` con el cuadro de cuentas plegable: grupos → subgrupos →
+cuentas. `agruparPorPadre` recorre las cuentas una vez y construye un índice
+`{ código del padre: [hijos] }`. `pintarArbol` lo recorre con tres bucles
+anidados y cuelga cada pieza de la caja que le toca. Una regla de CSS
+(`details details`) aplica sangría a cada nivel. Escrito por Albert, trozo a
+trozo.
+**Por qué:** una segunda forma de llegar a las cuentas, además del buscador,
+que enseña la estructura del PGC de un vistazo. De momento va encima de la
+lista: colocarlo como barra lateral es trabajo de maquetación (pasos 16 y 18).
+
+### Decisión · Plegar con `<details>` y `<summary>`, sin JavaScript
+**Qué:** cada grupo y cada subgrupo es un `<details>`, con su título en un
+`<summary>`.
+**Por qué:** HTML ya trae el plegado de serie, y funciona con teclado y con
+lectores de pantalla. Escribirlo a mano con eventos habría sido más código para
+hacer lo mismo, y peor.
+
+### Decisión · Tres niveles en el árbol, sin subcuentas
+**Qué:** el árbol baja hasta las cuentas (430) y no muestra las subcuentas
+(4300).
+**Por qué:** es lo que pide la hoja de ruta, y con tres bucles anidados el
+código todavía se lee bien. Un cuarto nivel pediría recursión, que aún no toca.
+Las subcuentas siguen siendo accesibles desde el buscador, y el índice
+`hijosPorPadre` ya las contiene por si se añaden más adelante.
+
+### Decisión · Un índice de hijos en vez de filtrar en cada nivel
+**Qué:** los hijos de cada código se buscan en `hijosPorPadre`, que se
+construye una sola vez, en lugar de hacer un `filter` sobre las 915 cuentas
+para cada grupo y subgrupo.
+**Por qué:** no es por velocidad, porque con 915 cuentas daría igual. Es el
+patrón de "agrupar una vez y consultar muchas", y se volverá a usar en el
+simulador (el libro mayor agrupa los asientos por cuenta).
+
+### Pendiente · El subgrupo 53 sale antes que el 52
+**Qué:** el árbol ha descubierto que, en `data/accounts.json`, el 53 va antes
+que el 52. Es el único par desordenado de todo el fichero.
+**Por qué pasa:** en el texto fuente, el OCR dejó la línea del 53 rota
+(`# 212 53. INVERSIONES FINANCIERAS...`, línea 4408) y colocada antes que la del
+52. El parser respeta el orden del texto. Se arreglará en un commit `fix:`
+aparte, no dentro de este paso.
+
 ### Cambio · Paso 13: añadir el buscador de cuentas
 **Qué:** una caja de búsqueda encima de la lista. Cada vez que cambia su texto
 (evento `input`), `filtrarCuentas` se queda con las cuentas que encajan y

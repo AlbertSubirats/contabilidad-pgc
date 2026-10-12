@@ -1,4 +1,4 @@
-// Lee el cuadro de cuentas, lo escribe en la página como una lista y lo filtra con el buscador.
+// Lee el cuadro de cuentas, lo muestra como árbol y como lista, y filtra la lista con el buscador.
 
 // Todas las cuentas del JSON. Está fuera de las funciones para que todas puedan
 // usarla. Empieza vacía y la rellena cargarCuentas cuando llega el fichero.
@@ -47,10 +47,80 @@ function filtrarCuentas() {
     pintarLista(encontradas);
 }
 
+// Construye un índice para encontrar rápido los hijos de cualquier código:
+// { "4": [subgrupos del 4], "43": [cuentas del 43], ...}
+function agruparPorPadre(cuentas) {
+    const hijosPorPadre = {};
+
+    for (const cuenta of cuentas) {
+        const padre = cuenta.padre;
+
+        // Los grupos no tienen padre: no son hijos de nadie, así que se saltan.
+        if (padre === null) {
+            continue;
+        }
+
+        // La primera vez que aparece un padre, todavía no tiene lista: se la creamos vacía.
+        if (hijosPorPadre[padre] === undefined) {
+            hijosPorPadre[padre] = [];
+        }
+
+        hijosPorPadre[padre].push(cuenta);
+    }
+    return hijosPorPadre;
+}
+
+// Construye el árbol del cuadro de cuentas dentro del <nav>: grupos y
+// subgrupos como cajas plegables (<details>), y las cuentas como lista.
+function pintarArbol() {
+    const arbol = document.getElementById("arbol-cuentas");
+    arbol.replaceChildren();
+
+    const grupos = todasLasCuentas.filter(function (cuenta) {
+        return cuenta.nivel === "grupo";
+    });
+
+    const hijosPorPadre = agruparPorPadre(todasLasCuentas);
+
+    for (const grupo of grupos) {
+        const cajaGrupo = document.createElement("details");
+        const tituloGrupo = document.createElement("summary");
+        tituloGrupo.textContent = grupo.codigo + " · " + grupo.nombre;
+
+        cajaGrupo.appendChild(tituloGrupo);
+
+        // Los subgrupos de este grupo, cada uno en su propia caja plegable
+        // colgada dentro de la caja del grupo.
+        const subgrupos = hijosPorPadre[grupo.codigo];
+        for (const subgrupo of subgrupos) {
+            const cajaSubgrupo = document.createElement("details");
+            const tituloSubgrupo = document.createElement("summary");
+            tituloSubgrupo.textContent = subgrupo.codigo + " · " + subgrupo.nombre;
+            cajaSubgrupo.appendChild(tituloSubgrupo);
+
+            // Las cuentas de este subgrupo, como una lista normal dentro de su caja.
+            const listaCuentas = document.createElement("ul");
+            const cuentas = hijosPorPadre[subgrupo.codigo];
+
+            for (const cuenta of cuentas) {
+                const elemento = document.createElement("li");
+                elemento.textContent = cuenta.codigo + " · " + cuenta.nombre;
+                listaCuentas.appendChild(elemento);
+            }
+
+            cajaSubgrupo.appendChild(listaCuentas);
+            cajaGrupo.appendChild(cajaSubgrupo);
+        }
+
+        arbol.appendChild(cajaGrupo);
+    }
+}
+
 async function cargarCuentas() {
     const respuesta = await fetch("../data/accounts.json");
     todasLasCuentas = await respuesta.json();
     pintarLista(todasLasCuentas);
+    pintarArbol();
 }
 
 cargarCuentas();

@@ -13,3 +13,9 @@ body {
 h1 {
     font-family: Georgia, serif;
 }
+
+/* Árbol del cuadro de cuentas: cada caja plegable que está dentro de otra
+   se desplaza a la derecha, para que se vea qué cuelga de qué */
+details details {
+    padding-left: 1.5em;
+}
