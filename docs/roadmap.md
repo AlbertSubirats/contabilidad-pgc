@@ -143,7 +143,9 @@ para esto y no basta con abrir el fichero (la primera lección de seguridad web)
 
 ### Paso 15 · La ficha de cuenta
 **Qué:** al pulsar una cuenta, su ficha: título, etiquetas, definición,
-presentación en balance.
+presentación en balance. Entre las etiquetas, **el grupo al que pertenece**
+("Grupo 4 · Acreedores y deudores por operaciones comerciales"), buscado a
+partir de la primera cifra del código: no se guarda en cada cuenta del JSON.
 **Aprendes:** plantillas de HTML en JavaScript, separar "los datos" de "cómo se
 pintan".
 **Compruebas:** pulsas 430 y ves su ficha.

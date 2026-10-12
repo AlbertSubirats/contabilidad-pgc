@@ -12,6 +12,15 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Decisión · El grupo de cada cuenta se muestra en la ficha, no se guarda en el JSON
+**Qué:** al revisar el JSON, Albert vio que para estudiar es importante saber a
+qué grupo pertenece cada cuenta ("Grupo 2 · Activo no corriente"). Queda como
+requisito del paso 15 en la hoja de ruta: una etiqueta de la ficha.
+**Por qué:** el dato ya está en el JSON. La primera cifra del código es el
+grupo, y el nombre del grupo está en su propia ficha. Guardarlo en cada una de
+las 915 cuentas repetiría el mismo nombre cientos de veces, y una corrección
+podría dejar copias que se contradicen. Un dato, un sitio.
+
 ### Cambio · Paso 11: corregir los casos que el parser no cogía bien
 **Qué:** con el informe del verificador delante se revisaron los avisos contra
 el texto y el PDF original, y se corrigió:
