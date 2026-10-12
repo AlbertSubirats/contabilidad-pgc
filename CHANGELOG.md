@@ -12,6 +12,24 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-12
 
+### Cambio · Paso 12: cargar y listar las cuentas en la web
+**Qué:** `web/app.js` lee `data/accounts.json` con `fetch` y escribe cada
+elemento como `codigo · nombre` dentro de un `<ul>` vacío de `web/index.html`.
+Se listan los 915 elementos tal cual vienen: grupos, subgrupos, cuentas y
+subcuentas.
+**Por qué:** es la base de toda la fase 2. El buscador, el árbol y las fichas
+trabajan sobre esta lista ya cargada en el navegador. Separar los niveles es
+trabajo del árbol (paso 14), no de este paso.
+
+### Decisión · Probar la web con `python -m http.server` desde la raíz del proyecto
+**Qué:** para ver la web en local se arranca el servidor en la raíz y se abre
+`http://localhost:8000/web/`. Abrir `index.html` con doble clic ya no sirve.
+**Por qué:** con `file://` el navegador bloquea `fetch` por seguridad (CORS:
+una página sin origen no puede leer ficheros del disco). Se comprobó a propósito
+y el error salió en la consola. El servidor se arranca desde la raíz para que
+`web/` y `data/` sean visibles, igual que en GitHub Pages, que publica `main`
+desde `/`. Así la misma ruta `../data/accounts.json` funciona en los dos sitios.
+
 ### Decisión · El grupo de cada cuenta se muestra en la ficha, no se guarda en el JSON
 **Qué:** al revisar el JSON, Albert vio que para estudiar es importante saber a
 qué grupo pertenece cada cuenta ("Grupo 2 · Activo no corriente"). Queda como
