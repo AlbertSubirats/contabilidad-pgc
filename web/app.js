@@ -172,6 +172,74 @@ function rellenarConParrafos(contenedor, parrafos, avisoSiNoHay) {
     }
 }
 
+// Crea la frase de un movimiento con sus contrapartidas convertidas en
+// etiquetas: "...con abono a la cuenta [437]." Solo son etiqueta los números
+// que están en la lista de contrapartidas de la columna; los demás números
+// (artículos, porcentajes...) se quedan como texto.
+function crearFraseConContrapartidas(texto, contrapartidas) {
+    const frase = document.createElement("span");
+
+    // Partir por los números. El paréntesis hace que los números se queden en
+    // la lista: "...a la cuenta 437." → ["...a la cuenta ", "437", "."]
+    const trozos = texto.split(/(\d+)/);
+
+    for (const trozo of trozos) {
+        if (contrapartidas.includes(trozo)) {
+            const etiqueta = document.createElement("span");
+            etiqueta.className = "contrapartida";
+            etiqueta.textContent = trozo;
+            frase.appendChild(etiqueta);
+        } else {
+            const textoNormal = document.createTextNode(trozo);
+            frase.appendChild(textoNormal);
+        }
+    }
+
+    return frase;
+}
+
+// Llena una columna del movimiento: un <li> por movimiento, con su número
+// delante ("a1", "a2"... en los cargos y "b1", "b2"... en los abonos), como
+// los numera el PGC. Las frases de entrada van sin número. Si no hay
+// movimientos, pone el aviso.
+function pintarMovimientos(lista, movimientos, contrapartidas, letra, avisoSiNoHay) {
+    lista.replaceChildren();
+
+    if (movimientos.length === 0) {
+        const aviso = document.createElement("li");
+        aviso.className = "aviso-sin-texto";
+        aviso.textContent = avisoSiNoHay;
+        lista.appendChild(aviso);
+        return;
+    }
+
+    let numero = 1;
+
+    for (const texto of movimientos) {
+        const elemento = document.createElement("li");
+
+        // Una frase que empieza en minúscula no es un movimiento: continúa el
+        // título de la columna ("Se cargará por el importe íntegro...:"). Va
+        // sin número, ocupando todo el ancho, y no cuenta para la numeración.
+        const continuaElTitulo = /^[a-záéíóúüñ]/.test(texto);
+
+        if (continuaElTitulo) {
+            elemento.className = "entrada-movimiento";
+        } else {
+            const numeroDelMovimiento = document.createElement("span");
+            numeroDelMovimiento.className = "numero-movimiento";
+            numeroDelMovimiento.textContent = letra + numero;
+            elemento.appendChild(numeroDelMovimiento);
+            numero = numero + 1;
+        }
+
+        const frase = crearFraseConContrapartidas(texto, contrapartidas);
+        elemento.appendChild(frase);
+
+        lista.appendChild(elemento);
+    }
+}
+
 // Rellena los huecos de la ficha con los datos de una cuenta y la muestra.
 function mostrarFicha(cuenta) {
     const ficha = document.getElementById("ficha-cuenta");
@@ -204,6 +272,12 @@ function mostrarFicha(cuenta) {
 
     rellenarConParrafos(definicion, cuenta.definicion, "Sin definición en el texto del PGC.");
     rellenarConParrafos(presentacion, cuenta.presentacion, "Sin indicación de presentación en el balance en el texto del PGC.");
+
+    const cargos = document.getElementById("ficha-cargos");
+    const abonos = document.getElementById("ficha-abonos");
+
+    pintarMovimientos(cargos, cuenta.cargos, cuenta.contrapartidas_cargos, "a", "Sin cargos en el texto del PGC.");
+    pintarMovimientos(abonos, cuenta.abonos, cuenta.contrapartidas_abonos, "b", "Sin abonos en el texto del PGC.");
 
     ficha.hidden = false;
 

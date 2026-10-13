@@ -10,7 +10,58 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
-## 2026-10-13
+## 2026-10-14
+
+### Cambio · Paso 16: mostrar el movimiento en columnas enfrentadas
+**Qué:** la ficha tiene un apartado "Movimiento" con "Se cargará / Debe" y "Se
+abonará / Haber" lado a lado (CSS flex). Cada movimiento lleva su número (a1,
+b1...) y sus contrapartidas son etiquetas de color dentro de la frase. Escrito
+por Albert, trozo a trozo.
+**Por qué:** es lo que convierte la ficha en una herramienta para aprender
+asientos: se ve qué hace subir o bajar la cuenta y contra qué otra.
+
+### Decisión · Las frases en minúscula continúan el título y van sin número
+**Qué:** una frase del movimiento que empieza en minúscula ("por el importe
+íntegro de las remuneraciones devengadas:") se pinta sin número, ocupando todo
+el ancho, como continuación de "Se cargará" o "Se abonará". El contador solo
+avanza con las frases en mayúscula.
+**Por qué:** el parser guarda lo que sigue a "Se cargará" como si fuera un
+movimiento más. Al numerarlo todo, la 640 salía con la numeración desplazada
+uno respecto al PGC, y unas 220 cuentas con un solo movimiento llevaban un
+"a1" que el PGC no tiene. Es la misma regla que ya usa el parser (una línea en
+minúscula sigue a la anterior). Albert eligió que la frase ocupe todo el
+ancho, sin el hueco del número, porque se lee mejor.
+
+### Decisión · Las contrapartidas se marcan dentro de la frase
+**Qué:** cada frase se parte por los números (`split(/(\d+)/)`) y solo se
+convierten en etiqueta los números que están en la lista de contrapartidas de
+su columna (paso 9). El texto se cuelga con `createTextNode`, nunca con
+`innerHTML`.
+**Por qué:** es lo que muestran la maqueta D y la sección 6 de CLAUDE.md, y
+enseña qué cuenta va con cada frase. Reutilizar la lista del paso 9 evita
+volver a adivinar qué número es una cuenta: un "artículo 239" se queda como
+texto.
+
+### Decisión · Los colores cruzados se deciden solo en el CSS
+**Qué:** todas las contrapartidas son `<span class="contrapartida">`. Su color
+lo da la columna en la que están: `.columna-cargo .contrapartida` en ámbar
+(el haber) y `.columna-abono .contrapartida` en azul (el debe).
+**Por qué:** el JavaScript no sabe nada de colores. El contexto decide el
+aspecto, y si un día se quiere cambiar, se cambia en un solo sitio. El azul y
+el ámbar están ajustados para cumplir el contraste mínimo de 4,5 a 1.
+
+### Pendiente · Fallos de datos que ha destapado la ficha
+**Qué:** al ver las fichas completas aparecieron:
+- la 642 pegada a la 641: el OCR perdió su título en un salto de página;
+- 6 párrafos partidos en dos por saltos de página (1, 143, 24, 5, 548);
+- 40 frases de presentación ("Las cuentas de este subgrupo figurarán...") que
+  el parser guarda en la definición, porque solo reconoce las que empiezan por
+  "Figurará"; mientras tanto, la ficha dice que no hay presentación cuando sí
+  la hay;
+- la numeración a1/b1 está reconstruida y falta comprobarla contra el texto.
+**Siguiente:** antes del paso 17 se decide cómo atacarlos. Candidata: usar
+como fuente el texto consolidado del BOE, que se descarga en XML, sin OCR,
+desde su API de datos abiertos (`BOE-A-2007-19884`).
 
 ### Decisión · Las maquetas, en `docs/mockups/` y enlazadas desde CLAUDE.md
 **Qué:** las cuatro maquetas se guardan en `docs/mockups/` con nombres en

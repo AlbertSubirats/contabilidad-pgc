@@ -3,6 +3,10 @@
     --color-papel: #FBF9F4;
     --color-tinta: #2B2722;
     --color-tinta-suave: #6B6459;
+    --color-debe: #2B4C8C;
+    --color-debe-claro: #E4EAF6;
+    --color-haber: #8A5A14;
+    --color-haber-claro: #F6EBD6;
 }
 
 body {
@@ -43,4 +47,85 @@ details details {
 #lista-cuentas li,
 #arbol-cuentas li {
     cursor: pointer;
+}
+
+/* Movimiento: las dos columnas ("Se cargará" y "Se abonará") una al lado de
+   la otra, ocupando lo mismo, con aire en medio. */
+.movimiento {
+    display: flex;
+    gap: 2em;
+}
+
+.movimiento section {
+    flex: 1;
+}
+
+/* Las listas del movimiento llevan su propio número (a1, b1...), así que se
+   quita el que pone el navegador y su sangría. */
+.movimiento ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Cada movimiento: el número a la izquierda y la frase al lado. Con flex, si
+   la frase ocupa varias líneas, todas quedan alineadas a la derecha del número. */
+.movimiento li {
+    display: flex;
+    gap: 0.6em;
+    margin-bottom: 0.8em;
+}
+
+.numero-movimiento {
+    min-width: 1.6em;
+    color: var(--color-tinta-suave);
+    font-weight: bold;
+}
+
+/* La frase de entrada de una columna del movimiento ("por el importe íntegro
+   de las remuneraciones devengadas:"), que continúa el título y va sin número. */
+.entrada-movimiento {
+    margin-bottom: 1em;
+}
+
+/* Contrapartidas dentro de las frases del movimiento: el número de cuenta en
+   su cajita. El color, cruzado según la columna, va en las reglas de abajo. */
+.contrapartida {
+    padding: 0.05em 0.35em;
+    border-radius: 0.3em;
+    font-weight: bold;
+}
+
+/* Títulos de las columnas: "Se cargará" en el color del debe y "Se abonará"
+   en el del haber, cada uno con su raya debajo. */
+.columna-cargo h4 {
+    color: var(--color-debe);
+    border-bottom: 2px solid var(--color-debe);
+    padding-bottom: 0.4em;
+}
+
+.columna-abono h4 {
+    color: var(--color-haber);
+    border-bottom: 2px solid var(--color-haber);
+    padding-bottom: 0.4em;
+}
+
+/* "Debe" y "Haber" junto al título: pequeño, en mayúsculas y espaciado. */
+.lado {
+    margin-left: 0.4em;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Las contrapartidas, con el color CRUZADO: en la columna del cargo, la
+   contrapartida es una cuenta que se abona, y va en el color del haber; en la
+   del abono, al revés. Así se ve el asiento entero de un vistazo. */
+.columna-cargo .contrapartida {
+    color: var(--color-haber);
+    background-color: var(--color-haber-claro);
+}
+
+.columna-abono .contrapartida {
+    color: var(--color-debe);
+    background-color: var(--color-debe-claro);
 }
