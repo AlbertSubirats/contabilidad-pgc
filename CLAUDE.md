@@ -187,6 +187,22 @@ Detalle que importa: **en la columna del cargo, las contrapartidas van en ámbar
 (porque son cuentas que se abonan) y al revés. Eso enseña el asiento entero de un
 vistazo y es intencionado.
 
+**Las maquetas están en `docs/mockups/`.** Míralas antes de cualquier paso de
+aspecto o de maquetación:
+
+| Fichero | Qué se toma de ella |
+|---|---|
+| `a-notebook.png` (Cuaderno) | La piel: papel, tipografías, espaciados. **Ojo: sus contrapartidas tienen los colores al revés** (azul en el cargo). No copiar eso. |
+| `b-wiki.png` (Wiki) | La estructura: cabecera, índice a la izquierda, ficha rápida a la derecha. |
+| `c-tool.png` (Herramienta) | Descartada como aspecto. Sirve de idea para el simulador (asiento en curso, mayor). |
+| `d-wiki-facing-movement.png` | **La referencia del movimiento**: dos columnas enfrentadas con los colores bien cruzados. |
+
+Las maquetas muestran también cosas que **no** están en la hoja de ruta
+("Naturaleza deudora", "Esquema del cargo típico", "Usar en un asiento",
+"Vecinas"...). No se construyen por estar dibujadas: se hablan con Albert antes.
+"Naturaleza deudora", además, no está en los datos y deducirla rozaría la regla
+de no inventar contenido contable (sección 7).
+
 ---
 
 ## 7. El material fuente

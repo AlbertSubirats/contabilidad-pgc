@@ -12,6 +12,17 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-13
 
+### Decisión · Las maquetas, en `docs/mockups/` y enlazadas desde CLAUDE.md
+**Qué:** las cuatro maquetas se guardan en `docs/mockups/` con nombres en
+inglés y sin espacios (`a-notebook.png`, `b-wiki.png`, `c-tool.png`,
+`d-wiki-facing-movement.png`). La sección 6 de `CLAUDE.md` dice qué se toma de
+cada una.
+**Por qué:** cada sesión de Claude empieza sin memoria, y la maqueta solo
+existía fuera del proyecto. Si `CLAUDE.md` dice dónde está, Claude la mira sin
+que Albert tenga que acordarse. Al revisarlas apareció que la maqueta A tiene
+los colores de las contrapartidas al revés (azul en el cargo), así que la
+referencia para el movimiento es la D.
+
 ### Cambio · Paso 15: añadir la ficha de cuenta
 **Qué:** al pulsar una cuenta en la lista o en el árbol se muestra su ficha:
 título, etiquetas (nivel y grupo), definición y presentación en el balance. El
