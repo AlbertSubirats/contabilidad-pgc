@@ -4,8 +4,35 @@
 // usarla. Empieza vacía y la rellena cargarCuentas cuando llega el fichero.
 let todasLasCuentas = [];
 
+// Las mismas cuentas, pero indexadas por su código para encontrarlas al momento:
+// { "430": cuenta 430, "4": grupo 4, ...}. La rellena cargarCuentas.
+let cuentasPorCodigo = {};
+
+// Cómo se escribe cada nivel en las etiquetas de la ficha.
+const nombreDelNivel = {
+    grupo:     "Grupo",
+    subgrupo:  "Subgrupo",
+    cuenta:    "Cuenta",
+    subcuenta: "Subcuenta",
+};
+
 // La caja de texto del buscador. Se busca una sola vez y se guarda aquí.
 const cajaBuscador = document.getElementById("buscador");
+
+// Fabrica el <li> de una cuenta: con su texto y con el click que abre su ficha.
+// La usan la lista y el árbol, así que cómo se pinta una cuenta se decide aquí.
+function crearElementoDeCuenta(cuenta) {
+    const elemento = document.createElement("li");
+    elemento.textContent = cuenta.codigo + " · " + cuenta.nombre;
+
+    // La función anónima hace falta para poder decirle a mostrarFicha QUÉ
+    // cuenta tiene que mostrar.
+    elemento.addEventListener("click", function () {
+        mostrarFicha(cuenta);
+    });
+
+    return elemento;
+}
 
 // Vacía la lista de la página y la vuelve a llenar con las cuentas que reciba.
 function pintarLista(cuentasAMostrar) {
@@ -13,8 +40,7 @@ function pintarLista(cuentasAMostrar) {
     lista.replaceChildren();
 
     for (const cuenta of cuentasAMostrar) {
-        const elemento = document.createElement("li");
-        elemento.textContent = cuenta.codigo + " · " + cuenta.nombre;
+        const elemento = crearElementoDeCuenta(cuenta);
         lista.appendChild(elemento);
     }
 }
@@ -70,6 +96,17 @@ function agruparPorPadre(cuentas) {
     return hijosPorPadre;
 }
 
+// Construye un índice para encontrar cualquier cuenta por su código.
+function indexarPorCodigo(cuentas) {
+    const indice = {};
+
+    for (const cuenta of cuentas) {
+        indice[cuenta.codigo] = cuenta;
+    }
+
+    return indice;
+}
+
 // Construye el árbol del cuadro de cuentas dentro del <nav>: grupos y
 // subgrupos como cajas plegables (<details>), y las cuentas como lista.
 function pintarArbol() {
@@ -103,8 +140,7 @@ function pintarArbol() {
             const cuentas = hijosPorPadre[subgrupo.codigo];
 
             for (const cuenta of cuentas) {
-                const elemento = document.createElement("li");
-                elemento.textContent = cuenta.codigo + " · " + cuenta.nombre;
+                const elemento = crearElementoDeCuenta(cuenta);
                 listaCuentas.appendChild(elemento);
             }
 
@@ -116,9 +152,70 @@ function pintarArbol() {
     }
 }
 
+// Llena un hueco de la ficha con un <p> por cada párrafo de la lista.
+// Si la lista está vacía, pone el aviso: si algo no está en el PGC, se dice.
+function rellenarConParrafos(contenedor, parrafos, avisoSiNoHay) {
+    contenedor.replaceChildren();
+
+    if (parrafos.length === 0) {
+        const aviso = document.createElement("p");
+        aviso.className = "aviso-sin-texto";
+        aviso.textContent = avisoSiNoHay;
+        contenedor.appendChild(aviso);
+        return;
+    }
+
+    for (const texto of parrafos) {
+        const parrafo = document.createElement("p");
+        parrafo.textContent = texto;
+        contenedor.appendChild(parrafo);
+    }
+}
+
+// Rellena los huecos de la ficha con los datos de una cuenta y la muestra.
+function mostrarFicha(cuenta) {
+    const ficha = document.getElementById("ficha-cuenta");
+    const titulo = document.getElementById("ficha-titulo");
+    const etiquetas = document.getElementById("ficha-etiquetas");
+
+    titulo.textContent = cuenta.codigo + " · " + cuenta.nombre;
+
+    // Las etiquetas se vacían primero: si antes se mostró otra cuenta,
+    // sus etiquetas no deben quedarse.
+    etiquetas.replaceChildren();
+
+    const etiquetaNivel = document.createElement("span");
+    etiquetaNivel.className = "etiqueta";
+    etiquetaNivel.textContent = nombreDelNivel[cuenta.nivel];
+    etiquetas.appendChild(etiquetaNivel);
+
+    // El grupo es la primera cifra del código. Un grupo no lleva esta
+    // etiqueta, porque sería él mismo.
+    if (cuenta.nivel !== "grupo") {
+        const grupo = cuentasPorCodigo[cuenta.codigo[0]];
+        const etiquetaGrupo = document.createElement("span");
+        etiquetaGrupo.className = "etiqueta";
+        etiquetaGrupo.textContent = "Grupo " + grupo.codigo + " · " + grupo.nombre;
+        etiquetas.appendChild(etiquetaGrupo);
+    }
+    
+    const definicion = document.getElementById("ficha-definicion");
+    const presentacion = document.getElementById("ficha-presentacion");
+
+    rellenarConParrafos(definicion, cuenta.definicion, "Sin definición en el texto del PGC.");
+    rellenarConParrafos(presentacion, cuenta.presentacion, "Sin indicación de presentación en el balance en el texto del PGC.");
+
+    ficha.hidden = false;
+
+    // La ficha está arriba del todo: si se pulsa una cuenta de más abajo,
+    // la página sube para que se vea. Cuando la ficha vaya al lado (paso 18), sobrará.
+    ficha.scrollIntoView();
+}
+
 async function cargarCuentas() {
     const respuesta = await fetch("../data/accounts.json");
     todasLasCuentas = await respuesta.json();
+    cuentasPorCodigo = indexarPorCodigo(todasLasCuentas);
     pintarLista(todasLasCuentas);
     pintarArbol();
 }

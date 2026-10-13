@@ -10,6 +10,51 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-13
+
+### Cambio · Paso 15: añadir la ficha de cuenta
+**Qué:** al pulsar una cuenta en la lista o en el árbol se muestra su ficha:
+título, etiquetas (nivel y grupo), definición y presentación en el balance. El
+esqueleto de la ficha está en `index.html` y `mostrarFicha` solo rellena sus
+huecos. `crearElementoDeCuenta` fabrica el `<li>` de una cuenta, con su texto y
+su clic, y lo usan la lista y el árbol. Escrito por Albert, trozo a trozo.
+**Por qué:** la ficha es el corazón del módulo 1. El buscador y el árbol
+existen para llegar a ella. Los movimientos quedan para el paso 16.
+
+### Decisión · El esqueleto de la ficha en el HTML y los datos con `textContent`
+**Qué:** la estructura de la ficha (encabezados y huecos) se escribe en
+`index.html`. JavaScript solo pone texto en los huecos, siempre con
+`textContent` y nunca con `innerHTML`.
+**Por qué:** cada fichero hace un trabajo: el HTML decide la forma y el
+JavaScript, los datos. Además, `innerHTML` interpreta como HTML lo que recibe,
+y con datos que vengan de fuera (los ejercicios importados del simulador) es la
+puerta de entrada de los ataques de inyección. `textContent` escribe el texto
+tal cual.
+
+### Decisión · El grupo de la etiqueta se calcula con un índice por código
+**Qué:** `cuentasPorCodigo` (`{ "430": cuenta, "4": grupo, ... }`) se construye
+una vez al cargar. El grupo de una cuenta es `cuentasPorCodigo[codigo[0]]`.
+**Por qué:** es lo que se decidió al revisar el JSON: el grupo no se guarda en
+cada cuenta, se deduce de la primera cifra del código.
+
+### Decisión · Los huecos se dicen, no se esconden
+**Qué:** si una cuenta no tiene definición o presentación, su apartado se
+muestra igualmente con un aviso en cursiva y gris: "Sin definición en el texto
+del PGC."
+**Por qué:** si algo no está, se dice que no está (CLAUDE.md, sección 7).
+Esconder el apartado no permitiría distinguir "el PGC no lo trae" de "la web ha
+fallado". El aviso se distingue a la vista para no confundirlo con el texto de
+la norma. 91 cuentas y la mayoría de subcuentas no tienen definición propia.
+
+### Decisión · Provisional: clic en el `<li>` y la página sube hasta la ficha
+**Qué:** las cuentas se abren con un escuchador de `click` en su `<li>`, y
+`mostrarFicha` hace `scrollIntoView()`.
+**Por qué:** la ficha está arriba y las cuentas, muy abajo. Sin el desplazamiento,
+el clic parecería no hacer nada. Las dos cosas son provisionales. En el paso 17
+las cuentas pasarán a ser enlaces (`#430`), que además se podrán usar con el
+teclado, y en el paso 18 la ficha irá al lado del árbol y el desplazamiento
+sobrará.
+
 ## 2026-10-12
 
 ### Decisión · Respetar la errata "CARÁCTERÍSTICAS" del subgrupo 50

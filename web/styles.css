@@ -2,6 +2,7 @@
 :root {
     --color-papel: #FBF9F4;
     --color-tinta: #2B2722;
+    --color-tinta-suave: #6B6459;
 }
 
 body {
@@ -18,4 +19,28 @@ h1 {
    se desplaza a la derecha, para que se vea qué cuelga de qué */
 details details {
     padding-left: 1.5em;
+}
+
+/* Etiquetas de la ficha ("Cuenta", "Grupo 4 · ..."): cada una en su cajita,
+   con algo de aire alrededor para que no se peguen entre sí. */
+.etiqueta {
+    display: inline-block;
+    padding: 0.15em 0.6em;
+    margin-right: 0.5em;
+    border: 1px solid var(--color-tinta-suave);
+    border-radius: 1em;
+    font-size: 0.85em;
+}
+
+/* Aviso de que el PGC no trae un texto. En cursiva y más claro, para que
+   no se confunda con el texto de la norma. */
+.aviso-sin-texto {
+    font-style: italic;
+    color: var(--color-tinta-suave);
+}
+
+/* Las cuentas de la lista y del árbol se pueden pulsar: la manita lo indica. */
+#lista-cuentas li,
+#arbol-cuentas li {
+    cursor: pointer;
 }
