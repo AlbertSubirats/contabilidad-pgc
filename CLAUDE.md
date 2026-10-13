@@ -141,6 +141,7 @@ Albert cambie de opinión.
 | Ejercicios | Práctica libre y enunciados del máster comparten el mismo formato: un ejercicio con enunciado opcional. |
 | Persistencia | `localStorage` + exportar/importar el ejercicio como fichero. |
 | Aspecto | Papel cálido y tipografía con serifa, sobre la estructura de wiki. Ver sección 6. |
+| Fuente del PGC | El XML del BOE, descargado y guardado en `sources/boe/`. Sustituye al texto del OCR (decidido el 14/10/2026). Ver sección 7. |
 
 ---
 
@@ -149,7 +150,8 @@ Albert cambie de opinión.
 **Lo que se usa:**
 
 - **Python 3, biblioteca estándar y nada más** para el parser (`pathlib`, `re`,
-  `json`, `unicodedata`). Sin `pip install` de nada mientras se pueda evitar.
+  `json`, `unicodedata`, y para el BOE `urllib` y `xml.etree`). Sin
+  `pip install` de nada mientras se pueda evitar.
 - **HTML, CSS y JavaScript a pelo** para la web. Sin framework.
 - **`python -m http.server`** para ver la web en local.
 - **git** y **GitHub Pages** para publicar.
@@ -207,18 +209,38 @@ de no inventar contenido contable (sección 7).
 
 ## 7. El material fuente
 
-`sources/Texto refundido PGC 2021.md` — el texto refundido del PGC.
+**La fuente es el texto consolidado del BOE**, guardado en `sources/boe/`:
 
-**Dos avisos importantes:**
+- `sources/boe/indice.xml` — el índice: los bloques del texto, cada uno con su
+  `id`, su título y su fecha de actualización.
+- `sources/boe/texto.xml` — el PGC completo (las cinco partes), tal como lo
+  devuelve la API de datos abiertos del BOE para `BOE-A-2007-19884`.
 
-1. **Viene de un OCR.** Tiene marcas de página incrustadas con la forma
-   `{300}------------------------------------------------` en medio del texto, y
-   los movimientos `a1) a2) a3)` vienen aplastados en una sola línea en vez de
-   como lista. El parser tiene que limpiarlo.
-2. **Es la única fuente de verdad del contenido contable.** Nunca inventes ni
+Los descarga `tools/download_boe.py`. **No se editan a mano nunca.**
+
+**Cuatro avisos importantes:**
+
+1. **Es la única fuente de verdad del contenido contable.** Nunca inventes ni
    completes de memoria la definición de una cuenta, su movimiento, ni el texto
-   de una norma. Si algo no está en el fichero, se dice que no está. Un dato
+   de una norma. Si algo no está en la fuente, se dice que no está. Un dato
    contable inventado en una herramienta de estudio es peor que un hueco.
+2. **Cada bloque trae varias versiones de la ley** (la de 2007, la de 2021...).
+   El parser se queda con la última. Las notas del BOE (clases `nota_pie`,
+   `refPost`: "Se modifica por el art. ...") no son texto del PGC y se saltan.
+3. **Se trabaja sobre la copia, nunca sobre internet.** El parser lee
+   `sources/boe/`, no la API. Actualizar es una decisión deliberada:
+   1. `python tools/download_boe.py` descarga la versión nueva;
+   2. `git diff sources/` enseña qué ha cambiado en la ley;
+   3. se ejecutan el parser y el verificador;
+   4. commit `chore: actualizar el PGC a la versión del BOE de <fecha>`.
+4. **Las erratas del texto oficial se respetan** (por ejemplo, "CARÁCTERÍSTICAS"
+   en el subgrupo 50). La herramienta reproduce la norma tal como se publicó.
+
+**Fuente anterior, temporal:** `sources/Texto refundido PGC 2021.md`, que viene
+de un OCR (marcas `{300}-----`, títulos perdidos, párrafos partidos). Se
+mantiene solo hasta el paso 1b·5, para comparar el JSON que sale del BOE con el
+que salía de aquí. Después se decide si se retira. No se le aplican más
+arreglos.
 
 ---
 
@@ -228,7 +250,8 @@ de no inventar contenido contable (sección 7).
 
 ```
 Ayuda_Contabilidad_App/
-  sources/          el texto legal original, no se toca nunca
+  sources/          el texto legal original, no se toca nunca a mano
+    boe/            la copia del BOE (índice y texto completo, en XML)
   data/             los .json que produce el parser
   tools/            los scripts de Python del parser
   web/              lo que se publica: index.html, estilos, js

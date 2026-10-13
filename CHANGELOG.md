@@ -12,6 +12,37 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Decisión · El PGC se toma del BOE, no del texto del OCR
+**Qué:** la fuente pasa a ser el texto consolidado del BOE (`BOE-A-2007-19884`),
+descargado de su API de datos abiertos y guardado en `sources/boe/` (índice y
+texto completo, en XML). Se añade a la hoja de ruta la "Fase 1 bis", seis pasos
+entre el 16 y el 17. Cambian las secciones 4, 5, 7 y 8 de `CLAUDE.md`.
+**Por qué:** las fichas destaparon fallos que venían del OCR (ver el pendiente
+del paso 16), y cada forma nueva de mirar los datos destapaba otros. El XML del
+BOE no tiene OCR: trae un párrafo por elemento, el cuadro de cuentas como
+tabla y los movimientos con su etiqueta original (`a<sub>1</sub>)`). Es la
+fuente oficial y se puede actualizar. Las partes cuarta y quinta vigentes son
+de 2021, las mismas que el texto refundido, así que las diferencias serán
+fallos del OCR y no cambios de la ley. Albert lo decidió sin apego al trabajo
+ya hecho: la lógica del parser se aprovecha y lo hecho queda en el historial.
+Se descartó que Claude transcribiera el PDF: sus errores serían plausibles e
+invisibles, peores que los del OCR.
+
+### Decisión · Se guarda una copia fija del BOE y se trabaja sobre ella
+**Qué:** el parser lee `sources/boe/`, nunca la API. Actualizar es deliberado:
+descargar, `git diff sources/`, regenerar y commit.
+**Por qué:** así el JSON es reproducible sin conexión, la web no cambia ni se
+rompe porque cambie el BOE, y cada actualización de la ley queda en un commit
+donde se ve qué cambió. Se descarga el texto completo en un solo fichero
+(unos 4 MB) porque incluye ya las partes que necesitarán las fases 4 y 5.
+
+### Decisión · Los movimientos guardarán su etiqueta original
+**Qué:** a partir del paso 1b·4, cada movimiento será
+`{"etiqueta": "a1", "texto": "..."}`, con `"etiqueta": null` para la frase de
+entrada.
+**Por qué:** la fuente ya trae la etiqueta. Tirarla para reconstruirla en la
+web, con riesgo de equivocarse (como pasó con la 640), no tiene sentido.
+
 ### Cambio · Paso 16: mostrar el movimiento en columnas enfrentadas
 **Qué:** la ficha tiene un apartado "Movimiento" con "Se cargará / Debe" y "Se
 abonará / Haber" lado a lado (CSS flex). Cada movimiento lleva su número (a1,

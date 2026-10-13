@@ -159,6 +159,68 @@ problemas de colocación.
 **Compruebas:** la 430 muestra sus dos columnas con los colores cruzados.
 `feat: mostrar el movimiento en columnas enfrentadas`
 
+## Fase 1 bis · El BOE como fuente
+
+Se añade a mitad de la fase 2. Al ver las fichas completas aparecieron fallos
+que venían del OCR del texto refundido (títulos perdidos, párrafos partidos,
+numeración reconstruida). En lugar de ir arreglándolos uno a uno, se cambia de
+fuente: el texto consolidado del BOE en XML, sin OCR. El parser conserva su
+lógica; cambia la parte que lee el texto.
+
+### Paso 1b·1 · Descargar el BOE
+**Qué:** `tools/download_boe.py` pide a la API de datos abiertos del BOE el
+índice y el texto completo de `BOE-A-2007-19884` y los guarda tal cual en
+`sources/boe/indice.xml` y `sources/boe/texto.xml`.
+**Aprendes:** qué es una API, qué es una petición HTTP, `urllib`, los códigos de
+respuesta (200, 404).
+**Compruebas:** existen los dos ficheros y el texto pesa unos 4 MB.
+`feat: descargar el texto del PGC desde el BOE`
+
+### Paso 1b·2 · Leer un bloque del XML
+**Qué:** encontrar un bloque por su `id`, quedarse con su última versión y
+sacar sus párrafos sin las notas del BOE.
+**Aprendes:** qué es XML, `xml.etree.ElementTree`, recorrer un árbol (el mismo
+concepto que el DOM).
+**Compruebas:** el bloque `grupo4-2` da, entre otros, el párrafo
+"430. Clientes".
+`feat: leer los bloques del XML del BOE`
+
+### Paso 1b·3 · El cuadro de cuentas desde las tablas
+**Qué:** recorrer las tablas de la cuarta parte (una fila por cuenta) y sacar
+grupos, subgrupos, cuentas y subcuentas con la misma forma de dato de siempre.
+**Aprendes:** recorrer filas y celdas; deducir el nivel por la columna.
+**Compruebas:** 9 grupos, y la 430 se llama "Clientes" y cuelga del 43.
+`feat: extraer el cuadro de cuentas del BOE`
+
+### Paso 1b·4 · Las fichas desde la quinta parte
+**Qué:** definición, presentación y movimientos de cada cuenta, con la máquina
+de estados adaptada. Los movimientos guardan su etiqueta original:
+`{"etiqueta": "a1", "texto": "..."}`, y `null` en la frase de entrada.
+**Aprendes:** adaptar código que ya funciona a una entrada nueva.
+**Compruebas:** la 430 sale con a1-a3 y b1-b9; la 642 tiene su propia ficha.
+`feat: extraer las fichas del BOE con sus etiquetas originales`
+
+### Paso 1b·5 · Comparar con los datos anteriores
+**Qué:** `tools/compare.py` compara, cuenta a cuenta, el JSON nuevo con el que
+salía del texto refundido, y se revisa la lista de diferencias con Albert.
+Después se decide si el Markdown viejo se retira.
+**Aprendes:** por qué se contrasta con una segunda fuente.
+**Compruebas:** cada diferencia tiene explicación (un fallo del OCR que
+desaparece o un caso nuevo que arreglar).
+`feat: comparar los datos del BOE con los del texto refundido`
+
+### Paso 1b·6 · La web con los datos nuevos
+**Qué:** la web pinta la etiqueta que viene en el dato; se retira la regla de
+la minúscula de `pintarMovimientos`.
+**Aprendes:** cambiar el formato de unos datos sin romper quien los usa.
+**Compruebas:** la 430 y la 640 se ven igual que antes, ahora con la
+numeración del propio PGC.
+`refactor: usar las etiquetas del BOE en el movimiento`
+
+---
+
+## Fase 2 (continuación)
+
 ### Paso 17 · Navegar entre cuentas
 **Qué:** las etiquetas de contrapartida llevan a la ficha de esa cuenta, y la URL
 cambia (`#430`), así que el botón "atrás" funciona y se puede compartir un enlace.
