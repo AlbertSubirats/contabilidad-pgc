@@ -1,0 +1,3 @@
+# La copia del BOE se guarda tal cual la envía la API: git no debe cambiar
+# sus finales de línea al sacarla, para que siga siendo idéntica byte a byte.
+sources/boe/*.xml -text

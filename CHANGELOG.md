@@ -12,6 +12,30 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·1: descargar el texto del PGC desde el BOE
+**Qué:** `tools/download_boe.py` pide a la API de datos abiertos del BOE el
+índice y el texto completo de `BOE-A-2007-19884` y los guarda tal cual en
+`sources/boe/indice.xml` (unos 33 KB) y `sources/boe/texto.xml` (unos 4 MB).
+Escrito por Albert, trozo a trozo.
+**Por qué:** es la copia fija sobre la que trabajará el parser a partir del
+paso 1b·2. El parser todavía lee el Markdown.
+
+### Decisión · La petición lleva `Accept: application/xml` y un límite de 60 s
+**Qué:** cada petición pide XML de forma explícita y se da por fallida si en 60
+segundos no llega respuesta.
+**Por qué:** sin la cabecera, la API contesta 400 (se comprobó a propósito). Sin
+el límite, un servidor colgado dejaría el script esperando para siempre. En los
+dos casos `urlopen` lanza una excepción antes de guardar nada, así que un fallo
+nunca deja un fichero roto en `sources/`.
+
+### Decisión · Se guardan los bytes tal cual, y git no toca sus finales de línea
+**Qué:** el script guarda con `write_bytes`, sin convertir a texto. Un
+`.gitattributes` nuevo marca `sources/boe/*.xml` como `-text`.
+**Por qué:** la copia tiene que ser idéntica, byte a byte, a lo que envió el
+BOE. Sin el `.gitattributes`, git (con `core.autocrlf` activado en Windows)
+entregaría los XML con los finales de línea cambiados a quien clonara el
+repositorio.
+
 ### Decisión · El PGC se toma del BOE, no del texto del OCR
 **Qué:** la fuente pasa a ser el texto consolidado del BOE (`BOE-A-2007-19884`),
 descargado de su API de datos abiertos y guardado en `sources/boe/` (índice y
