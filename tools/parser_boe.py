@@ -43,6 +43,16 @@ FRASE_QUE_PRESENTA_EL_MOVIMIENTO = "Su movimiento es el siguiente:"
 # la condición, así que su movimiento se queda en la definición, tal cual.
 CUENTAS_CON_MOVIMIENTO_ANIDADO = ["1768", "2553", "5593", "5598"]
 
+# Fe de erratas de los títulos de las fichas: lo que dice el BOE → lo que
+# debería decir. Como la del cuadro, solo corrige lo que cambia el sentido.
+TITULOS_CORREGIDOS = {
+    # Prueba: la 5734 y la 5735 no existen; el índice del subgrupo 67 pone la
+    # 6733, la 6734 y la 6735 bajo la 673, y el texto refundido dice
+    # "6733/6734/6735". Sin corregirlo, las tres se quedan sin ficha y su
+    # texto acaba en la 673. Lo destapó la comparación del paso 1b·5.
+    "6733/5734/5735": "6733/6734/6735",
+}
+
 # Los números de los grupos, que son también los de los bloques de la cuarta
 # parte: "grupo1", "grupo2"... (los de la quinta parte son "grupo1-2"...).
 NUMEROS_DE_GRUPO = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -290,6 +300,10 @@ def extraer_fichas(raiz, cuentas):
         cuentas_por_codigo[cuenta["codigo"]] = cuenta
         codigos_del_cuadro.append(cuenta["codigo"])
 
+    # Las erratas de los títulos que se han encontrado, para avisar al final
+    # de las que ya no aparecen.
+    erratas_vistas = set()
+
     for numero in NUMEROS_DE_GRUPO:
         contenido = contenido_del_bloque(raiz, "grupo" + numero + "-2")
 
@@ -317,6 +331,9 @@ def extraer_fichas(raiz, cuentas):
             texto = elemento["texto"]
 
             # 2. El título de una ficha cambia las cuentas actuales.
+            if texto in TITULOS_CORREGIDOS:
+                erratas_vistas.add(texto)
+                texto = TITULOS_CORREGIDOS[texto]
             codigos = codigos_del_titulo(texto, codigos_del_cuadro)
             if codigos is not None:
                 codigos_actuales = codigos
@@ -369,6 +386,11 @@ def extraer_fichas(raiz, cuentas):
                 else:
                     campo = "definicion"
                 anadir_a_las_cuentas(cuentas_por_codigo, codigos_actuales, campo, trozo)
+
+    for titulo_del_boe in TITULOS_CORREGIDOS:
+        if titulo_del_boe not in erratas_vistas:
+            # Si el BOE ya lo ha corregido, mejor enterarse.
+            print("AVISO: la errata del título", titulo_del_boe, "ya no aparece en el BOE")
 
 
 def detectar_contrapartidas(movimientos, codigos_existentes):

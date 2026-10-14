@@ -217,7 +217,8 @@ desaparece o un caso nuevo que arreglar).
 
 ### Paso 1b·6 · La web con los datos nuevos
 **Qué:** la web pinta la etiqueta que viene en el dato; se retira la regla de
-la minúscula de `pintarMovimientos`.
+la minúscula de `pintarMovimientos`. Se retiran también el texto del OCR y
+`parser.py`, con lo que dependa de ellos (decidido en el paso 1b·5).
 **Aprendes:** cambiar el formato de unos datos sin romper quien los usa.
 **Compruebas:** la 430 y la 640 se ven igual que antes, ahora con la
 numeración del propio PGC.

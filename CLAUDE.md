@@ -237,10 +237,11 @@ Los descarga `tools/download_boe.py`. **No se editan a mano nunca.**
    en el subgrupo 50). La herramienta reproduce la norma tal como se publicó.
 
 **Fuente anterior, temporal:** `sources/Texto refundido PGC 2021.md`, que viene
-de un OCR (marcas `{300}-----`, títulos perdidos, párrafos partidos). Se
-mantiene solo hasta el paso 1b·5, para comparar el JSON que sale del BOE con el
-que salía de aquí. Después se decide si se retira. No se le aplican más
-arreglos.
+de un OCR (marcas `{300}-----`, títulos perdidos, párrafos partidos). Sirvió
+en el paso 1b·5 para comparar el JSON que sale del BOE con el que salía de
+aquí, y la comparación no encontró nada que el OCR tuviera bien y el BOE no.
+**Se retira en el paso 1b·6**, junto con `parser.py`, cuando la web pase al JSON
+del BOE. Hasta entonces no se le aplican más arreglos.
 
 ---
 

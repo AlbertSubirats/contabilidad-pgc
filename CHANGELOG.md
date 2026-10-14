@@ -12,6 +12,70 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·5: comparar los datos del BOE con los del texto refundido
+**Qué:** `tools/compare.py`, nuevo, compara cuenta a cuenta `accounts.json`
+(OCR) con `accounts_boe.json` (BOE) y clasifica cada cuenta: ficha idéntica,
+mismo texto en otro apartado, casi igual (enseña las palabras que cambian, con
+`difflib`), ficha nueva, ficha que desaparece y diferencias grandes (enseña
+los párrafos que solo están en un lado). Se revisó el informe entero con
+Albert. Resultado, después del arreglo de la 673: los 915 códigos coinciden,
+698 fichas son idénticas y las otras 217 tienen explicación. Escrito por
+Claude, trozo a trozo, a petición de Albert.
+**Por qué:** el verificador del paso 1b·3 cruzaba el BOE consigo mismo; el
+OCR se equivoca de otra manera, así que donde coinciden la confianza es alta y
+donde no, hay que saber quién falla.
+
+### Decisión · Lo que dice la comparación: en ninguna diferencia acierta el OCR
+**Qué:** las diferencias se explican así: nombres (decisiones del 1b·3); texto
+que cambia de apartado por las presentaciones nuevas y los párrafos
+separados, y "Con carácter general, su movimiento es el siguiente:", que el
+parser viejo tiraba (decisiones del 1b·4); fallos de lectura del OCR
+(comillas, guiones, "dé" por "de"); fichas que el OCR colgó de otra cuenta al
+perder el título (la 642 en la 641, la 669 en la 668, la 627 y la 628 en la
+626, la 798 en la 797, el grupo 7 en la 699, la 440 y la 441 en el 44 y la
+446); títulos de cuatro cifras que el OCR colgaba de la cuenta de tres (1110,
+2550, 5580, 6510, 7510, 7950-7957, 8300); intervalos (230/237, 580/584,
+585/589, 700/705, 710/713); párrafos que el OCR pegaba al último movimiento
+("c) Si los valores se clasifican...", "2. Cuando la empresa cifre..."); tres
+cuentas con movimientos nuevos (761, 774, 802); los derivados de cobertura; y
+la 113, donde el texto vigente dice "cuenta 6301" y el refundido "subgrupo
+6301".
+**Por qué:** era lo que pedía la hoja de ruta: que cada diferencia tuviera
+explicación. Ninguna es un dato que el OCR tuviera bien y el BOE no.
+
+### Decisión · Cuatro erratas más del BOE que se respetan
+**Qué:** "registra)" por "registral" (100), "vin culado" (135), "cuentas de
+subgrupo 57" (171) y "cargados en factura los proveedores" (400) se quedan
+tal como se publicaron.
+**Por qué:** no cambian el sentido. Es la regla de la sección 7 de `CLAUDE.md`.
+
+### Decisión · Fe de erratas de los títulos: "6733/5734/5735"
+**Qué:** `parser_boe.py` tiene una fe de erratas de títulos de ficha, con la
+misma idea que la del cuadro, y avisa si el BOE la corrige. Corrige
+"6733/5734/5735" por "6733/6734/6735".
+**Por qué:** la 5734 y la 5735 no existen, así que el título no se reconocía:
+la 6733, la 6734 y la 6735 se quedaban sin ficha y su texto acababa en la 673.
+El índice del subgrupo 67 y el texto refundido dan "6733/6734/6735". Al
+corregirlo, las cuatro cuentas pasan a ser idénticas a las del OCR (`git diff
+data/accounts_boe.json` enseña justo ese cambio). Lo destapó la comparación y
+lo decidió Albert. Va en el commit de este paso porque es el "caso nuevo que
+arreglar" que la hoja de ruta preveía.
+
+### Decisión · Las 833, 834, 836 y 838 se quedan como están
+**Qué:** su "b) Al cierre del ejercicio, se cargará..." sigue en la
+definición (el problema conocido del paso 1b·4).
+**Por qué:** la comparación enseña que el OCR lo hacía peor: pegaba esa frase
+al último movimiento de la otra columna. En la definición no se pierde nada, y
+atraparlo obligaría a aflojar la regla de las cabeceras. Lo decidió Albert.
+
+### Decisión · El texto del OCR se retira en el paso 1b·6
+**Qué:** `sources/Texto refundido PGC 2021.md` y `parser.py` se retiran,
+pero en el paso 1b·6, cuando la web pase al JSON del BOE. Se actualizan la
+sección 7 de `CLAUDE.md` y el paso 1b·6 de la hoja de ruta.
+**Por qué:** la comparación no encontró nada que el OCR tuviera bien y el BOE
+no. Retirarlo ya dejaría `accounts.json`, que es el que usa la web, sin nadie
+que lo pueda regenerar. Lo decidió Albert.
+
 ### Cambio · Paso 1b·4: extraer las fichas del BOE con sus etiquetas originales
 **Qué:** `parser_boe.py` lee la quinta parte con la máquina de estados del
 paso 8, adaptada, y añade a cada cuenta su definición, su presentación, sus

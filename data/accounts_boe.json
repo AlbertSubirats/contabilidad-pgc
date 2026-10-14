@@ -16067,9 +16067,7 @@
     "nombre": "Pérdidas procedentes de participaciones a largo plazo en partes vinculadas",
     "padre": "67",
     "definicion": [
-      "Pérdidas producidas en la enajenación de participaciones a largo plazo en partes vinculadas o por su baja del activo.",
-      "6733/5734/5735",
-      "Las cuentas citadas de cuatro cifras se cargarán por la pérdida producida en la enajenación o baja, con abono a cuentas del subgrupo 24 o a la cuenta 581."
+      "Pérdidas producidas en la enajenación de participaciones a largo plazo en partes vinculadas o por su baja del activo."
     ],
     "presentacion": [],
     "cargos": [],
@@ -16083,7 +16081,9 @@
     "nivel": "subcuenta",
     "nombre": "Pérdidas procedentes de participaciones a largo plazo, empresas del grupo",
     "padre": "673",
-    "definicion": [],
+    "definicion": [
+      "Las cuentas citadas de cuatro cifras se cargarán por la pérdida producida en la enajenación o baja, con abono a cuentas del subgrupo 24 o a la cuenta 581."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -16096,7 +16096,9 @@
     "nivel": "subcuenta",
     "nombre": "Pérdidas procedentes de participaciones a largo plazo, empresas asociadas",
     "padre": "673",
-    "definicion": [],
+    "definicion": [
+      "Las cuentas citadas de cuatro cifras se cargarán por la pérdida producida en la enajenación o baja, con abono a cuentas del subgrupo 24 o a la cuenta 581."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
@@ -16109,7 +16111,9 @@
     "nivel": "subcuenta",
     "nombre": "Pérdidas procedentes de participaciones a largo plazo, otras partes vinculadas",
     "padre": "673",
-    "definicion": [],
+    "definicion": [
+      "Las cuentas citadas de cuatro cifras se cargarán por la pérdida producida en la enajenación o baja, con abono a cuentas del subgrupo 24 o a la cuenta 581."
+    ],
     "presentacion": [],
     "cargos": [],
     "abonos": [],
