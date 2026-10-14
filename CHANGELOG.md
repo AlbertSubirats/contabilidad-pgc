@@ -12,6 +12,99 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·4: extraer las fichas del BOE con sus etiquetas originales
+**Qué:** `parser_boe.py` lee la quinta parte con la máquina de estados del
+paso 8, adaptada, y añade a cada cuenta su definición, su presentación, sus
+movimientos y sus contrapartidas. Cada movimiento es ahora
+`{"etiqueta": "a1", "texto": "..."}`, con `"etiqueta": null` cuando es el
+texto que va detrás de la cabecera ("b) Se abonará por las enajenaciones...").
+Lo guarda en `data/accounts_boe.json`. La 430 sale con a1-a3 y b1-b9 y sus 11
+contrapartidas de siempre; la 642 tiene su propia ficha. De las 421 cuentas de
+tres cifras, 358 tienen definición, 110 presentación y 254 movimientos en
+columnas (en el `accounts.json` del OCR son 330, 95 y 240). `boe_reader.py` gana
+`contenido_del_bloque` (párrafos y tablas en su orden), y `parrafos_del_bloque`
+y `filas_de_las_tablas` se apoyan ahora en él y en `filas_de_la_tabla`.
+Escrito por Claude, trozo a trozo, a petición de Albert, después de probar las
+reglas en un prototipo.
+**Por qué:** completa el parser nuevo. El BOE simplifica la máquina de
+estados: el índice de cada subgrupo es una tabla (ya no hay que adivinar
+rachas de títulos), cada párrafo viene entero (sobra la regla de la
+minúscula) y las etiquetas vienen escritas.
+
+### Decisión · El JSON del BOE va en un fichero aparte hasta el paso 1b·6
+**Qué:** `parser_boe.py` escribe `data/accounts_boe.json`; `data/accounts.json`
+lo sigue generando `parser.py`.
+**Por qué:** los movimientos cambian de forma y la web no se adapta hasta el
+1b·6. Sobrescribir `accounts.json` rompería la web, también la publicada en
+cuanto se hiciera `push`. Además, en el 1b·5 hacen falta los dos ficheros para
+compararlos.
+
+### Decisión · Una frase de presentación dice en qué parte del balance figura
+**Qué:** un párrafo es presentación si dice "figurar(á/án) en el activo /
+pasivo / patrimonio / epígrafe". Además de las 95 que empiezan por
+"Figurará", entran 50 nuevas: "Las cuentas de este subgrupo figurarán en el
+pasivo corriente del balance", "Estas cuentas figurarán...", "La parte... que
+tenga vencimiento a corto deberá figurar en el pasivo corriente...".
+**Por qué:** es el pendiente que la hoja de ruta pedía resolver aquí. Mirar
+dónde figura, y no solo la palabra, deja fuera las definiciones que usan el
+verbo ("En esta cuenta figurarán todos aquellos elementos de transporte...").
+Se revisaron una a una; el único caso discutible es una cuenta hipotética
+("...creará la correspondiente cuenta en el grupo 2 que figurará en el
+activo no corriente"). Lo decidió Albert.
+
+### Decisión · Los párrafos que mezclan dos cosas se separan, sin tocar el texto
+**Qué:** un párrafo con ". Figurará" en medio se parte en dos justo ahí
+(definición y presentación). La frase "Su movimiento es el siguiente:" se
+quita cuando va sola o al final de un párrafo. "Con carácter general, su
+movimiento es el siguiente:" (37) se queda entera en la definición.
+**Por qué:** si un párrafo mezclado va entero a un apartado, el otro dice
+"sin definición" o "sin presentación", y es falso (la 556). El parser viejo
+tiraba entero todo párrafo que acabara en "su movimiento es el siguiente:", y
+con él "Corresponde a las empresas individuales", una presentación y el
+matiz de "con carácter general". Partir y quitar una frase fija no inventa
+nada. Lo decidió Albert.
+
+### Decisión · En los títulos, dos códigos son un intervalo y tres o más, una lista
+**Qué:** "700/705" es de la 700 a la 705 (también la 701 a la 704), y
+"710/713" y "230/237" igual. "600/601/602/607" es una lista: la 606 no entra.
+"230/237" se acepta aunque no lleve nombre, y "2403/2404" aunque no lleve
+punto.
+**Por qué:** es la notación del PGC ("Las cuentas 300/309"), y el texto lo
+confirma: la ficha 710/713 habla de los subgrupos 33 a 36, es decir, de
+cuatro cuentas. Con dos códigos seguidos ("570/571") da igual. Resuelve el
+pendiente de la 230/237 del paso 8. Lo decidió Albert.
+
+### Decisión · Los derivados de cobertura guardan su movimiento en la definición
+**Qué:** la 1768, la 2553, la 5593 y la 5598 no tienen columnas: su
+movimiento se queda en la definición, párrafo a párrafo, tal cual.
+**Por qué:** es un movimiento en dos niveles con una condición ("b) Cuando el
+derivado se utilice como instrumento de cobertura...: b1) Se cargará: i)...
+ii)..."). En dos columnas planas se perdería la condición y los movimientos
+parecerían valer siempre. Es la regla del paso 8: lo que no se puede repartir
+sin inventar, a la definición. Pintar los dos niveles sería una mejora de la
+web, a hablar aparte. Lo decidió Albert. Cierra el problema conocido de las
+etiquetas `i) ii)` del paso 9.
+
+### Decisión · La etiqueta de un movimiento tiene que encajar con su cabecera
+**Qué:** bajo una cabecera con letra ("b) Se abonará:") solo son movimientos
+las etiquetas de esa letra con número (`b1)`, `b2)`...). Bajo una cabecera sin
+letra ("Se abonará:") valen `a)`, `b)`... y `a1)`, `a2)`...
+**Por qué:** lo destapó el prototipo. La 761 numera sus abonos `a)`, `b)` bajo
+un "Se abonará:" sin letra, y la 640 numera `a1)`... bajo un "Se cargará por
+el importe íntegro...:" sin letra. Aceptar cualquier etiqueta colaría como
+movimiento párrafos como "c) Si las participaciones se clasifican...", que
+van detrás de los `b1) b2)` y hablan de cargo y abono a la vez.
+
+### Problema conocido · Cuatro abonos y cargos con el verbo en medio de la frase
+**Qué:** en la 833, la 834, la 836 y la 838, el segundo movimiento es "b) Al
+cierre del ejercicio, se cargará con abono a la cuenta 137." Como el verbo no
+va al principio, no se reconoce como cabecera y el párrafo va a la
+definición.
+**Por qué se deja:** para atraparlo habría que aflojar la regla de las
+cabeceras, y entonces se colarían frases de definición como "Cuando se
+produzca..., se cargará...". En la definición no se pierde nada. Se revisa en
+el paso 1b·5.
+
 ### Cambio · Paso 1b·3: extraer el cuadro de cuentas del BOE
 **Qué:** `tools/parser_boe.py`, nuevo, saca grupos, subgrupos, cuentas y
 subcuentas de las tablas de la cuarta parte del BOE, con la misma forma de

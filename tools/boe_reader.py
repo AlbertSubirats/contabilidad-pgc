@@ -54,40 +54,60 @@ def version_vigente(raiz, id_del_bloque):
     return ultima_version(bloque)
 
 
-def parrafos_del_bloque(raiz, id_del_bloque):
-    version = version_vigente(raiz, id_del_bloque)
+def filas_de_la_tabla(tabla):
+    # Devuelve una lista por fila con el texto de sus celdas, en orden:
+    # ["", "400.", "Proveedores"]. Las celdas vacías se quedan como "",
+    # porque su posición importa: dice en qué columna empieza el texto.
+    filas = []
+    # iter y no findall: en unas tablas las filas son hijas directas de
+    # <table> y en otras van dentro de un <tbody>. iter las encuentra a
+    # cualquier profundidad.
+    for fila in tabla.iter("tr"):
+        celdas = []
+        for celda in fila.findall("td"):
+            celdas.append(texto_del_elemento(celda))
+        filas.append(celdas)
+    return filas
 
-    # findall("p") da solo los párrafos hijos directos de la versión. No entra
-    # en las tablas, que se leen aparte (paso 1b·3), ni en los <blockquote>,
-    # que es donde el BOE mete sus notas. Así que las notas ya quedan fuera.
+
+def contenido_del_bloque(raiz, id_del_bloque):
+    # Los párrafos y las tablas del bloque, en el orden en que vienen. Cada
+    # elemento es un diccionario: {"tipo": "parrafo", "texto": "..."} o
+    # {"tipo": "tabla", "filas": [...]}.
+    version = version_vigente(raiz, id_del_bloque)
+    contenido = []
+    # Un for sobre un elemento recorre sus hijos directos, en orden. Los
+    # <blockquote>, que es donde el BOE mete sus notas, no se añaden: así las
+    # notas quedan fuera.
+    for elemento in version:
+        if elemento.tag == "p":
+            # Hoy esto no salta nunca, por lo dicho arriba. Se deja de reserva
+            # por si una versión futura del BOE sacara las notas del <blockquote>.
+            if elemento.get("class") in CLASES_DE_NOTA:
+                continue
+            texto = texto_del_elemento(elemento)
+            if texto == "":
+                continue
+            contenido.append({"tipo": "parrafo", "texto": texto})
+        elif elemento.tag == "table":
+            contenido.append({"tipo": "tabla", "filas": filas_de_la_tabla(elemento)})
+    return contenido
+
+
+def parrafos_del_bloque(raiz, id_del_bloque):
     parrafos = []
-    for parrafo in version.findall("p"):
-        # Hoy esto no salta nunca, por lo dicho arriba. Se deja de reserva por
-        # si una versión futura del BOE sacara las notas del <blockquote>.
-        if parrafo.get("class") in CLASES_DE_NOTA:
-            continue
-        texto = texto_del_elemento(parrafo)
-        if texto == "":
-            continue
-        parrafos.append(texto)
+    for elemento in contenido_del_bloque(raiz, id_del_bloque):
+        if elemento["tipo"] == "parrafo":
+            parrafos.append(elemento["texto"])
     return parrafos
 
 
 def filas_de_las_tablas(raiz, id_del_bloque):
-    # Devuelve una lista por fila con el texto de sus celdas, en orden:
-    # ["", "400.", "Proveedores"]. Las celdas vacías se quedan como "",
-    # porque su posición importa: dice en qué columna empieza el texto.
+    # Las filas de todas las tablas del bloque, seguidas.
     version = version_vigente(raiz, id_del_bloque)
     filas = []
     for tabla in version.findall("table"):
-        # iter y no findall: en unas tablas las filas son hijas directas de
-        # <table> y en otras van dentro de un <tbody>. iter las encuentra a
-        # cualquier profundidad.
-        for fila in tabla.iter("tr"):
-            celdas = []
-            for celda in fila.findall("td"):
-                celdas.append(texto_del_elemento(celda))
-            filas.append(celdas)
+        filas.extend(filas_de_la_tabla(tabla))
     return filas
 
 
