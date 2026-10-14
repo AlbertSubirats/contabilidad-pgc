@@ -200,6 +200,12 @@ de estados adaptada. Los movimientos guardan su etiqueta original:
 **Compruebas:** la 430 sale con a1-a3 y b1-b9; la 642 tiene su propia ficha.
 `feat: extraer las fichas del BOE con sus etiquetas originales`
 
+> **Ojo, esto no lo arregla el BOE:** frases de presentación que no empiezan por
+> "Figurará" ("Las cuentas de este subgrupo figurarán en el pasivo corriente
+> del balance", unas 40, sobre todo en subgrupos) acababan en la definición.
+> Es la regla del parser, no el OCR. Hay que resolverlo en este paso para que
+> la ficha no diga "sin presentación" cuando sí la hay.
+
 ### Paso 1b·5 · Comparar con los datos anteriores
 **Qué:** `tools/compare.py` compara, cuenta a cuenta, el JSON nuevo con el que
 salía del texto refundido, y se revisa la lista de diferencias con Albert.
@@ -229,11 +235,23 @@ cambia (`#430`), así que el botón "atrás" funciona y se puede compartir un en
 directo a `#436` funciona.
 `feat: navegar entre cuentas por la URL`
 
+> **Pendiente de decidir aquí:** en el árbol, los títulos de grupos y subgrupos
+> solo pliegan y despliegan; su ficha solo se abre desde el buscador. Al pasar
+> las cuentas a enlaces, decidir cómo se abren también grupos y subgrupos sin
+> estorbar al plegado. Idea de Albert: que las remisiones dentro del texto
+> ("análogo al señalado para la cuenta 100", en la 101) también sean enlaces.
+
 ### Paso 18 · El índice y la ficha rápida
 **Qué:** el índice de contenidos a la izquierda de la ficha y el panel de ficha
 rápida + contrapartidas a la derecha.
 **Compruebas:** se parece a la maqueta.
 `feat: añadir el índice y el panel lateral de la ficha`
+
+> **Pendiente de decidir aquí, con las maquetas delante:** la columna izquierda
+> de la maqueta A es el árbol del cuadro de cuentas (paso 14), y la de la B es
+> el índice de la propia ficha. Elegir o combinar. Repasar también, punto por
+> punto, lo que las maquetas dibujan y la hoja de ruta no incluye (migas de
+> pan, "Ver también"...), según la sección 6 de CLAUDE.md.
 
 ### Paso 19 · Que funcione en el móvil
 **Qué:** las columnas se apilan, la barra lateral se esconde.
