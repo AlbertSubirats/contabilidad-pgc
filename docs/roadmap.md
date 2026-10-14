@@ -260,11 +260,14 @@ rápida + contrapartidas a la derecha.
 **Compruebas:** se parece a la maqueta.
 `feat: añadir el índice y el panel lateral de la ficha`
 
-> **Pendiente de decidir aquí, con las maquetas delante:** la columna izquierda
-> de la maqueta A es el árbol del cuadro de cuentas (paso 14), y la de la B es
-> el índice de la propia ficha. Elegir o combinar. Repasar también, punto por
-> punto, lo que las maquetas dibujan y la hoja de ruta no incluye (migas de
-> pan, "Ver también"...), según la sección 6 de CLAUDE.md.
+> **Decidido en este paso:** a la izquierda va el árbol del cuadro de cuentas,
+> no el índice de la ficha (la ficha tiene tres apartados y cabe en una
+> pantalla). La ficha rápida lleva solo datos del JSON: plan, nivel, grupo,
+> subgrupo y las contrapartidas con su nombre. El buscador sube a la cabecera,
+> con los resultados en una lista desplegable. De lo que dibujan las maquetas
+> entran las migas de pan; "Ver también", "Vecinas" y el menú de módulos se
+> quedan fuera. La etiqueta del grupo de debajo del título (paso 15) se quita.
+> El commit cambia de nombre: `feat: repartir la página en árbol, ficha y ficha rápida`.
 
 ### Paso 19 · Que funcione en el móvil
 **Qué:** las columnas se apilan, la barra lateral se esconde.

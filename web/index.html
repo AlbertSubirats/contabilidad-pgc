@@ -6,50 +6,91 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Ayuda Contabilidad</h1>
-        <p>Una web para estudiar análisis contable y balances</p>
+        <!-- La página tiene cuatro zonas: la cabecera arriba, y debajo tres
+             columnas (el árbol, la ficha y la ficha rápida). Dónde va cada una
+             lo decide styles.css; aquí solo se dice qué es cada cosa. -->
 
-        <!-- Aviso para un enlace a una cuenta que no existe (#9999). Empieza
-             escondido; app.js lo rellena y lo enseña cuando hace falta. -->
-        <p id="aviso-cuenta" class="aviso-sin-texto" hidden></p>
+        <!-- Cabecera: el nombre de la web y el buscador -->
+        <header class="cabecera">
+            <h1>Ayuda Contabilidad</h1>
+            <p class="subtitulo">Una web para estudiar análisis contable y balances</p>
 
-        <!-- La ficha de la cuenta pulsada. Aquí está su esqueleto; app.js solo
-             rellena los huecos. Empieza escondida porque aún no se ha elegido cuenta. -->
-        <article id="ficha-cuenta" hidden>
-            <h2 id="ficha-titulo"></h2>
-            <p id="ficha-etiquetas"></p>
+            <div class="buscador">
+                <!-- El "for" de la label apunta al "id" del input: así quedan unidos -->
+                <label for="buscador">Buscar cuenta</label>
+                <input type="search" id="buscador" placeholder="Código o nombre, por ejemplo 430 o clientes" autocomplete="off">
 
-            <h3>Definición</h3>
-            <div id="ficha-definicion"></div>
-
-            <h3>Presentación en el balance</h3>
-            <div id="ficha-presentacion"></div>
-
-            <h3>Movimiento</h3>
-            <div class="movimiento">
-                <section class="columna-cargo">
-                    <h4>Se cargará <span class="lado">Debe</span></h4>
-                    <ol id="ficha-cargos"></ol>
-                </section>
-
-                <section class="columna-abono">
-                    <h4>Se abonará <span class="lado">Haber</span></h4>
-                    <ol id="ficha-abonos"></ol>
-                </section>
+                <!-- Los resultados, como lista desplegable bajo la caja. Empieza
+                     vacía y escondida: app.js la rellena y la enseña al escribir. -->
+                <ul id="lista-cuentas" hidden></ul>
             </div>
-        </article>
+        </header>
 
-        <!-- Empieza vacío: el árbol lo crea app.js con los datos del JSON -->
-        <nav id="arbol-cuentas"></nav>
+        <!-- Columna izquierda: el cuadro de cuentas -->
+        <aside class="columna-arbol">
+            <h2>Cuadro de cuentas</h2>
+            <!-- Empieza vacío: el árbol lo crea app.js con los datos del JSON -->
+            <nav id="arbol-cuentas"></nav>
+        </aside>
 
-        <!-- El "for" de la label apunta al "id" del input: así quedan unidos -->
-        <label for="buscador">Buscar cuenta</label>
-        <input type="search" id="buscador" placeholder="Código o nombre, por ejemplo 430 o clientes" autocomplete="off">
+        <!-- Columna central: la ficha de la cuenta, que es lo principal -->
+        <main class="columna-ficha">
+            <!-- Aviso para un enlace a una cuenta que no existe (#9999). Empieza
+                 escondido; app.js lo rellena y lo enseña cuando hace falta. -->
+            <p id="aviso-cuenta" class="aviso-sin-texto" hidden></p>
 
-        <!-- Empieza vacía: los elementos los crea app.js con los datos del JSON -->
-        <ul id="lista-cuentas"></ul>
+            <!-- La ficha de la cuenta pulsada. Aquí está su esqueleto; app.js solo
+                 rellena los huecos. Empieza escondida porque aún no se ha elegido cuenta. -->
+            <article id="ficha-cuenta" hidden>
+                <!-- Migas de pan: "Grupo 4 › Subgrupo 43 › 430", dónde está la
+                     cuenta dentro del cuadro. Las rellena app.js. -->
+                <nav id="ficha-migas" class="migas" aria-label="Dónde está esta cuenta"></nav>
 
-        <!-- Al final del body para que, cuando se ejecute, la lista de arriba ya exista -->
+                <h2 id="ficha-titulo"></h2>
+                <p id="ficha-etiquetas"></p>
+
+                <h3>Definición</h3>
+                <div id="ficha-definicion"></div>
+
+                <h3>Presentación en el balance</h3>
+                <div id="ficha-presentacion"></div>
+
+                <h3>Movimiento</h3>
+                <div class="movimiento">
+                    <section class="columna-cargo">
+                        <h4>Se cargará <span class="lado">Debe</span></h4>
+                        <ol id="ficha-cargos"></ol>
+                    </section>
+
+                    <section class="columna-abono">
+                        <h4>Se abonará <span class="lado">Haber</span></h4>
+                        <ol id="ficha-abonos"></ol>
+                    </section>
+                </div>
+            </article>
+        </main>
+
+        <!-- Columna derecha: la ficha rápida. Escondida hasta que haya cuenta. -->
+        <aside id="ficha-rapida" class="columna-ficha-rapida" hidden>
+            <h2>Ficha rápida</h2>
+            <!-- Lista de pares "dato: valor" (Plan: PGC normal...). La rellena app.js. -->
+            <dl id="ficha-rapida-datos"></dl>
+
+            <!-- Las contrapartidas de la ficha, reunidas y con su nombre. Cada
+                 lista va dentro de la misma clase que su columna del movimiento
+                 (columna-cargo, columna-abono), así heredan los colores cruzados. -->
+            <section class="columna-cargo">
+                <h3>Contrapartidas de los cargos</h3>
+                <ul id="ficha-rapida-cargos"></ul>
+            </section>
+
+            <section class="columna-abono">
+                <h3>Contrapartidas de los abonos</h3>
+                <ul id="ficha-rapida-abonos"></ul>
+            </section>
+        </aside>
+
+        <!-- Al final del body para que, cuando se ejecute, todo lo de arriba ya exista -->
         <script src="app.js"></script>
     </body>
 </html>

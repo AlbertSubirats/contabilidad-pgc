@@ -7,6 +7,7 @@
     --color-debe-claro: #E4EAF6;
     --color-haber: #8A5A14;
     --color-haber-claro: #F6EBD6;
+    --color-linea: #E6E0D4;
 }
 
 body {
@@ -15,8 +16,169 @@ body {
     font-family: system-ui, sans-serif;
 }
 
+/* La página es una rejilla (grid): tres columnas, y la cabecera ocupando las
+   tres por arriba. Cada zona tiene un nombre (grid-area) y el dibujo de
+   grid-template-areas dice en qué casilla va cada una.
+   - 18em: los márgenes tienen un ancho fijo.
+   - 1fr: una "fracción" de lo que sobra. Como es la única, la ficha se lleva
+     todo el ancho que dejan los márgenes, y crece o encoge con la ventana.
+   El margin: 0 quita el borde blanco que el navegador pone por su cuenta. */
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 18em 1fr 18em;
+    grid-template-areas:
+        "cabecera cabecera cabecera"
+        "arbol    ficha    rapida";
+    /* Cada zona mide lo que su contenido, en vez de estirarse hasta la más alta. */
+    align-items: start;
+}
+
+.cabecera {
+    grid-area: cabecera;
+    /* Dentro de la cabecera, flex en fila: título, subtítulo y buscador
+       uno al lado del otro, centrados en vertical. */
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 0 1.5em;
+    border-bottom: 1px solid var(--color-linea);
+}
+
+.columna-arbol {
+    grid-area: arbol;
+    border-right: 1px solid var(--color-linea);
+}
+
+.columna-ficha {
+    grid-area: ficha;
+}
+
+.columna-ficha-rapida {
+    grid-area: rapida;
+}
+
+/* Las tres columnas, con aire por dentro. */
+.columna-arbol,
+.columna-ficha,
+.columna-ficha-rapida {
+    padding: 1em 1.5em;
+}
+
+/* Los dos márgenes se quedan quietos al bajar por la ficha:
+   - position: sticky con top: 0 hace que, al desplazar la página, la columna
+     se "pegue" al borde de arriba de la ventana en vez de irse con el resto.
+   - max-height: 100vh la deja, como mucho, del alto de la ventana (vh =
+     "viewport height", 100vh es la ventana entera).
+   - overflow-y: auto: si lo de dentro no cabe (el árbol desplegado), la
+     columna tiene su propia barra para desplazarse en vertical.
+   box-sizing: border-box hace que esos 100vh incluyan el padding; sin él,
+   el padding se sumaría y la columna se saldría un poco de la ventana. */
+.columna-arbol,
+.columna-ficha-rapida {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
 h1 {
     font-family: Georgia, serif;
+}
+
+/* El buscador de la cabecera ocupa el sitio que sobra (flex: 1), hasta un
+   máximo, para que la caja no sea larguísima en una pantalla ancha.
+   position: relative no lo mueve: lo convierte en la referencia desde la que
+   se mide la lista desplegable de abajo. */
+.buscador {
+    flex: 1;
+    max-width: 32em;
+    position: relative;
+}
+
+.buscador input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.4em 0.6em;
+}
+
+/* La lista de resultados, desplegada bajo la caja:
+   - position: absolute la saca del orden normal de la página: no empuja nada,
+     flota por encima. top: 100% la pone justo debajo del buscador (el 100%
+     de su alto), y left: 0 y right: 0 le dan el mismo ancho.
+   - max-height y overflow-y: si hay muchos resultados ("4" encuentra
+     cientos), la lista no pasa de media ventana y se desplaza por dentro.
+   - z-index: cuando dos cosas se pisan, el que tiene el z-index más alto
+     queda encima. Sin él, los márgenes (que con sticky también se colocan
+     aparte) se pintarían por encima de la lista, porque van después en el HTML.
+   Ojo: aquí no se pone "display". Si se pusiera, mandaría sobre el
+   atributo hidden y la lista no se escondería nunca. */
+#lista-cuentas {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin: 0.2em 0 0;
+    padding: 0.4em 0;
+    list-style: none;
+    background-color: var(--color-papel);
+    border: 1px solid var(--color-linea);
+    border-radius: 0.3em;
+    box-shadow: 0 0.3em 1em rgba(0, 0, 0, 0.12);
+}
+
+#lista-cuentas li {
+    padding: 0.3em 0.8em;
+}
+
+/* Migas de pan, encima del título: pequeñas y en gris, porque orientan pero
+   no son lo importante. Los enlaces, sin subrayar hasta pasar el ratón. */
+.migas {
+    font-size: 0.9em;
+    color: var(--color-tinta-suave);
+}
+
+.migas a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.migas a:hover,
+.migas a:focus-visible {
+    text-decoration: underline;
+}
+
+/* Ficha rápida: cada dato con su nombre encima, en pequeño, mayúsculas y
+   gris (como en la maqueta B), y el valor debajo. El navegador mete los <dd>
+   hacia dentro; aquí se quita esa sangría. */
+.columna-ficha-rapida dt {
+    margin-top: 0.8em;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-tinta-suave);
+}
+
+.columna-ficha-rapida dd {
+    margin-left: 0;
+}
+
+.columna-ficha-rapida dd a {
+    color: inherit;
+}
+
+/* Las contrapartidas de la ficha rápida: sin viñetas y con aire entre ellas. */
+.columna-ficha-rapida ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.columna-ficha-rapida li {
+    margin-bottom: 0.5em;
 }
 
 /* Árbol del cuadro de cuentas: cada caja plegable que está dentro de otra
@@ -25,7 +187,7 @@ details details {
     padding-left: 1.5em;
 }
 
-/* Etiquetas de la ficha ("Cuenta", "Grupo 4 · ..."): cada una en su cajita,
+/* Etiquetas de la ficha ("Cuenta"): cada una en su cajita,
    con algo de aire alrededor para que no se peguen entre sí. */
 .etiqueta {
     display: inline-block;

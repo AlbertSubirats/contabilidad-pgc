@@ -12,6 +12,67 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 18: repartir la página en árbol, ficha y ficha rápida
+**Qué:** `index.html` se ordena en zonas con significado (`<header>`,
+`<aside>`, `<main>`) y `styles.css` las coloca con CSS grid: la cabecera
+arriba y debajo tres columnas, el árbol, la ficha y la ficha rápida
+(`grid-template-areas`). Los dos márgenes son `position: sticky` y no se van
+al bajar por la ficha. Nuevo en `app.js`: `pintarMigas` (sube por los
+`padre` con un `while`), `pintarFichaRapida` con `anadirDato` (una lista
+`<dl>`) y `pintarContrapartidas`. El buscador pasa a la cabecera y enseña los
+resultados en una lista desplegable (`position: absolute`), que se esconde
+con la caja vacía y se cierra al pulsar un resultado (`cerrarBuscador`); si
+nada coincide, lo dice. La lista de las 915 cuentas ya no se pinta al
+cargar. Comprobado en el navegador: grupo, subgrupo, cuenta, subcuenta,
+`#9999` y sin `#`, buscar "clien" y pulsar la 436, buscar "zzz", sin errores
+en la consola. Escrito por Claude, trozo a trozo; comprobado también por Albert.
+**Por qué:** con todo apilado en una columna, para ver la ficha había que
+saltar arriba. Ahora el árbol, la ficha y sus datos se ven a la vez.
+
+### Decisión · A la izquierda, el árbol y no el índice de la ficha
+**Qué:** la columna izquierda es el cuadro de cuentas (maqueta A), no el
+índice de contenidos de la ficha (maqueta B).
+**Por qué:** la ficha tiene tres apartados y cabe en una pantalla; un índice
+no ayudaría. El árbol dice dónde está la cuenta dentro del PGC. Lo decidió Albert.
+
+### Decisión · La ficha rápida, solo con lo que está en los datos
+**Qué:** plan, nivel, grupo, subgrupo y las contrapartidas con su nombre. El
+grupo y el subgrupo salen de la primera y las dos primeras cifras del código.
+**Por qué:** "Naturaleza", la línea del balance y la norma aplicable de la
+maqueta B no están en el JSON, y deducirlas sería inventar contenido
+contable (sección 7 de CLAUDE.md). La línea del balance llegará en el paso
+30 y la norma en la fase 5. Lo decidió Albert.
+
+### Decisión · El buscador, con lista desplegable
+**Qué:** los resultados caen bajo la caja, flotando por encima de la ficha,
+como en la maqueta B. Se cierran al pulsar un resultado escuchando el clic,
+no el cambio de URL.
+**Por qué:** la lista desplegable no quita el árbol de su sitio mientras se
+busca. El clic, porque pulsar la cuenta que ya está abierta no cambia la URL
+y la lista se habría quedado abierta. No se cierra con Escape ni al pulsar
+fuera: se dejó para más adelante si hace falta. Lo decidió Albert, sabiendo
+que era la opción más larga.
+
+### Decisión · De lo que dibujan las maquetas, solo las migas de pan
+**Qué:** "Grupo 4 › Subgrupo 43 › 430" encima del título, con los antepasados
+como enlaces. "Ver también", "Vecinas", "Mostrar los movimientos restantes" y
+el menú "Cuadro · Normas · Diario" se quedan fuera.
+**Por qué:** las migas salen de los datos y orientan. "Ver también" no está en
+el JSON, "Vecinas" ya las enseña el árbol, y el menú es para módulos que aún
+no existen. Lo decidió Albert.
+
+### Decisión · Se quita la etiqueta del grupo de debajo del título
+**Qué:** la etiqueta "Grupo 4 · Acreedores y deudores..." del paso 15
+desaparece; queda solo la del nivel ("Cuenta").
+**Por qué:** con las migas y la ficha rápida, el grupo salía tres veces. Lo
+decidió Albert.
+
+### Decisión · El commit no se llama como decía la hoja de ruta
+**Qué:** `feat: repartir la página en árbol, ficha y ficha rápida` en lugar
+de `feat: añadir el índice y el panel lateral de la ficha`.
+**Por qué:** al final no hay índice de la ficha; el nombre viejo describiría
+algo que no está en el commit.
+
 ### Cambio · Paso 17 bis: convertir en enlaces las remisiones del texto
 **Qué:** el parser busca en la definición y la presentación las remisiones a
 otras cuentas (`PATRON_REMISION`) y las guarda en dos campos nuevos,

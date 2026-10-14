@@ -1,5 +1,5 @@
-// Lee el cuadro de cuentas, lo muestra como árbol y como lista, filtra la lista
-// con el buscador y enseña la ficha de la cuenta que pide la URL (#430).
+// Lee el cuadro de cuentas, lo muestra como árbol, busca cuentas con el
+// buscador de la cabecera y enseña la ficha de la cuenta que pide la URL (#430).
 
 // Todas las cuentas del JSON. Está fuera de las funciones para que todas puedan
 // usarla. Empieza vacía y la rellena cargarCuentas cuando llega el fichero.
@@ -15,6 +15,11 @@ const nombreDelNivel = {
     subgrupo:  "Subgrupo",
     cuenta:    "Cuenta",
     subcuenta: "Subcuenta",
+};
+
+// Cómo se escribe cada plan en la ficha rápida. De momento solo hay uno.
+const nombreDelPlan = {
+    "pgc-general": "PGC normal",
 };
 
 // La caja de texto del buscador. Se busca una sola vez y se guarda aquí.
@@ -62,8 +67,17 @@ function normalizar(texto) {
 }
 
 // La llama el navegador cada vez que cambia el texto de la caja de búsqueda.
+// Enseña los resultados en la lista desplegable, o la esconde si la caja
+// se ha quedado vacía.
 function filtrarCuentas() {
+    const lista = document.getElementById("lista-cuentas");
     const textoBuscado = normalizar(cajaBuscador.value);
+
+    // Sin texto no hay nada que buscar: la lista se esconde y ya está.
+    if (textoBuscado === "") {
+        lista.hidden = true;
+        return;
+    }
 
     // filter recorre todas las cuentas y se queda con aquellas para las que
     // la función de dentro devuelve true.
@@ -76,6 +90,23 @@ function filtrarCuentas() {
     });
 
     pintarLista(encontradas);
+
+    // Si nada coincide, se dice, en vez de enseñar una lista vacía.
+    if (encontradas.length === 0) {
+        const aviso = document.createElement("li");
+        aviso.className = "aviso-sin-texto";
+        aviso.textContent = "Ninguna cuenta coincide con «" + cajaBuscador.value + "».";
+        lista.appendChild(aviso);
+    }
+
+    lista.hidden = false;
+}
+
+// Cierra el buscador: vacía la caja y esconde la lista. Se llama al pulsar un
+// resultado, porque entonces ya se ha encontrado lo que se buscaba.
+function cerrarBuscador() {
+    cajaBuscador.value = "";
+    document.getElementById("lista-cuentas").hidden = true;
 }
 
 // Construye un índice para encontrar rápido los hijos de cualquier código:
@@ -243,6 +274,115 @@ function pintarMovimientos(lista, movimientos, contrapartidas, avisoSiNoHay) {
     }
 }
 
+// Pinta las migas de pan encima del título: "Grupo 4 › Subgrupo 43 › 430".
+// Para saber de quién cuelga una cuenta se sube por el árbol: el padre, el
+// padre del padre... hasta el grupo, que no tiene padre.
+function pintarMigas(cuenta) {
+    const migas = document.getElementById("ficha-migas");
+    migas.replaceChildren();
+
+    // Primero se apuntan los antepasados, de abajo arriba. No se sabe cuántos
+    // hay (un subgrupo tiene uno; una subcuenta, tres), por eso es un while:
+    // se repite mientras la cuenta de la que vamos tenga padre.
+    // unshift mete cada uno al PRINCIPIO de la lista (push lo mete al final):
+    // así, aunque se suba de la 430 al 43 y luego al 4, la lista queda
+    // en el orden en que se lee: [grupo 4, subgrupo 43].
+    const antepasados = [];
+    let actual = cuenta;
+    while (actual.padre !== null) {
+        actual = cuentasPorCodigo[actual.padre];
+        antepasados.unshift(actual);
+    }
+
+    // Cada antepasado, como enlace a su ficha y seguido de la flecha.
+    for (const antepasado of antepasados) {
+        const texto = nombreDelNivel[antepasado.nivel] + " " + antepasado.codigo;
+        migas.appendChild(crearEnlaceACuenta(antepasado.codigo, texto));
+
+        const separador = document.createElement("span");
+        separador.className = "separador-migas";
+        separador.textContent = " › ";
+        migas.appendChild(separador);
+    }
+
+    // Y al final la cuenta en la que estamos, sin enlace: ya estás en ella.
+    const actualSinEnlace = document.createElement("span");
+    actualSinEnlace.textContent = cuenta.codigo;
+    migas.appendChild(actualSinEnlace);
+}
+
+// Añade un par "dato: valor" a la lista de definiciones de la ficha rápida:
+// <dt>Grupo</dt><dd>4 · Acreedores...</dd>. El valor llega ya fabricado
+// (un texto o un enlace), para que sirva para los dos casos.
+function anadirDato(lista, termino, valor) {
+    const elementoTermino = document.createElement("dt");
+    elementoTermino.textContent = termino;
+    lista.appendChild(elementoTermino);
+
+    const elementoValor = document.createElement("dd");
+    elementoValor.appendChild(valor);
+    lista.appendChild(elementoValor);
+}
+
+// Llena una lista de la ficha rápida con las contrapartidas de una columna del
+// movimiento: cada una con su código en cajita (el mismo enlace que en las
+// frases) y su nombre al lado. Si no hay, pone el aviso.
+function pintarContrapartidas(lista, codigos, avisoSiNoHay) {
+    lista.replaceChildren();
+
+    if (codigos.length === 0) {
+        const aviso = document.createElement("li");
+        aviso.className = "aviso-sin-texto";
+        aviso.textContent = avisoSiNoHay;
+        lista.appendChild(aviso);
+        return;
+    }
+
+    for (const codigo of codigos) {
+        const elemento = document.createElement("li");
+
+        const enlace = crearEnlaceACuenta(codigo, codigo);
+        enlace.className = "contrapartida";
+        elemento.appendChild(enlace);
+
+        const contrapartida = cuentasPorCodigo[codigo];
+        const nombre = document.createTextNode(" " + contrapartida.nombre);
+        elemento.appendChild(nombre);
+
+        lista.appendChild(elemento);
+    }
+}
+
+// Rellena la ficha rápida del margen derecho: solo datos que están en el
+// JSON o que salen del código (el grupo es su primera cifra; el subgrupo, sus
+// dos primeras). Nada que haya que deducir del texto del PGC.
+function pintarFichaRapida(cuenta) {
+    const datos = document.getElementById("ficha-rapida-datos");
+    datos.replaceChildren();
+
+    // createTextNode fabrica un trozo de texto suelto, para los valores que
+    // no son enlace.
+    anadirDato(datos, "Plan", document.createTextNode(nombreDelPlan[cuenta.plan]));
+    anadirDato(datos, "Nivel", document.createTextNode(nombreDelNivel[cuenta.nivel]));
+
+    // El grupo y el subgrupo, como enlaces a su ficha. Cada uno solo si la
+    // cuenta está por debajo: un grupo no lleva grupo, porque sería él mismo.
+    if (cuenta.nivel !== "grupo") {
+        const grupo = cuentasPorCodigo[cuenta.codigo.slice(0, 1)];
+        anadirDato(datos, "Grupo", crearEnlaceACuenta(grupo.codigo, grupo.codigo + " · " + grupo.nombre));
+    }
+    if (cuenta.nivel === "cuenta" || cuenta.nivel === "subcuenta") {
+        const subgrupo = cuentasPorCodigo[cuenta.codigo.slice(0, 2)];
+        anadirDato(datos, "Subgrupo", crearEnlaceACuenta(subgrupo.codigo, subgrupo.codigo + " · " + subgrupo.nombre));
+    }
+
+    const cargos = document.getElementById("ficha-rapida-cargos");
+    const abonos = document.getElementById("ficha-rapida-abonos");
+
+    pintarContrapartidas(cargos, cuenta.contrapartidas_cargos, "Ninguna.");
+    pintarContrapartidas(abonos, cuenta.contrapartidas_abonos, "Ninguna.");
+}
+
 // Rellena los huecos de la ficha con los datos de una cuenta y la muestra.
 function mostrarFicha(cuenta) {
     const ficha = document.getElementById("ficha-cuenta");
@@ -260,16 +400,6 @@ function mostrarFicha(cuenta) {
     etiquetaNivel.textContent = nombreDelNivel[cuenta.nivel];
     etiquetas.appendChild(etiquetaNivel);
 
-    // El grupo es la primera cifra del código. Un grupo no lleva esta
-    // etiqueta, porque sería él mismo.
-    if (cuenta.nivel !== "grupo") {
-        const grupo = cuentasPorCodigo[cuenta.codigo[0]];
-        const etiquetaGrupo = document.createElement("span");
-        etiquetaGrupo.className = "etiqueta";
-        etiquetaGrupo.textContent = "Grupo " + grupo.codigo + " · " + grupo.nombre;
-        etiquetas.appendChild(etiquetaGrupo);
-    }
-    
     const definicion = document.getElementById("ficha-definicion");
     const presentacion = document.getElementById("ficha-presentacion");
 
@@ -282,10 +412,15 @@ function mostrarFicha(cuenta) {
     pintarMovimientos(cargos, cuenta.cargos, cuenta.contrapartidas_cargos, "Sin cargos en el texto del PGC.");
     pintarMovimientos(abonos, cuenta.abonos, cuenta.contrapartidas_abonos, "Sin abonos en el texto del PGC.");
 
-    ficha.hidden = false;
+    pintarMigas(cuenta);
+    pintarFichaRapida(cuenta);
 
-    // La ficha está arriba del todo: si se pulsa una cuenta de más abajo,
-    // la página sube para que se vea. Cuando la ficha vaya al lado (paso 18), sobrará.
+    ficha.hidden = false;
+    document.getElementById("ficha-rapida").hidden = false;
+
+    // Si se pulsa una contrapartida al final de un movimiento largo, la página
+    // está desplazada hacia abajo: sube para que la ficha nueva se lea desde
+    // el principio.
     ficha.scrollIntoView();
 }
 
@@ -295,6 +430,7 @@ function mostrarFicha(cuenta) {
 // se ha abierto un enlace directo a una cuenta.
 function mostrarCuentaDeLaUrl() {
     const ficha = document.getElementById("ficha-cuenta");
+    const fichaRapida = document.getElementById("ficha-rapida");
     const aviso = document.getElementById("aviso-cuenta");
 
     // location.hash es "#430": slice(1) quita la "#". El navegador codifica
@@ -314,12 +450,14 @@ function mostrarCuentaDeLaUrl() {
     // Sin código, la página queda como al entrar: sin ficha.
     if (codigo === "") {
         ficha.hidden = true;
+        fichaRapida.hidden = true;
         return;
     }
 
     const cuenta = cuentasPorCodigo[codigo];
     if (cuenta === undefined) {
         ficha.hidden = true;
+        fichaRapida.hidden = true;
         aviso.textContent = "No hay ninguna cuenta con el código «" + codigo + "» en el PGC.";
         aviso.hidden = false;
         aviso.scrollIntoView();
@@ -333,7 +471,6 @@ async function cargarCuentas() {
     const respuesta = await fetch("../data/accounts.json");
     todasLasCuentas = await respuesta.json();
     cuentasPorCodigo = indexarPorCodigo(todasLasCuentas);
-    pintarLista(todasLasCuentas);
     pintarArbol();
 
     // Ahora que ya hay cuentas, se mira si la URL pide alguna.
@@ -347,3 +484,10 @@ window.addEventListener("hashchange", mostrarCuentaDeLaUrl);
 
 // Encargo al navegador: cuando cambie el texto de la caja, llama a filtrarCuentas.
 cajaBuscador.addEventListener("input", filtrarCuentas);
+
+// Encargo al navegador: cuando se pulse dentro de la lista de resultados,
+// cierra el buscador. Se escucha el clic y no el cambio de URL porque, si
+// pulsas la cuenta que ya está abierta, la URL no cambia y la lista se
+// quedaría abierta. El enlace sigue funcionando: primero se cierra la lista
+// y después el navegador cambia la URL como siempre.
+document.getElementById("lista-cuentas").addEventListener("click", cerrarBuscador);
