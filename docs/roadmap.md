@@ -236,11 +236,23 @@ cambia (`#430`), así que el botón "atrás" funciona y se puede compartir un en
 directo a `#436` funciona.
 `feat: navegar entre cuentas por la URL`
 
-> **Pendiente de decidir aquí:** en el árbol, los títulos de grupos y subgrupos
-> solo pliegan y despliegan; su ficha solo se abre desde el buscador. Al pasar
-> las cuentas a enlaces, decidir cómo se abren también grupos y subgrupos sin
-> estorbar al plegado. Idea de Albert: que las remisiones dentro del texto
-> ("análogo al señalado para la cuenta 100", en la 101) también sean enlaces.
+> **Decidido en este paso:** en el árbol, el título de un grupo o subgrupo es
+> el enlace a su ficha y el triángulo es el que pliega. Un enlace a una cuenta
+> que no existe enseña un aviso. Las remisiones del texto van en un paso propio,
+> el 17 bis.
+
+### Paso 17 bis · Las remisiones del texto, como enlaces
+**Qué:** idea de Albert. En la definición y la presentación, las remisiones a
+otras cuentas ("análogo al señalado para la cuenta 100", en la 101; "cuentas
+663 y 763"; "subgrupo 58") pasan a ser enlaces, como las contrapartidas. El
+parser las detecta y las guarda en el JSON, como hizo con las contrapartidas
+en el paso 9.
+**Aprendes:** una regla de datos que mira el contexto, no solo el número: de
+los 448 números que coinciden con una cuenta, unos 15 no son remisiones
+("artículo 170", "artículos 239 a 243", "Ley 46/1998").
+**Compruebas:** en la 101, el 100 es un enlace; en la que cite el "artículo
+239", el 239 no lo es.
+`feat: convertir en enlaces las remisiones del texto`
 
 ### Paso 18 · El índice y la ficha rápida
 **Qué:** el índice de contenidos a la izquierda de la ficha y el panel de ficha

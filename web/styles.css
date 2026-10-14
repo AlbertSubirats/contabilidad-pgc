@@ -43,10 +43,21 @@ details details {
     color: var(--color-tinta-suave);
 }
 
-/* Las cuentas de la lista y del árbol se pueden pulsar: la manita lo indica. */
-#lista-cuentas li,
-#arbol-cuentas li {
-    cursor: pointer;
+/* Las cuentas de la lista y del árbol son enlaces (#430), pero conservan el
+   color del texto y van sin subrayar: solo se subrayan al pasar el ratón
+   (:hover) o al llegar con el teclado (:focus-visible), para que se note que
+   se pueden pulsar. */
+#lista-cuentas a,
+#arbol-cuentas a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#lista-cuentas a:hover,
+#lista-cuentas a:focus-visible,
+#arbol-cuentas a:hover,
+#arbol-cuentas a:focus-visible {
+    text-decoration: underline;
 }
 
 /* Movimiento: las dos columnas ("Se cargará" y "Se abonará") una al lado de
@@ -88,11 +99,18 @@ details details {
 }
 
 /* Contrapartidas dentro de las frases del movimiento: el número de cuenta en
-   su cajita. El color, cruzado según la columna, va en las reglas de abajo. */
+   su cajita, como enlace a su ficha. El color, cruzado según la columna, va en
+   las reglas de abajo. Como las cuentas de la lista, se subrayan al pasar. */
 .contrapartida {
     padding: 0.05em 0.35em;
     border-radius: 0.3em;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.contrapartida:hover,
+.contrapartida:focus-visible {
+    text-decoration: underline;
 }
 
 /* Títulos de las columnas: "Se cargará" en el color del debe y "Se abonará"

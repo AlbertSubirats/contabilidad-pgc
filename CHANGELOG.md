@@ -12,6 +12,65 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 17: navegar entre cuentas por la URL
+**Qué:** las contrapartidas, las cuentas de la lista y del árbol, y los
+títulos de grupos y subgrupos del árbol son enlaces (`<a href="#430">`), que
+fabrica `crearEnlaceACuenta`. Un enlace solo cambia el hash de la URL; el
+enrutador, `mostrarCuentaDeLaUrl`, se entera por el evento `hashchange` y
+enseña la ficha, y también se llama al cargar la página, después de que
+llegue el JSON. Comprobado en el navegador: el enlace directo a `#430` abre su
+ficha, de la 430 se llega a la 436 pulsando su contrapartida, "atrás" vuelve a
+la 430, sin `#` la página queda como al entrar, y sin errores en la consola.
+Escrito por Claude, trozo a trozo, a petición de Albert.
+**Por qué:** la ficha enseña el asiento entero; ahora se puede recorrer. La URL
+hace que "atrás" funcione y que se pueda compartir el enlace a una cuenta.
+
+### Decisión · Un solo camino para abrir una ficha: la URL
+**Qué:** nada llama a `mostrarFicha` directamente salvo el enrutador. Los
+clics cambian la URL y la URL decide.
+**Por qué:** así un clic, el botón "atrás" y un enlace compartido van por el
+mismo camino y no pueden comportarse distinto. Además, las cuentas pasan de un
+`click` en el `<li>` a enlaces de verdad, que se pueden usar con el teclado
+(Tab y Enter) y abrir en otra pestaña: era lo que el paso 15 dejó apuntado
+como provisional. El desplazamiento hasta la ficha (`scrollIntoView`) sigue
+hasta el paso 18.
+
+### Decisión · En el árbol, el título es el enlace y el triángulo pliega
+**Qué:** el texto del `<summary>` de cada grupo y subgrupo es un enlace a su
+ficha. Para plegar y desplegar queda el triángulo.
+**Por qué:** era el pendiente del paso 17 en la hoja de ruta. Se compararon un
+enlace aparte "ficha" junto al título, el título como enlace, y no hacer
+nada. Albert eligió el título como enlace, la opción más limpia. Se comprobó
+que pulsar un enlace dentro de un `<summary>` sigue el enlace sin plegar la
+caja, así que no hace falta código para evitarlo.
+
+### Decisión · Un enlace a una cuenta que no existe enseña un aviso
+**Qué:** con `#9999` (o `#hola`), la ficha se esconde y sale "No hay ninguna
+cuenta con el código «9999» en el PGC.", con el estilo de los demás avisos.
+**Por qué:** lo pidió Albert, en vez de no hacer nada: un enlace roto tiene
+que decir que lo está. El código se pasa por `decodeURIComponent` para que el
+aviso enseñe lo que se escribió ("é" y no "%C3%A9"). Al probarlo apareció un
+fallo: con un "%" suelto (`#50%`) `decodeURIComponent` lanza un `URIError` y
+el enrutador se cortaba sin enseñar nada. Se arregla con `try`/`catch`: si no
+se puede decodificar, se usa el texto tal cual.
+
+### Decisión · Las remisiones del texto, en un paso propio (17 bis)
+**Qué:** la idea de Albert de que "análogo al señalado para la cuenta 100"
+también sea un enlace se apunta en la hoja de ruta como paso 17 bis.
+**Por qué:** de los 448 números de las definiciones y presentaciones que
+coinciden con una cuenta, unos 15 no son remisiones ("artículo 170",
+"artículos 239 a 243", "Ley 46/1998"). Con la regla de las contrapartidas,
+"artículo 239" enlazaría con la 239. Hace falta una regla que mire la palabra
+de delante, calculada en el parser y verificada: es un paso por sí misma. Lo
+decidió Albert.
+
+### Problema conocido · Pulsar la cuenta que ya se está viendo no hace nada
+**Qué:** si se está viendo la 430 y se pulsa otra vez su enlace (por ejemplo,
+en la lista, más abajo), la URL no cambia, no hay `hashchange` y la página no
+sube hasta la ficha.
+**Por qué se deja:** es menor, y desaparece en el paso 18, cuando la ficha vaya
+al lado de la lista y deje de hacer falta subir.
+
 ### Cambio · Paso 1b·6: usar las etiquetas del BOE en el movimiento
 **Qué:** la web lee ya los datos del BOE. `pintarMovimientos` pinta la
 etiqueta que trae cada movimiento ("a1", "b3", o la "a" sola de la 761), y si

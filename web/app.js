@@ -1,4 +1,5 @@
-// Lee el cuadro de cuentas, lo muestra como árbol y como lista, y filtra la lista con el buscador.
+// Lee el cuadro de cuentas, lo muestra como árbol y como lista, filtra la lista
+// con el buscador y enseña la ficha de la cuenta que pide la URL (#430).
 
 // Todas las cuentas del JSON. Está fuera de las funciones para que todas puedan
 // usarla. Empieza vacía y la rellena cargarCuentas cuando llega el fichero.
@@ -19,18 +20,22 @@ const nombreDelNivel = {
 // La caja de texto del buscador. Se busca una sola vez y se guarda aquí.
 const cajaBuscador = document.getElementById("buscador");
 
-// Fabrica el <li> de una cuenta: con su texto y con el click que abre su ficha.
-// La usan la lista y el árbol, así que cómo se pinta una cuenta se decide aquí.
+// Fabrica un enlace a la ficha de una cuenta: <a href="#430">. El enlace solo
+// cambia la URL; quien abre la ficha es mostrarCuentaDeLaUrl, que se entera
+// por el evento hashchange. Lo usan la lista, el árbol y las contrapartidas.
+function crearEnlaceACuenta(codigo, texto) {
+    const enlace = document.createElement("a");
+    enlace.href = "#" + codigo;
+    enlace.textContent = texto;
+    return enlace;
+}
+
+// Fabrica el <li> de una cuenta, con su enlace dentro. La usan la lista y el
+// árbol, así que cómo se pinta una cuenta se decide aquí.
 function crearElementoDeCuenta(cuenta) {
     const elemento = document.createElement("li");
-    elemento.textContent = cuenta.codigo + " · " + cuenta.nombre;
-
-    // La función anónima hace falta para poder decirle a mostrarFicha QUÉ
-    // cuenta tiene que mostrar.
-    elemento.addEventListener("click", function () {
-        mostrarFicha(cuenta);
-    });
-
+    const enlace = crearEnlaceACuenta(cuenta.codigo, cuenta.codigo + " · " + cuenta.nombre);
+    elemento.appendChild(enlace);
     return elemento;
 }
 
@@ -121,8 +126,10 @@ function pintarArbol() {
 
     for (const grupo of grupos) {
         const cajaGrupo = document.createElement("details");
+        // El título es un enlace a la ficha del grupo; el triángulo de la
+        // izquierda es el que pliega y despliega.
         const tituloGrupo = document.createElement("summary");
-        tituloGrupo.textContent = grupo.codigo + " · " + grupo.nombre;
+        tituloGrupo.appendChild(crearEnlaceACuenta(grupo.codigo, grupo.codigo + " · " + grupo.nombre));
 
         cajaGrupo.appendChild(tituloGrupo);
 
@@ -132,7 +139,7 @@ function pintarArbol() {
         for (const subgrupo of subgrupos) {
             const cajaSubgrupo = document.createElement("details");
             const tituloSubgrupo = document.createElement("summary");
-            tituloSubgrupo.textContent = subgrupo.codigo + " · " + subgrupo.nombre;
+            tituloSubgrupo.appendChild(crearEnlaceACuenta(subgrupo.codigo, subgrupo.codigo + " · " + subgrupo.nombre));
             cajaSubgrupo.appendChild(tituloSubgrupo);
 
             // Las cuentas de este subgrupo, como una lista normal dentro de su caja.
@@ -173,8 +180,8 @@ function rellenarConParrafos(contenedor, parrafos, avisoSiNoHay) {
 }
 
 // Crea la frase de un movimiento con sus contrapartidas convertidas en
-// etiquetas: "...con abono a la cuenta [437]." Solo son etiqueta los números
-// que están en la lista de contrapartidas de la columna; los demás números
+// enlaces: "...con abono a la cuenta [437]." Solo son enlace los números que
+// están en la lista de contrapartidas de la columna; los demás números
 // (artículos, porcentajes...) se quedan como texto.
 function crearFraseConContrapartidas(texto, contrapartidas) {
     const frase = document.createElement("span");
@@ -185,10 +192,9 @@ function crearFraseConContrapartidas(texto, contrapartidas) {
 
     for (const trozo of trozos) {
         if (contrapartidas.includes(trozo)) {
-            const etiqueta = document.createElement("span");
-            etiqueta.className = "contrapartida";
-            etiqueta.textContent = trozo;
-            frase.appendChild(etiqueta);
+            const enlace = crearEnlaceACuenta(trozo, trozo);
+            enlace.className = "contrapartida";
+            frase.appendChild(enlace);
         } else {
             const textoNormal = document.createTextNode(trozo);
             frase.appendChild(textoNormal);
@@ -281,15 +287,61 @@ function mostrarFicha(cuenta) {
     ficha.scrollIntoView();
 }
 
+// El enrutador: mira qué código hay en la URL (#430) y decide qué se enseña.
+// La llama el navegador cada vez que cambia la URL (un enlace, el botón
+// "atrás", alguien que lo escribe a mano), y cargarCuentas al empezar, por si
+// se ha abierto un enlace directo a una cuenta.
+function mostrarCuentaDeLaUrl() {
+    const ficha = document.getElementById("ficha-cuenta");
+    const aviso = document.getElementById("aviso-cuenta");
+
+    // location.hash es "#430": slice(1) quita la "#". El navegador codifica
+    // en la URL las letras que no son simples ("é" → "%C3%A9");
+    // decodeURIComponent las devuelve a como se escribieron. Pero si alguien
+    // escribe un "%" suelto (#50%), decodeURIComponent lanza un error; con
+    // try/catch, en vez de cortarlo todo, se usa el texto tal cual.
+    let codigo;
+    try {
+        codigo = decodeURIComponent(location.hash.slice(1));
+    } catch (error) {
+        codigo = location.hash.slice(1);
+    }
+
+    aviso.hidden = true;
+
+    // Sin código, la página queda como al entrar: sin ficha.
+    if (codigo === "") {
+        ficha.hidden = true;
+        return;
+    }
+
+    const cuenta = cuentasPorCodigo[codigo];
+    if (cuenta === undefined) {
+        ficha.hidden = true;
+        aviso.textContent = "No hay ninguna cuenta con el código «" + codigo + "» en el PGC.";
+        aviso.hidden = false;
+        aviso.scrollIntoView();
+        return;
+    }
+
+    mostrarFicha(cuenta);
+}
+
 async function cargarCuentas() {
     const respuesta = await fetch("../data/accounts.json");
     todasLasCuentas = await respuesta.json();
     cuentasPorCodigo = indexarPorCodigo(todasLasCuentas);
     pintarLista(todasLasCuentas);
     pintarArbol();
+
+    // Ahora que ya hay cuentas, se mira si la URL pide alguna.
+    mostrarCuentaDeLaUrl();
 }
 
 cargarCuentas();
+
+// Encargo al navegador: cuando cambie el código de la URL, enseña su cuenta.
+window.addEventListener("hashchange", mostrarCuentaDeLaUrl);
 
 // Encargo al navegador: cuando cambie el texto de la caja, llama a filtrarCuentas.
 cajaBuscador.addEventListener("input", filtrarCuentas);
