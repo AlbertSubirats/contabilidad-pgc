@@ -198,11 +198,11 @@ function crearFraseConContrapartidas(texto, contrapartidas) {
     return frase;
 }
 
-// Llena una columna del movimiento: un <li> por movimiento, con su número
-// delante ("a1", "a2"... en los cargos y "b1", "b2"... en los abonos), como
-// los numera el PGC. Las frases de entrada van sin número. Si no hay
-// movimientos, pone el aviso.
-function pintarMovimientos(lista, movimientos, contrapartidas, letra, avisoSiNoHay) {
+// Llena una columna del movimiento: un <li> por movimiento, con su etiqueta
+// delante ("a1", "b3"...) tal como la escribe el PGC. En las cuentas de pasivo
+// los cargos son la "b", así que la etiqueta no se puede deducir de la columna.
+// Si no hay movimientos, pone el aviso.
+function pintarMovimientos(lista, movimientos, contrapartidas, avisoSiNoHay) {
     lista.replaceChildren();
 
     if (movimientos.length === 0) {
@@ -213,27 +213,22 @@ function pintarMovimientos(lista, movimientos, contrapartidas, letra, avisoSiNoH
         return;
     }
 
-    let numero = 1;
-
-    for (const texto of movimientos) {
+    for (const movimiento of movimientos) {
         const elemento = document.createElement("li");
 
-        // Una frase que empieza en minúscula no es un movimiento: continúa el
-        // título de la columna ("Se cargará por el importe íntegro...:"). Va
-        // sin número, ocupando todo el ancho, y no cuenta para la numeración.
-        const continuaElTitulo = /^[a-záéíóúüñ]/.test(texto);
-
-        if (continuaElTitulo) {
+        // Un movimiento sin etiqueta es la frase de entrada de la columna, lo
+        // que va detrás de "Se cargará" ("por el importe íntegro..."). Va sin
+        // número, ocupando todo el ancho.
+        if (movimiento.etiqueta === null) {
             elemento.className = "entrada-movimiento";
         } else {
-            const numeroDelMovimiento = document.createElement("span");
-            numeroDelMovimiento.className = "numero-movimiento";
-            numeroDelMovimiento.textContent = letra + numero;
-            elemento.appendChild(numeroDelMovimiento);
-            numero = numero + 1;
+            const etiquetaDelMovimiento = document.createElement("span");
+            etiquetaDelMovimiento.className = "numero-movimiento";
+            etiquetaDelMovimiento.textContent = movimiento.etiqueta;
+            elemento.appendChild(etiquetaDelMovimiento);
         }
 
-        const frase = crearFraseConContrapartidas(texto, contrapartidas);
+        const frase = crearFraseConContrapartidas(movimiento.texto, contrapartidas);
         elemento.appendChild(frase);
 
         lista.appendChild(elemento);
@@ -276,8 +271,8 @@ function mostrarFicha(cuenta) {
     const cargos = document.getElementById("ficha-cargos");
     const abonos = document.getElementById("ficha-abonos");
 
-    pintarMovimientos(cargos, cuenta.cargos, cuenta.contrapartidas_cargos, "a", "Sin cargos en el texto del PGC.");
-    pintarMovimientos(abonos, cuenta.abonos, cuenta.contrapartidas_abonos, "b", "Sin abonos en el texto del PGC.");
+    pintarMovimientos(cargos, cuenta.cargos, cuenta.contrapartidas_cargos, "Sin cargos en el texto del PGC.");
+    pintarMovimientos(abonos, cuenta.abonos, cuenta.contrapartidas_abonos, "Sin abonos en el texto del PGC.");
 
     ficha.hidden = false;
 

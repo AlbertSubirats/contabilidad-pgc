@@ -12,8 +12,9 @@ Una web para estudiar contabilidad con el Plan General de Contabilidad (PGC):
 Está en construcción. El plan está en [docs/roadmap.md](docs/roadmap.md)
 y el historial de decisiones en [CHANGELOG.md](CHANGELOG.md).
 
-El contenido contable sale del texto refundido del PGC (versión 2021), que está en
-[sources/](sources/).
+El contenido contable sale del texto consolidado del PGC que publica el BOE
+(`BOE-A-2007-19884`), descargado de su API de datos abiertos y guardado en
+[sources/boe/](sources/boe/).
 
 ## Sobre este proyecto
 

@@ -236,12 +236,13 @@ Los descarga `tools/download_boe.py`. **No se editan a mano nunca.**
 4. **Las erratas del texto oficial se respetan** (por ejemplo, "CARÁCTERÍSTICAS"
    en el subgrupo 50). La herramienta reproduce la norma tal como se publicó.
 
-**Fuente anterior, temporal:** `sources/Texto refundido PGC 2021.md`, que viene
-de un OCR (marcas `{300}-----`, títulos perdidos, párrafos partidos). Sirvió
-en el paso 1b·5 para comparar el JSON que sale del BOE con el que salía de
-aquí, y la comparación no encontró nada que el OCR tuviera bien y el BOE no.
-**Se retira en el paso 1b·6**, junto con `parser.py`, cuando la web pase al JSON
-del BOE. Hasta entonces no se le aplican más arreglos.
+**Fuente anterior, retirada:** `sources/Texto refundido PGC 2021.md`, que venía
+de un OCR (marcas `{300}-----`, títulos perdidos, párrafos partidos), y el PDF
+del que salía. En el paso 1b·5 se comparó el JSON del BOE con el que salía de
+ahí, y la comparación no encontró nada que el OCR tuviera bien y el BOE no. Se
+retiraron en el paso 1b·6, junto con su parser. Siguen en el historial de git
+(commit `b02aef8`), y algunas pruebas de las fes de erratas de
+`tools/parser.py` citan el texto refundido.
 
 ---
 

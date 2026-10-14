@@ -1,138 +1,103 @@
-# Parser del texto refundido del PGC.
-# Lee el fichero fuente, limpia la basura que dejó el OCR, extrae el cuadro
-# de cuentas (Cuarta Parte) y le añade a cada cuenta su ficha (Quinta Parte).
-# Lo guarda todo en data/accounts.json.
+# Parser del PGC a partir del texto del BOE (sources/boe/texto.xml).
+# Extrae el cuadro de cuentas, de las tablas de la cuarta parte, y le añade
+# a cada cuenta su ficha, de la quinta parte. Lo guarda en
+# data/accounts.json, que es lo que lee la web.
 
 import json
 import re
 from pathlib import Path
 
-# Una marca de página del OCR: una llave, un número, otra llave y una tira de
-# guiones. Por ejemplo: {17}------------------------------------------------
-PATRON_MARCA_DE_PAGINA = r"\{\d+\}-+"
-
-# Un código de cuenta: de 2 a 5 cifras, un punto y un espacio. Por ejemplo
-# "430. ". Los paréntesis forman un grupo de captura: guardan las cifras.
-PATRON_CODIGO_DE_CUENTA = r"(\d{2,5})\. "
-
-# El título de una ficha: un código y el nombre de la cuenta. Por ejemplo
-# "430. Clientes". El punto es opcional porque el OCR a veces se lo comió.
-PATRON_TITULO_DE_FICHA = r"(\d{2,5})\.? (.+)"
-
-# El título de una ficha compartida por varias cuentas, con los códigos
-# separados por barras. Por ejemplo "600/601/602/607. Compras de . . . ."
-PATRON_TITULO_COMPARTIDO = r"(\d{3,5}(/\d{3,5})+)\.?( .*)?"
-
-# El principio de un movimiento: "a) Se cargará:", "b) Se abonarán: b1) ..."
-# o "Se cargará:" sin letra. Detrás del verbo puede ir dos puntos o una coma
-# ("Se abonará, al cierre del ejercicio, ...").
-# Grupo 2: el verbo. Grupo 3: lo que venga detrás.
-PATRON_INICIO_DE_MOVIMIENTO = r"([a-z]\) )?Se (cargar|abonar)án?[:,]?\s*(.*)"
-
-# La etiqueta de cada movimiento dentro de la lista: "a1) ", "b12) "...
-PATRON_ETIQUETA_DE_MOVIMIENTO = r"[a-z]\d+\) "
+from boe_reader import cargar_raiz, parrafos_del_bloque, filas_de_las_tablas, contenido_del_bloque
 
 PLAN = "pgc-general"
 
-# Un número de página que el OCR pegó al principio de una línea, delante del
-# texto: "305 Cuando los deudores..." o "#### 222 23. INMOVILIZACIONES...".
-# Tres cifras y un espacio, sin punto (un código de cuenta lleva punto: "430.").
-# Grupo 1: los "#" y espacios de delante, que hay que conservar.
-PATRON_NUMERO_DE_PAGINA_PEGADO = r"^(#*\s*)\d{3} "
+# El título de una ficha: "430. Clientes", "600/601/602/607. Compras de...",
+# "2403/2404 Participaciones..." (sin punto) o "230/237" (sin nombre).
+# Grupo 1: los códigos, con sus barras.
+PATRON_TITULO_DE_FICHA = r"(\d{3,5}(/\d{3,5})*)\.?( .*)?"
 
-# Fe de erratas: fallos del OCR que ocurren una sola vez y que no merecen una
-# regla. Cada entrada es "texto tal como lo dejó el OCR" → "texto corregido".
-# Todas se han comprobado contra el PDF original (sources/), cuya página se
-# indica. El fichero .md de sources/ no se toca: la corrección vive aquí.
-FE_DE_ERRATAS = {
-    # 400 Proveedores, PDF p. 465. El OCR tomó el 3 de "a3)" por un
-    # superíndice y el tercer abono se pegaba al segundo.
-    "a<sup>3</sup> )": "a3)",
-    # Subgrupo 53 en el cuadro de cuentas, PDF p. 363. Restos de otra línea
-    # pegados al final del nombre.
-    "EN PARTES VINCULADAS grupo asociadas": "EN PARTES VINCULADAS",
-    # 570/571 Caja, PDF p. 527. El OCR se comió el título de la ficha y su
-    # texto acababa en el subgrupo 57.
-    "\nDisponibilidades de medios líquidos en caja.": "\n570/571. Caja, . . .\n\nDisponibilidades de medios líquidos en caja.",
+# La cabecera de un movimiento: "a) Se cargará:", "Se abonará:", o
+# "b) Se abonará por las enajenaciones..., con cargo a...".
+# Grupo 1: la letra con su paréntesis, si la hay. Grupo 2: el verbo.
+# Grupo 3: lo que venga detrás, que puede ser nada.
+PATRON_CABECERA_DE_MOVIMIENTO = r"([a-z]\) )?Se (cargar|abonar)án?[:,]?\s*(.*)"
+
+# Un movimiento con su etiqueta: "a1) Por las ventas..." o "a) Al devengo...".
+# Grupo 1: la letra. Grupo 2: el número, que puede faltar. Grupo 3: el texto.
+PATRON_ETIQUETA = r"([a-z])(\d*)\) (.*)"
+
+# Una frase de presentación dice en qué parte del balance figura la cuenta:
+# "Figurará en el activo corriente...", "Las cuentas de este subgrupo
+# figurarán en el pasivo...", "...deberá figurar en el epígrafe...".
+PATRON_PRESENTACION = r"[Ff]igurar(á|án)? en el (activo|pasivo|patrimonio|epígrafe)"
+
+# La frase con la que el PGC presenta los movimientos. No dice nada por sí
+# sola: se quita cuando va sola o al final de un párrafo. Si va con algo
+# delante ("Con carácter general, su movimiento..."), el párrafo se queda.
+FRASE_QUE_PRESENTA_EL_MOVIMIENTO = "Su movimiento es el siguiente:"
+
+# Los derivados de cobertura tienen un movimiento en dos niveles con una
+# condición ("b) Cuando el derivado se utilice como instrumento de
+# cobertura...: b1) Se cargará: i) ... ii) ..."). En dos columnas se perdería
+# la condición, así que su movimiento se queda en la definición, tal cual.
+CUENTAS_CON_MOVIMIENTO_ANIDADO = ["1768", "2553", "5593", "5598"]
+
+# Fe de erratas de los títulos de las fichas: lo que dice el BOE → lo que
+# debería decir. Como la del cuadro, solo corrige lo que cambia el sentido.
+TITULOS_CORREGIDOS = {
+    # Prueba: la 5734 y la 5735 no existen; el índice del subgrupo 67 pone la
+    # 6733, la 6734 y la 6735 bajo la 673, y el texto refundido dice
+    # "6733/6734/6735". Sin corregirlo, las tres se quedan sin ficha y su
+    # texto acaba en la 673. Lo destapó la comparación del paso 1b·5.
+    "6733/5734/5735": "6733/6734/6735",
+}
+
+# Los números de los grupos, que son también los de los bloques de la cuarta
+# parte: "grupo1", "grupo2"... (los de la quinta parte son "grupo1-2"...).
+NUMEROS_DE_GRUPO = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+# Fe de erratas del cuadro de cuentas. La tabla de la cuarta parte del BOE
+# tiene errores de contenido, en todas sus versiones. Las erratas que no
+# cambian el sentido ("DETERIOROY") se respetan; estas no, porque dejarían
+# una cuenta sin nombre correcto o fuera del cuadro. Cada corrección dice de
+# dónde sale el dato bueno: nada se completa de memoria.
+# El "texto refundido" que citan algunas pruebas fue la fuente anterior, del
+# OCR. Se retiró en el paso 1b·6, pero sigue en el historial de git: es
+# "sources/Texto refundido PGC 2021.md" en el commit b02aef8.
+
+# Nombres equivocados: lo que dice la tabla del BOE y lo que debería decir.
+# Prueba: las fichas de la quinta parte del mismo BOE (bloque "grupo5-2")
+# dan "500. Obligaciones y bonos a corto plazo", "501. Obligaciones y bonos
+# convertibles a corto plazo" y "502. Acciones o participaciones...". La
+# tabla pega los nombres de la 500 y la 501, y a la 502 la llama 501.
+NOMBRES_CORREGIDOS = {
+    "500": {
+        "en_el_boe": "Obligaciones y bonos a corto plazo Obligaciones y bonos convertibles a corto plazo",
+        "correcto": "Obligaciones y bonos a corto plazo",
+    },
+    "501": {
+        "en_el_boe": "Acciones o participaciones a corto plazo consideradas como pasivos financieros",
+        "correcto": "Obligaciones y bonos convertibles a corto plazo",
+    },
+}
+
+# Cuentas que la tabla del BOE no trae.
+CUENTAS_QUE_FALTAN = {
+    # La que la tabla llamaba 501 (ver arriba). Prueba: bloque "grupo5-2".
+    "502": "Acciones o participaciones a corto plazo consideradas como pasivos financieros",
+    # Prueba: tiene ficha en la quinta parte del BOE (bloque "grupo1-2"), y
+    # está en el cuadro del texto refundido.
+    "1141": "Reservas estatutarias",
+    # Prueba: el cuadro del texto refundido, y el propio BOE las cita en la
+    # cuenta de pérdidas y ganancias (bloque "cuenta"). Las comillas «» son
+    # las que usa el BOE en sus vecinas, la 6654 y la 6657.
+    "6655": "Intereses por operaciones de «factoring» con entidades de crédito asociadas",
+    "6656": "Intereses por operaciones de «factoring» con otras entidades de crédito vinculadas",
 }
 
 
-def aplicar_fe_de_erratas(texto):
-    # Se aplica al texto entero, antes de partirlo en líneas, porque alguna
-    # corrección añade una línea nueva (el "\n" es un salto de línea).
-    for texto_del_ocr, texto_corregido in FE_DE_ERRATAS.items():
-        if texto_del_ocr not in texto:
-            # Si un día cambia el fichero fuente y una errata ya no aparece,
-            # mejor enterarse que creer que se ha corregido.
-            print("AVISO: la errata no aparece en el texto:", texto_del_ocr)
-        texto = texto.replace(texto_del_ocr, texto_corregido)
-    return texto
-
-
-def quitar_numeros_de_pagina_pegados(lineas):
-    lineas_corregidas = []
-    for linea in lineas:
-        # re.sub sustituye lo que encaja con el patrón. r"\1" quiere decir "lo
-        # que capturó el grupo 1": así se quitan las tres cifras y se
-        # conservan los "#" de delante.
-        lineas_corregidas.append(re.sub(PATRON_NUMERO_DE_PAGINA_PEGADO, r"\1", linea))
-    return lineas_corregidas
-
-
-def quitar_marcas_de_pagina(lineas):
-    lineas_sin_marcas = []
-    for linea in lineas:
-        if re.fullmatch(PATRON_MARCA_DE_PAGINA, linea):
-            continue
-        lineas_sin_marcas.append(linea)
-    return lineas_sin_marcas
-
-
-def quitar_espacios_al_final(lineas):
-    lineas_recortadas = []
-    for linea in lineas:
-        lineas_recortadas.append(linea.rstrip())
-    return lineas_recortadas
-
-
-def juntar_lineas_en_blanco(lineas):
-    # Al quitar una marca quedan juntas la línea en blanco de antes y la de
-    # después. Basta con una para separar párrafos.
-    lineas_juntadas = []
-    anterior_era_blanca = False
-    for linea in lineas:
-        es_blanca = linea == ""
-        if es_blanca and anterior_era_blanca:
-            continue
-        lineas_juntadas.append(linea)
-        anterior_era_blanca = es_blanca
-    return lineas_juntadas
-
-
-def recortar_cuarta_parte(lineas):
-    # El cuadro de cuentas es la Cuarta Parte: va desde su título hasta el
-    # título de la Quinta Parte.
-    lineas_de_la_parte = []
-    dentro_de_la_parte = False
-    for linea in lineas:
-        if linea.startswith("# CUARTA PARTE"):
-            dentro_de_la_parte = True
-            continue
-        if linea.startswith("# QUINTA PARTE"):
-            break
-        if dentro_de_la_parte:
-            lineas_de_la_parte.append(linea)
-    return lineas_de_la_parte
-
-
-def quitar_simbolos_de_markdown(linea):
-    # Los títulos empiezan por "#", los elementos de lista por "-", y algunos
-    # textos van en negrita entre "**".
-    linea = linea.strip()
-    linea = linea.lstrip("#- ")
-    linea = linea.replace("**", "")
-    return linea
-
+# Las cuatro funciones siguientes vienen tal cual del parser del texto
+# refundido, retirado en el paso 1b·6: por eso el dato tiene la misma forma.
 
 def nivel_de_cuenta(codigo):
     cifras = len(codigo)
@@ -176,350 +141,338 @@ def crear_cuenta(codigo, nombre):
     return cuenta
 
 
-def extraer_cuadro_de_cuentas(lineas):
-    cuentas = []
-    # "GRUPO 4" va en una línea y su nombre en la siguiente, así que al ver
-    # un grupo hay que acordarse de su código hasta leer la línea de después.
-    grupo_sin_nombre = None
-    for linea in lineas:
-        texto = quitar_simbolos_de_markdown(linea)
-        if texto == "":
-            continue
-
-        if re.fullmatch(r"GRUPO \d", texto):
-            grupo_sin_nombre = texto[-1]
-            continue
-
-        if grupo_sin_nombre is not None:
-            cuentas.append(crear_cuenta(grupo_sin_nombre, texto))
-            grupo_sin_nombre = None
-            continue
-
-        # Una línea puede traer varias cuentas aplastadas:
-        # "430. Clientes 4300. Clientes (euros) 4304. Clientes (moneda ..."
-        # Al partir por el código, los trozos quedan alternados:
-        # ["", "430", "Clientes ", "4300", "Clientes (euros) ", ...]
-        trozos = re.split(PATRON_CODIGO_DE_CUENTA, texto)
-        posicion = 1
-        while posicion < len(trozos):
-            codigo = trozos[posicion]
-            nombre = trozos[posicion + 1].strip().rstrip(".")
-            cuentas.append(crear_cuenta(codigo, nombre))
-            posicion = posicion + 2
-    return cuentas
-
-
-def recortar_quinta_parte(lineas):
-    # Las fichas de las cuentas son la Quinta Parte, que llega hasta el final.
-    lineas_de_la_parte = []
-    dentro_de_la_parte = False
-    for linea in lineas:
-        if linea.startswith("# QUINTA PARTE"):
-            dentro_de_la_parte = True
-            continue
-        if dentro_de_la_parte:
-            lineas_de_la_parte.append(linea)
-    return lineas_de_la_parte
-
-
-def codigos_del_titulo(texto, cuentas_por_codigo):
-    # Devuelve la lista de códigos si la línea es el título de una ficha, o
-    # None si no lo es.
-    coincidencia = re.fullmatch(PATRON_TITULO_COMPARTIDO, texto)
-    if coincidencia:
-        codigos = coincidencia.group(1).split("/")
-        for codigo in codigos:
-            if codigo not in cuentas_por_codigo:
-                return None
-        return codigos
-
-    coincidencia = re.fullmatch(PATRON_TITULO_DE_FICHA, texto)
-    if coincidencia:
-        codigo = coincidencia.group(1)
-        nombre_en_el_titulo = coincidencia.group(2)
-        if codigo not in cuentas_por_codigo:
-            return None
-        # A veces el OCR parte un movimiento justo después de un número, y
-        # una línea empieza por "57. b2) Por su traspaso...". Para no tomarla
-        # por un título, la primera palabra tiene que ser la del nombre de la
-        # cuenta. Solo la primera, porque la Quinta Parte a veces cambia
-        # alguna palabra del nombre respecto de la Cuarta.
-        nombre_en_el_cuadro = cuentas_por_codigo[codigo]["nombre"]
-        primera_palabra_titulo = nombre_en_el_titulo.split()[0].lower()
-        primera_palabra_cuadro = nombre_en_el_cuadro.split()[0].lower()
-        if primera_palabra_titulo == primera_palabra_cuadro:
-            return [codigo]
-    return None
-
-
-def elegir_titulo_de_la_racha(racha):
-    # Una racha es una serie de títulos seguidos, sin texto entre ellos.
-    # Si solo hay uno, es el título de una ficha.
-    if len(racha) == 1:
-        return racha[0]
-    # Si hay varios, es el índice con el que empieza cada subgrupo:
-    #   43. CLIENTES / 430. Clientes / 431. ... / 438. Anticipos de clientes
-    # Si el último repite algún código del índice, es el título de la primera
-    # ficha, que viene justo detrás del índice (como "430. Clientes"). Se
-    # compara código a código porque la ficha puede ser compartida: el título
-    # "680/681/682" no es igual a ningún título del índice, pero el 680 sí
-    # está en el índice.
-    ultimo = racha[-1]
-    anteriores = racha[:-1]
-    for titulo in anteriores:
-        for codigo in titulo:
-            if codigo in ultimo:
-                return ultimo
-    # Si no, el texto que sigue es del subgrupo, que va el primero.
-    return racha[0]
-
-
-def partir_movimientos(texto):
-    # "a1) Por las ventas... a2) Por los envases..." → una lista con un
-    # movimiento por elemento y sin las etiquetas.
-    movimientos = []
-    for trozo in re.split(PATRON_ETIQUETA_DE_MOVIMIENTO, texto):
-        trozo = trozo.strip()
-        if trozo != "":
-            movimientos.append(trozo)
-    return movimientos
-
-
-def habla_de_cargo_y_abono(texto):
-    # Frases como "Se cargarán a la entrada ... y se abonarán a su salida"
-    # describen las dos columnas a la vez y no se pueden repartir sin
-    # inventar. Esas se quedan enteras en la definición.
-    # Solo se mira la cabecera: lo que va antes del primer "b1)" y, de eso,
-    # solo la primera frase. Más allá puede salir la otra palabra sin que la
-    # cabecera sea mixta: "b) Se abonará: b1) ... el importe del mismo se
-    # cargará a la cuenta 4700" o "b) Se abonará por la reducción de capital
-    # ... La diferencia ... se cargará o abonará, según proceda".
-    cabecera = re.split(PATRON_ETIQUETA_DE_MOVIMIENTO, texto)[0]
-    primera_frase = cabecera.split(". ")[0]
-    cabecera_en_minusculas = primera_frase.lower()
-    return "se cargar" in cabecera_en_minusculas and "se abonar" in cabecera_en_minusculas
-
-
-def extraer_fichas(lineas, cuentas):
-    # Para encontrar una cuenta por su código sin recorrer la lista entera.
-    cuentas_por_codigo = {}
-    for cuenta in cuentas:
-        cuentas_por_codigo[cuenta["codigo"]] = cuenta
-
-    # El estado: qué cuentas se están leyendo (una lista, porque una ficha
-    # puede ser de varias) y en qué parte de la ficha estamos: None si es
-    # texto, "cargos" o "abonos" si estamos dentro de los movimientos.
-    codigos_actuales = []
-    parte_actual = None
-    racha_de_titulos = []
-    viene_nombre_de_grupo = False
-
-    for linea in lineas:
-        texto = quitar_simbolos_de_markdown(linea)
-        if texto == "":
-            continue
-
-        # 1. Títulos: cambian la cuenta actual.
-        if re.fullmatch(r"GRUPO \d", texto):
-            codigos_actuales = [texto[-1]]
-            parte_actual = None
-            racha_de_titulos = []
-            viene_nombre_de_grupo = True
-            continue
-        if viene_nombre_de_grupo:
-            # Es "FINANCIACIÓN BÁSICA" o similar: ya lo tenemos del cuadro.
-            viene_nombre_de_grupo = False
-            continue
-
-        codigos = codigos_del_titulo(texto, cuentas_por_codigo)
-        if codigos is not None:
-            racha_de_titulos.append(codigos)
-            continue
-
-        # Si llegamos aquí, la línea no es un título. Si veníamos de una
-        # racha de títulos, ya sabemos de qué cuenta es lo que sigue.
-        if len(racha_de_titulos) > 0:
-            codigos_actuales = elegir_titulo_de_la_racha(racha_de_titulos)
-            parte_actual = None
-            racha_de_titulos = []
-
-        if len(codigos_actuales) == 0:
-            # Texto anterior al primer grupo: no es de ninguna cuenta.
-            continue
-
-        # 2. La frase que presenta los movimientos no se guarda.
-        if texto.lower().endswith("su movimiento es el siguiente:"):
-            continue
-
-        # 3. "Se cargará:" o "Se abonará:": cambian la parte actual.
-        coincidencia = re.match(PATRON_INICIO_DE_MOVIMIENTO, texto)
-        if coincidencia and not habla_de_cargo_y_abono(texto):
-            if coincidencia.group(2) == "cargar":
-                parte_actual = "cargos"
-            else:
-                parte_actual = "abonos"
-            for codigo in codigos_actuales:
-                cuenta = cuentas_por_codigo[codigo]
-                cuenta[parte_actual].extend(partir_movimientos(coincidencia.group(3)))
-            continue
-        if coincidencia:
-            # Una cabecera mixta ("c) Se cargará o se abonará, ...") no va a
-            # ninguna columna, pero tampoco es la continuación del último
-            # movimiento: cierra los movimientos y va a la definición (paso 5).
-            parte_actual = None
-
-        # 4. Dentro de los movimientos.
-        if parte_actual is not None:
-            if re.match(PATRON_ETIQUETA_DE_MOVIMIENTO, texto):
-                for codigo in codigos_actuales:
-                    cuenta = cuentas_por_codigo[codigo]
-                    cuenta[parte_actual].extend(partir_movimientos(texto))
-                continue
-            if texto[0].islower() or texto[0].isdigit():
-                # La línea sigue una frase que el OCR partió. Su primer trozo
-                # completa el último movimiento, y el resto son movimientos
-                # nuevos, si los hay.
-                trozos = partir_movimientos(texto)
-                for codigo in codigos_actuales:
-                    cuenta = cuentas_por_codigo[codigo]
-                    if len(cuenta[parte_actual]) > 0:
-                        cuenta[parte_actual][-1] = cuenta[parte_actual][-1] + " " + trozos[0]
-                    cuenta[parte_actual].extend(trozos[1:])
-                continue
-            # Una frase que empieza en mayúscula es un párrafo nuevo: los
-            # movimientos se han acabado.
-            parte_actual = None
-
-        # 5. Texto normal: la presentación en el balance o la definición.
-        if re.match(r"Figurarán? ", texto):
-            campo = "presentacion"
-        else:
-            campo = "definicion"
-        for codigo in codigos_actuales:
-            cuentas_por_codigo[codigo][campo].append(texto)
-
-
-def detectar_contrapartidas(movimientos, codigos_existentes):
-    # Recibe una lista de movimientos (los cargos o los abonos de una cuenta)
-    # y devuelve, ordenados y sin repetir, los códigos de cuenta que aparecen
-    # en ellos: "...con abono a la cuenta 437" → "437".
-
-    # Un conjunto, y no una lista, porque no admite repetidos: la 430
-    # menciona la 437 en dos movimientos y solo la queremos una vez.
-    codigos_encontrados = set()
-
-    for movimiento in movimientos:
-        # Todos los números del movimiento, en una lista:
-        # "a las cuentas 130, 131 ó 132" → ["130", "131", "132"]
-        numeros = re.findall(r"\d+", movimiento)
-
-        for numero in numeros:
-            # Solo cuenta si es el código de una cuenta que existe. Así no se
-            # cuela un número suelto que haya dejado el OCR.
-            if numero in codigos_existentes:
-                codigos_encontrados.add(numero)
-
-    # JSON no sabe guardar conjuntos, solo listas. Además, un conjunto no
-    # tiene un orden fijo: ordenado, el resultado sale siempre igual.
-    return sorted(codigos_encontrados)
-
-
 def codigo_de_la_cuenta(cuenta):
     # La usa sort() para saber por qué campo ordenar las cuentas. El código es
     # texto, así que se ordena como en un diccionario: "52" < "520" < "5209" < "53".
     # Ese es justo el orden del árbol del cuadro de cuentas.
     return cuenta["codigo"]
 
-# La ruta se calcula a partir de dónde está este script, no de la carpeta
-# desde la que se ejecuta. Así funciona igual lo lances desde donde lo lances.
-carpeta_del_script = Path(__file__).parent
-raiz_del_proyecto = carpeta_del_script.parent
-ruta_del_texto = raiz_del_proyecto / "sources" / "Texto refundido PGC 2021.md"
-ruta_del_json = raiz_del_proyecto / "data" / "accounts.json"
 
-# El fichero está guardado en UTF-8. Si no se dice, Windows usa otra tabla
-# (cp1252) y las tildes y las eñes salen rotas o el programa falla.
-texto = ruta_del_texto.read_text(encoding="utf-8")
-texto = aplicar_fe_de_erratas(texto)
+def extraer_grupo(raiz, numero):
+    # El grupo no va en la tabla: son los dos primeros párrafos del bloque,
+    # "Grupo 4" y "Acreedores y deudores por operaciones comerciales".
+    parrafos = parrafos_del_bloque(raiz, "grupo" + numero)
+    if parrafos[0] != "Grupo " + numero:
+        print("AVISO: el bloque del grupo", numero, "empieza por", parrafos[0])
+    return crear_cuenta(numero, parrafos[1])
 
-lineas = texto.splitlines()
-print("Fichero:", ruta_del_texto)
-print("Líneas del texto original:", len(lineas))
 
-# El orden importa: los espacios se recortan antes de juntar las líneas en
-# blanco, para que una línea que solo tenía espacios cuente como blanca.
-lineas = quitar_marcas_de_pagina(lineas)
-lineas = quitar_numeros_de_pagina_pegados(lineas)
-lineas = quitar_espacios_al_final(lineas)
-lineas = juntar_lineas_en_blanco(lineas)
-print("Líneas después de limpiar:", len(lineas))
+def extraer_cuentas_de_la_tabla(raiz, numero_de_grupo):
+    cuentas = []
+    for celdas in filas_de_las_tablas(raiz, "grupo" + numero_de_grupo):
+        # La tabla sangra los niveles con celdas vacías delante:
+        #   ["40.", "PROVEEDORES"]
+        #   ["", "400.", "Proveedores"]
+        #   ["", "", "4000.", "Proveedores (euros)"]
+        # La primera celda con texto es el código y la siguiente, el nombre.
+        columna = 0
+        while celdas[columna] == "":
+            columna = columna + 1
 
-# Comprobación: en el texto original no hay ninguna llave que no sea de una
-# marca de página, así que en el texto limpio no debería quedar ni una.
-lineas_con_llave = 0
-for linea in lineas:
-    if "{" in linea:
-        lineas_con_llave += 1
-print("Líneas que aún tienen una llave {:", lineas_con_llave)
+        codigo = celdas[columna].rstrip(".")
+        # Ocho nombres del BOE acaban en punto y los demás no. Se quita para
+        # que todos queden iguales (decisión de Albert, ver CHANGELOG.md).
+        nombre = celdas[columna + 1].rstrip(".")
 
-lineas_del_cuadro = recortar_cuarta_parte(lineas)
-cuentas = extraer_cuadro_de_cuentas(lineas_del_cuadro)
+        # Segunda opinión: un código de 2 cifras va en la columna 0, uno de 3
+        # en la 1, y así. Si no cuadra, la tabla tiene algo raro.
+        columna_esperada = len(codigo) - 2
+        if columna != columna_esperada:
+            print("AVISO: la", codigo, "está en la columna", columna, "y se esperaba la", columna_esperada)
 
-lineas_de_las_fichas = recortar_quinta_parte(lineas)
-extraer_fichas(lineas_de_las_fichas, cuentas)
+        cuentas.append(crear_cuenta(codigo, nombre))
+    return cuentas
 
-# Los códigos de todas las cuentas, para saber si un número es una cuenta.
-codigos_existentes = set()
-for cuenta in cuentas:
-    codigos_existentes.add(cuenta["codigo"])
 
-# A cada cuenta se le añaden dos campos nuevos con sus contrapartidas,
-# separadas por columna: la web pinta las de los cargos y las de los abonos
-# en sitios y colores distintos.
-for cuenta in cuentas:
-    cuenta["contrapartidas_cargos"] = detectar_contrapartidas(cuenta["cargos"], codigos_existentes)
-    cuenta["contrapartidas_abonos"] = detectar_contrapartidas(cuenta["abonos"], codigos_existentes)
+def aplicar_fe_de_erratas_del_cuadro(cuentas):
+    # Para encontrar una cuenta por su código sin recorrer la lista entera.
+    cuentas_por_codigo = {}
+    for cuenta in cuentas:
+        cuentas_por_codigo[cuenta["codigo"]] = cuenta
 
-# El OCR dejó algún título fuera de sitio: el subgrupo 53 salía antes que el
-# 52. El orden del cuadro lo marca el propio código, así que se ordena por él
-# antes de guardar.
-cuentas.sort(key=codigo_de_la_cuenta)
+    for codigo, errata in NOMBRES_CORREGIDOS.items():
+        cuenta = cuentas_por_codigo[codigo]
+        if cuenta["nombre"] != errata["en_el_boe"]:
+            # Si el BOE ya lo ha corregido, mejor enterarse que seguir
+            # corrigiendo a ciegas.
+            print("AVISO: la errata de la", codigo, "ya no aparece en el BOE")
+            continue
+        cuenta["nombre"] = errata["correcto"]
 
-# ensure_ascii=False deja las tildes como tildes; si no, "ó" se guardaría
-# como "ó". indent=2 pone cada campo en su línea para poder leerlo.
-texto_json = json.dumps(cuentas, ensure_ascii=False, indent=2)
-ruta_del_json.write_text(texto_json, encoding="utf-8")
+    for codigo, nombre in CUENTAS_QUE_FALTAN.items():
+        if codigo in cuentas_por_codigo:
+            print("AVISO: la", codigo, "ya aparece en el BOE")
+            continue
+        cuentas.append(crear_cuenta(codigo, nombre))
 
-print()
-print("Cuadro de cuentas guardado en:", ruta_del_json)
-cuentas_por_nivel = {"grupo": 0, "subgrupo": 0, "cuenta": 0, "subcuenta": 0}
-for cuenta in cuentas:
-    cuentas_por_nivel[cuenta["nivel"]] += 1
-print("Grupos:", cuentas_por_nivel["grupo"])
-print("Subgrupos:", cuentas_por_nivel["subgrupo"])
-print("Cuentas:", cuentas_por_nivel["cuenta"])
-print("Subcuentas:", cuentas_por_nivel["subcuenta"])
 
-print()
-cuentas_de_tres_cifras = 0
-con_definicion = 0
-con_movimientos = 0
-for cuenta in cuentas:
-    if cuenta["nivel"] == "cuenta":
-        cuentas_de_tres_cifras += 1
-        if len(cuenta["definicion"]) > 0:
-            con_definicion += 1
-        if len(cuenta["cargos"]) > 0 or len(cuenta["abonos"]) > 0:
-            con_movimientos += 1
-print("De las", cuentas_de_tres_cifras, "cuentas de tres cifras:")
-print("  con definición:", con_definicion)
-print("  con movimientos en columnas:", con_movimientos)
+def extraer_cuadro_de_cuentas(raiz):
+    cuentas = []
+    for numero in NUMEROS_DE_GRUPO:
+        cuentas.append(extraer_grupo(raiz, numero))
+        # extend añade las cuentas de la tabla una a una; append añadiría la
+        # lista entera como si fuera un solo elemento.
+        cuentas.extend(extraer_cuentas_de_la_tabla(raiz, numero))
 
-print()
-for cuenta in cuentas:
-    if cuenta["codigo"] == "430":
-        print("La 430 se llama:", cuenta["nombre"])
-        print("  cargos:", len(cuenta["cargos"]))
-        print("  abonos:", len(cuenta["abonos"]))
-        print("  contrapartidas en cargos:", cuenta["contrapartidas_cargos"])
-        print("  contrapartidas en abonos:", cuenta["contrapartidas_abonos"])
+    aplicar_fe_de_erratas_del_cuadro(cuentas)
+
+    # Las cuentas que faltaban se han añadido al final: se ordena por código.
+    cuentas.sort(key=codigo_de_la_cuenta)
+    return cuentas
+
+
+def codigos_del_titulo(texto, codigos_del_cuadro):
+    # Devuelve la lista de códigos si el párrafo es el título de una ficha, o
+    # None si no lo es.
+    coincidencia = re.fullmatch(PATRON_TITULO_DE_FICHA, texto)
+    if coincidencia is None:
+        return None
+    codigos = coincidencia.group(1).split("/")
+    for codigo in codigos:
+        if codigo not in codigos_del_cuadro:
+            return None
+
+    # Con dos códigos, la barra es un intervalo, como en "Las cuentas
+    # 300/309": "700/705" son de la 700 a la 705, también la 701, la 702...
+    # Con tres o más, es una lista: en "600/601/602/607" no entra la 606.
+    if len(codigos) == 2:
+        primero = codigos[0]
+        ultimo = codigos[1]
+        intervalo = []
+        for codigo in codigos_del_cuadro:
+            # La misma longitud, porque como texto "7001" va entre "700" y "705".
+            if len(codigo) == len(primero) and primero <= codigo <= ultimo:
+                intervalo.append(codigo)
+        return intervalo
+    return codigos
+
+
+def habla_de_cargo_y_abono(texto):
+    # Frases como "Se cargarán por el importe de las existencias iniciales y
+    # se abonarán por el de las finales" describen las dos columnas a la vez
+    # y no se pueden repartir sin inventar: se quedan en la definición.
+    # Solo se mira la primera frase: más allá puede salir la otra palabra sin
+    # que la cabecera sea mixta.
+    primera_frase = texto.split(". ")[0].lower()
+    return "se cargar" in primera_frase and "se abonar" in primera_frase
+
+
+def quitar_frase_que_presenta_el_movimiento(texto):
+    # "Corresponde a las empresas individuales. Su movimiento es el
+    # siguiente:" → "Corresponde a las empresas individuales." Si el párrafo
+    # es solo la frase, queda vacío.
+    texto = texto.removesuffix(FRASE_QUE_PRESENTA_EL_MOVIMIENTO)
+    return texto.strip()
+
+
+def partir_presentacion_pegada(texto):
+    # Unos pocos párrafos traen la definición y la presentación juntas:
+    # "Desembolsos exigidos... Figurará en el pasivo corriente del balance."
+    # Se parten en dos justo antes de "Figurará", sin cambiar ni una letra.
+    posicion = texto.find(". Figurará")
+    if posicion == -1:
+        return [texto]
+    return [texto[:posicion + 1], texto[posicion + 2:]]
+
+
+def anadir_a_las_cuentas(cuentas_por_codigo, codigos, campo, valor):
+    # Una ficha compartida ("600/601/602/607") se copia a cada una de sus
+    # cuentas, así que todo se añade siempre a una lista de códigos.
+    for codigo in codigos:
+        cuentas_por_codigo[codigo][campo].append(valor)
+
+
+def etiqueta_encaja_con_la_cabecera(letra, numero, letra_de_la_cabecera):
+    # Bajo "b) Se abonará:" van "b1)", "b2)"... Bajo un "Se abonará:" sin
+    # letra pueden ir "a)", "b)"... (la 761) o "a1)", "a2)"... (la 640).
+    # Así no se cuela como movimiento un "c) Si las participaciones..." que
+    # va detrás de los "b1) b2)".
+    if letra_de_la_cabecera is None:
+        return True
+    return letra == letra_de_la_cabecera and numero != ""
+
+
+def extraer_fichas(raiz, cuentas):
+    # Para encontrar una cuenta por su código sin recorrer la lista entera, y
+    # la lista de códigos en orden, que necesitan los títulos con intervalo.
+    cuentas_por_codigo = {}
+    codigos_del_cuadro = []
+    for cuenta in cuentas:
+        cuentas_por_codigo[cuenta["codigo"]] = cuenta
+        codigos_del_cuadro.append(cuenta["codigo"])
+
+    # Las erratas de los títulos que se han encontrado, para avisar al final
+    # de las que ya no aparecen.
+    erratas_vistas = set()
+
+    for numero in NUMEROS_DE_GRUPO:
+        contenido = contenido_del_bloque(raiz, "grupo" + numero + "-2")
+
+        # Los dos primeros párrafos son "Grupo 4" y su nombre, que ya están
+        # en el cuadro. Lo que sigue, hasta la primera tabla, es del grupo.
+        if contenido[0]["texto"] != "Grupo " + numero:
+            print("AVISO: la quinta parte del grupo", numero, "empieza por", contenido[0]["texto"])
+
+        # El estado: de qué cuentas es lo que se lee (una lista, porque una
+        # ficha puede ser de varias), en qué columna del movimiento estamos
+        # (None si no estamos en los movimientos) y la letra de la cabecera
+        # que abrió esa columna.
+        codigos_actuales = [numero]
+        columna_actual = None
+        letra_de_la_cabecera = None
+
+        for elemento in contenido[2:]:
+            # 1. La tabla índice abre un subgrupo. Su primera fila es la del
+            # propio subgrupo: ["43.", "CLIENTES"].
+            if elemento["tipo"] == "tabla":
+                codigos_actuales = [elemento["filas"][0][0].rstrip(".")]
+                columna_actual = None
+                continue
+
+            texto = elemento["texto"]
+
+            # 2. El título de una ficha cambia las cuentas actuales.
+            if texto in TITULOS_CORREGIDOS:
+                erratas_vistas.add(texto)
+                texto = TITULOS_CORREGIDOS[texto]
+            codigos = codigos_del_titulo(texto, codigos_del_cuadro)
+            if codigos is not None:
+                codigos_actuales = codigos
+                columna_actual = None
+                continue
+
+            texto = quitar_frase_que_presenta_el_movimiento(texto)
+            if texto == "":
+                continue
+
+            movimiento_en_columnas = codigos_actuales[0] not in CUENTAS_CON_MOVIMIENTO_ANIDADO
+
+            # 3. Una cabecera ("a) Se cargará:") abre una columna. Si trae
+            # texto detrás ("b) Se abonará por las enajenaciones..."), ese
+            # texto es un movimiento sin etiqueta.
+            cabecera = re.match(PATRON_CABECERA_DE_MOVIMIENTO, texto)
+            if cabecera is not None and movimiento_en_columnas and not habla_de_cargo_y_abono(texto):
+                if cabecera.group(2) == "cargar":
+                    columna_actual = "cargos"
+                else:
+                    columna_actual = "abonos"
+                if cabecera.group(1) is None:
+                    letra_de_la_cabecera = None
+                else:
+                    letra_de_la_cabecera = cabecera.group(1)[0]
+                if cabecera.group(3) != "":
+                    movimiento = {"etiqueta": None, "texto": cabecera.group(3)}
+                    anadir_a_las_cuentas(cuentas_por_codigo, codigos_actuales, columna_actual, movimiento)
+                continue
+            if cabecera is not None:
+                # Una cabecera mixta ("c) Se cargará o abonará...") o de un
+                # derivado de cobertura no va a ninguna columna: cierra los
+                # movimientos y va a la definición (paso 5).
+                columna_actual = None
+
+            # 4. Dentro de una columna, un movimiento con su etiqueta.
+            if columna_actual is not None:
+                etiqueta = re.match(PATRON_ETIQUETA, texto)
+                if etiqueta is not None and etiqueta_encaja_con_la_cabecera(etiqueta.group(1), etiqueta.group(2), letra_de_la_cabecera):
+                    movimiento = {"etiqueta": etiqueta.group(1) + etiqueta.group(2), "texto": etiqueta.group(3)}
+                    anadir_a_las_cuentas(cuentas_por_codigo, codigos_actuales, columna_actual, movimiento)
+                    continue
+                # Cualquier otro párrafo cierra los movimientos.
+                columna_actual = None
+
+            # 5. Texto normal: la presentación en el balance o la definición.
+            for trozo in partir_presentacion_pegada(texto):
+                if re.search(PATRON_PRESENTACION, trozo):
+                    campo = "presentacion"
+                else:
+                    campo = "definicion"
+                anadir_a_las_cuentas(cuentas_por_codigo, codigos_actuales, campo, trozo)
+
+    for titulo_del_boe in TITULOS_CORREGIDOS:
+        if titulo_del_boe not in erratas_vistas:
+            # Si el BOE ya lo ha corregido, mejor enterarse.
+            print("AVISO: la errata del título", titulo_del_boe, "ya no aparece en el BOE")
+
+
+def detectar_contrapartidas(movimientos, codigos_existentes):
+    # Viene del parser del texto refundido, con un cambio: ahora cada
+    # movimiento es un diccionario y el texto está en movimiento["texto"].
+    # Devuelve, ordenados y sin repetir, los códigos de cuenta que aparecen
+    # en los movimientos: "...con abono a la cuenta 437" → "437".
+    codigos_encontrados = set()
+    for movimiento in movimientos:
+        for numero in re.findall(r"\d+", movimiento["texto"]):
+            # Solo cuenta si es el código de una cuenta que existe.
+            if numero in codigos_existentes:
+                codigos_encontrados.add(numero)
+    return sorted(codigos_encontrados)
+
+
+# El proceso y el resumen solo se ejecutan al lanzar este fichero.
+# tools/check_chart.py lo importa para pedirle el cuadro, y ahí no hacen falta.
+if __name__ == "__main__":
+    raiz = cargar_raiz()
+    cuentas = extraer_cuadro_de_cuentas(raiz)
+    extraer_fichas(raiz, cuentas)
+
+    codigos_existentes = set()
+    for cuenta in cuentas:
+        codigos_existentes.add(cuenta["codigo"])
+    for cuenta in cuentas:
+        cuenta["contrapartidas_cargos"] = detectar_contrapartidas(cuenta["cargos"], codigos_existentes)
+        cuenta["contrapartidas_abonos"] = detectar_contrapartidas(cuenta["abonos"], codigos_existentes)
+
+    # La ruta se calcula desde este script, no desde la carpeta en la que se
+    # ejecuta: así funciona igual lo lances desde donde lo lances.
+    raiz_del_proyecto = Path(__file__).parent.parent
+    ruta_del_json = raiz_del_proyecto / "data" / "accounts.json"
+    # ensure_ascii=False deja las tildes como tildes, e indent=2 pone cada
+    # campo en su línea para poder leerlo. None se escribe como null.
+    texto_json = json.dumps(cuentas, ensure_ascii=False, indent=2)
+    ruta_del_json.write_text(texto_json, encoding="utf-8")
+
+    print("Guardado en:", ruta_del_json)
+    cuentas_por_nivel = {"grupo": 0, "subgrupo": 0, "cuenta": 0, "subcuenta": 0}
+    for cuenta in cuentas:
+        cuentas_por_nivel[cuenta["nivel"]] += 1
+    print("Grupos:", cuentas_por_nivel["grupo"])
+    print("Subgrupos:", cuentas_por_nivel["subgrupo"])
+    print("Cuentas:", cuentas_por_nivel["cuenta"])
+    print("Subcuentas:", cuentas_por_nivel["subcuenta"])
+
+    print()
+    cuentas_de_tres_cifras = 0
+    con_definicion = 0
+    con_presentacion = 0
+    con_movimientos = 0
+    for cuenta in cuentas:
+        if cuenta["nivel"] == "cuenta":
+            cuentas_de_tres_cifras += 1
+            if len(cuenta["definicion"]) > 0:
+                con_definicion += 1
+            if len(cuenta["presentacion"]) > 0:
+                con_presentacion += 1
+            if len(cuenta["cargos"]) > 0 or len(cuenta["abonos"]) > 0:
+                con_movimientos += 1
+    print("De las", cuentas_de_tres_cifras, "cuentas de tres cifras:")
+    print("  con definición:", con_definicion)
+    print("  con presentación:", con_presentacion)
+    print("  con movimientos en columnas:", con_movimientos)
+
+    print()
+    for cuenta in cuentas:
+        if cuenta["codigo"] == "430":
+            etiquetas_de_cargos = []
+            for movimiento in cuenta["cargos"]:
+                etiquetas_de_cargos.append(movimiento["etiqueta"])
+            etiquetas_de_abonos = []
+            for movimiento in cuenta["abonos"]:
+                etiquetas_de_abonos.append(movimiento["etiqueta"])
+            print("La 430 se llama:", cuenta["nombre"])
+            print("  presentación:", cuenta["presentacion"])
+            print("  cargos:", etiquetas_de_cargos)
+            print("  abonos:", etiquetas_de_abonos)
+            print("  contrapartidas en cargos:", cuenta["contrapartidas_cargos"])
+            print("  contrapartidas en abonos:", cuenta["contrapartidas_abonos"])
+        if cuenta["codigo"] == "642":
+            print("La 642 empieza así:", cuenta["definicion"][0][:60] + "...")

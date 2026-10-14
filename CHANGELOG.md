@@ -12,6 +12,59 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·6: usar las etiquetas del BOE en el movimiento
+**Qué:** la web lee ya los datos del BOE. `pintarMovimientos` pinta la
+etiqueta que trae cada movimiento ("a1", "b3", o la "a" sola de la 761), y si
+no la trae, el movimiento es la frase de entrada: va sin número y a todo el
+ancho. Desaparecen el contador, el parámetro de la letra y la regla de la
+minúscula. Se retiran el texto del OCR, el PDF del que salía, el parser viejo
+y `compare.py`; `parser_boe.py` pasa a llamarse `parser.py` y
+`accounts_boe.json`, `accounts.json`. `verify.py` y `check_chart.py` se
+adaptan, y el README y la sección 7 de `CLAUDE.md` dicen ya que la fuente es
+el BOE. Comprobado en el navegador: la 430 y la 640 se ven como antes, la 400
+con su numeración del PGC, y sin errores en la consola. Escrito por Claude a
+petición de Albert; los borrados y renombrados los hizo Albert con `git rm` y
+`git mv`.
+**Por qué:** cierra la fase 1 bis. La web ya no reconstruye nada que la
+fuente traiga escrito.
+
+### Decisión · La web deja de deducir la etiqueta por la columna
+**Qué:** la etiqueta de un movimiento sale siempre del dato, nunca de la
+columna en la que está.
+**Por qué:** al preparar el paso apareció un error que no sabíamos que
+teníamos: la web ponía siempre "a" en el Debe y "b" en el Haber, pero en las
+cuentas de pasivo y de ingresos el PGC pone los cargos en `b)`. En la 400
+Proveedores enseñaba "a1, a2..." donde la ley dice "b1, b2...". Le pasaba a
+164 movimientos de cargo. Sustituye la decisión del paso 16 sobre las frases
+en minúscula: aquella regla era una forma de adivinar lo que ahora dice el
+dato.
+
+### Decisión · Los ficheros recuperan sus nombres de siempre
+**Qué:** `tools/parser_boe.py` → `tools/parser.py` y `data/accounts_boe.json`
+→ `data/accounts.json`. La web no cambia la ruta del `fetch`.
+**Por qué:** el "_boe" solo tenía sentido mientras convivían los dos parsers y
+los dos JSON. Git lo cuenta como una modificación de `parser.py` y de
+`accounts.json`, porque los nombres siguen existiendo con otro contenido. Lo
+decidió Albert.
+
+### Decisión · El PDF de `sources/` se retira también
+**Qué:** `sources/PLAN_GENERAL_DE_CONTABILIDAD_accesible.pdf` sale del
+repositorio.
+**Por qué:** era el documento del que salía el texto del OCR y no lo usaba
+ningún programa. La sección 7 de `CLAUDE.md` dice que la única fuente es el
+BOE, y otra copia del PGC en `sources/` invitaría a confusión. Sigue en el
+historial de git. Lo decidió Albert.
+
+### Decisión · `verify.py` se adapta en vez de retirarse
+**Qué:** lee el texto de los movimientos con `textos_de_los_movimientos`, y la
+regla de los nombres en mayúsculas mira solo los subgrupos.
+**Por qué:** sus comprobaciones siguen sirviendo, pero con el formato nuevo se
+rompía (`TypeError: ... got 'dict'`). Los nombres de los grupos van en
+minúscula en el BOE, y la regla vieja daba nueve avisos falsos. Ahora salen
+dos textos sospechosos, los párrafos numerados de la 490 ("1. Cuando la
+empresa..."), que son de verdad. `compare.py` se retira porque ya no hay dos
+JSON que comparar; queda en el historial.
+
 ### Cambio · Paso 1b·5: comparar los datos del BOE con los del texto refundido
 **Qué:** `tools/compare.py`, nuevo, compara cuenta a cuenta `accounts.json`
 (OCR) con `accounts_boe.json` (BOE) y clasifica cada cuenta: ficha idéntica,

@@ -7,6 +7,15 @@ import re
 from pathlib import Path
 
 
+def textos_de_los_movimientos(movimientos):
+    # Cada movimiento es {"etiqueta": "a1", "texto": "..."}. Las
+    # comprobaciones solo miran el texto.
+    textos = []
+    for movimiento in movimientos:
+        textos.append(movimiento["texto"])
+    return textos
+
+
 def fragmento_alrededor(texto, numero):
     # Devuelve el trozo de texto que rodea a un número, para poder ver en qué
     # frase aparece sin imprimir un movimiento entero de 600 caracteres.
@@ -50,12 +59,12 @@ def cuentas_sin_ficha(cuentas):
 
 def numeros_que_no_son_cuentas(cuentas, codigos_existentes):
     # Los números de los movimientos que el filtro del paso 9 dejó fuera.
-    # Si un número no es ninguna cuenta, o es basura del OCR o es un código
-    # que el parser leyó mal.
+    # Si un número no es ninguna cuenta, o es otra cosa (un artículo, un
+    # porcentaje) o es un código que el parser leyó mal.
     problemas = []
     for cuenta in cuentas:
         for columna in ["cargos", "abonos"]:
-            for movimiento in cuenta[columna]:
+            for movimiento in textos_de_los_movimientos(cuenta[columna]):
                 for numero in re.findall(r"\d+", movimiento):
                     if numero not in codigos_existentes:
                         problemas.append(
@@ -76,7 +85,7 @@ def contrapartidas_de_una_cifra(cuentas):
                 if len(codigo) != 1:
                     continue
                 # Se busca en qué movimiento aparece, para poder juzgarlo.
-                for movimiento in cuenta[columna]:
+                for movimiento in textos_de_los_movimientos(cuenta[columna]):
                     if codigo in re.findall(r"\d+", movimiento):
                         problemas.append(
                             cuenta["codigo"] + " · " + columna + " · grupo " + codigo + ": "
@@ -92,13 +101,18 @@ def textos_sospechosos(cuentas):
     for cuenta in cuentas:
         codigo = cuenta["codigo"]
 
-        # En el PGC, los nombres de grupos y subgrupos van en mayúsculas. Si
-        # no, es que se le ha pegado algo.
-        if cuenta["nivel"] in ["grupo", "subgrupo"] and not cuenta["nombre"].isupper():
+        # En el BOE, los nombres de los subgrupos van en mayúsculas. Si no, es
+        # que se le ha pegado algo. Los de los grupos no: van en minúscula
+        # ("Financiación básica").
+        if cuenta["nivel"] == "subgrupo" and not cuenta["nombre"].isupper():
             problemas.append(codigo + " · nombre: " + cuenta["nombre"])
 
         for campo in ["definicion", "presentacion", "cargos", "abonos"]:
-            for texto in cuenta[campo]:
+            if campo in ["cargos", "abonos"]:
+                textos = textos_de_los_movimientos(cuenta[campo])
+            else:
+                textos = cuenta[campo]
+            for texto in textos:
                 inicio = codigo + " · " + campo + ": " + texto[:70]
 
                 # Un texto que empieza por un número suele ser un número de
@@ -106,7 +120,8 @@ def textos_sospechosos(cuentas):
                 # numeración de verdad ("1. Cuando..."): por eso se revisa a mano.
                 if texto[0].isdigit():
                     problemas.append(inicio)
-                # Restos del formato del OCR.
+                # Restos de formato: del OCR, cuando era la fuente, o de
+                # etiquetas del XML que se hubieran colado.
                 elif "<sup>" in texto or "**" in texto or "#" in texto or "{" in texto:
                     problemas.append(inicio)
                 # Un movimiento que lleva dentro "Se cargará:", "Se abonará:"

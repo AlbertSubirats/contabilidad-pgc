@@ -1,4 +1,4 @@
-# Verificador del cuadro de cuentas que saca parser_boe.py del BOE.
+# Verificador del cuadro de cuentas que saca parser.py del BOE.
 # No arregla nada: comprueba lo que tiene que ser verdad si el cuadro está
 # completo, y cruza el cuadro con otras partes del mismo BOE que también
 # nombran cuentas. Si una parte se equivoca, las otras lo delatan.
@@ -6,7 +6,7 @@
 import re
 
 from boe_reader import cargar_raiz, version_vigente, parrafos_del_bloque, texto_del_elemento
-from parser_boe import extraer_cuadro_de_cuentas, NUMEROS_DE_GRUPO, CUENTAS_QUE_FALTAN
+from parser import extraer_cuadro_de_cuentas, NUMEROS_DE_GRUPO, CUENTAS_QUE_FALTAN
 
 # Los modelos de cuentas anuales (tercera parte) citan las cuentas entre
 # paréntesis: "(6654), (6655)". El estado de flujos no cita ninguna.
