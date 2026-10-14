@@ -12,6 +12,98 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·3: extraer el cuadro de cuentas del BOE
+**Qué:** `tools/parser_boe.py`, nuevo, saca grupos, subgrupos, cuentas y
+subcuentas de las tablas de la cuarta parte del BOE, con la misma forma de
+dato de siempre. Los grupos salen de los dos primeros párrafos de cada bloque
+(`grupo1`...`grupo9`), y el resto de las filas de su tabla: la primera celda
+con texto es el código y la siguiente, el nombre. Resultado: 9 grupos, 78
+subgrupos, 421 cuentas y 407 subcuentas, los mismos 915 códigos y los mismos
+padres que el JSON del texto refundido. `tools/boe_reader.py` gana
+`filas_de_las_tablas` y `version_vigente`, `texto_del_parrafo` pasa a
+llamarse `texto_del_elemento` (ahora también lee celdas), y su prueba va
+dentro de `if __name__ == "__main__":` para que no salga al importarlo.
+Escrito por Claude, trozo a trozo, a petición de Albert.
+**Por qué:** es la primera mitad del parser nuevo. Todavía no escribe JSON:
+lo hará en el paso 1b·4, con las fichas.
+
+### Decisión · Un verificador del cuadro que lo cruza con el resto del BOE
+**Qué:** `tools/check_chart.py`, nuevo, imprime un informe con seis
+apartados: códigos de las tablas que no llegan al cuadro (leídos por otro
+camino que el parser), grupos y subgrupos vacíos, códigos repetidos o sin
+padre, fichas de la quinta parte sin cuenta en el cuadro, códigos citados en
+los modelos de cuentas anuales ("(6655)") sin cuenta en el cuadro, y nombres
+que la ficha escribe distinto que el cuadro. Para que pueda pedir el cuadro,
+`parser_boe.py` lo construye ahora en `extraer_cuadro_de_cuentas(raiz)` y su
+resumen va dentro de `if __name__ == "__main__":`. Hoy los cinco primeros
+apartados salen a cero, y el sexto lista nueve nombres que la propia ley
+escribe de dos maneras ("Beneficio transferido (gestor)" en el cuadro,
+"Beneficio transferido" en la ficha).
+**Por qué:** lo pidió Albert al ver que el fallo del `<tbody>` se encontró
+por casualidad: no sabíamos si había más. Un verificador solo vale si es
+capaz de fallar, así que se probó reproduciendo los dos fallos reales: con
+`findall` salen 761 códigos perdidos y 7 grupos vacíos; sin la fe de erratas,
+los apartados 4, 5 y 6 encuentran, cada uno por su lado, los seis errores de
+la tabla del BOE. Es un informe para leer, como `verify.py`, y no pruebas
+automáticas (`unittest`): el sexto apartado no es un sí o un no. Su límite:
+una cuenta que faltara a la vez en el cuadro, en las fichas y en los modelos
+no la vería; para eso está la comparación con el texto refundido (paso 1b·5).
+
+### Decisión · Un parser nuevo en vez de cambiar `parser.py`
+**Qué:** `parser.py` no se toca y sigue generando `data/accounts.json`. Las
+cuatro funciones que sirven igual (`nivel_de_cuenta`, `padre_de_cuenta`,
+`crear_cuenta`, `codigo_de_la_cuenta`) se copian al fichero nuevo.
+**Por qué:** se pensó en sacar de `parser.py` solo el cuadro del BOE y seguir
+leyendo las fichas del Markdown, pero las fichas se reconocen comparando la
+primera palabra del título con el nombre del cuadro, y el BOE escribe
+`«Rappels»` donde el OCR escribía `"Rappels"`: varias fichas dejarían de
+encontrarse. Además, `parser.py` hará falta en el paso 1b·5 para comparar. Las
+funciones se copian en vez de importarse porque `parser.py` ejecuta todo su
+proceso al importarlo, y es un fichero que se va a retirar.
+
+### Decisión · El nivel se toma de las cifras y la columna lo confirma
+**Qué:** el nivel de cada cuenta sale, como siempre, del número de cifras del
+código. La columna en la que la tabla pone el código (0 para 2 cifras, 1 para
+3...) se usa como segunda opinión: si no coinciden, sale un aviso.
+**Por qué:** las cifras son la regla del propio PGC, y ya funcionaba. La
+columna es una fuente independiente: que las dos digan lo mismo en las 902
+filas da confianza, y si un día no coinciden, la tabla tiene algo raro.
+
+### Decisión · Fe de erratas del cuadro de cuentas del BOE
+**Qué:** `parser_boe.py` corrige dos nombres (500 y 501) y añade cuatro
+cuentas que la tabla del BOE no trae (502, 1141, 6655 y 6656). Cada
+corrección lleva al lado de dónde sale el dato bueno, y el programa avisa si
+el BOE la corrige un día.
+**Por qué:** la tabla de la cuarta parte del BOE tiene errores de contenido en
+todas sus versiones: pega los nombres de la 500 y la 501, llama 501 a la 502,
+y no trae la 1141, la 6655 ni la 6656. Las fichas de la quinta parte del
+mismo BOE dan la 500, la 501, la 502 y la 1141 bien, y el texto refundido trae
+la 6655 y la 6656 (que el BOE cita en la cuenta de pérdidas y ganancias).
+Reproducir la tabla tal cual sería fiel al BOE, pero en una herramienta de
+estudio una cuenta que falta es un dato falso que parece verdadero. Así no se
+inventa nada: cada dato sale del propio texto legal. Lo decidió Albert. Las
+dos cuentas añadidas desde el texto refundido llevan «», como sus vecinas en
+el BOE.
+
+### Decisión · Las erratas tipográficas del BOE se respetan; los puntos finales, no
+**Qué:** "DETERIOROY", "DONACIONESY" y "ACTIVOSY" (cuatro subgrupos) quedan
+tal como se publicaron. En cambio, a los ocho nombres de cuenta que el BOE
+termina en punto se les quita, como al resto.
+**Por qué:** las palabras pegadas no cambian el sentido, y la regla de la
+sección 7 de `CLAUDE.md` es reproducir la norma como se publicó. Los puntos
+finales son una inconsistencia de formato (los demás 900 nombres no lo
+llevan) que se vería en el título de la ficha. Lo decidió Albert. Los nombres
+de los grupos quedan como los escribe el BOE, en minúscula ("Financiación
+básica"); el OCR los daba en mayúsculas.
+
+### Decisión · Las filas de las tablas se buscan con `iter`, no con `findall`
+**Qué:** `filas_de_las_tablas` recorre las filas con `tabla.iter("tr")`.
+**Por qué:** en siete de las nueve tablas (todas menos las de los grupos 3 y
+4) las filas van dentro de un `<tbody>`, que en HTML es opcional. Con
+`findall("tr")` esos grupos salían sin cuentas y sin dar ningún error; lo
+destapó la fe de erratas al no encontrar la 500. No hay tablas dentro de
+tablas, así que `iter` no puede colar filas de otra.
+
 ### Cambio · Paso 1b·2: leer los bloques del XML del BOE
 **Qué:** `tools/boe_reader.py` encuentra un bloque de `sources/boe/texto.xml`
 por su `id`, se queda con su última versión y devuelve sus párrafos como texto

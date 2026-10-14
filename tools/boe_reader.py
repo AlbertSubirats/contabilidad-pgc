@@ -35,23 +35,27 @@ def ultima_version(bloque):
     return versiones[-1]
 
 
-def texto_del_parrafo(parrafo):
-    # Un párrafo puede tener etiquetas dentro, como "b<sub>1</sub>) La
-    # empresa...". itertext() da todos los trozos de texto, también los de
-    # dentro de esas etiquetas, y join los pega: "b1) La empresa...".
-    trozos = parrafo.itertext()
+def texto_del_elemento(elemento):
+    # Sirve para un párrafo, una celda de tabla o cualquier otro elemento.
+    # Puede tener etiquetas dentro, como "b<sub>1</sub>) La empresa...".
+    # itertext() da todos los trozos de texto, también los de dentro de esas
+    # etiquetas, y join los pega: "b1) La empresa...".
+    trozos = elemento.itertext()
     texto = "".join(trozos)
     return texto.strip()
 
 
-def parrafos_del_bloque(raiz, id_del_bloque):
+def version_vigente(raiz, id_del_bloque):
     bloque = buscar_bloque(raiz, id_del_bloque)
     if bloque is None:
         # Mejor fallar aquí que devolver una lista vacía: un id mal escrito
         # parecería un bloque sin texto.
         raise ValueError("No hay ningún bloque con id " + id_del_bloque)
+    return ultima_version(bloque)
 
-    version = ultima_version(bloque)
+
+def parrafos_del_bloque(raiz, id_del_bloque):
+    version = version_vigente(raiz, id_del_bloque)
 
     # findall("p") da solo los párrafos hijos directos de la versión. No entra
     # en las tablas, que se leen aparte (paso 1b·3), ni en los <blockquote>,
@@ -62,28 +66,49 @@ def parrafos_del_bloque(raiz, id_del_bloque):
         # si una versión futura del BOE sacara las notas del <blockquote>.
         if parrafo.get("class") in CLASES_DE_NOTA:
             continue
-        texto = texto_del_parrafo(parrafo)
+        texto = texto_del_elemento(parrafo)
         if texto == "":
             continue
         parrafos.append(texto)
     return parrafos
 
 
-# Prueba: los párrafos del Grupo 4 de la quinta parte.
-raiz = cargar_raiz()
-parrafos = parrafos_del_bloque(raiz, "grupo4-2")
-print("Bloque grupo4-2:", len(parrafos), "párrafos")
+def filas_de_las_tablas(raiz, id_del_bloque):
+    # Devuelve una lista por fila con el texto de sus celdas, en orden:
+    # ["", "400.", "Proveedores"]. Las celdas vacías se quedan como "",
+    # porque su posición importa: dice en qué columna empieza el texto.
+    version = version_vigente(raiz, id_del_bloque)
+    filas = []
+    for tabla in version.findall("table"):
+        # iter y no findall: en unas tablas las filas son hijas directas de
+        # <table> y en otras van dentro de un <tbody>. iter las encuentra a
+        # cualquier profundidad.
+        for fila in tabla.iter("tr"):
+            celdas = []
+            for celda in fila.findall("td"):
+                celdas.append(texto_del_elemento(celda))
+            filas.append(celdas)
+    return filas
 
-print()
-print("Los cinco primeros:")
-for parrafo in parrafos[:5]:
-    print("-", parrafo[:100])
 
-notas_coladas = 0
-for parrafo in parrafos:
-    if parrafo.startswith("Se modifica"):
-        notas_coladas = notas_coladas + 1
+# Esta prueba solo se ejecuta al lanzar este fichero directamente
+# (python tools/boe_reader.py), no cuando otro fichero lo importa.
+if __name__ == "__main__":
+    # Prueba: los párrafos del Grupo 4 de la quinta parte.
+    raiz = cargar_raiz()
+    parrafos = parrafos_del_bloque(raiz, "grupo4-2")
+    print("Bloque grupo4-2:", len(parrafos), "párrafos")
 
-print()
-print("¿Está '430. Clientes'?", "430. Clientes" in parrafos)
-print("Notas del BOE coladas:", notas_coladas)
+    print()
+    print("Los cinco primeros:")
+    for parrafo in parrafos[:5]:
+        print("-", parrafo[:100])
+
+    notas_coladas = 0
+    for parrafo in parrafos:
+        if parrafo.startswith("Se modifica"):
+            notas_coladas = notas_coladas + 1
+
+    print()
+    print("¿Está '430. Clientes'?", "430. Clientes" in parrafos)
+    print("Notas del BOE coladas:", notas_coladas)
