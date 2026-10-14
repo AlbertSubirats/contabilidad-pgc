@@ -12,6 +12,30 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 1b·2: leer los bloques del XML del BOE
+**Qué:** `tools/boe_reader.py` encuentra un bloque de `sources/boe/texto.xml`
+por su `id`, se queda con su última versión y devuelve sus párrafos como texto
+limpio, sin notas del BOE ni párrafos vacíos. Al final lleva una prueba con el
+bloque `grupo4-2`: salen 401 párrafos, entre ellos "430. Clientes", y ninguna
+nota. Lo escribió Claude, trozo a trozo, a petición de Albert.
+**Por qué:** es la pieza de la que tirarán los pasos 1b·3 y 1b·4. Va en un
+fichero aparte porque `parser.py` sigue leyendo el Markdown hasta el 1b·3.
+
+### Decisión · Las notas del BOE quedan fuera por la estructura del XML
+**Qué:** se leen solo los `<p>` hijos directos de la versión. El filtro por
+clase (`nota_pie`, `nota_pie_2`) se deja de reserva, con un comentario que lo
+explica.
+**Por qué:** al probar se vio que las 168 notas del texto van todas dentro de
+`<blockquote>` (73 en total), y que esos `<blockquote>` no contienen nada más.
+Así que el filtro no estaba quitando nada: las notas desaparecían porque
+`findall("p")` no entra en el `<blockquote>`. Se mantiene por si una versión
+futura del BOE cambia esa forma, y la prueba de "notas coladas" lo vigila.
+
+### Decisión · Los párrafos de las tablas no se leen en este paso
+**Qué:** `parrafos_del_bloque` no entra en las `<table>`.
+**Por qué:** el cuadro de cuentas de la cuarta parte va entero en tablas, y
+leerlo es justo el paso 1b·3. Mezclarlo aquí sería trabajo de adelanto.
+
 ### Cambio · Paso 1b·1: descargar el texto del PGC desde el BOE
 **Qué:** `tools/download_boe.py` pide a la API de datos abiertos del BOE el
 índice y el texto completo de `BOE-A-2007-19884` y los guarda tal cual en
