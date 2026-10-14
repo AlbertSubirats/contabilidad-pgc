@@ -2,6 +2,8 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
+        <!-- Con esta línea los móviles usan su ancho de verdad y las media  queries de styles.css funcionan -->
+         <meta name="viewport" content=" width=device-width, initial-scale=1">
         <title>Ayuda Contabilidad</title>
         <link rel="stylesheet" href="styles.css">
     </head>
@@ -10,11 +12,9 @@
              columnas (el árbol, la ficha y la ficha rápida). Dónde va cada una
              lo decide styles.css; aquí solo se dice qué es cada cosa. -->
 
-        <!-- Cabecera: el nombre de la web y el buscador -->
+        <!-- Cabecera: de momento, solo el buscador. El título y el subtítulo
+             se quitaron en el paso 19; el nombre de la web sigue en <title>. -->
         <header class="cabecera">
-            <h1>Ayuda Contabilidad</h1>
-            <p class="subtitulo">Una web para estudiar análisis contable y balances</p>
-
             <div class="buscador">
                 <!-- El "for" de la label apunta al "id" del input: así quedan unidos -->
                 <label for="buscador">Buscar cuenta</label>

@@ -275,9 +275,25 @@ rápida + contrapartidas a la derecha.
 **Compruebas:** lo abres en tu móvil desde la URL publicada.
 `feat: adaptar la interfaz a pantallas estrechas`
 
+> **Decidido en este paso:** dos puntos de corte, 64em (tres columnas) y 40em
+> (movimiento enfrentado). En el móvil no se ven el árbol ni la ficha rápida.
+> La cabecera se queda solo con el buscador, centrado: el título y el
+> subtítulo se quitan.
+
+### Paso 19 bis · El árbol en el móvil
+**Qué:** un botón "☰ Cuadro de cuentas" en la cabecera, solo en pantalla
+estrecha, que abre el árbol por encima de la ficha. Se cierra al elegir una
+cuenta. Idea de Albert (él lo pensó como un gesto con el dedo; se cambió por
+un botón, ver CHANGELOG).
+**Aprendes:** cambiar el aspecto desde JavaScript poniendo y quitando una
+clase, y dejar el "cómo se ve" en el CSS.
+**Compruebas:** en el móvil, pulsas el botón, eliges la 430 y el árbol se cierra.
+`feat: abrir el árbol desde un botón en el móvil`
+
 ### Paso 20 · Pulido
 **Qué:** tipografías definitivas, espaciados, estados de foco visibles para quien
-navegue con teclado.
+navegue con teclado. **Pendiente del paso 19:** la página se quedó sin `<h1>`;
+hay que decidir cómo se presenta la web y devolverle un título principal.
 `feat: pulir el aspecto del buscador`
 
 > **Aquí ya hay algo que enseñar a los compañeros del máster.** Buen momento para

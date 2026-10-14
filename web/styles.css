@@ -22,26 +22,34 @@ body {
    - 18em: los márgenes tienen un ancho fijo.
    - 1fr: una "fracción" de lo que sobra. Como es la única, la ficha se lleva
      todo el ancho que dejan los márgenes, y crece o encoge con la ventana.
-   El margin: 0 quita el borde blanco que el navegador pone por su cuenta. */
+   El margin: 0 quita el borde blanco que el navegador pone por su cuenta.
+   La rejilla solo se monta a partir de 64em (1024 píxeles): por debajo no
+   caben los dos márgenes y la ficha, y las zonas van una debajo de otra, que
+   es lo que hace el HTML sin CSS. Por eso el margin queda fuera de la media
+   query, para todas las pantallas, y la rejilla dentro. */
 body {
     margin: 0;
-    display: grid;
-    grid-template-columns: 18em 1fr 18em;
-    grid-template-areas:
-        "cabecera cabecera cabecera"
-        "arbol    ficha    rapida";
-    /* Cada zona mide lo que su contenido, en vez de estirarse hasta la más alta. */
-    align-items: start;
+}
+
+@media (min-width: 64em) {
+    body {
+        display: grid;
+        grid-template-columns: 18em 1fr 18em;
+        grid-template-areas:
+            "cabecera cabecera cabecera"
+            "arbol    ficha    rapida";
+        /* Cada zona mide lo que su contenido, en vez de estirarse hasta la más alta. */
+        align-items: start;
+    }
 }
 
 .cabecera {
     grid-area: cabecera;
-    /* Dentro de la cabecera, flex en fila: título, subtítulo y buscador
-       uno al lado del otro, centrados en vertical. */
+    /* La cabecera solo tiene el buscador. Con flex y justify-content: center
+       queda centrado a lo ancho, en el móvil y en el ordenador. */
     display: flex;
-    align-items: center;
-    gap: 2em;
-    padding: 0 1.5em;
+    justify-content: center;
+    padding: 1em 1.5em;
     border-bottom: 1px solid var(--color-linea);
 }
 
@@ -73,18 +81,42 @@ body {
    - overflow-y: auto: si lo de dentro no cabe (el árbol desplegado), la
      columna tiene su propia barra para desplazarse en vertical.
    box-sizing: border-box hace que esos 100vh incluyan el padding; sin él,
-   el padding se sumaría y la columna se saldría un poco de la ventana. */
-.columna-arbol,
-.columna-ficha-rapida {
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
-    overflow-y: auto;
-    box-sizing: border-box;
+   el padding se sumaría y la columna se saldría un poco de la ventana.
+   Solo a partir de 64em, el mismo corte que la rejilla: con las zonas
+   apiladas, el árbol se quedaría pegado arriba tapando la ficha. */
+@media (min-width: 64em) {
+    .columna-arbol,
+    .columna-ficha-rapida {
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
 }
 
-h1 {
-    font-family: Georgia, serif;
+/* En pantalla estrecha, el árbol y la ficha rápida no se ven: solo queda la
+   ficha, y a las cuentas se llega con el buscador y los enlaces. La ficha
+   rápida repite lo que ya dice la ficha; para el árbol, en el móvil, está
+   pensado un botón propio (paso 19 bis).
+   A partir de 64em vuelven (display: block). Pero display manda sobre el
+   atributo hidden, el mismo problema que con la lista del buscador: sin la
+   regla de [hidden], la ficha rápida se vería aunque app.js la escondiera.
+   [hidden] es un selector de atributo: elige los elementos que lo llevan. */
+.columna-arbol,
+.columna-ficha-rapida {
+    display: none;
+}
+
+@media (min-width: 64em) {
+    .columna-arbol,
+    .columna-ficha-rapida {
+        display: block;
+    }
+
+    .columna-ficha-rapida[hidden] {
+        display: none;
+    }
 }
 
 /* El buscador de la cabecera ocupa el sitio que sobra (flex: 1), hasta un
@@ -223,14 +255,19 @@ details details {
 }
 
 /* Movimiento: las dos columnas ("Se cargará" y "Se abonará") una al lado de
-   la otra, ocupando lo mismo, con aire en medio. */
-.movimiento {
-    display: flex;
-    gap: 2em;
-}
+   la otra, ocupando lo mismo, con aire en medio.
+   Solo a partir de 40em (640 píxeles): por debajo, cada columna se quedaría
+   en un puñado de palabras por línea, y es mejor leer el Debe entero y
+   debajo el Haber entero. */
+@media (min-width: 40em) {
+    .movimiento {
+        display: flex;
+        gap: 2em;
+    }
 
-.movimiento section {
-    flex: 1;
+    .movimiento section {
+        flex: 1;
+    }
 }
 
 /* Las listas del movimiento llevan su propio número (a1, b1...), así que se

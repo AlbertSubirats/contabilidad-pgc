@@ -10,6 +10,58 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ---
 
+## 2026-10-15
+
+### Cambio · Paso 19: adaptar la interfaz a pantallas estrechas
+**Qué:** `index.html` lleva la etiqueta `<meta name="viewport">`, y
+`styles.css` pasa a diseñarse primero para pantalla estrecha: la base es
+una sola columna, y lo de pantalla ancha va en media queries
+(`@media (min-width: ...)`). Desde 64em (1024 píxeles): la rejilla de tres
+columnas, el `sticky` de los márgenes, y el árbol y la ficha rápida, que por
+debajo se esconden. Desde 40em (640 píxeles): el movimiento en dos columnas
+enfrentadas; por debajo, el Debe y debajo el Haber. La cabecera se queda solo
+con el buscador, centrado. Comprobado en el navegador a 375, 768 y 1280
+píxeles: sin desbordarse a lo ancho, y en ancho, la ficha rápida sigue
+escondida sin cuenta elegida. Albert escribió los trozos 1 a 3 (viewport,
+rejilla y `sticky`); Claude, del 4 al 6 y los comentarios.
+**Por qué:** en el móvil los dos márgenes ya ocupaban más que la pantalla, y
+sin la línea del viewport el móvil encogía la página entera. Se empieza por
+lo estrecho porque una zona debajo de otra es lo que hace el HTML sin CSS: lo
+complicado se añade cuando hay sitio, en vez de deshacerlo.
+
+### Decisión · En el móvil, sin árbol; el botón, en un paso 19 bis
+**Qué:** por debajo de 64em el árbol se esconde y a las cuentas se llega con
+el buscador y los enlaces. Un botón "☰ Cuadro de cuentas" que lo abra por
+encima de la ficha queda para el paso 19 bis.
+**Por qué:** Albert propuso abrirlo deslizando el dedo. Se descartó: el gesto
+desde el borde ya es "atrás" en el móvil, no se ve que exista y pide mucho
+JavaScript nuevo. El botón es lo habitual y se entiende solo, pero no estaba
+en el paso 19. Lo decidió Albert.
+
+### Decisión · En el móvil, sin ficha rápida
+**Qué:** por debajo de 64em la ficha rápida no se ve.
+**Por qué:** repite lo que ya dice la ficha. Lo decidió Albert. Para que se
+vuelva a ver en ancho sin pisar el atributo `hidden` (`display` manda sobre
+él, como pasó con la lista del buscador), hay una regla
+`.columna-ficha-rapida[hidden]`.
+
+### Decisión · Dos puntos de corte: 40em y 64em
+**Qué:** 64em para las tres columnas y 40em para el movimiento en dos
+columnas. En una tablet, la ficha va a todo lo ancho con el Debe y el Haber
+enfrentados.
+**Por qué:** por debajo de 64em, la ficha no cabe entre dos márgenes de
+18em; por debajo de 40em, cada columna del movimiento se queda en un puñado
+de palabras por línea. Las condiciones de `@media` no admiten variables CSS,
+así que 64em sale escrito en tres sitios: los comentarios lo avisan.
+
+### Decisión · La cabecera, solo con el buscador
+**Qué:** se quitan el título "Ayuda Contabilidad" y el subtítulo; el
+buscador queda centrado. El nombre sigue en la pestaña (`<title>`).
+**Por qué:** a Albert le sobraban, y en el móvil apretaban el buscador hasta
+dejarlo inútil. Cómo presentar la web con buena información se verá más
+adelante. Queda pendiente para el paso 20: la página ya no tiene `<h1>`, y
+los lectores de pantalla lo usan para orientarse. Lo decidió Albert.
+
 ## 2026-10-14
 
 ### Cambio · Paso 18: repartir la página en árbol, ficha y ficha rápida
