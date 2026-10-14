@@ -113,6 +113,24 @@ details details {
     text-decoration: underline;
 }
 
+/* Remisiones dentro de la definición y la presentación ("...para la cuenta
+   100"): enlaces discretos, en el color del texto y con un subrayado fino y
+   gris, separado de las letras. No van en cajita como las contrapartidas:
+   una remisión no tiene lado (Debe/Haber), y el texto legal se leería peor.
+   Al pasar el ratón, la raya toma el color del texto (currentColor) y engorda. */
+.remision {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-tinta-suave);
+    text-underline-offset: 0.15em;
+}
+
+.remision:hover,
+.remision:focus-visible {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+}
+
 /* Títulos de las columnas: "Se cargará" en el color del debe y "Se abonará"
    en el del haber, cada uno con su raya debajo. */
 .columna-cargo h4 {

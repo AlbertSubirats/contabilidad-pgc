@@ -31,6 +31,14 @@ PATRON_ETIQUETA = r"([a-z])(\d*)\) (.*)"
 # figurarán en el pasivo...", "...deberá figurar en el epígrafe...".
 PATRON_PRESENTACION = r"[Ff]igurar(á|án)? en el (activo|pasivo|patrimonio|epígrafe)"
 
+# Una remisión a otras cuentas en la definición o la presentación: una palabra
+# clave y una lista de números. "la cuenta 100", "las cuentas 663 y 763",
+# "subgrupos 17 ó 18", "las cuentas 300/309". Los corchetes son un conjunto:
+# cifras, espacios, comas, barras, "y", "o", "ó". Así se queda fuera "el
+# artículo 170", que no es una remisión aunque la 170 exista.
+# Grupo 1: la palabra clave. Grupo 2: la lista de números.
+PATRON_REMISION = r"\b(cuentas?|subgrupos?|grupos?) ([\d ,/yoó]+)"
+
 # La frase con la que el PGC presenta los movimientos. No dice nada por sí
 # sola: se quita cuando va sola o al final de un párrafo. Si va con algo
 # delante ("Con carácter general, su movimiento..."), el párrafo se queda.
@@ -408,6 +416,22 @@ def detectar_contrapartidas(movimientos, codigos_existentes):
     return sorted(codigos_encontrados)
 
 
+def detectar_remisiones(parrafos, codigos_existentes):
+    # Como detectar_contrapartidas, pero para la definición y la presentación,
+    # donde no vale cualquier número ("artículo 239" no es una remisión a la
+    # 239): solo los que van detrás de "cuenta", "subgrupo" o "grupo".
+    # "análogo al señalado para la cuenta 100" → "100".
+    codigos_encontrados = set()
+    for parrafo in parrafos:
+        # finditer da las coincidencias una a una, con sus grupos.
+        for coincidencia in re.finditer(PATRON_REMISION, parrafo):
+            lista_de_numeros = coincidencia.group(2)
+            for numero in re.findall(r"\d+", lista_de_numeros):
+                if numero in codigos_existentes:
+                    codigos_encontrados.add(numero)
+    return sorted(codigos_encontrados)
+
+
 # El proceso y el resumen solo se ejecutan al lanzar este fichero.
 # tools/check_chart.py lo importa para pedirle el cuadro, y ahí no hacen falta.
 if __name__ == "__main__":
@@ -421,6 +445,8 @@ if __name__ == "__main__":
     for cuenta in cuentas:
         cuenta["contrapartidas_cargos"] = detectar_contrapartidas(cuenta["cargos"], codigos_existentes)
         cuenta["contrapartidas_abonos"] = detectar_contrapartidas(cuenta["abonos"], codigos_existentes)
+        cuenta["remisiones_definicion"] = detectar_remisiones(cuenta["definicion"], codigos_existentes)
+        cuenta["remisiones_presentacion"] = detectar_remisiones(cuenta["presentacion"], codigos_existentes)
 
     # La ruta se calcula desde este script, no desde la carpeta en la que se
     # ejecuta: así funciona igual lo lances desde donde lo lances.

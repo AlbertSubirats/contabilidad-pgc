@@ -150,6 +150,25 @@ def subgrupos_fuera_de_orden(cuentas):
     return problemas
 
 
+def numeros_que_no_son_remision(cuentas, codigos_existentes):
+    # Los números de la definición y la presentación que son el código de una
+    # cuenta pero no se han tomado como remisión. Casi todos son "artículo
+    # 170" y parecidos; si sale otra cosa, la regla de las remisiones
+    # (PATRON_REMISION en parser.py) se ha dejado algo.
+    problemas = []
+    for cuenta in cuentas:
+        for campo in ["definicion", "presentacion"]:
+            remisiones = cuenta["remisiones_" + campo]
+            for texto in cuenta[campo]:
+                for numero in re.findall(r"\d+", texto):
+                    if numero in codigos_existentes and numero not in remisiones:
+                        problemas.append(
+                            cuenta["codigo"] + " · " + campo + " · el " + numero + ": "
+                            + fragmento_alrededor(texto, numero)
+                        )
+    return problemas
+
+
 def imprimir_apartado(titulo, problemas):
     print()
     print(titulo, "(" + str(len(problemas)) + ")")
@@ -204,3 +223,5 @@ imprimir_apartado("4. Contrapartidas de una sola cifra (un grupo entero)",
                   contrapartidas_de_una_cifra(cuentas))
 imprimir_apartado("5. Textos sospechosos", textos_sospechosos(cuentas))
 imprimir_apartado("6. Subgrupos fuera de orden", subgrupos_fuera_de_orden(cuentas))
+imprimir_apartado("7. Números de la definición y la presentación que no se toman como remisión",
+                  numeros_que_no_son_remision(cuentas, codigos_existentes))

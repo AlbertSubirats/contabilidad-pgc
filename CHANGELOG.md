@@ -12,6 +12,61 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-14
 
+### Cambio · Paso 17 bis: convertir en enlaces las remisiones del texto
+**Qué:** el parser busca en la definición y la presentación las remisiones a
+otras cuentas (`PATRON_REMISION`) y las guarda en dos campos nuevos,
+`remisiones_definicion` y `remisiones_presentacion`. La web las convierte en
+enlaces dentro del texto: `crearFraseConContrapartidas` pasa a ser
+`crearTextoConEnlaces(texto, codigos, clase)` y la usan los movimientos y los
+párrafos. `verify.py` gana el apartado 7. Resultado: 460 remisiones en 199
+cuentas; en la 101, "análogo al señalado para la cuenta 100" enlaza con la
+100, y en la 109 el "artículo 170" se queda como texto. Comprobado en el
+navegador. Idea de Albert; escrito por Claude, trozo a trozo.
+**Por qué:** la ficha remite a menudo a otras cuentas, y poder seguir la
+remisión con un clic es la mitad del valor de una wiki.
+
+### Decisión · Una remisión es una palabra clave seguida de una lista de números
+**Qué:** `r"\b(cuentas?|subgrupos?|grupos?) ([\d ,/yoó]+)"`: "cuenta",
+"subgrupo" o "grupo" (con o sin "s") y luego todo lo que sean cifras,
+espacios, comas, barras, "y", "o" u "ó". De esa lista se quedan los números
+que son una cuenta que existe.
+**Por qué:** con la regla de las contrapartidas (todo número que sea una
+cuenta), "artículo 239" enlazaría con la 239. Mirar la palabra de delante deja
+fuera los 32 números que no son remisiones (artículos, la Ley 46/1998, las
+"b1)" de los derivados, los "1." de la 490) y atrapa las listas ("130, 131 ó
+132", "35y 36", "300/309"). Se probó también un patrón con grupos anidados:
+daba exactamente lo mismo, párrafo a párrafo, y se eligió el que se lee de un
+vistazo.
+
+### Decisión · Las remisiones se guardan como una lista por apartado
+**Qué:** como las contrapartidas: una lista de códigos para la definición y
+otra para la presentación, y la web enlaza los números del texto que están en
+ella.
+**Por qué:** se comprobó que en ningún párrafo el mismo número es una vez
+remisión y otra no (el caso dudoso, la 529, dice "subgrupo 14" las dos
+veces). Si un día pasara, el apartado 7 de `verify.py` no lo vería; habría
+que guardar las remisiones párrafo a párrafo.
+
+### Decisión · Las remisiones, como enlaces discretos y no en cajita
+**Qué:** clase `remision`: el número en el color del texto, con un subrayado
+fino y gris separado de las letras, que se oscurece y engorda al pasar el
+ratón o al llegar con el teclado.
+**Por qué:** las contrapartidas van en cajitas de color porque enseñan el
+asiento (Debe/Haber); una remisión no tiene lado, y hay párrafos con cinco o
+seis remisiones que en cajitas se leerían peor. Lo decidió Albert.
+
+### Decisión · "salvo la 499" se queda sin enlace
+**Qué:** en la presentación del 49, el 499 no se toma como remisión.
+**Por qué:** delante dice "la", no "cuenta". Aceptar "la" como palabra clave
+colaría números que no son cuentas ("la Ley 46/1998"). Es un solo caso, sale en
+el apartado 7 de `verify.py` y el texto se lee igual. Lo decidió Albert.
+
+### Decisión · `verify.py` lista los números que no son remisión
+**Qué:** apartado 7: los números de la definición y la presentación que son
+el código de una cuenta pero no se han tomado como remisión. Hoy salen 33.
+**Por qué:** si la regla se estropea o el BOE cambia una frase, aparecerá ahí
+un número que debería ser enlace. Lo decidió Albert.
+
 ### Cambio · Paso 17: navegar entre cuentas por la URL
 **Qué:** las contrapartidas, las cuentas de la lista y del árbol, y los
 títulos de grupos y subgrupos del árbol son enlaces (`<a href="#430">`), que

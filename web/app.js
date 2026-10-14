@@ -159,9 +159,10 @@ function pintarArbol() {
     }
 }
 
-// Llena un hueco de la ficha con un <p> por cada párrafo de la lista.
+// Llena un hueco de la ficha con un <p> por cada párrafo de la lista, con las
+// remisiones a otras cuentas convertidas en enlaces ("...para la cuenta [100]").
 // Si la lista está vacía, pone el aviso: si algo no está en el PGC, se dice.
-function rellenarConParrafos(contenedor, parrafos, avisoSiNoHay) {
+function rellenarConParrafos(contenedor, parrafos, remisiones, avisoSiNoHay) {
     contenedor.replaceChildren();
 
     if (parrafos.length === 0) {
@@ -174,16 +175,17 @@ function rellenarConParrafos(contenedor, parrafos, avisoSiNoHay) {
 
     for (const texto of parrafos) {
         const parrafo = document.createElement("p");
-        parrafo.textContent = texto;
+        parrafo.appendChild(crearTextoConEnlaces(texto, remisiones, "remision"));
         contenedor.appendChild(parrafo);
     }
 }
 
-// Crea la frase de un movimiento con sus contrapartidas convertidas en
-// enlaces: "...con abono a la cuenta [437]." Solo son enlace los números que
-// están en la lista de contrapartidas de la columna; los demás números
-// (artículos, porcentajes...) se quedan como texto.
-function crearFraseConContrapartidas(texto, contrapartidas) {
+// Crea un texto con algunos de sus números convertidos en enlaces a su
+// cuenta: "...con abono a la cuenta [437]." Solo son enlace los números que
+// están en la lista de códigos (las contrapartidas de una columna, o las
+// remisiones de un apartado); los demás (artículos, porcentajes...) se quedan
+// como texto. La clase dice cómo se pinta el enlace: "contrapartida" o "remision".
+function crearTextoConEnlaces(texto, codigos, clase) {
     const frase = document.createElement("span");
 
     // Partir por los números. El paréntesis hace que los números se queden en
@@ -191,9 +193,9 @@ function crearFraseConContrapartidas(texto, contrapartidas) {
     const trozos = texto.split(/(\d+)/);
 
     for (const trozo of trozos) {
-        if (contrapartidas.includes(trozo)) {
+        if (codigos.includes(trozo)) {
             const enlace = crearEnlaceACuenta(trozo, trozo);
-            enlace.className = "contrapartida";
+            enlace.className = clase;
             frase.appendChild(enlace);
         } else {
             const textoNormal = document.createTextNode(trozo);
@@ -234,7 +236,7 @@ function pintarMovimientos(lista, movimientos, contrapartidas, avisoSiNoHay) {
             elemento.appendChild(etiquetaDelMovimiento);
         }
 
-        const frase = crearFraseConContrapartidas(movimiento.texto, contrapartidas);
+        const frase = crearTextoConEnlaces(movimiento.texto, contrapartidas, "contrapartida");
         elemento.appendChild(frase);
 
         lista.appendChild(elemento);
@@ -271,8 +273,8 @@ function mostrarFicha(cuenta) {
     const definicion = document.getElementById("ficha-definicion");
     const presentacion = document.getElementById("ficha-presentacion");
 
-    rellenarConParrafos(definicion, cuenta.definicion, "Sin definición en el texto del PGC.");
-    rellenarConParrafos(presentacion, cuenta.presentacion, "Sin indicación de presentación en el balance en el texto del PGC.");
+    rellenarConParrafos(definicion, cuenta.definicion, cuenta.remisiones_definicion, "Sin definición en el texto del PGC.");
+    rellenarConParrafos(presentacion, cuenta.presentacion, cuenta.remisiones_presentacion, "Sin indicación de presentación en el balance en el texto del PGC.");
 
     const cargos = document.getElementById("ficha-cargos");
     const abonos = document.getElementById("ficha-abonos");
