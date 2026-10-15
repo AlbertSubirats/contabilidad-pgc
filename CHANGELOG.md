@@ -12,6 +12,41 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·3 bis: hacer más legible el árbol
+**Qué:** la columna del árbol pasa de 18em a 22em y su letra, a 0,9. Las
+líneas de un mismo nombre van más juntas (`line-height: 1.3`) y entre una
+cuenta y la siguiente hay más aire. Los subgrupos y las cuentas cuelgan de
+una línea guía fina a la izquierda (`border-left`), con menos sangría que
+antes. Los subgrupos se enseñan con la inicial en mayúscula
+(`text-transform: lowercase` y `::first-letter`); en `app.js`, las clases
+`titulo-subgrupo` y `nombre-arbol` para que el CSS los encuentre. Al pasar el
+ratón, la fila entera se oscurece. Comprobado en el navegador con la 403:
+"40 Proveedores" en vez de "40 PROVEEDORES", la 401 en dos líneas en vez de
+tres. Escrito por Claude, a petición de Albert.
+**Por qué:** Albert lo encontraba difícil de leer: con 288 píxeles y la
+sangría de cada nivel, los nombres ocupaban tres líneas, y el espacio entre
+las líneas de un nombre era el mismo que entre dos cuentas.
+
+### Decisión · Aire y línea guía, no una cajita por cuenta
+**Qué:** de las tres maneras que se compararon (como estaba, aire con línea
+guía, una caja por cuenta), la segunda.
+**Por qué:** una caja por cuenta gasta ancho en una columna que ya va justa
+y, con casi mil cuentas, convierte el árbol en una cuadrícula. Tampoco filas
+alternas de color: con nombres de una, dos o tres líneas se vería
+desordenado. Lo decidió Albert ("muchísimo más agradable a la vista").
+
+### Decisión · Los subgrupos, en minúsculas solo en el árbol
+**Qué:** el árbol enseña "Proveedores" donde el BOE escribe "PROVEEDORES".
+**Por qué:** las mayúsculas se leen peor y ocupan más. Es solo el aspecto:
+el JSON no cambia, y la ficha, las migas y la ficha rápida siguen poniéndolo
+tal como se publicó (sección 7 de CLAUDE.md). Lo decidió Albert.
+
+### Decisión · El árbol más ancho, a costa de la ficha en pantallas justas
+**Qué:** con el árbol a 22em, en una pantalla de 1024 píxeles (el mínimo
+para las tres columnas) a la ficha le quedan unos 370 píxeles, antes 450.
+**Por qué:** en pantallas de ordenador normales (1280 o más) la ficha va
+sobrada. Si se queda corta en alguna, se mira en el paso 20·4.
+
 ### Cambio · Paso 20·3: el árbol como en la maqueta A
 **Qué:** en `app.js`, `crearEnlaceDelArbol` pone el código y el nombre de
 cada línea en dos `<span>`, y los grupos llevan la clase `titulo-grupo`.

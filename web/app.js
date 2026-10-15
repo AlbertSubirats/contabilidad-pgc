@@ -47,6 +47,7 @@ function crearEnlaceDelArbol(cuenta) {
     enlace.appendChild(codigo);
 
     const nombre = document.createElement("span");
+    nombre.className = "nombre-arbol";
     nombre.textContent = cuenta.nombre;
     enlace.appendChild(nombre);
 
@@ -256,7 +257,10 @@ function pintarArbol() {
         const subgrupos = hijosPorPadre[grupo.codigo];
         for (const subgrupo of subgrupos) {
             const cajaSubgrupo = document.createElement("details");
+            // La clase titulo-subgrupo es para el CSS: el BOE escribe los
+            // subgrupos en mayúsculas, y en el árbol se enseñan en minúsculas.
             const tituloSubgrupo = document.createElement("summary");
+            tituloSubgrupo.className = "titulo-subgrupo";
             tituloSubgrupo.appendChild(crearEnlaceDelArbol(subgrupo));
             cajaSubgrupo.appendChild(tituloSubgrupo);
 

@@ -332,6 +332,15 @@ pequeño y en gris (sigue siendo el que pliega, decidido en el paso 17). El
 camino hasta ella va en el color de enlace.
 `feat: dar al árbol el aspecto de la maqueta A`
 
+#### Paso 20·3 bis · Hacer más legible el árbol
+**Qué:** idea de Albert, al ver el 20·3: la columna más ancha (22em) y la
+letra algo menor; aire entre cuentas y líneas de un nombre más juntas; una
+línea guía en lugar de tanta sangría; los subgrupos con la inicial en
+mayúscula; la fila se oscurece al pasar el ratón.
+**Compruebas:** en la 403, el subgrupo sale "40 Proveedores" y la 401 ocupa
+dos líneas.
+`fix: hacer más legible el árbol`
+
 #### Paso 20·4 · Lo que quedaba del pulido
 **Qué:** tipografías y espaciados definitivos, estados de foco visibles para
 quien navegue con teclado. **Pendiente del paso 19:** la página se quedó sin

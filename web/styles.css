@@ -24,7 +24,8 @@ body {
 /* La página es una rejilla (grid): tres columnas, y la cabecera ocupando las
    tres por arriba. Cada zona tiene un nombre (grid-area) y el dibujo de
    grid-template-areas dice en qué casilla va cada una.
-   - 18em: los márgenes tienen un ancho fijo.
+   - 22em y 18em: los márgenes tienen un ancho fijo. El del árbol es mayor
+     porque sus nombres son largos y van metidos hacia dentro por niveles.
    - 1fr: una "fracción" de lo que sobra. Como es la única, la ficha se lleva
      todo el ancho que dejan los márgenes, y crece o encoge con la ventana.
    El margin: 0 quita el borde blanco que el navegador pone por su cuenta.
@@ -39,7 +40,7 @@ body {
 @media (min-width: 64em) {
     body {
         display: grid;
-        grid-template-columns: 18em 1fr 18em;
+        grid-template-columns: 22em 1fr 18em;
         grid-template-areas:
             "cabecera cabecera cabecera"
             "arbol    ficha    rapida";
@@ -392,10 +393,23 @@ body {
     color: var(--color-tinta-suave);
 }
 
-/* Cada caja plegable que está dentro de otra se desplaza a la derecha, para
-   que se vea qué cuelga de qué. */
-details details {
-    padding-left: 1.2em;
+/* Todo el árbol, con la letra un poco más pequeña que la ficha: es una
+   columna lateral y así caben más palabras por línea. */
+#arbol-cuentas {
+    font-size: 0.9em;
+}
+
+/* Los subgrupos de un grupo y las cuentas de un subgrupo, metidos hacia
+   dentro y con una línea guía a la izquierda, como en un explorador de
+   archivos: la línea junta todo lo que cuelga del mismo padre. Va bajo el
+   triángulo del padre (margin-left), y el contenido, un poco a su derecha
+   (padding-left). Como la línea ya dice qué cuelga de qué, basta con meterlo
+   poco hacia dentro, y queda más sitio para los nombres. */
+#arbol-cuentas details details,
+#arbol-cuentas ul {
+    margin-left: 0.3em;
+    padding-left: 0.6em;
+    border-left: 1px solid var(--color-linea);
 }
 
 /* El título de cada caja (<summary>): el triángulo y el enlace, en fila.
@@ -437,24 +451,44 @@ details[open] > summary::before {
     font-family: Georgia, serif;
 }
 
-/* Las cuentas de un subgrupo: sin viñetas y metidas lo mismo que un
-   subgrupo, para que su código quede bajo el nombre del subgrupo. */
+/* El BOE escribe los 78 subgrupos en MAYÚSCULAS ("PROVEEDORES"), que en
+   una columna estrecha se leen mal. Aquí se enseñan en minúsculas con la
+   inicial en mayúscula ("Proveedores"), como en la maqueta A. Es solo el
+   aspecto: el dato del JSON no cambia, y la ficha, las migas y la ficha
+   rápida siguen escribiéndolo tal como viene en el BOE.
+   ::first-letter es la primera letra del elemento: se le devuelve la
+   mayúscula después de pasarlo todo a minúsculas. */
+.titulo-subgrupo .nombre-arbol {
+    text-transform: lowercase;
+}
+
+.titulo-subgrupo .nombre-arbol::first-letter {
+    text-transform: uppercase;
+}
+
+/* Las cuentas de un subgrupo, sin viñetas. Lo de meterlas hacia dentro va
+   arriba, con la línea guía. */
 #arbol-cuentas ul {
-    margin: 0;
-    padding-left: 1.2em;
+    margin-top: 0;
+    margin-bottom: 0;
     list-style: none;
 }
 
 /* Cada línea del árbol: una rejilla con el código en una columna (auto: lo
    que mida) y el nombre en lo que sobra. Si el nombre ocupa dos líneas, la
-   segunda empieza bajo la primera y no bajo el código. */
+   segunda empieza bajo la primera y no bajo el código.
+   Las líneas de un mismo nombre van juntas (line-height: 1.3) y entre una
+   cuenta y la siguiente hay más aire (margin-bottom): así cada cuenta se ve
+   como un bloque y se sabe dónde acaba una y empieza la otra. */
 #arbol-cuentas a {
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: 0.5em;
     flex: 1;
+    margin-bottom: 0.35em;
     padding: 0.2em 0.4em;
     border-radius: 0.3em;
+    line-height: 1.3;
 }
 
 /* El código, en gris. tabular-nums hace que todas las cifras midan lo
@@ -504,15 +538,19 @@ details[open] > summary::before {
 }
 
 /* Las cuentas del árbol son enlaces (#430), pero conservan el color del
-   texto y van sin subrayar: solo se subrayan al pasar el ratón (:hover) o al
-   llegar con el teclado (:focus-visible), para que se note que se pueden
-   pulsar. Las de la lista del buscador tienen sus propias reglas, arriba. */
+   texto y van sin subrayar. Al pasar el ratón (:hover), la fila entera se
+   oscurece un poco, y así se ve qué cuenta vas a pulsar aunque su nombre
+   ocupe tres líneas. Al llegar con el teclado (:focus-visible), se subraya.
+   Las de la lista del buscador tienen sus propias reglas, arriba. */
 #arbol-cuentas a {
     color: inherit;
     text-decoration: none;
 }
 
-#arbol-cuentas a:hover,
+#arbol-cuentas a:hover {
+    background-color: var(--color-papel-oscuro);
+}
+
 #arbol-cuentas a:focus-visible {
     text-decoration: underline;
 }
