@@ -18,7 +18,7 @@
        su propio significado. */
     --color-tinta-marron: #4A2E1E;
     /* Un papel más claro que el de fondo, para la cabecera, el árbol y las
-       cajas de la ficha rápida: así se distinguen las zonas de la página,
+       cajitas de la ficha rápida: así se distinguen las zonas de la página,
        como en la maqueta A, donde el centro es un poco más oscuro. */
     --color-papel-claro: #FFFEFB;
 }
@@ -147,6 +147,8 @@ body {
     grid-area: ficha;
 }
 
+/* La ficha rápida va sobre el papel del centro, sin fondo propio: sus dos
+   cajitas, de papel claro, son las que se recortan sobre él. */
 .columna-ficha-rapida {
     grid-area: rapida;
 }
@@ -538,46 +540,39 @@ body {
     text-decoration: underline;
 }
 
-/* Las cajas de la ficha rápida (maqueta D): un borde con las esquinas
-   redondeadas y aire entre una y otra. overflow: hidden recorta lo de dentro
-   por el borde redondeado; sin él, el fondo de la franja del título asomaría
-   por las esquinas.
-   El fondo, del papel más claro, como el árbol: sobre el papel de la ficha
-   se ven como tarjetas. */
-.caja {
+/* Las dos cajitas de la ficha rápida ("Ficha rápida" y "Contrapartidas"),
+   como la tarjeta que sale al pasar el ratón: papel claro sobre el papel del
+   centro, borde fino y esquinas redondeadas, y aire entre una y otra. */
+.caja-ficha-rapida {
     margin-bottom: 1.2em;
+    padding: 0.8em 1em;
     background-color: var(--color-papel-claro);
     border: 1px solid var(--color-linea);
     border-radius: 0.5em;
-    overflow: hidden;
 }
 
-/* El título de cada caja, en su franja de papel más oscuro y con serifa. */
-.caja h2 {
-    margin: 0;
-    padding: 0.5em 0.8em;
-    background-color: var(--color-papel-oscuro);
-    border-bottom: 1px solid var(--color-linea);
+/* El título de cada cajita, con serifa, como el de la tarjeta flotante. */
+.caja-ficha-rapida h2 {
+    margin: 0 0 0.3em;
     font-family: Georgia, serif;
     font-size: 1.1em;
     font-weight: normal;
 }
 
-/* Lo de dentro de la caja, con aire a los lados y abajo. */
-.caja dl,
-.caja section {
-    margin: 0;
-    padding: 0 0.8em 0.8em;
+/* Lo de dentro, con la letra un poco más pequeña, como el árbol: es una
+   columna lateral. */
+#ficha-rapida-datos,
+.caja-ficha-rapida section {
+    font-size: 0.9em;
 }
 
-/* Ficha rápida: cada dato con su nombre encima, en pequeño, mayúsculas y
-   gris (como en la maqueta B), y el valor debajo. El navegador mete los <dd>
-   hacia dentro; aquí se quita esa sangría. */
+/* Ficha rápida: cada dato con su nombre encima ("Plan", "Nivel"...), en
+   pequeño y en gris, y el valor debajo. En minúsculas, para que no se
+   confundan con los títulos de los apartados, que van en mayúsculas.
+   El navegador mete los <dd> hacia dentro; aquí se quita esa sangría. */
 .columna-ficha-rapida dt {
     margin-top: 0.8em;
-    font-size: 0.75em;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: 0.85em;
     color: var(--color-tinta-suave);
 }
 
@@ -585,8 +580,33 @@ body {
     margin-left: 0;
 }
 
+/* El grupo y el subgrupo, hechos como las líneas del árbol (una rejilla con
+   el código y el nombre), y en el color de enlace, como las migas: sin
+   subrayar hasta pasar el ratón. El código, en el mismo color que el nombre. */
 .columna-ficha-rapida dd a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.5em;
+    color: var(--color-enlace);
+    text-decoration: none;
+}
+
+.columna-ficha-rapida dd a:hover {
+    text-decoration: underline;
+}
+
+.columna-ficha-rapida dd .codigo-arbol {
     color: inherit;
+}
+
+/* El nombre del subgrupo, con la inicial en mayúscula, como en el árbol:
+   el BOE lo escribe en mayúsculas ("CLIENTES"). */
+.enlace-subgrupo .nombre-arbol {
+    text-transform: lowercase;
+}
+
+.enlace-subgrupo .nombre-arbol::first-letter {
+    text-transform: uppercase;
 }
 
 /* "De los cargos" y "De los abonos": pequeños y en mayúsculas, como los
@@ -620,8 +640,7 @@ body {
 }
 
 /* Árbol del cuadro de cuentas, con el aspecto de la maqueta A.
-   El título "Cuadro de cuentas", pequeño, en mayúsculas y en gris, como los
-   nombres de los datos de la ficha rápida. */
+   El título "Cuadro de cuentas", pequeño, en mayúsculas y en gris. */
 .columna-arbol h2 {
     font-size: 0.75em;
     font-weight: normal;
@@ -914,8 +933,8 @@ details[open] > summary::before {
 }
 
 /* La tarjeta de una cuenta, que sale al dejar el ratón sobre un número de la
-   ficha. Con el aspecto de las cajas de la ficha rápida: papel claro, borde
-   fino y redondeado, y una sombra suave como la lista del buscador, porque
+   ficha. Papel claro, como las cajitas de la ficha rápida, con borde fino y
+   redondeado, y una sombra suave como la lista del buscador, porque
    flota por encima de la página.
    - position: fixed la coloca respecto a la ventana, no a la página; los
      números de left y top los pone app.js (colocarTarjeta).

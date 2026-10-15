@@ -392,6 +392,11 @@ está algo en la ventana (`getBoundingClientRect`), escuchar en el
 `document` y mirar de dónde venía el evento, `matchMedia`.
 `feat: enseñar una tarjeta de la cuenta al pasar el ratón por sus números`
 
+#### Paso 20·12 · La ficha rápida, armonizada con el resto de la web
+**Qué:** idea de Albert. Las cajitas sin franja, como la tarjeta flotante;
+el grupo y el subgrupo como líneas del árbol, en el color de enlace.
+`feat: armonizar la ficha rápida con el resto de la web`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.

@@ -12,6 +12,58 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·12: la ficha rápida, armonizada con el resto de la web
+**Qué:** las dos tarjetas de la ficha rápida (paso 19 ter) pierden su franja
+de color: ahora son como la tarjeta que sale al pasar el ratón, de papel
+claro, con borde fino redondeado y el título con serifa
+(`.caja-ficha-rapida`, en lugar de `.caja`). Los nombres de los datos
+("Plan", "Nivel"...) van en minúsculas. El grupo y el subgrupo se hacen con
+`crearEnlaceDelArbol`, como las líneas del árbol, en el color de enlace y sin
+subrayar, como las migas; el subgrupo, con la inicial en mayúscula ("43
+Clientes"). El grupo y el subgrupo de la ficha rápida sacan también la
+tarjeta de la cuenta al pasar el ratón (`enlacesConTarjeta` incluye
+`#ficha-rapida-datos a`). Comprobado en el navegador con la 430, midiendo
+los estilos (la captura no llegaba a la columna derecha), y con el ratón de
+verdad sobre el subgrupo 43: sale su tarjeta, movida a la izquierda para no
+salirse de la ventana. La tarjeta enseña ahora el primer párrafo de la
+definición entero, sin recortarlo a 220 letras (se borra `resumir`), y si es
+tan alta que no cabe ni debajo ni encima del número, se pega arriba de la
+ventana. Comprobado: el grupo 4 sale con sus 365 letras, y la tarjeta más
+alta, la de la 559 (741 letras), mide 450 píxeles. Escrito por Claude, a
+petición de Albert.
+**Por qué:** idea de Albert: la ficha rápida era lo único que quedaba con la
+estética de la maqueta D (franjas de color, enlaces subrayados en negro,
+subgrupo en mayúsculas).
+
+### Decisión · Las cajitas se quedan
+**Qué:** primero se probó vestir la columna como la del árbol (papel claro,
+raya y títulos pequeños en mayúsculas, sin tarjetas). A Albert le gustaban
+las cajitas, y se volvió a ellas, sin franja y con lo demás armonizado. No
+llegó a haber commit de la primera prueba.
+**Por qué:** las cajitas recogen y separan los datos, y ahora hablan el mismo
+idioma que la tarjeta flotante. Lo decidió Albert.
+
+### Decisión · El primer párrafo, entero
+**Qué:** la tarjeta ya no corta la definición a 220 letras con "…".
+**Por qué:** a Albert le parecía raro un párrafo cortado a media frase. Se
+midieron los 551 primeros párrafos: la mitad tienen menos de 140 letras, 141
+pasan de 220 y el más largo tiene 741; ninguno es tan largo que la tarjeta no
+quepa en una pantalla normal.
+
+### Decisión · Muchos grupos y subgrupos no tienen definición, y se dice
+**Qué:** en el BOE traen texto propio 7 de los 9 grupos y 40 de los 78
+subgrupos (el 43, por ejemplo, no). Su tarjeta dice "Sin definición en el
+texto del PGC.".
+**Por qué:** la fuente es la única verdad del contenido contable (sección 7
+de CLAUDE.md): si algo no está, se dice que no está.
+
+### Decisión · El subgrupo, también en minúsculas en la ficha rápida
+**Qué:** en el paso 20·3 bis se decidió que fuera del árbol el subgrupo iba
+tal como lo escribe el BOE. Ahora la ficha rápida también lo enseña con la
+inicial en mayúscula.
+**Por qué:** se ve igual que en el árbol. En el título de la ficha y en las
+migas sigue tal como se publicó. Lo decidió Albert.
+
 ### Cambio · Paso 20·11: la tarjeta de una cuenta al pasar el ratón
 **Qué:** al dejar el ratón sobre un número de la ficha (contrapartidas del
 movimiento y de la ficha rápida, y remisiones del texto), sale una tarjeta

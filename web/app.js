@@ -38,6 +38,8 @@ function crearEnlaceACuenta(codigo, texto) {
 // Fabrica el enlace de una línea del árbol (grupo, subgrupo o cuenta). Como
 // en la maqueta A, el código y el nombre van cada uno en su <span>, para que
 // el CSS ponga el código en gris y en su columna, y el nombre al lado.
+// La usa también la ficha rápida para su grupo y su subgrupo, así se ven
+// igual a los dos lados de la página.
 function crearEnlaceDelArbol(cuenta) {
     const enlace = crearEnlaceACuenta(cuenta.codigo, "");
 
@@ -557,15 +559,20 @@ function pintarFichaRapida(cuenta) {
     anadirDato(datos, "Plan", document.createTextNode(nombreDelPlan[cuenta.plan]));
     anadirDato(datos, "Nivel", document.createTextNode(nombreDelNivel[cuenta.nivel]));
 
-    // El grupo y el subgrupo, como enlaces a su ficha. Cada uno solo si la
-    // cuenta está por debajo: un grupo no lleva grupo, porque sería él mismo.
+    // El grupo y el subgrupo, como enlaces a su ficha, hechos igual que en el
+    // árbol (código y nombre en dos piezas). Cada uno solo si la cuenta está
+    // por debajo: un grupo no lleva grupo, porque sería él mismo.
+    // La clase enlace-subgrupo es para el CSS: el nombre del subgrupo se
+    // enseña con la inicial en mayúscula, como en el árbol.
     if (cuenta.nivel !== "grupo") {
         const grupo = cuentasPorCodigo[cuenta.codigo.slice(0, 1)];
-        anadirDato(datos, "Grupo", crearEnlaceACuenta(grupo.codigo, grupo.codigo + " · " + grupo.nombre));
+        anadirDato(datos, "Grupo", crearEnlaceDelArbol(grupo));
     }
     if (cuenta.nivel === "cuenta" || cuenta.nivel === "subcuenta") {
         const subgrupo = cuentasPorCodigo[cuenta.codigo.slice(0, 2)];
-        anadirDato(datos, "Subgrupo", crearEnlaceACuenta(subgrupo.codigo, subgrupo.codigo + " · " + subgrupo.nombre));
+        const enlaceSubgrupo = crearEnlaceDelArbol(subgrupo);
+        enlaceSubgrupo.classList.add("enlace-subgrupo");
+        anadirDato(datos, "Subgrupo", enlaceSubgrupo);
     }
 
     const cargos = document.getElementById("ficha-rapida-cargos");
@@ -643,26 +650,17 @@ function mostrarFicha(cuenta) {
 // sobre un número de la ficha, como las vistas previas de la Wikipedia.
 // ---------------------------------------------------------------------------
 
-// Los números de la ficha que sacan tarjeta: las contrapartidas (en el
-// movimiento y en la ficha rápida) y las remisiones de la definición y la
-// presentación. Es un selector, escrito igual que en el CSS.
-const enlacesConTarjeta = "a.contrapartida, a.remision";
+// Los enlaces de la ficha que sacan tarjeta: las contrapartidas (en el
+// movimiento y en la ficha rápida), las remisiones de la definición y la
+// presentación, y el grupo y el subgrupo de la ficha rápida (los enlaces de
+// su lista de datos). Es un selector, escrito igual que en el CSS: la coma
+// quiere decir "o".
+const enlacesConTarjeta = "a.contrapartida, a.remision, #ficha-rapida-datos a";
 
 // El temporizador de la tarjeta. setTimeout devuelve un número que lo
 // identifica; se guarda aquí para poder cancelarlo con clearTimeout si el
 // ratón se va antes de que se cumpla. null quiere decir "no hay ninguno".
 let temporizadorTarjeta = null;
-
-// Recorta un texto largo a un máximo de letras, sin partir ninguna palabra,
-// y le pone "…" al final para que se vea que sigue.
-// lastIndexOf(" ", maximo) busca el último espacio antes de esa posición.
-function resumir(texto, maximo) {
-    if (texto.length <= maximo) {
-        return texto;
-    }
-    const corte = texto.lastIndexOf(" ", maximo);
-    return texto.slice(0, corte) + "…";
-}
 
 // Rellena la tarjeta con una cuenta: su código y su nombre, de dónde cuelga
 // ("Cuenta · Grupo 4 › Subgrupo 43") y el principio de su definición. La
@@ -702,12 +700,14 @@ function rellenarTarjeta(tarjeta, cuenta) {
     parrafoLugar.textContent = lugar;
     tarjeta.appendChild(parrafoLugar);
 
-    // El principio de la definición (su primer párrafo, recortado), o el
-    // aviso si el PGC no trae definición: si algo no está, se dice.
+    // El primer párrafo de la definición, entero, o el aviso si el PGC no
+    // trae definición: si algo no está, se dice. Entero y no recortado,
+    // porque un párrafo cortado a media frase se lee raro; el más largo del
+    // PGC (el de la 559) tiene unas 740 letras, y cabe en la tarjeta.
     const definicion = document.createElement("p");
     definicion.className = "tarjeta-definicion";
     if (cuenta.definicion.length > 0) {
-        definicion.textContent = resumir(cuenta.definicion[0], 220);
+        definicion.textContent = cuenta.definicion[0];
     } else {
         definicion.classList.add("aviso-sin-texto");
         definicion.textContent = "Sin definición en el texto del PGC.";
@@ -738,6 +738,12 @@ function colocarTarjeta(tarjeta, enlace) {
     let arriba = sitioEnlace.bottom + separacion;
     if (arriba + tarjeta.offsetHeight > altoVentana) {
         arriba = sitioEnlace.top - tarjeta.offsetHeight - separacion;
+    }
+    // Una tarjeta muy alta (una definición larga) puede no caber ni debajo
+    // ni encima: entonces, pegada arriba de la ventana, para que al menos
+    // se lea desde el principio.
+    if (arriba < separacion) {
+        arriba = separacion;
     }
 
     tarjeta.style.left = izquierda + "px";
