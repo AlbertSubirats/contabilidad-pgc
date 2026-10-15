@@ -400,9 +400,16 @@ body {
    títulos y para el texto de la norma, y sans para la interfaz (etiquetas,
    migas, el movimiento). Georgia viene instalada en todos los ordenadores:
    no hay que descargar ninguna fuente.
-   max-width: en una pantalla grande la ficha no se estira sin fin. */
-#ficha-cuenta {
+   max-width: en una pantalla grande la ficha no se estira sin fin.
+   margin-left y margin-right: auto la centran en su columna: el navegador
+   reparte a partes iguales, a izquierda y derecha, el sitio que sobra. Si no
+   sobra (la columna mide menos de 64em), los dos márgenes valen cero.
+   El aviso de cuenta inexistente, igual, para que salga donde saldría la ficha. */
+#ficha-cuenta,
+#aviso-cuenta {
     max-width: 64em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #ficha-titulo {
@@ -438,13 +445,24 @@ body {
 /* El texto de la norma, con serifa, algo más grande y con más aire entre
    líneas, porque es lo que se estudia. max-width en em limita lo largas que
    son las líneas: 40em son unas 80 letras, y a partir de ahí al ojo le
-   cuesta encontrar el principio de la línea siguiente. */
+   cuesta encontrar el principio de la línea siguiente.
+   text-align: justify estira los espacios de cada línea para que todas
+   acaben en el mismo sitio por la derecha, como en el BOE impreso. La
+   última línea de cada párrafo no se estira.
+   El peligro del justificado son los "ríos": en una línea con pocas
+   palabras largas, los espacios se abren muchísimo (pasa sobre todo en el
+   móvil). hyphens: auto deja al navegador partir las palabras con guion al
+   final de la línea, y así los espacios no se abren tanto. Para saber dónde
+   se parte una palabra usa las reglas del idioma de la página, que es el
+   lang="es" de la etiqueta <html>. */
 #ficha-definicion,
 #ficha-presentacion {
     max-width: 40em;
     font-family: Georgia, serif;
     font-size: 1.05em;
     line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
 }
 
 /* La presentación, en un recuadro de papel más oscuro con una barra a la

@@ -366,6 +366,11 @@ papel más claro que el centro, para que se distingan las zonas.
 quedaba fuera de la vista. Se sube al principio de la página, no al de la ficha.
 `fix: subir al principio de la página al abrir una ficha`
 
+#### Paso 20·8 · La ficha centrada y el texto de la norma justificado
+**Qué:** idea de Albert. La ficha, centrada en su columna; la definición y la
+presentación, justificadas y con guiones automáticos.
+`feat: centrar la ficha y justificar el texto de la norma`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.

@@ -12,6 +12,30 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·8: la ficha centrada y el texto de la norma justificado
+**Qué:** la ficha (y el aviso de cuenta inexistente) se centra en su columna
+con `margin-left` y `margin-right: auto`. La definición y la presentación van
+justificadas (`text-align: justify`) y con guiones automáticos al final de
+línea (`hyphens: auto`, que usa las reglas del castellano por el `lang="es"`).
+Comprobado en el navegador a 1920 píxeles con la 100: la ficha queda a 121 y
+120 píxeles de los dos bordes de su columna, y el texto justificado. Escrito
+por Claude, a petición de Albert.
+**Por qué:** idea de Albert: en pantallas grandes la ficha se quedaba pegada a
+la izquierda con un hueco a la derecha, y el texto justificado se parece al
+del BOE.
+
+### Decisión · Centrada en su columna, no en la pantalla
+**Qué:** la ficha se centra entre el árbol y la ficha rápida.
+**Por qué:** como el árbol (22em) es más ancho que la ficha rápida (18em), el
+centro de la columna queda unos 2em a la derecha del centro de la pantalla.
+Centrarla en la pantalla exacta la dejaría más cerca del árbol que de la
+ficha rápida, y eso se ve más que la diferencia de 2em.
+
+### Decisión · Justificado, con guiones
+**Qué:** `hyphens: auto` junto al justificado.
+**Por qué:** sin guiones, en las líneas con pocas palabras largas (sobre todo
+en el móvil) los espacios se abren mucho y forman "ríos" blancos en el texto.
+
 ### Cambio · Paso 20·7: al abrir una ficha, la página sube del todo
 **Qué:** en `app.js`, `mostrarFicha` y el aviso de cuenta inexistente suben
 al principio de la página con `window.scrollTo(0, 0)`, en vez de subir hasta
