@@ -12,6 +12,43 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·11: la tarjeta de una cuenta al pasar el ratón
+**Qué:** al dejar el ratón sobre un número de la ficha (contrapartidas del
+movimiento y de la ficha rápida, y remisiones del texto), sale una tarjeta
+con el código y el nombre de la cuenta, de dónde cuelga ("Cuenta · Grupo 4 ›
+Subgrupo 43") y el principio de su definición, recortado a 220 letras sin
+partir palabras (`resumir`). En `index.html`, un solo `<div
+id="tarjeta-cuenta" role="tooltip">` para toda la página. En `app.js`:
+`rellenarTarjeta`, `colocarTarjeta` (con `getBoundingClientRect`, y dándole
+la vuelta si se saldría por la derecha o por abajo), `mostrarTarjeta`,
+`esconderTarjeta` y los encargos: `mouseover` y `focusin` programan la
+tarjeta con `setTimeout` para dentro de 300 ms; `mouseout`, `focusout`,
+Escape, el cambio de ficha y desplazar la página la quitan. En los aparatos
+sin ratón (`matchMedia("(hover: hover)")`) no sale. Los `title` de los pasos
+19 ter y 20·10 se quitan, para que no salgan las dos cosas. En `styles.css`,
+`.tarjeta-cuenta` con `position: fixed` y `pointer-events: none`.
+Comprobado en el navegador con el ratón de verdad: el 431 del movimiento, el
+709 de la ficha rápida (se mueve a la izquierda para no salirse), el 709 de
+b5 (se pone encima, porque abajo no cabe), y al apartar el ratón se va; con
+el foco en la remisión al grupo 3 sale "3 Existencias", y Escape la quita;
+en el móvil no sale. Escrito por Claude, a petición de Albert.
+**Por qué:** idea de Albert: ver de qué va una contrapartida sin salir de la
+ficha, como las vistas previas de la Wikipedia.
+
+### Decisión · El título y el principio de la definición
+**Qué:** la tarjeta lleva el código, el nombre, el lugar en el cuadro y el
+principio de la definición; no la ficha rápida entera.
+**Por qué:** es lo que hace falta para saber de qué va una cuenta. Las
+contrapartidas dentro de la tarjeta serían números con tarjeta propia:
+tarjetas dentro de tarjetas. Lo decidió Albert.
+
+### Decisión · Una tarjeta que no se puede pulsar
+**Qué:** `pointer-events: none`: el ratón atraviesa la tarjeta, y se va en
+cuanto el ratón sale del número.
+**Por qué:** así no hay que vigilar también cuándo entra y sale el ratón de
+la tarjeta, y si la tarjeta tapa otro número, el ratón sigue llegando a él.
+Para abrir la ficha, se pulsa el número, como siempre.
+
 ### Cambio · Paso 20·10: el nombre de la cuenta al pasar el ratón por el movimiento
 **Qué:** en `app.js`, `crearTextoConEnlaces` pone en el `title` de cada
 enlace el nombre de la cuenta, grupo o subgrupo al que lleva, si existe en

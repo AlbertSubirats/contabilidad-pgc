@@ -912,3 +912,56 @@ details[open] > summary::before {
     color: var(--color-debe);
     background-color: var(--color-debe-claro);
 }
+
+/* La tarjeta de una cuenta, que sale al dejar el ratón sobre un número de la
+   ficha. Con el aspecto de las cajas de la ficha rápida: papel claro, borde
+   fino y redondeado, y una sombra suave como la lista del buscador, porque
+   flota por encima de la página.
+   - position: fixed la coloca respecto a la ventana, no a la página; los
+     números de left y top los pone app.js (colocarTarjeta).
+   - z-index: 3, por encima de todo, también de la lista del buscador (1).
+   - pointer-events: none hace que el ratón la "atraviese": no se puede
+     pulsar, y si queda encima de otro número, el ratón llega a ese número.
+   Ojo, como con la lista del buscador: aquí no se pone "display", porque
+   mandaría sobre el atributo hidden y la tarjeta no se escondería nunca. */
+.tarjeta-cuenta {
+    position: fixed;
+    z-index: 3;
+    width: 22em;
+    max-width: calc(100vw - 2em);
+    box-sizing: border-box;
+    padding: 0.8em 1em;
+    background-color: var(--color-papel-claro);
+    border: 1px solid var(--color-linea);
+    border-radius: 0.5em;
+    box-shadow: 0 0.3em 1em rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+/* El título de la tarjeta, como el de la ficha pero pequeño: reutiliza las
+   clases codigo-titulo y nombre-titulo, y aquí solo se le da el tamaño. */
+.tarjeta-titulo {
+    margin: 0 0 0.2em;
+    font-family: Georgia, serif;
+    font-size: 1.1em;
+    line-height: 1.25;
+}
+
+.tarjeta-titulo .codigo-titulo {
+    font-size: 1.15em;
+}
+
+/* "Cuenta · Grupo 4 › Subgrupo 43": pequeño y en gris, como las migas. */
+.tarjeta-lugar {
+    margin: 0 0 0.6em;
+    font-size: 0.8em;
+    color: var(--color-tinta-suave);
+}
+
+/* El principio de la definición, con serifa, como en la ficha. */
+.tarjeta-definicion {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 0.9em;
+    line-height: 1.5;
+}

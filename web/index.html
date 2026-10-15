@@ -144,6 +144,14 @@
             </section>
         </aside>
 
+        <!-- La tarjeta que sale al dejar el ratón sobre el número de una
+             cuenta en la ficha: su código, su nombre y el principio de su
+             definición. Hay una sola para toda la página: app.js la rellena
+             con la cuenta que toque y la coloca junto al número.
+             role="tooltip" le dice al lector de pantalla que es una
+             explicación que sale al lado de algo. -->
+        <div id="tarjeta-cuenta" class="tarjeta-cuenta" role="tooltip" hidden></div>
+
         <!-- Al final del body para que, cuando se ejecute, todo lo de arriba ya exista -->
         <script src="app.js"></script>
     </body>

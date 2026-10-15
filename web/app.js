@@ -418,18 +418,10 @@ function crearTextoConEnlaces(texto, codigos, clase) {
 
     for (const trozo of trozos) {
         if (codigos.includes(trozo)) {
+            // Al dejar el ratón encima sale la tarjeta de la cuenta (ver
+            // programarTarjeta): por la clase, que es la que la reconoce.
             const enlace = crearEnlaceACuenta(trozo, trozo);
             enlace.className = clase;
-
-            // El nombre de la cuenta, grupo o subgrupo, en el title: el
-            // navegador lo enseña al dejar el ratón encima, como en la ficha
-            // rápida. Solo si la cuenta existe: un enlace a una cuenta que no
-            // está en el PGC no tiene nombre que enseñar.
-            const cuentaEnlazada = cuentasPorCodigo[trozo];
-            if (cuentaEnlazada !== undefined) {
-                enlace.title = cuentaEnlazada.nombre;
-            }
-
             frase.appendChild(enlace);
         } else {
             const textoNormal = document.createTextNode(trozo);
@@ -529,8 +521,8 @@ function anadirDato(lista, termino, valor) {
 
 // Llena una lista de la ficha rápida con las contrapartidas de una columna del
 // movimiento: cada una, solo con su código en cajita (el mismo enlace que en
-// las frases). El nombre va en el atributo title, que el navegador enseña en
-// un recuadro al dejar el ratón encima. Si no hay, pone el aviso.
+// las frases). Al dejar el ratón encima sale la tarjeta de la cuenta, con su
+// nombre (ver programarTarjeta). Si no hay, pone el aviso.
 function pintarContrapartidas(lista, codigos, avisoSiNoHay) {
     lista.replaceChildren();
 
@@ -547,9 +539,6 @@ function pintarContrapartidas(lista, codigos, avisoSiNoHay) {
 
         const enlace = crearEnlaceACuenta(codigo, codigo);
         enlace.className = "contrapartida";
-
-        const contrapartida = cuentasPorCodigo[codigo];
-        enlace.title = contrapartida.nombre;
 
         elemento.appendChild(enlace);
         lista.appendChild(elemento);
@@ -649,6 +638,187 @@ function mostrarFicha(cuenta) {
     window.scrollTo(0, 0);
 }
 
+// ---------------------------------------------------------------------------
+// La tarjeta de una cuenta: sale al dejar el ratón (o llegar con el teclado)
+// sobre un número de la ficha, como las vistas previas de la Wikipedia.
+// ---------------------------------------------------------------------------
+
+// Los números de la ficha que sacan tarjeta: las contrapartidas (en el
+// movimiento y en la ficha rápida) y las remisiones de la definición y la
+// presentación. Es un selector, escrito igual que en el CSS.
+const enlacesConTarjeta = "a.contrapartida, a.remision";
+
+// El temporizador de la tarjeta. setTimeout devuelve un número que lo
+// identifica; se guarda aquí para poder cancelarlo con clearTimeout si el
+// ratón se va antes de que se cumpla. null quiere decir "no hay ninguno".
+let temporizadorTarjeta = null;
+
+// Recorta un texto largo a un máximo de letras, sin partir ninguna palabra,
+// y le pone "…" al final para que se vea que sigue.
+// lastIndexOf(" ", maximo) busca el último espacio antes de esa posición.
+function resumir(texto, maximo) {
+    if (texto.length <= maximo) {
+        return texto;
+    }
+    const corte = texto.lastIndexOf(" ", maximo);
+    return texto.slice(0, corte) + "…";
+}
+
+// Rellena la tarjeta con una cuenta: su código y su nombre, de dónde cuelga
+// ("Cuenta · Grupo 4 › Subgrupo 43") y el principio de su definición. La
+// definición va como texto normal, sin enlaces: así no hay tarjetas que salen
+// de dentro de una tarjeta.
+function rellenarTarjeta(tarjeta, cuenta) {
+    tarjeta.replaceChildren();
+
+    const titulo = document.createElement("p");
+    titulo.className = "tarjeta-titulo";
+    const codigo = document.createElement("span");
+    codigo.className = "codigo-titulo";
+    codigo.textContent = cuenta.codigo;
+    titulo.appendChild(codigo);
+    titulo.appendChild(document.createTextNode(" "));
+    const nombre = document.createElement("span");
+    nombre.className = "nombre-titulo";
+    nombre.textContent = cuenta.nombre;
+    titulo.appendChild(nombre);
+    tarjeta.appendChild(titulo);
+
+    // De dónde cuelga: se sube por los padres como en pintarMigas.
+    let lugar = nombreDelNivel[cuenta.nivel];
+    const antepasados = [];
+    let actual = cuenta;
+    while (actual.padre !== null) {
+        actual = cuentasPorCodigo[actual.padre];
+        antepasados.unshift(nombreDelNivel[actual.nivel] + " " + actual.codigo);
+    }
+    if (antepasados.length > 0) {
+        // join pega los elementos de una lista en un solo texto, con lo que
+        // se le dé entre uno y otro: ["Grupo 4", "Subgrupo 43"] → "Grupo 4 › Subgrupo 43".
+        lugar = lugar + " · " + antepasados.join(" › ");
+    }
+    const parrafoLugar = document.createElement("p");
+    parrafoLugar.className = "tarjeta-lugar";
+    parrafoLugar.textContent = lugar;
+    tarjeta.appendChild(parrafoLugar);
+
+    // El principio de la definición (su primer párrafo, recortado), o el
+    // aviso si el PGC no trae definición: si algo no está, se dice.
+    const definicion = document.createElement("p");
+    definicion.className = "tarjeta-definicion";
+    if (cuenta.definicion.length > 0) {
+        definicion.textContent = resumir(cuenta.definicion[0], 220);
+    } else {
+        definicion.classList.add("aviso-sin-texto");
+        definicion.textContent = "Sin definición en el texto del PGC.";
+    }
+    tarjeta.appendChild(definicion);
+}
+
+// Coloca la tarjeta justo debajo del número. Si por la derecha se saldría de
+// la ventana, se mueve a la izquierda lo que haga falta; si por abajo, se pone
+// encima del número.
+// getBoundingClientRect dice dónde está un elemento en la ventana, en
+// píxeles: left y right (sus bordes izquierdo y derecho), top y bottom.
+// La tarjeta es position: fixed (styles.css), así que se coloca con esas
+// mismas medidas de la ventana, sin contar lo que se haya bajado la página.
+function colocarTarjeta(tarjeta, enlace) {
+    const sitioEnlace = enlace.getBoundingClientRect();
+    const anchoVentana = document.documentElement.clientWidth;
+    const altoVentana = document.documentElement.clientHeight;
+    const separacion = 6;
+
+    // offsetWidth y offsetHeight: lo que mide la tarjeta. Solo se puede medir
+    // cuando se ve, por eso mostrarTarjeta la enseña antes de llamar aquí.
+    let izquierda = sitioEnlace.left;
+    if (izquierda + tarjeta.offsetWidth > anchoVentana - separacion) {
+        izquierda = anchoVentana - tarjeta.offsetWidth - separacion;
+    }
+
+    let arriba = sitioEnlace.bottom + separacion;
+    if (arriba + tarjeta.offsetHeight > altoVentana) {
+        arriba = sitioEnlace.top - tarjeta.offsetHeight - separacion;
+    }
+
+    tarjeta.style.left = izquierda + "px";
+    tarjeta.style.top = arriba + "px";
+}
+
+// Enseña la tarjeta de la cuenta a la que lleva un enlace.
+// enlace.hash es "#430": slice(1) le quita la "#".
+// aria-describedby une el enlace con la tarjeta: el lector de pantalla, al
+// leer el número, lee también la tarjeta.
+function mostrarTarjeta(enlace) {
+    const cuenta = cuentasPorCodigo[enlace.hash.slice(1)];
+    if (cuenta === undefined) {
+        return;
+    }
+
+    const tarjeta = document.getElementById("tarjeta-cuenta");
+    rellenarTarjeta(tarjeta, cuenta);
+    tarjeta.hidden = false;
+    colocarTarjeta(tarjeta, enlace);
+    enlace.setAttribute("aria-describedby", "tarjeta-cuenta");
+}
+
+// Esconde la tarjeta y cancela la que estuviera a punto de salir.
+// removeAttribute quita el aria-describedby del enlace que lo tuviera.
+function esconderTarjeta() {
+    clearTimeout(temporizadorTarjeta);
+    document.getElementById("tarjeta-cuenta").hidden = true;
+
+    const enlaceDescrito = document.querySelector('[aria-describedby="tarjeta-cuenta"]');
+    if (enlaceDescrito !== null) {
+        enlaceDescrito.removeAttribute("aria-describedby");
+    }
+}
+
+// La llama el navegador cada vez que el ratón entra en un elemento de la
+// página (mouseover) o el foco del teclado llega a uno (focusin). Si es uno
+// de los números con tarjeta, se programa la tarjeta para dentro de 300
+// milisegundos: si el ratón solo estaba pasando, se habrá ido antes y no
+// saldrá. Sin esta espera, al cruzar un párrafo con el ratón irían saltando
+// tarjetas por todas partes.
+// En un móvil no hay ratón que "pase por encima": matchMedia pregunta al
+// navegador lo mismo que una media query del CSS, y (hover: hover) quiere
+// decir "este aparato puede pasar por encima de las cosas". Si no puede, no
+// se hace nada: tocar el número abre la ficha, como siempre. Con el teclado
+// (focusin) sí sale, también en el móvil, porque ahí no hay duda.
+function programarTarjeta(evento) {
+    const enlace = evento.target.closest(enlacesConTarjeta);
+    if (enlace === null) {
+        return;
+    }
+    if (evento.type === "mouseover" && !window.matchMedia("(hover: hover)").matches) {
+        return;
+    }
+
+    clearTimeout(temporizadorTarjeta);
+    // setTimeout recibe la función que hay que hacer y cuándo, en
+    // milisegundos. La función se escribe ahí mismo, sin nombre, como en el
+    // filter del buscador.
+    temporizadorTarjeta = setTimeout(function () {
+        mostrarTarjeta(enlace);
+    }, 300);
+}
+
+// La llama el navegador cuando el ratón sale de un elemento (mouseout) o el
+// foco se va de él (focusout). Si era uno de los números con tarjeta, la
+// tarjeta se va.
+function quitarTarjeta(evento) {
+    if (evento.target.closest(enlacesConTarjeta) !== null) {
+        esconderTarjeta();
+    }
+}
+
+// La llama el navegador al pulsar una tecla en cualquier sitio: con Escape,
+// la tarjeta se va, aunque el foco siga en el número.
+function quitarTarjetaConEscape(evento) {
+    if (evento.key === "Escape") {
+        esconderTarjeta();
+    }
+}
+
 // El enrutador: mira qué código hay en la URL (#430) y decide qué se enseña.
 // La llama el navegador cada vez que cambia la URL (un enlace, el botón
 // "atrás", alguien que lo escribe a mano), y cargarCuentas al empezar, por si
@@ -733,3 +903,20 @@ document.getElementById("boton-arbol").addEventListener("click", abrirOCerrarArb
 // elegido una cuenta. Como con el buscador, se escucha el clic y no el
 // cambio de URL: pulsar la cuenta que ya está abierta no cambia la URL.
 document.getElementById("arbol-cuentas").addEventListener("click", cerrarArbolSiSeEligeCuenta);
+
+// Encargos al navegador para la tarjeta de una cuenta. Se escucha en toda la
+// página (document) y no en cada número, porque los números se crean de nuevo
+// cada vez que se abre una ficha: así no hay que volver a encargar nada.
+// Cuando el ratón entra en un número, el evento "sube" desde el número hasta
+// el document, y programarTarjeta mira con closest si venía de un número.
+document.addEventListener("mouseover", programarTarjeta);
+document.addEventListener("mouseout", quitarTarjeta);
+document.addEventListener("focusin", programarTarjeta);
+document.addEventListener("focusout", quitarTarjeta);
+document.addEventListener("keydown", quitarTarjetaConEscape);
+
+// Y la tarjeta se va al cambiar de ficha (se ha pulsado el número) o al
+// desplazar la página: está colocada junto al número, y si la página se
+// mueve, el número se iría y la tarjeta se quedaría flotando sola.
+window.addEventListener("hashchange", esconderTarjeta);
+window.addEventListener("scroll", esconderTarjeta);

@@ -383,6 +383,15 @@ nombre, más oscuro.
 texto) enseñan el nombre de su cuenta en el `title`, como en la ficha rápida.
 `feat: enseñar el nombre de la cuenta al pasar el ratón por el movimiento`
 
+#### Paso 20·11 · La tarjeta de una cuenta al pasar el ratón
+**Qué:** idea de Albert. Al dejar el ratón (o llegar con el teclado) sobre un
+número de la ficha, una tarjeta con el código, el nombre, de dónde cuelga y
+el principio de la definición. Sustituye a los `title` del 19 ter y el 20·10.
+**Aprendes:** temporizadores (`setTimeout`, `clearTimeout`), medir dónde
+está algo en la ventana (`getBoundingClientRect`), escuchar en el
+`document` y mirar de dónde venía el evento, `matchMedia`.
+`feat: enseñar una tarjeta de la cuenta al pasar el ratón por sus números`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.
