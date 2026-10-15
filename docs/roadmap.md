@@ -357,6 +357,10 @@ nombre en marrón; la cabecera, el árbol y las cajas de la ficha rápida en un
 papel más claro que el centro, para que se distingan las zonas.
 `feat: dar al título y a las zonas el aspecto de la maqueta A`
 
+#### Paso 20·6 · La barra de desplazamiento de los márgenes, discreta
+**Qué:** idea de Albert. Fina y transparente; aparece al pasar el ratón.
+`feat: hacer discreta la barra de desplazamiento de los márgenes`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.

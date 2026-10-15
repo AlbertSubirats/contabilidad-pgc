@@ -185,6 +185,24 @@ body {
     .columna-arbol {
         height: 100vh;
     }
+
+    /* La barra de desplazamiento de los dos márgenes, discreta: fina
+       (scrollbar-width: thin) y sin color mientras no se use. Al pasar el
+       ratón por encima del margen, aparece en el color de las rayas. Así no
+       se ve la barra gruesa y gris del navegador, pero sigue ahí cuando hace
+       falta. scrollbar-color lleva dos colores: el de la parte que se
+       arrastra y el del carril por donde va; el carril, siempre transparente.
+       La barra ocupa su sitio aunque no se vea: al aparecer no mueve nada. */
+    .columna-arbol,
+    .columna-ficha-rapida {
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+    }
+
+    .columna-arbol:hover,
+    .columna-ficha-rapida:hover {
+        scrollbar-color: var(--color-tinta-suave) transparent;
+    }
 }
 
 /* En pantalla estrecha, el árbol y la ficha rápida no se ven: solo queda la

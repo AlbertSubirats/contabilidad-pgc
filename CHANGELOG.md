@@ -12,6 +12,24 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·6: la barra de desplazamiento de los márgenes, discreta
+**Qué:** en pantalla ancha, el árbol y la ficha rápida tienen la barra de
+desplazamiento fina (`scrollbar-width: thin`) y transparente
+(`scrollbar-color`); al pasar el ratón por encima del margen, la barra toma
+el gris de la tinta suave. Comprobado en el navegador: con el ratón fuera,
+los colores son transparentes; encima, el gris; la barra mide unos 10
+píxeles y sigue ocupando su sitio, así que al aparecer no mueve el texto.
+Escrito por Claude, a petición de Albert.
+**Por qué:** a Albert la barra gris y gruesa del navegador le parecía tosca.
+
+### Decisión · Una barra que aparece, no una barra que no existe
+**Qué:** se descartaron esconderla del todo (`scrollbar-width: none`) y
+cambiarla por flechas.
+**Por qué:** sin barra no se ve que el árbol sigue hacia abajo, y quien use
+el ratón sin rueda no podría bajar. Unas flechas habría que dibujarlas y
+programarlas, y harían lo mismo que la barra, peor. Así se parece a la de
+macOS: está, pero solo se ve cuando la buscas.
+
 ### Cambio · Paso 20·5: el título de la ficha y las zonas, como en la maqueta A
 **Qué:** en `app.js`, el título de la ficha se arma con dos `<span>`: el
 código (`codigo-titulo`) y el nombre (`nombre-titulo`), separados por un
