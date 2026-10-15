@@ -12,6 +12,31 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 19 bis: abrir el árbol desde un botón en el móvil
+**Qué:** un `<button>` "☰ Cuadro de cuentas" en la cabecera, al lado del
+nombre, que solo se ve por debajo de 64em. Al pulsarlo, `app.js` pone la
+clase `abierto` al árbol (`classList.add`) y el CSS lo enseña entre la
+cabecera y la ficha; el botón pasa a "✕ Cerrar el cuadro" y su
+`aria-expanded`, a `"true"`. Se vuelve a cerrar con el mismo botón o al
+elegir una cuenta del árbol (escuchando el clic, con `evento.target.closest("a")`
+para no cerrarlo al pulsar un triángulo). La cabecera del móvil pasa a dos
+columnas: el nombre y el botón arriba, el buscador debajo
+(`grid-column: 1 / -1`). Comprobado en el navegador: a 375 píxeles el botón
+abre el árbol, un triángulo no lo cierra, elegir el 10 lo cierra y abre su
+ficha; a 1440, el botón no se ve, el árbol está en su columna y el buscador
+sigue centrado. Escrito por Claude, a petición de Albert.
+**Por qué:** desde el paso 19, en el móvil solo se llegaba a las cuentas con
+el buscador y los enlaces. Idea de Albert (él lo pensó como un gesto con el
+dedo; se cambió por un botón, ver la decisión del paso 19).
+
+### Decisión · El árbol se abre en su sitio, no flotando encima
+**Qué:** al abrirlo, el árbol empuja la ficha hacia abajo, en vez de flotar
+por encima de ella como un panel que entra por el lado.
+**Por qué:** un panel flotante pide `position: fixed`, un fondo que tape la
+ficha, su propio botón de cerrar y cuidar quién queda encima de quién. Así
+son dos reglas de CSS. Como el árbol se cierra al elegir una cuenta, la ficha
+vuelve a quedar arriba. Si con el uso se echa en falta el panel, se cambia.
+
 ### Cambio · Paso 20·4: el nombre de la web, la tipografía de la maqueta A y el foco visible
 **Qué:** la cabecera lleva el nombre "Cuentas PGC" (con serifa, enlace al
 inicio) y el buscador; en ancho, una rejilla `1fr minmax(0, 32em) 1fr`

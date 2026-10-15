@@ -20,6 +20,16 @@
                  la ficha, que es lo que cambia de una a otra. -->
             <a class="nombre-web" href="#">Cuentas PGC</a>
 
+            <!-- El botón que abre el árbol en el móvil, donde el árbol no se
+                 ve. En pantalla ancha se esconde (styles.css), porque allí el
+                 árbol está siempre a la izquierda.
+                 Es un <button> y no un enlace porque no lleva a ningún sitio:
+                 hace algo en la página. type="button" dice que no envía nada.
+                 aria-expanded le dice al lector de pantalla si lo que abre
+                 está abierto ("true") o cerrado ("false"); aria-controls, qué
+                 es lo que abre (el id del árbol). Los dos los cambia app.js. -->
+            <button type="button" id="boton-arbol" class="boton-arbol" aria-expanded="false" aria-controls="panel-arbol">☰ Cuadro de cuentas</button>
+
             <div class="buscador">
                 <!-- La caja, como en la maqueta B: la lupa, el sitio para
                      escribir y el número de resultados, en una fila. El borde
@@ -53,7 +63,7 @@
         </header>
 
         <!-- Columna izquierda: el cuadro de cuentas -->
-        <aside class="columna-arbol">
+        <aside id="panel-arbol" class="columna-arbol">
             <h2>Cuadro de cuentas</h2>
             <!-- Empieza vacío: el árbol lo crea app.js con los datos del JSON -->
             <nav id="arbol-cuentas"></nav>

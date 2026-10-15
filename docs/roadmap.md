@@ -290,6 +290,10 @@ clase, y dejar el "cómo se ve" en el CSS.
 **Compruebas:** en el móvil, pulsas el botón, eliges la 430 y el árbol se cierra.
 `feat: abrir el árbol desde un botón en el móvil`
 
+> **Decidido en este paso:** el árbol no flota por encima de la ficha: se
+> abre en su sitio, entre la cabecera y la ficha, y la empuja hacia abajo.
+> Es mucho más sencillo y, como se cierra al elegir una cuenta, basta.
+
 ### Paso 19 ter · La ficha rápida como en la maqueta D
 **Qué:** idea de Albert. La ficha rápida en dos cajas con su título
 ("Ficha rápida" y "Contrapartidas"); las contrapartidas, solo con el

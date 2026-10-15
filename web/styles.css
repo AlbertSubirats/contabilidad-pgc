@@ -60,24 +60,59 @@ body {
     }
 }
 
-/* La cabecera: el nombre de la web y el buscador. En pantalla estrecha, uno
-   encima del otro (una rejilla de una sola columna, con gap entre las filas). */
+/* La cabecera: el nombre de la web, el botón del árbol y el buscador.
+   En pantalla estrecha, una rejilla de dos columnas: arriba el nombre (en lo
+   que sobra, 1fr) y el botón (lo que mida, auto); debajo, el buscador, que
+   ocupa las dos. grid-column: 1 / -1 quiere decir "de la primera raya de la
+   rejilla a la última": todo el ancho. */
 .cabecera {
     grid-area: cabecera;
     display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
     gap: 0.6em;
     padding: 1em 1.5em;
     border-bottom: 1px solid var(--color-linea);
 }
 
+.cabecera .buscador {
+    grid-column: 1 / -1;
+}
+
 /* En pantalla ancha, una rejilla de tres columnas: el nombre en la primera,
    el buscador en la del centro (como mucho 32em) y la tercera vacía. Las dos
    de los lados miden lo mismo (1fr cada una), y eso es lo que deja el
-   buscador justo en el centro, por largo que sea el nombre. */
+   buscador justo en el centro, por largo que sea el nombre. El botón del
+   árbol no se ve (más abajo), así que no ocupa casilla.
+   grid-column: auto devuelve el buscador a una sola casilla. */
 @media (min-width: 64em) {
     .cabecera {
         grid-template-columns: 1fr minmax(0, 32em) 1fr;
-        align-items: center;
+    }
+
+    .cabecera .buscador {
+        grid-column: auto;
+    }
+}
+
+/* El botón "☰ Cuadro de cuentas", con el aspecto de las etiquetas de la
+   ficha: borde fino y redondeado, sin el fondo gris del navegador.
+   font: inherit, porque los botones no heredan la letra de la página.
+   En pantalla ancha no se ve: allí el árbol está siempre a la izquierda. */
+.boton-arbol {
+    padding: 0.35em 0.8em;
+    background-color: transparent;
+    border: 1px solid var(--color-tinta-suave);
+    border-radius: 1em;
+    color: var(--color-tinta);
+    font: inherit;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+@media (min-width: 64em) {
+    .boton-arbol {
+        display: none;
     }
 }
 
@@ -135,8 +170,8 @@ body {
 
 /* En pantalla estrecha, el árbol y la ficha rápida no se ven: solo queda la
    ficha, y a las cuentas se llega con el buscador y los enlaces. La ficha
-   rápida repite lo que ya dice la ficha; para el árbol, en el móvil, está
-   pensado un botón propio (paso 19 bis).
+   rápida repite lo que ya dice la ficha; el árbol se abre con su botón de la
+   cabecera (regla de .abierto, abajo).
    A partir de 64em vuelven (display: block). Pero display manda sobre el
    atributo hidden, el mismo problema que con la lista del buscador: sin la
    regla de [hidden], la ficha rápida se vería aunque app.js la escondiera.
@@ -155,6 +190,16 @@ body {
     .columna-ficha-rapida[hidden] {
         display: none;
     }
+}
+
+/* El árbol abierto con el botón de la cabecera (en el móvil): se ve, entre
+   la cabecera y la ficha, con una raya debajo que lo separa de ella.
+   .columna-arbol.abierto, con las dos clases pegadas, sin espacio, quiere
+   decir "un elemento que tenga las dos clases a la vez". La clase abierto
+   la pone y la quita app.js. */
+.columna-arbol.abierto {
+    display: block;
+    border-bottom: 1px solid var(--color-linea);
 }
 
 /* El buscador de la cabecera. Su ancho lo decide la rejilla de la cabecera.

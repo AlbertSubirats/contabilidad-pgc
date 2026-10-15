@@ -195,6 +195,48 @@ function abrirPrimerResultado(evento) {
     location.hash = primerEnlace.hash;
 }
 
+// Abre el árbol en el móvil: le pone la clase "abierto" (y el CSS lo enseña)
+// y cambia el botón, el texto que se ve y el aria-expanded que lee el lector
+// de pantalla. setAttribute cambia un atributo del HTML por su nombre.
+function abrirArbol() {
+    const boton = document.getElementById("boton-arbol");
+    document.getElementById("panel-arbol").classList.add("abierto");
+    boton.textContent = "✕ Cerrar el cuadro";
+    boton.setAttribute("aria-expanded", "true");
+}
+
+// Lo contrario: quita la clase y deja el botón como al principio.
+function cerrarArbol() {
+    const boton = document.getElementById("boton-arbol");
+    document.getElementById("panel-arbol").classList.remove("abierto");
+    boton.textContent = "☰ Cuadro de cuentas";
+    boton.setAttribute("aria-expanded", "false");
+}
+
+// La llama el navegador al pulsar el botón: si el árbol está abierto lo
+// cierra, y si está cerrado lo abre. classList.contains dice si el elemento
+// tiene esa clase (true) o no (false).
+function abrirOCerrarArbol() {
+    const estaAbierto = document.getElementById("panel-arbol").classList.contains("abierto");
+    if (estaAbierto) {
+        cerrarArbol();
+    } else {
+        abrirArbol();
+    }
+}
+
+// La llama el navegador al pulsar cualquier cosa dentro del árbol. Si lo
+// pulsado es una cuenta (un enlace), ya se ha elegido: el árbol se cierra.
+// Si es un triángulo, no, porque solo se está plegando o desplegando.
+// evento.target es el elemento exacto que se ha pulsado: puede ser el
+// <span> del código, que está dentro del enlace; closest("a") sube hasta el
+// enlace, y da null si lo pulsado no estaba dentro de ninguno.
+function cerrarArbolSiSeEligeCuenta(evento) {
+    if (evento.target.closest("a") !== null) {
+        cerrarArbol();
+    }
+}
+
 // Construye un índice para encontrar rápido los hijos de cualquier código:
 // { "4": [subgrupos del 4], "43": [cuentas del 43], ...}
 function agruparPorPadre(cuentas) {
@@ -652,3 +694,12 @@ cajaBuscador.addEventListener("keydown", abrirPrimerResultado);
 // quedaría abierta. El enlace sigue funcionando: primero se cierra la lista
 // y después el navegador cambia la URL como siempre.
 document.getElementById("lista-cuentas").addEventListener("click", cerrarBuscador);
+
+// Encargo al navegador: al pulsar el botón del árbol (solo se ve en el
+// móvil), ábrelo o ciérralo.
+document.getElementById("boton-arbol").addEventListener("click", abrirOCerrarArbol);
+
+// Encargo al navegador: al pulsar dentro del árbol, ciérralo si se ha
+// elegido una cuenta. Como con el buscador, se escucha el clic y no el
+// cambio de URL: pulsar la cuenta que ya está abierta no cambia la URL.
+document.getElementById("arbol-cuentas").addEventListener("click", cerrarArbolSiSeEligeCuenta);
