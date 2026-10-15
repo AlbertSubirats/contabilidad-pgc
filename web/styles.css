@@ -9,6 +9,10 @@
     --color-haber: #8A5A14;
     --color-haber-claro: #F6EBD6;
     --color-linea: #E6E0D4;
+    /* El color de los enlaces que llevan a otro sitio (las migas de pan).
+       Un azul petróleo, a propósito distinto del azul del Debe: en esta web
+       el azul del movimiento quiere decir Debe, y no se puede gastar en otra cosa. */
+    --color-enlace: #2A6B7C;
 }
 
 body {
@@ -280,15 +284,17 @@ body {
     padding: 0.45em 0.8em;
 }
 
-/* Migas de pan, encima del título: pequeñas y en gris, porque orientan pero
-   no son lo importante. Los enlaces, sin subrayar hasta pasar el ratón. */
+/* Migas de pan, encima del título: pequeñas, porque orientan pero no son lo
+   importante. Los enlaces, en el color de enlace y sin subrayar hasta pasar
+   el ratón; la cuenta en la que estás y los separadores (›), en gris, porque
+   no llevan a ningún sitio. */
 .migas {
     font-size: 0.9em;
     color: var(--color-tinta-suave);
 }
 
 .migas a {
-    color: inherit;
+    color: var(--color-enlace);
     text-decoration: none;
 }
 

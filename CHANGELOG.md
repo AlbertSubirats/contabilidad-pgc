@@ -12,6 +12,23 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·2: las migas de pan en color de enlace
+**Qué:** un color nuevo en `:root`, `--color-enlace` (#2A6B7C, azul
+petróleo), y los enlaces de las migas en ese color. La cuenta en la que
+estás y los separadores siguen en gris, porque no llevan a ningún sitio.
+Comprobado en el navegador con la 430: "Grupo 4" y "Subgrupo 43" en el color
+de enlace, "›" y "430" en gris. Contraste con el papel, 5,7 a 1 (el mínimo
+para leer bien un texto es 4,5). Escrito por Claude, a petición de Albert.
+**Por qué:** idea de Albert, para mejorar el aspecto: en gris, las migas no
+parecían enlaces.
+
+### Decisión · Un azul petróleo, no el azul del Debe
+**Qué:** el color de enlace es un azul verdoso, a propósito distinto del
+`--color-debe`.
+**Por qué:** en esta web, el azul del movimiento quiere decir Debe; si las
+migas lo usaran, dejaría de querer decir solo eso. De momento solo lo usan
+las migas; el camino del árbol lo usará en el paso 20·3. Lo decidió Albert.
+
 ### Cambio · Paso 20·1: el buscador como en la maqueta B
 **Qué:** en `index.html`, la caja es un `div.caja-busqueda` con tres cosas en
 fila (flex): una lupa dibujada en SVG, el input sin borde y un contador
