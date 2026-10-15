@@ -1,6 +1,7 @@
 /* Los colores de toda la web. Se declaran una sola vez, aquí */
 :root {
     --color-papel: #FBF9F4;
+    --color-papel-oscuro: #F3EFE6;
     --color-tinta: #2B2722;
     --color-tinta-suave: #6B6459;
     --color-debe: #2B4C8C;
@@ -184,6 +185,35 @@ body {
     text-decoration: underline;
 }
 
+/* Las cajas de la ficha rápida (maqueta D): un borde con las esquinas
+   redondeadas y aire entre una y otra. overflow: hidden recorta lo de dentro
+   por el borde redondeado; sin él, el fondo de la franja del título asomaría
+   por las esquinas. */
+.caja {
+    margin-bottom: 1.2em;
+    border: 1px solid var(--color-linea);
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+/* El título de cada caja, en su franja de papel más oscuro y con serifa. */
+.caja h2 {
+    margin: 0;
+    padding: 0.5em 0.8em;
+    background-color: var(--color-papel-oscuro);
+    border-bottom: 1px solid var(--color-linea);
+    font-family: Georgia, serif;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+/* Lo de dentro de la caja, con aire a los lados y abajo. */
+.caja dl,
+.caja section {
+    margin: 0;
+    padding: 0 0.8em 0.8em;
+}
+
 /* Ficha rápida: cada dato con su nombre encima, en pequeño, mayúsculas y
    gris (como en la maqueta B), y el valor debajo. El navegador mete los <dd>
    hacia dentro; aquí se quita esa sangría. */
@@ -203,14 +233,34 @@ body {
     color: inherit;
 }
 
-/* Las contrapartidas de la ficha rápida: sin viñetas y con aire entre ellas. */
-.columna-ficha-rapida ul {
-    list-style: none;
-    padding-left: 0;
+/* "De los cargos" y "De los abonos": pequeños y en mayúsculas, como los
+   nombres de los datos, pero en el color de su lado (el del título de su
+   columna en el movimiento). Las cajitas de debajo van cruzadas. */
+.columna-ficha-rapida h3 {
+    margin: 0.8em 0 0.5em;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.columna-ficha-rapida li {
-    margin-bottom: 0.5em;
+.columna-ficha-rapida .columna-cargo h3 {
+    color: var(--color-debe);
+}
+
+.columna-ficha-rapida .columna-abono h3 {
+    color: var(--color-haber);
+}
+
+/* Las contrapartidas de la ficha rápida: los números, uno al lado del otro,
+   sin viñetas. flex-wrap: wrap deja que salten a la línea siguiente cuando
+   no caben, como las palabras de un párrafo. */
+.columna-ficha-rapida ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
 }
 
 /* Árbol del cuadro de cuentas: cada caja plegable que está dentro de otra

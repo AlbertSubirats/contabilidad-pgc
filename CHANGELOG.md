@@ -12,6 +12,37 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 19 ter: la ficha rápida como en la maqueta D
+**Qué:** la ficha rápida se reparte en dos cajas (`.caja`), "Ficha rápida" y
+"Contrapartidas", con borde redondeado y el título en una franja de papel
+más oscuro (`--color-papel-oscuro`), con serifa. Las contrapartidas van solo
+con el número, en cajitas una al lado de la otra (`flex-wrap: wrap`), bajo
+"De los cargos" y "De los abonos" en el color de su lado; las cajitas, con
+los colores cruzados de siempre. El nombre de cada una sale al dejar el
+ratón encima (atributo `title`). Comprobado en el navegador con la 430: los
+12 números con su nombre en el `title` y los colores cruzados. Escrito por
+Claude, a petición de Albert.
+**Por qué:** idea de Albert: con los nombres al lado, la lista era larga, y
+los números en cajitas se leen de un vistazo, como en la maqueta D.
+
+### Decisión · El nombre, con title y no con un recuadro propio
+**Qué:** el nombre de la contrapartida lo enseña el navegador con el
+atributo `title`.
+**Por qué:** es una línea en `app.js`, sin CSS ni JavaScript nuevos. Lo malo:
+el recuadro lo dibuja el navegador, tarda un segundo y no funciona con el
+dedo; como en el móvil la ficha rápida no se ve, no importa. Un recuadro con
+la estética de la web, si hace falta, en el paso 20. Lo decidió Albert.
+
+### Decisión · De la maqueta D, solo las cajas y las contrapartidas
+**Qué:** "De los cargos" y "De los abonos" en vez del "Al cargo" y "Al abono"
+de la maqueta, y las dos franjas del mismo color de papel (en la maqueta, la
+de contrapartidas es azul). Balance, norma aplicable, fuente y el botón "Usar
+en un asiento" no se toman.
+**Por qué:** "Al cargo" se puede leer como "las cuentas que se cargan", que
+es justo al revés: son las contrapartidas de los cargos. El azul, en esta
+web, quiere decir debe, y una franja azul lo mezclaría. Lo demás, como se
+decidió en el paso 18: no está en los datos o es de otro módulo.
+
 ### Cambio · Paso 19: adaptar la interfaz a pantallas estrechas
 **Qué:** `index.html` lleva la etiqueta `<meta name="viewport">`, y
 `styles.css` pasa a diseñarse primero para pantalla estrecha: la base es

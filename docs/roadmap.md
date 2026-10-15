@@ -290,6 +290,24 @@ clase, y dejar el "cómo se ve" en el CSS.
 **Compruebas:** en el móvil, pulsas el botón, eliges la 430 y el árbol se cierra.
 `feat: abrir el árbol desde un botón en el móvil`
 
+### Paso 19 ter · La ficha rápida como en la maqueta D
+**Qué:** idea de Albert. La ficha rápida en dos cajas con su título
+("Ficha rápida" y "Contrapartidas"); las contrapartidas, solo con el
+número en cajitas de colores cruzados, y el nombre al pasar el ratón.
+**Aprendes:** el atributo `title`, `flex-wrap`, `overflow: hidden` para
+recortar por el borde redondeado.
+**Compruebas:** en la 430, los números van en dos apartados y al dejar el
+ratón sobre el 431 sale "Clientes, efectos comerciales a cobrar".
+`feat: mostrar la ficha rápida en cajas, como en la maqueta D`
+
+### Paso 19 quater · Enter abre el primer resultado
+**Qué:** idea de Albert. En el buscador, Enter abre la ficha del primer
+resultado de la lista; si no hay ninguno, no hace nada.
+**Aprendes:** el evento `keydown` y `event.key`.
+**Compruebas:** escribes "clien", pulsas Enter y se abre la ficha del
+primer resultado.
+`feat: abrir el primer resultado del buscador con Enter`
+
 ### Paso 20 · Pulido
 **Qué:** tipografías definitivas, espaciados, estados de foco visibles para quien
 navegue con teclado. **Pendiente del paso 19:** la página se quedó sin `<h1>`;

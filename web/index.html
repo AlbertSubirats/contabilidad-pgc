@@ -72,21 +72,29 @@
 
         <!-- Columna derecha: la ficha rápida. Escondida hasta que haya cuenta. -->
         <aside id="ficha-rapida" class="columna-ficha-rapida" hidden>
-            <h2>Ficha rápida</h2>
-            <!-- Lista de pares "dato: valor" (Plan: PGC normal...). La rellena app.js. -->
-            <dl id="ficha-rapida-datos"></dl>
-
-            <!-- Las contrapartidas de la ficha, reunidas y con su nombre. Cada
-                 lista va dentro de la misma clase que su columna del movimiento
-                 (columna-cargo, columna-abono), así heredan los colores cruzados. -->
-            <section class="columna-cargo">
-                <h3>Contrapartidas de los cargos</h3>
-                <ul id="ficha-rapida-cargos"></ul>
+            <!-- Dos cajas, como en la maqueta D: cada una con su título en una
+                 franja y el contenido debajo. -->
+            <section class="caja">
+                <h2>Ficha rápida</h2>
+                <!-- Lista de pares "dato: valor" (Plan: PGC normal...). La rellena app.js. -->
+                <dl id="ficha-rapida-datos"></dl>
             </section>
 
-            <section class="columna-abono">
-                <h3>Contrapartidas de los abonos</h3>
-                <ul id="ficha-rapida-abonos"></ul>
+            <!-- Las contrapartidas de la ficha, reunidas, solo con el número (el
+                 nombre sale al pasar el ratón). Cada lista va dentro de la
+                 misma clase que su columna del movimiento (columna-cargo,
+                 columna-abono), así heredan los colores cruzados. -->
+            <section class="caja">
+                <h2>Contrapartidas</h2>
+                <section class="columna-cargo">
+                    <h3>De los cargos</h3>
+                    <ul id="ficha-rapida-cargos"></ul>
+                </section>
+
+                <section class="columna-abono">
+                    <h3>De los abonos</h3>
+                    <ul id="ficha-rapida-abonos"></ul>
+                </section>
             </section>
         </aside>
 

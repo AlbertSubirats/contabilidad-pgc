@@ -325,8 +325,9 @@ function anadirDato(lista, termino, valor) {
 }
 
 // Llena una lista de la ficha rápida con las contrapartidas de una columna del
-// movimiento: cada una con su código en cajita (el mismo enlace que en las
-// frases) y su nombre al lado. Si no hay, pone el aviso.
+// movimiento: cada una, solo con su código en cajita (el mismo enlace que en
+// las frases). El nombre va en el atributo title, que el navegador enseña en
+// un recuadro al dejar el ratón encima. Si no hay, pone el aviso.
 function pintarContrapartidas(lista, codigos, avisoSiNoHay) {
     lista.replaceChildren();
 
@@ -343,12 +344,11 @@ function pintarContrapartidas(lista, codigos, avisoSiNoHay) {
 
         const enlace = crearEnlaceACuenta(codigo, codigo);
         enlace.className = "contrapartida";
-        elemento.appendChild(enlace);
 
         const contrapartida = cuentasPorCodigo[codigo];
-        const nombre = document.createTextNode(" " + contrapartida.nombre);
-        elemento.appendChild(nombre);
+        enlace.title = contrapartida.nombre;
 
+        elemento.appendChild(enlace);
         lista.appendChild(elemento);
     }
 }
