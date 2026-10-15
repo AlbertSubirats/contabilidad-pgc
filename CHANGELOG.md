@@ -12,6 +12,24 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·10: el nombre de la cuenta al pasar el ratón por el movimiento
+**Qué:** en `app.js`, `crearTextoConEnlaces` pone en el `title` de cada
+enlace el nombre de la cuenta, grupo o subgrupo al que lleva, si existe en
+el PGC. Comprobado en el navegador: en la 430, los 12 números del movimiento
+llevan su nombre ("70" → "VENTAS DE MERCADERÍAS, DE PRODUCCIÓN PROPIA, DE
+SERVICIOS, ETC"), y en la 101 la remisión al 100 dice "Capital social";
+ningún enlace se queda sin nombre. Escrito por Claude, a petición de Albert.
+**Por qué:** idea de Albert: en la ficha rápida, los números ya lo hacían
+(paso 19 ter), y en el movimiento había que ir a la ficha rápida o pulsar
+para saber de qué cuenta se hablaba.
+
+### Decisión · También en las remisiones de la definición
+**Qué:** los números de la definición y de la presentación ("grupo 3",
+"cuenta 100") enseñan el nombre igual.
+**Por qué:** los dos salen de la misma función, y que unos números lo
+hicieran y otros no sería raro. Si no se quiere ahí, basta con mirar la
+clase del enlace.
+
 ### Cambio · Paso 20·9: los títulos de la ficha, como en la maqueta A
 **Qué:** los títulos "Definición", "Presentación en el balance" y
 "Movimiento" ya no se ven: llevan la clase nueva `solo-lector`, que los

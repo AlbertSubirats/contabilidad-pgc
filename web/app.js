@@ -420,6 +420,16 @@ function crearTextoConEnlaces(texto, codigos, clase) {
         if (codigos.includes(trozo)) {
             const enlace = crearEnlaceACuenta(trozo, trozo);
             enlace.className = clase;
+
+            // El nombre de la cuenta, grupo o subgrupo, en el title: el
+            // navegador lo enseña al dejar el ratón encima, como en la ficha
+            // rápida. Solo si la cuenta existe: un enlace a una cuenta que no
+            // está en el PGC no tiene nombre que enseñar.
+            const cuentaEnlazada = cuentasPorCodigo[trozo];
+            if (cuentaEnlazada !== undefined) {
+                enlace.title = cuentaEnlazada.nombre;
+            }
+
             frase.appendChild(enlace);
         } else {
             const textoNormal = document.createTextNode(trozo);

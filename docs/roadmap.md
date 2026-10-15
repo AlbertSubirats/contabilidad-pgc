@@ -378,6 +378,11 @@ entradilla y la presentación empieza por "Presentación.". El marrón del
 nombre, más oscuro.
 `feat: quitar a la vista los títulos de los apartados de la ficha`
 
+#### Paso 20·10 · El nombre de la cuenta al pasar el ratón por el movimiento
+**Qué:** idea de Albert. Los números del movimiento (y las remisiones del
+texto) enseñan el nombre de su cuenta en el `title`, como en la ficha rápida.
+`feat: enseñar el nombre de la cuenta al pasar el ratón por el movimiento`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.
