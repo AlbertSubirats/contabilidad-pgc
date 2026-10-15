@@ -12,6 +12,32 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 19 quater: Enter abre el primer resultado
+**Qué:** nueva función `abrirPrimerResultado` en `app.js`, que escucha el
+evento `keydown` de la caja del buscador. Si la tecla (`evento.key`) es
+Enter, busca el primer enlace de la lista con `querySelector("a")`, cierra el
+buscador y cambia la URL a su `#código`, como si se hubiera pulsado. No hace
+nada si la lista está escondida o no hay resultados. Comprobado en el
+navegador: "clien" + Enter abre el 43; "572" + Enter abre la 572; con la
+caja vacía o con "zzz", Enter no cambia nada; otra tecla tampoco. Escrito
+por Claude, a petición de Albert.
+**Por qué:** idea de Albert: buscar y abrir sin soltar el teclado.
+
+### Decisión · Con la lista escondida, Enter no hace nada
+**Qué:** antes de buscar el primer enlace se mira si la lista está escondida.
+**Por qué:** `cerrarBuscador` esconde la lista pero no la vacía. Sin esa
+comprobación, Enter con la caja vacía abriría el primer resultado de la
+búsqueda anterior.
+
+### Decisión · El paso 20 se parte en cuatro
+**Qué:** 20·1 el buscador como en la maqueta B, 20·2 las migas en color de
+enlace, 20·3 el árbol como en la maqueta A, 20·4 el resto del pulido.
+**Por qué:** son las peticiones de Albert de aspecto, y cada una se
+comprueba por separado. Las migas no irán en el azul del Debe sino en un
+color de enlace propio: en esta web, el azul del movimiento quiere decir
+Debe. En el árbol se queda el triángulo, más discreto, porque es el que
+pliega (paso 17). Lo decidió Albert.
+
 ### Cambio · Paso 19 ter: la ficha rápida como en la maqueta D
 **Qué:** la ficha rápida se reparte en dos cajas (`.caja`), "Ficha rápida" y
 "Contrapartidas", con borde redondeado y el título en una franja de papel

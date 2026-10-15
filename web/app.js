@@ -109,6 +109,37 @@ function cerrarBuscador() {
     document.getElementById("lista-cuentas").hidden = true;
 }
 
+// La llama el navegador cada vez que se pulsa una tecla dentro de la caja.
+// Si es Enter, abre la ficha del primer resultado de la lista.
+// "evento" lo pone el navegador: es un objeto con los detalles de lo que ha
+// pasado. evento.key dice qué tecla ha sido ("Enter", "a", "Escape"...).
+function abrirPrimerResultado(evento) {
+    if (evento.key !== "Enter") {
+        return;
+    }
+
+    // Con la lista escondida no hay resultados que abrir. Hay que mirarlo:
+    // al cerrar el buscador, la lista se esconde pero sus enlaces se quedan.
+    const lista = document.getElementById("lista-cuentas");
+    if (lista.hidden) {
+        return;
+    }
+
+    // querySelector busca dentro de la lista el primer elemento que cumpla
+    // el selector, escrito igual que en el CSS: "a" es el primer enlace. Si
+    // no hay ninguno (solo el aviso "Ninguna cuenta coincide"), da null.
+    const primerEnlace = lista.querySelector("a");
+    if (primerEnlace === null) {
+        return;
+    }
+
+    // El mismo camino que al pulsar el resultado con el ratón: se cierra el
+    // buscador y se cambia la URL. primerEnlace.hash es la parte "#430" de
+    // su dirección, y el enrutador se entera por el evento hashchange.
+    cerrarBuscador();
+    location.hash = primerEnlace.hash;
+}
+
 // Construye un índice para encontrar rápido los hijos de cualquier código:
 // { "4": [subgrupos del 4], "43": [cuentas del 43], ...}
 function agruparPorPadre(cuentas) {
@@ -484,6 +515,11 @@ window.addEventListener("hashchange", mostrarCuentaDeLaUrl);
 
 // Encargo al navegador: cuando cambie el texto de la caja, llama a filtrarCuentas.
 cajaBuscador.addEventListener("input", filtrarCuentas);
+
+// Encargo al navegador: cuando se pulse una tecla en la caja, llama a
+// abrirPrimerResultado. "keydown" es "tecla hacia abajo": salta en cuanto
+// se pulsa, sea la que sea; la función mira si ha sido Enter.
+cajaBuscador.addEventListener("keydown", abrirPrimerResultado);
 
 // Encargo al navegador: cuando se pulse dentro de la lista de resultados,
 // cierra el buscador. Se escucha el clic y no el cambio de URL porque, si

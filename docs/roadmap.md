@@ -305,14 +305,38 @@ ratón sobre el 431 sale "Clientes, efectos comerciales a cobrar".
 resultado de la lista; si no hay ninguno, no hace nada.
 **Aprendes:** el evento `keydown` y `event.key`.
 **Compruebas:** escribes "clien", pulsas Enter y se abre la ficha del
-primer resultado.
+primer resultado, el subgrupo 43 (la lista va por orden de código).
 `feat: abrir el primer resultado del buscador con Enter`
 
 ### Paso 20 · Pulido
-**Qué:** tipografías definitivas, espaciados, estados de foco visibles para quien
-navegue con teclado. **Pendiente del paso 19:** la página se quedó sin `<h1>`;
-hay que decidir cómo se presenta la web y devolverle un título principal.
-`feat: pulir el aspecto del buscador`
+Partido en cuatro pasos, un commit cada uno (decidido con Albert al cerrar
+el 19 quater).
+
+#### Paso 20·1 · El buscador como en la maqueta B
+**Qué:** una lupa dentro de la caja y el número de resultados a la derecha;
+en la lista, el título "Cuentas" y cada fila con el código y el nombre en dos
+columnas; el primer resultado resaltado (es el que abre Enter). Con la piel
+de papel de la maqueta A; "En el articulado" no entra (es de la fase 5).
+`feat: dar al buscador el aspecto de la maqueta B`
+
+#### Paso 20·2 · Las migas de pan en color de enlace
+**Qué:** las migas en un azul de enlace propio, distinto del azul del Debe,
+para que el azul del movimiento siga queriendo decir Debe.
+`feat: poner las migas de pan en color de enlace`
+
+#### Paso 20·3 · El árbol como en la maqueta A
+**Qué:** "Cuadro de cuentas" pequeño y en mayúsculas; el código en gris en su
+columna y el nombre al lado; los grupos con serifa; el triángulo, más
+pequeño y en gris (sigue siendo el que pliega, decidido en el paso 17). El
+árbol se abre solo por la rama de la cuenta abierta, que va resaltada, y el
+camino hasta ella va en el color de enlace.
+`feat: dar al árbol el aspecto de la maqueta A`
+
+#### Paso 20·4 · Lo que quedaba del pulido
+**Qué:** tipografías y espaciados definitivos, estados de foco visibles para
+quien navegue con teclado. **Pendiente del paso 19:** la página se quedó sin
+`<h1>`; hay que decidir cómo se presenta la web y devolverle un título principal.
+`feat: pulir el aspecto de la web`
 
 > **Aquí ya hay algo que enseñar a los compañeros del máster.** Buen momento para
 > parar, usarlo unas semanas y apuntar qué echas en falta antes de seguir.
