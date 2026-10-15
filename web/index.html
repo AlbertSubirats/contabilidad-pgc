@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <!-- Con esta línea los móviles usan su ancho de verdad y las media  queries de styles.css funcionan -->
          <meta name="viewport" content=" width=device-width, initial-scale=1">
-        <title>Ayuda Contabilidad</title>
+        <title>Cuentas PGC</title>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
@@ -12,9 +12,14 @@
              columnas (el árbol, la ficha y la ficha rápida). Dónde va cada una
              lo decide styles.css; aquí solo se dice qué es cada cosa. -->
 
-        <!-- Cabecera: de momento, solo el buscador. El título y el subtítulo
-             se quitaron en el paso 19; el nombre de la web sigue en <title>. -->
+        <!-- Cabecera: el nombre de la web, a la izquierda, y el buscador. -->
         <header class="cabecera">
+            <!-- El nombre de la web lleva al inicio: href="#" deja la URL sin
+                 código de cuenta, y el enrutador de app.js quita la ficha.
+                 No es el <h1>: el título principal de cada página es el de
+                 la ficha, que es lo que cambia de una a otra. -->
+            <a class="nombre-web" href="#">Cuentas PGC</a>
+
             <div class="buscador">
                 <!-- La caja, como en la maqueta B: la lupa, el sitio para
                      escribir y el número de resultados, en una fila. El borde
@@ -67,24 +72,28 @@
                      cuenta dentro del cuadro. Las rellena app.js. -->
                 <nav id="ficha-migas" class="migas" aria-label="Dónde está esta cuenta"></nav>
 
-                <h2 id="ficha-titulo"></h2>
+                <!-- El título de la ficha es el <h1>, el título principal de la
+                     página. Debajo, los apartados son <h2> y las columnas del
+                     movimiento, <h3>: los niveles van de uno en uno, sin
+                     saltarse ninguno, que es como los recorre un lector de pantalla. -->
+                <h1 id="ficha-titulo"></h1>
                 <p id="ficha-etiquetas"></p>
 
-                <h3>Definición</h3>
+                <h2>Definición</h2>
                 <div id="ficha-definicion"></div>
 
-                <h3>Presentación en el balance</h3>
+                <h2>Presentación en el balance</h2>
                 <div id="ficha-presentacion"></div>
 
-                <h3>Movimiento</h3>
+                <h2>Movimiento</h2>
                 <div class="movimiento">
                     <section class="columna-cargo">
-                        <h4>Se cargará <span class="lado">Debe</span></h4>
+                        <h3>Se cargará <span class="lado">Debe</span></h3>
                         <ol id="ficha-cargos"></ol>
                     </section>
 
                     <section class="columna-abono">
-                        <h4>Se abonará <span class="lado">Haber</span></h4>
+                        <h3>Se abonará <span class="lado">Haber</span></h3>
                         <ol id="ficha-abonos"></ol>
                     </section>
                 </div>

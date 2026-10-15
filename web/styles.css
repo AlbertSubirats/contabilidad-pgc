@@ -21,6 +21,17 @@ body {
     font-family: system-ui, sans-serif;
 }
 
+/* El foco visible: quien navega con la tecla Tab tiene que ver siempre en
+   qué elemento está. :focus-visible se cumple cuando un elemento tiene el
+   foco y el navegador cree que hay que enseñarlo (al llegar con el teclado,
+   no al pulsar con el ratón). Sin selector delante vale para todos: enlaces,
+   triángulos del árbol, la caja del buscador... El mismo recuadro, en el
+   color de enlace, en toda la web. outline no ocupa sitio: no mueve nada. */
+:focus-visible {
+    outline: 2px solid var(--color-enlace);
+    outline-offset: 2px;
+}
+
 /* La página es una rejilla (grid): tres columnas, y la cabecera ocupando las
    tres por arriba. Cada zona tiene un nombre (grid-area) y el dibujo de
    grid-template-areas dice en qué casilla va cada una.
@@ -49,14 +60,35 @@ body {
     }
 }
 
+/* La cabecera: el nombre de la web y el buscador. En pantalla estrecha, uno
+   encima del otro (una rejilla de una sola columna, con gap entre las filas). */
 .cabecera {
     grid-area: cabecera;
-    /* La cabecera solo tiene el buscador. Con flex y justify-content: center
-       queda centrado a lo ancho, en el móvil y en el ordenador. */
-    display: flex;
-    justify-content: center;
+    display: grid;
+    gap: 0.6em;
     padding: 1em 1.5em;
     border-bottom: 1px solid var(--color-linea);
+}
+
+/* En pantalla ancha, una rejilla de tres columnas: el nombre en la primera,
+   el buscador en la del centro (como mucho 32em) y la tercera vacía. Las dos
+   de los lados miden lo mismo (1fr cada una), y eso es lo que deja el
+   buscador justo en el centro, por largo que sea el nombre. */
+@media (min-width: 64em) {
+    .cabecera {
+        grid-template-columns: 1fr minmax(0, 32em) 1fr;
+        align-items: center;
+    }
+}
+
+/* El nombre de la web, con serifa como en la maqueta A. Es un enlace al
+   inicio, pero no lo parece: sin subrayado y en el color de la tinta. */
+.nombre-web {
+    font-family: Georgia, serif;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--color-tinta);
+    text-decoration: none;
 }
 
 .columna-arbol {
@@ -125,13 +157,10 @@ body {
     }
 }
 
-/* El buscador de la cabecera ocupa el sitio que sobra (flex: 1), hasta un
-   máximo, para que la caja no sea larguísima en una pantalla ancha.
+/* El buscador de la cabecera. Su ancho lo decide la rejilla de la cabecera.
    position: relative no lo mueve: lo convierte en la referencia desde la que
    se mide la lista desplegable de abajo. */
 .buscador {
-    flex: 1;
-    max-width: 32em;
     position: relative;
 }
 
@@ -154,7 +183,7 @@ body {
    elemento: aquí, cuando el cursor está en el input. Así quien llegue con el
    teclado sigue viendo dónde está. */
 .caja-busqueda:focus-within {
-    outline: 2px solid var(--color-tinta-suave);
+    outline: 2px solid var(--color-enlace);
     outline-offset: 1px;
 }
 
@@ -283,6 +312,57 @@ body {
 /* El aviso "Ninguna cuenta coincide", con el mismo aire que un resultado. */
 #lista-cuentas .aviso-sin-texto {
     padding: 0.45em 0.8em;
+}
+
+/* La ficha, con la tipografía de la maqueta A: serifa (Georgia) para los
+   títulos y para el texto de la norma, y sans para la interfaz (etiquetas,
+   migas, el movimiento). Georgia viene instalada en todos los ordenadores:
+   no hay que descargar ninguna fuente.
+   max-width: en una pantalla grande la ficha no se estira sin fin. */
+#ficha-cuenta {
+    max-width: 64em;
+}
+
+#ficha-titulo {
+    margin: 0.3em 0 0.4em;
+    font-family: Georgia, serif;
+    font-size: 2em;
+    font-weight: normal;
+}
+
+/* "Definición", "Presentación en el balance" y "Movimiento". */
+#ficha-cuenta h2 {
+    margin-top: 1.4em;
+    font-family: Georgia, serif;
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+/* El texto de la norma, con serifa, algo más grande y con más aire entre
+   líneas, porque es lo que se estudia. max-width en em limita lo largas que
+   son las líneas: 40em son unas 80 letras, y a partir de ahí al ojo le
+   cuesta encontrar el principio de la línea siguiente. */
+#ficha-definicion,
+#ficha-presentacion {
+    max-width: 40em;
+    font-family: Georgia, serif;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+/* La presentación, en un recuadro de papel más oscuro con una barra a la
+   izquierda (la misma sombra hacia dentro que la cuenta abierta del árbol).
+   Solo las esquinas de la derecha van redondeadas: las de la izquierda
+   quedan rectas contra la barra. */
+#ficha-presentacion {
+    padding: 0.5em 1em;
+    background-color: var(--color-papel-oscuro);
+    box-shadow: inset 3px 0 0 var(--color-tinta-suave);
+    border-radius: 0 0.3em 0.3em 0;
+}
+
+#ficha-presentacion p {
+    margin: 0.4em 0;
 }
 
 /* Migas de pan, encima del título: pequeñas, porque orientan pero no son lo
@@ -632,23 +712,33 @@ details[open] > summary::before {
 }
 
 /* Títulos de las columnas: "Se cargará" en el color del debe y "Se abonará"
-   en el del haber, cada uno con su raya debajo. */
-.columna-cargo h4 {
+   en el del haber, cada uno con su raya debajo, y con serifa, como en la
+   maqueta A. Llevan delante .movimiento porque la ficha rápida también usa
+   columna-cargo y columna-abono con títulos <h3>, y esos no llevan raya. */
+.movimiento h3 {
+    padding-bottom: 0.4em;
+    font-family: Georgia, serif;
+    font-size: 1.25em;
+    font-weight: normal;
+}
+
+.movimiento .columna-cargo h3 {
     color: var(--color-debe);
     border-bottom: 2px solid var(--color-debe);
-    padding-bottom: 0.4em;
 }
 
-.columna-abono h4 {
+.movimiento .columna-abono h3 {
     color: var(--color-haber);
     border-bottom: 2px solid var(--color-haber);
-    padding-bottom: 0.4em;
 }
 
-/* "Debe" y "Haber" junto al título: pequeño, en mayúsculas y espaciado. */
+/* "Debe" y "Haber" junto al título: pequeño, en mayúsculas y espaciado, y
+   sin serifa, porque es una etiqueta de la interfaz y no un título. */
 .lado {
     margin-left: 0.4em;
-    font-size: 0.7em;
+    font-family: system-ui, sans-serif;
+    font-size: 0.6em;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }

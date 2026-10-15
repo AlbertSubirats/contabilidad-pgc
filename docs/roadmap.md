@@ -347,6 +347,13 @@ quien navegue con teclado. **Pendiente del paso 19:** la página se quedó sin
 `<h1>`; hay que decidir cómo se presenta la web y devolverle un título principal.
 `feat: pulir el aspecto de la web`
 
+> **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
+> cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
+> de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.
+>
+> **Pendiente, sin paso todavía:** la portada. Sin cuenta elegida, el centro
+> de la página está vacío; hay que decidir qué se enseña ahí.
+
 > **Aquí ya hay algo que enseñar a los compañeros del máster.** Buen momento para
 > parar, usarlo unas semanas y apuntar qué echas en falta antes de seguir.
 

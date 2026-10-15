@@ -12,6 +12,43 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·4: el nombre de la web, la tipografía de la maqueta A y el foco visible
+**Qué:** la cabecera lleva el nombre "Cuentas PGC" (con serifa, enlace al
+inicio) y el buscador; en ancho, una rejilla `1fr minmax(0, 32em) 1fr`
+deja el buscador en el centro, y en el móvil van uno encima del otro. La
+pestaña también se llama "Cuentas PGC". El título de la ficha pasa a ser el
+`<h1>`, sus apartados `<h2>` y las columnas del movimiento `<h3>` (antes
+`<h2>`, `<h3>` y `<h4>`). La ficha toma la tipografía de la maqueta A:
+Georgia en los títulos y en el texto de la norma (definición y
+presentación), con líneas de 40em como mucho y más aire entre ellas; la
+presentación, en un recuadro con barra; la ficha entera, de 64em como mucho.
+Una regla `:focus-visible` para toda la web dibuja un recuadro en el color de
+enlace en lo que tenga el foco del teclado. Comprobado en el navegador a 1440
+y 375 píxeles: un solo `<h1>` ("430 · Clientes"), el buscador centrado en
+ancho, el nombre encima en el móvil sin salirse nada, y pulsar el nombre
+quita la ficha y las marcas del árbol. Escrito por Claude, a petición de Albert.
+**Por qué:** cierra el paso 20: la página se había quedado sin título
+principal en el paso 19, el CLAUDE.md pide serifa para los títulos y el texto
+legal, y el foco visible tenía reglas sueltas y distintas en cada sitio.
+
+### Decisión · "Cuentas PGC", y el `<h1>` es el título de la ficha
+**Qué:** la web se llama "Cuentas PGC", como en la maqueta A. El nombre es un
+enlace normal; el `<h1>` es el título de la ficha.
+**Por qué:** el título principal de cada página es lo que cambia de una a
+otra, la cuenta, como en la Wikipedia. Si llega el simulador, el nombre se
+podrá revisar. Lo decidió Albert.
+
+### Decisión · Georgia, sin fuentes de Google
+**Qué:** la serifa es Georgia, que viene instalada en todos los ordenadores.
+**Por qué:** las fuentes de la maqueta son de Google Fonts: se parecerían
+más, pero la web tendría que pedírselas a Google cada vez que se abre. Una
+dependencia externa que no hace falta (sección 3.4 de CLAUDE.md).
+
+### Decisión · La portada, para más adelante
+**Qué:** sin cuenta elegida, el centro de la página sigue vacío.
+**Por qué:** qué se enseña ahí (bienvenida, cómo se usa...) es un diseño
+propio, no pulido. Queda apuntado en la hoja de ruta.
+
 ### Cambio · Paso 20·3 bis: hacer más legible el árbol
 **Qué:** la columna del árbol pasa de 18em a 22em y su letra, a 0,9. Las
 líneas de un mismo nombre van más juntas (`line-height: 1.3`) y entre una
