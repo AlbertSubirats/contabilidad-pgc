@@ -407,6 +407,42 @@ el grupo y el subgrupo como líneas del árbol, en el color de enlace.
 > **Aquí ya hay algo que enseñar a los compañeros del máster.** Buen momento para
 > parar, usarlo unas semanas y apuntar qué echas en falta antes de seguir.
 
+### Que la encuentre quien la necesite
+
+Añadido el 15/10/2026, al hablar de cómo dar a conocer la web. Se queda en
+GitHub Pages: cambiar de alojamiento no trae visitas. Lo primero es contarlo
+(el máster, profesores y academias, LinkedIn); estos pasos ayudan a que,
+además, Google la entienda y quien llegue se fíe.
+
+#### Paso 20·13 · Que Google y las pestañas sepan qué hay en cada ficha
+**Qué:** cada ficha cambia el título de la pestaña ("430 Clientes · Cuentas
+PGC") y vuelve a "Cuentas PGC" sin cuenta. Una descripción de la web en
+`<meta name="description">`. Fuera del código, dar de alta la web en Google
+Search Console (lo hace Albert, con su cuenta de Google).
+**Aprendes:** `document.title`; qué lee Google de una página y por qué una
+web con `#430` es, para él, una sola página.
+**Compruebas:** al abrir la 430, la pestaña dice "430 Clientes · Cuentas PGC".
+`feat: poner en la pestaña el título de cada ficha`
+
+#### Paso 20·14 · La página "Acerca de"
+**Qué:** una página que diga de dónde salen los datos (el texto consolidado
+del BOE, `BOE-A-2007-19884`, con su fecha de actualización), quién la ha
+hecho, que es una ayuda para estudiar y consultar y no sustituye al texto
+oficial, y que no usa cookies ni recoge datos. Enlazada desde la cabecera.
+**Compruebas:** se llega a ella desde cualquier ficha y se vuelve con "atrás".
+`feat: añadir la página acerca de`
+
+> **Pendiente, como decisión:** una página HTML propia para cada cuenta
+> (`430.html`...), generada por un script de Python como el que hace el JSON.
+> Es lo que haría que la web saliera en Google al buscar una cuenta concreta.
+> Pero es un cambio grande, que roza la regla de "sin paso de compilación"
+> (sección 5 de CLAUDE.md), y se decide con Albert, con su coste y su
+> beneficio, cuando se sepa si la web se usa.
+>
+> **Para más adelante, si hace falta:** un dominio propio (unos 10-15 € al
+> año, la web seguiría en GitHub Pages) y contar visitas con una herramienta
+> sin cookies; Google Analytics obligaría a poner aviso de cookies.
+
 ---
 
 ## Fase 3 · El simulador (módulo 3)

@@ -12,6 +12,18 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Decisión · Cómo dar a conocer la web
+**Qué:** se queda en GitHub Pages. Se apuntan en la hoja de ruta dos pasos
+sencillos: el título de cada ficha en la pestaña con una descripción para
+Google (20·13) y una página "Acerca de" con la fuente y el aviso de que no
+sustituye al texto oficial (20·14). Una página HTML por cuenta queda como
+decisión pendiente; un dominio propio y contar visitas, para más adelante.
+**Por qué:** cambiar de alojamiento no trae visitas; al principio lo que
+funciona es contarlo (el máster, profesores, academias). Google, en cambio,
+ve la web como una sola página, porque las cuentas van detrás de un `#`: para
+que salga al buscar una cuenta haría falta una página por cuenta, y eso es un
+cambio grande que se decide cuando se sepa si la web se usa. Lo decidió Albert.
+
 ### Cambio · Paso 20·12: la ficha rápida, armonizada con el resto de la web
 **Qué:** las dos tarjetas de la ficha rápida (paso 19 ter) pierden su franja
 de color: ahora son como la tarjeta que sale al pasar el ratón, de papel
