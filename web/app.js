@@ -623,8 +623,8 @@ function mostrarFicha(cuenta) {
 
     pintarMigas(cuenta);
     pintarFichaRapida(cuenta);
-    // Antes de subir a la ficha (abajo): si fuera después, desplazar el árbol
-    // podría mover también la página y la ficha no quedaría arriba.
+    // Antes de subir al principio de la página (abajo): si fuera después,
+    // desplazar el árbol podría mover también la página y no quedaría arriba.
     marcarEnArbol(cuenta);
 
     ficha.hidden = false;
@@ -632,8 +632,11 @@ function mostrarFicha(cuenta) {
 
     // Si se pulsa una contrapartida al final de un movimiento largo, la página
     // está desplazada hacia abajo: sube para que la ficha nueva se lea desde
-    // el principio.
-    ficha.scrollIntoView();
+    // el principio. Se sube al principio de la PÁGINA (scrollTo(0, 0): cero
+    // píxeles desde la izquierda y cero desde arriba), no al de la ficha: con
+    // ficha.scrollIntoView() la ficha quedaba pegada al borde de arriba de
+    // la ventana y la cabecera, con el buscador, se iba fuera de la vista.
+    window.scrollTo(0, 0);
 }
 
 // El enrutador: mira qué código hay en la URL (#430) y decide qué se enseña.
@@ -674,7 +677,8 @@ function mostrarCuentaDeLaUrl() {
         quitarMarcasDelArbol();
         aviso.textContent = "No hay ninguna cuenta con el código «" + codigo + "» en el PGC.";
         aviso.hidden = false;
-        aviso.scrollIntoView();
+        // Arriba del todo, como con una ficha: el aviso queda justo bajo la cabecera.
+        window.scrollTo(0, 0);
         return;
     }
 

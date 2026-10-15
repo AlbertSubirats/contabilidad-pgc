@@ -12,6 +12,19 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·7: al abrir una ficha, la página sube del todo
+**Qué:** en `app.js`, `mostrarFicha` y el aviso de cuenta inexistente suben
+al principio de la página con `window.scrollTo(0, 0)`, en vez de subir hasta
+la ficha con `scrollIntoView()`. Comprobado en el navegador a 1440 y 375
+píxeles: con Enter en el buscador, con un clic en un resultado, con una
+contrapartida pulsada desde abajo de la página y con `#9999`, la página
+queda arriba del todo y se ve la cabecera. Escrito por Claude, a petición de
+Albert.
+**Por qué:** lo vio Albert: `scrollIntoView()` ponía la ficha pegada al borde
+de arriba de la ventana, y la cabecera, con el nombre de la web y el
+buscador, se quedaba fuera de la vista. Venía del paso 17, cuando aún no
+había cabecera encima de la ficha.
+
 ### Cambio · Paso 20·6: la barra de desplazamiento de los márgenes, discreta
 **Qué:** en pantalla ancha, el árbol y la ficha rápida tienen la barra de
 desplazamiento fina (`scrollbar-width: thin`) y transparente

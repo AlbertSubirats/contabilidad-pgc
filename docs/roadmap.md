@@ -361,6 +361,11 @@ papel más claro que el centro, para que se distingan las zonas.
 **Qué:** idea de Albert. Fina y transparente; aparece al pasar el ratón.
 `feat: hacer discreta la barra de desplazamiento de los márgenes`
 
+#### Paso 20·7 · Al abrir una ficha, la página sube del todo
+**Qué:** lo vio Albert: al abrir una ficha desde el buscador, la cabecera se
+quedaba fuera de la vista. Se sube al principio de la página, no al de la ficha.
+`fix: subir al principio de la página al abrir una ficha`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.
