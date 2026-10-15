@@ -371,6 +371,13 @@ quedaba fuera de la vista. Se sube al principio de la página, no al de la ficha
 presentación, justificadas y con guiones automáticos.
 `feat: centrar la ficha y justificar el texto de la norma`
 
+#### Paso 20·9 · Los títulos de la ficha, como en la maqueta A
+**Qué:** idea de Albert ("todo un poco mazacote"). Los títulos de apartado
+se esconden a la vista (no al lector de pantalla); la definición va como
+entradilla y la presentación empieza por "Presentación.". El marrón del
+nombre, más oscuro.
+`feat: quitar a la vista los títulos de los apartados de la ficha`
+
 > **Decidido en el paso 20·4:** la web se llama "Cuentas PGC" (en la
 > cabecera, como enlace al inicio, y en la pestaña); el `<h1>` es el título
 > de la ficha. Tipografía de la maqueta A con Georgia, sin fuentes de Google.

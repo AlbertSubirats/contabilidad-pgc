@@ -12,6 +12,39 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·9: los títulos de la ficha, como en la maqueta A
+**Qué:** los títulos "Definición", "Presentación en el balance" y
+"Movimiento" ya no se ven: llevan la clase nueva `solo-lector`, que los
+esconde a la vista y deja que el lector de pantalla los siga leyendo. La
+definición pasa a ser la entradilla (1,2 veces más grande); la presentación
+empieza por "Presentación." en negrita (un `::before` en su primer párrafo),
+y el movimiento se separa con aire. El marrón del nombre de la cuenta en el
+título, más oscuro: de `#6B4A35` a `#4A2E1E`. Comprobado en el navegador a
+1440 píxeles con la 430: los tres `<h2>` siguen en la página midiendo 1
+píxel y "Presentación." sale al principio del recuadro. Escrito por Claude,
+a petición de Albert.
+**Por qué:** a Albert le parecía "todo un poco mazacote": el título de la
+cuenta, los tres apartados y las columnas del movimiento iban en la misma
+letra, de tamaños parecidos, y no destacaba nada.
+
+### Decisión · Sin títulos a la vista, pero no sin títulos
+**Qué:** de cuatro maneras que se compararon (como estaba, etiquetas
+pequeñas con raya, sin títulos como la maqueta A, numerados), la de la
+maqueta A. Los `<h2>` no se borran: se esconden con `solo-lector`.
+**Por qué:** es lo que hace la maqueta de referencia y lo que más aire da.
+Borrarlos dejaría sin puntos de navegación a quien usa un lector de
+pantalla; con `display: none` pasaría lo mismo, porque también los esconde
+para él. Lo decidió Albert.
+
+### Decisión · Se descarta igualar el ancho del texto y del movimiento
+**Qué:** se probó estrechar la ficha a 48em para que el texto de la norma y
+el movimiento acabaran a la misma altura, y también centrar la parte de
+arriba sobre el movimiento. Ninguna convenció a Albert, y se quedó como en
+el paso 20·8 (sin commit, con `git restore`).
+**Por qué:** la maqueta A tiene la definición más estrecha que el movimiento
+y las dos alineadas a la izquierda: un borde izquierdo común guía la vista, y
+el texto se queda en unas 80 letras por línea.
+
 ### Cambio · Paso 20·8: la ficha centrada y el texto de la norma justificado
 **Qué:** la ficha (y el aviso de cuenta inexistente) se centra en su columna
 con `margin-left` y `margin-right: auto`. La definición y la presentación van

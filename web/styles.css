@@ -16,7 +16,7 @@
     /* Un marrón oscuro para el nombre de la cuenta en el título de la ficha.
        A propósito más oscuro y más rojizo que el ámbar del Haber, que tiene
        su propio significado. */
-    --color-tinta-marron: #6B4A35;
+    --color-tinta-marron: #4A2E1E;
     /* Un papel más claro que el de fondo, para la cabecera, el árbol y las
        cajas de la ficha rápida: así se distinguen las zonas de la página,
        como en la maqueta A, donde el centro es un poco más oscuro. */
@@ -434,12 +434,26 @@ body {
     color: var(--color-tinta-marron);
 }
 
-/* "Definición", "Presentación en el balance" y "Movimiento". */
-#ficha-cuenta h2 {
-    margin-top: 1.4em;
-    font-family: Georgia, serif;
-    font-size: 1.3em;
-    font-weight: normal;
+/* "Solo para el lector de pantalla": esconde algo a la vista pero deja que
+   el lector de pantalla lo lea. Lo usan los títulos "Definición",
+   "Presentación en el balance" y "Movimiento" de la ficha.
+   No vale display: none ni el atributo hidden: esos lo esconden también para
+   el lector de pantalla. Esto es una receta conocida, y cada línea hace una
+   parte del truco:
+   - position: absolute lo saca del orden de la página: no ocupa sitio.
+   - width y height de 1 píxel, y overflow: hidden recorta lo que no cabe en
+     ese píxel: el texto entero queda fuera.
+   - clip-path: inset(50%) recorta incluso ese píxel, desde los cuatro lados
+     hacia el centro, hasta no dejar nada.
+   - white-space: nowrap evita que, en tan poco sitio, el texto se parta en
+     líneas, que algunos lectores de pantalla leerían palabra a palabra. */
+.solo-lector {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 /* El texto de la norma, con serifa, algo más grande y con más aire entre
@@ -465,11 +479,20 @@ body {
     hyphens: auto;
 }
 
+/* La definición, sin título encima, va como la entradilla de un artículo
+   (maqueta A): justo bajo el título de la cuenta y algo más grande que el
+   resto, porque es lo primero que hay que leer. */
+#ficha-definicion {
+    font-size: 1.2em;
+}
+
 /* La presentación, en un recuadro de papel más oscuro con una barra a la
    izquierda (la misma sombra hacia dentro que la cuenta abierta del árbol).
    Solo las esquinas de la derecha van redondeadas: las de la izquierda
-   quedan rectas contra la barra. */
+   quedan rectas contra la barra. margin-top la separa de la definición, ahora
+   que no hay título entre las dos. */
 #ficha-presentacion {
+    margin-top: 1.5em;
     padding: 0.5em 1em;
     background-color: var(--color-papel-oscuro);
     box-shadow: inset 3px 0 0 var(--color-tinta-suave);
@@ -478,6 +501,22 @@ body {
 
 #ficha-presentacion p {
     margin: 0.4em 0;
+}
+
+/* "Presentación." en negrita al principio del recuadro, como en la maqueta
+   A, en el lugar del título que ya no se ve. Es un ::before, como los
+   triángulos del árbol: un texto que pone el CSS delante del primer párrafo
+   (:first-child). Va en estilo normal aunque el párrafo sea el aviso en
+   cursiva ("Sin indicación de presentación..."). */
+#ficha-presentacion p:first-child::before {
+    content: "Presentación. ";
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* El movimiento, separado de la presentación, también sin título encima. */
+.movimiento {
+    margin-top: 2em;
 }
 
 /* Migas de pan, encima del título: pequeñas, porque orientan pero no son lo

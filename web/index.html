@@ -85,17 +85,23 @@
                 <!-- El título de la ficha es el <h1>, el título principal de la
                      página. Debajo, los apartados son <h2> y las columnas del
                      movimiento, <h3>: los niveles van de uno en uno, sin
-                     saltarse ninguno, que es como los recorre un lector de pantalla. -->
+                     saltarse ninguno, que es como los recorre un lector de pantalla.
+                     Los tres <h2> no se ven (clase solo-lector, en styles.css),
+                     como en la maqueta A: la definición va como entradilla, la
+                     presentación dice "Presentación." dentro de su recuadro, y
+                     el movimiento se explica solo con "Se cargará / Se abonará".
+                     Pero siguen ahí para el lector de pantalla, que salta de
+                     apartado en apartado gracias a ellos. -->
                 <h1 id="ficha-titulo"></h1>
                 <p id="ficha-etiquetas"></p>
 
-                <h2>Definición</h2>
+                <h2 class="solo-lector">Definición</h2>
                 <div id="ficha-definicion"></div>
 
-                <h2>Presentación en el balance</h2>
+                <h2 class="solo-lector">Presentación en el balance</h2>
                 <div id="ficha-presentacion"></div>
 
-                <h2>Movimiento</h2>
+                <h2 class="solo-lector">Movimiento</h2>
                 <div class="movimiento">
                     <section class="columna-cargo">
                         <h3>Se cargará <span class="lado">Debe</span></h3>
