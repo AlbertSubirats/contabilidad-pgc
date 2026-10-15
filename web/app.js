@@ -35,11 +35,28 @@ function crearEnlaceACuenta(codigo, texto) {
     return enlace;
 }
 
+// Fabrica el enlace de una línea del árbol (grupo, subgrupo o cuenta). Como
+// en la maqueta A, el código y el nombre van cada uno en su <span>, para que
+// el CSS ponga el código en gris y en su columna, y el nombre al lado.
+function crearEnlaceDelArbol(cuenta) {
+    const enlace = crearEnlaceACuenta(cuenta.codigo, "");
+
+    const codigo = document.createElement("span");
+    codigo.className = "codigo-arbol";
+    codigo.textContent = cuenta.codigo;
+    enlace.appendChild(codigo);
+
+    const nombre = document.createElement("span");
+    nombre.textContent = cuenta.nombre;
+    enlace.appendChild(nombre);
+
+    return enlace;
+}
+
 // Fabrica el <li> de una cuenta del árbol, con su enlace dentro.
 function crearElementoDeCuenta(cuenta) {
     const elemento = document.createElement("li");
-    const enlace = crearEnlaceACuenta(cuenta.codigo, cuenta.codigo + " · " + cuenta.nombre);
-    elemento.appendChild(enlace);
+    elemento.appendChild(crearEnlaceDelArbol(cuenta));
     return elemento;
 }
 
@@ -227,8 +244,10 @@ function pintarArbol() {
         const cajaGrupo = document.createElement("details");
         // El título es un enlace a la ficha del grupo; el triángulo de la
         // izquierda es el que pliega y despliega.
+        // La clase titulo-grupo es para el CSS: los grupos van con serifa.
         const tituloGrupo = document.createElement("summary");
-        tituloGrupo.appendChild(crearEnlaceACuenta(grupo.codigo, grupo.codigo + " · " + grupo.nombre));
+        tituloGrupo.className = "titulo-grupo";
+        tituloGrupo.appendChild(crearEnlaceDelArbol(grupo));
 
         cajaGrupo.appendChild(tituloGrupo);
 
@@ -238,7 +257,7 @@ function pintarArbol() {
         for (const subgrupo of subgrupos) {
             const cajaSubgrupo = document.createElement("details");
             const tituloSubgrupo = document.createElement("summary");
-            tituloSubgrupo.appendChild(crearEnlaceACuenta(subgrupo.codigo, subgrupo.codigo + " · " + subgrupo.nombre));
+            tituloSubgrupo.appendChild(crearEnlaceDelArbol(subgrupo));
             cajaSubgrupo.appendChild(tituloSubgrupo);
 
             // Las cuentas de este subgrupo, como una lista normal dentro de su caja.
@@ -255,6 +274,66 @@ function pintarArbol() {
         }
 
         arbol.appendChild(cajaGrupo);
+    }
+}
+
+// Quita del árbol las marcas de la cuenta anterior: la "actual" y las "en
+// camino". querySelectorAll es como querySelector pero devuelve TODOS los
+// elementos que cumplen el selector, no solo el primero. La coma del
+// selector quiere decir "o", como en el CSS.
+// classList es la lista de clases de un elemento; remove quita una sin
+// tocar las demás que tenga.
+function quitarMarcasDelArbol() {
+    const arbol = document.getElementById("arbol-cuentas");
+    const marcados = arbol.querySelectorAll(".actual, .en-camino");
+
+    for (const enlace of marcados) {
+        enlace.classList.remove("actual");
+        enlace.classList.remove("en-camino");
+    }
+}
+
+// Marca en el árbol la cuenta que se está viendo y el camino hasta ella, y
+// abre las cajas plegables de ese camino: entras en la 430 y el árbol se
+// despliega por el grupo 4 y el subgrupo 43, con la 430 resaltada.
+// Se sube por los padres como en pintarMigas. Las cajas que el usuario haya
+// abierto a mano se quedan abiertas: aquí solo se abre, nunca se cierra.
+function marcarEnArbol(cuenta) {
+    const arbol = document.getElementById("arbol-cuentas");
+    quitarMarcasDelArbol();
+
+    let actual = cuenta;
+    while (actual !== undefined) {
+        // El enlace de esta cuenta en el árbol: el que apunta a "#430". Entre
+        // corchetes, un selector de atributo, como el [hidden] del CSS.
+        const enlace = arbol.querySelector('a[href="#' + actual.codigo + '"]');
+
+        // Las subcuentas no están en el árbol: si no hay enlace, se sigue
+        // subiendo sin marcar nada.
+        if (enlace !== null) {
+            if (actual === cuenta) {
+                enlace.classList.add("actual");
+            } else {
+                enlace.classList.add("en-camino");
+            }
+
+            // closest sube desde el enlace hasta la primera caja <details>
+            // que lo contenga, y open = true la despliega. Para un grupo o un
+            // subgrupo es su propia caja; para una cuenta, la de su subgrupo.
+            enlace.closest("details").open = true;
+        }
+
+        // Al llegar al grupo, padre es null y cuentasPorCodigo[null] no
+        // existe: da undefined y el while se para.
+        actual = cuentasPorCodigo[actual.padre];
+    }
+
+    // Si la cuenta queda fuera de la vista del árbol (el grupo 7 está muy
+    // abajo), el árbol se desplaza hasta ella. block: "nearest" mueve lo
+    // justo para que se vea, y nada si ya se ve.
+    const enlaceActual = arbol.querySelector(".actual");
+    if (enlaceActual !== null) {
+        enlaceActual.scrollIntoView({ block: "nearest" });
     }
 }
 
@@ -482,6 +561,9 @@ function mostrarFicha(cuenta) {
 
     pintarMigas(cuenta);
     pintarFichaRapida(cuenta);
+    // Antes de subir a la ficha (abajo): si fuera después, desplazar el árbol
+    // podría mover también la página y la ficha no quedaría arriba.
+    marcarEnArbol(cuenta);
 
     ficha.hidden = false;
     document.getElementById("ficha-rapida").hidden = false;
@@ -519,6 +601,7 @@ function mostrarCuentaDeLaUrl() {
     if (codigo === "") {
         ficha.hidden = true;
         fichaRapida.hidden = true;
+        quitarMarcasDelArbol();
         return;
     }
 
@@ -526,6 +609,7 @@ function mostrarCuentaDeLaUrl() {
     if (cuenta === undefined) {
         ficha.hidden = true;
         fichaRapida.hidden = true;
+        quitarMarcasDelArbol();
         aviso.textContent = "No hay ninguna cuenta con el código «" + codigo + "» en el PGC.";
         aviso.hidden = false;
         aviso.scrollIntoView();

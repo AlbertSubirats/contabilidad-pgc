@@ -12,6 +12,40 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·3: el árbol como en la maqueta A
+**Qué:** en `app.js`, `crearEnlaceDelArbol` pone el código y el nombre de
+cada línea en dos `<span>`, y los grupos llevan la clase `titulo-grupo`.
+Nuevas `marcarEnArbol` y `quitarMarcasDelArbol`: al abrir una ficha, el
+árbol se despliega por su rama (subiendo por los padres, como las migas),
+marca la cuenta con la clase `actual` y su grupo y subgrupo con `en-camino`,
+y se desplaza hasta ella si no se ve. En `styles.css`: "Cuadro de cuentas"
+pequeño y en mayúsculas; el triángulo propio con `summary::before`, pequeño
+y en gris, que apunta abajo con la caja abierta (`details[open]`); cada línea
+en una rejilla (código en gris con `tabular-nums`, nombre al lado); los
+grupos con serifa; el camino en el color de enlace y la cuenta abierta con
+fondo y barra (`box-shadow: inset`). Comprobado en el navegador: la 430
+abre el 4 y el 43 y se resalta; la 642 abre el 6 y el 64 y el árbol baja
+hasta ella; con la 4300 (subcuenta, no está en el árbol) se marca el camino
+hasta la 430; con `#9999` o sin `#` no queda nada marcado. Escrito por
+Claude, a petición de Albert.
+**Por qué:** idea de Albert: el árbol de la maqueta A se lee mejor, y al
+llegar a una cuenta desde el buscador o un enlace, el árbol dice dónde está.
+
+### Decisión · El árbol abre, pero no cierra
+**Qué:** al abrir una ficha se despliega su rama, pero las cajas que ya
+estaban abiertas se quedan como estaban.
+**Por qué:** cerrar las demás borraría lo que el usuario haya abierto a mano.
+La maqueta A enseña solo la rama de la cuenta, pero es un dibujo de un
+momento; si con el uso el árbol se llena de cajas abiertas, se puede cambiar.
+
+### Decisión · El triángulo, dibujado por la página
+**Qué:** se quita el triángulo del navegador y se pone uno propio con
+`::before`.
+**Por qué:** el del navegador no se puede hacer más pequeño ni pintar de gris
+de forma fiable en todos los navegadores, y al partir el paso 20 se acordó
+dejarlo, pero discreto. Sigue siendo el que pliega (paso 17): el nombre
+lleva a la ficha.
+
 ### Cambio · Paso 20·2: las migas de pan en color de enlace
 **Qué:** un color nuevo en `:root`, `--color-enlace` (#2A6B7C, azul
 petróleo), y los enlaces de las migas en ese color. La cuenta en la que

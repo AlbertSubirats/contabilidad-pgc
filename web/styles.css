@@ -381,10 +381,108 @@ body {
     list-style: none;
 }
 
-/* Árbol del cuadro de cuentas: cada caja plegable que está dentro de otra
-   se desplaza a la derecha, para que se vea qué cuelga de qué */
+/* Árbol del cuadro de cuentas, con el aspecto de la maqueta A.
+   El título "Cuadro de cuentas", pequeño, en mayúsculas y en gris, como los
+   nombres de los datos de la ficha rápida. */
+.columna-arbol h2 {
+    font-size: 0.75em;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-tinta-suave);
+}
+
+/* Cada caja plegable que está dentro de otra se desplaza a la derecha, para
+   que se vea qué cuelga de qué. */
 details details {
-    padding-left: 1.5em;
+    padding-left: 1.2em;
+}
+
+/* El título de cada caja (<summary>): el triángulo y el enlace, en fila.
+   El navegador pone su propio triángulo, que no se puede ni encoger ni
+   pintar de gris. Se quita (list-style: none, y la regla de abajo para
+   Safari, que lo pinta a su manera) y se dibuja uno propio con ::before. */
+summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3em;
+    list-style: none;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* ::before crea un elemento de mentira al principio del summary, con el
+   texto que diga content: el triángulo, pequeño y en gris. Ocupa siempre lo
+   mismo (width), para que los títulos queden alineados.
+   details[open] es una caja desplegada (el navegador le pone el atributo
+   open), y el > dice "su summary, el de esa caja": entonces el triángulo
+   apunta hacia abajo. */
+summary::before {
+    content: "▸";
+    flex-shrink: 0;
+    width: 0.9em;
+    font-size: 0.75em;
+    color: var(--color-tinta-suave);
+}
+
+details[open] > summary::before {
+    content: "▾";
+}
+
+/* Los grupos, con serifa, como los títulos de la maqueta A. */
+.titulo-grupo {
+    font-family: Georgia, serif;
+}
+
+/* Las cuentas de un subgrupo: sin viñetas y metidas lo mismo que un
+   subgrupo, para que su código quede bajo el nombre del subgrupo. */
+#arbol-cuentas ul {
+    margin: 0;
+    padding-left: 1.2em;
+    list-style: none;
+}
+
+/* Cada línea del árbol: una rejilla con el código en una columna (auto: lo
+   que mida) y el nombre en lo que sobra. Si el nombre ocupa dos líneas, la
+   segunda empieza bajo la primera y no bajo el código. */
+#arbol-cuentas a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.5em;
+    flex: 1;
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+}
+
+/* El código, en gris. tabular-nums hace que todas las cifras midan lo
+   mismo de ancho (el 1 tanto como el 4), así los nombres de un mismo nivel
+   empiezan a la misma altura. */
+.codigo-arbol {
+    color: var(--color-tinta-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+/* El camino hasta la cuenta abierta (su grupo y su subgrupo), en el color de
+   enlace, código incluido. Las clases las pone y las quita app.js. */
+#arbol-cuentas .en-camino,
+#arbol-cuentas .en-camino .codigo-arbol {
+    color: var(--color-enlace);
+}
+
+/* La cuenta abierta, resaltada: fondo de papel más oscuro y una barra a la
+   izquierda. La barra es una sombra hacia dentro (inset) de 3 píxeles sin
+   difuminar: a diferencia de un borde, no ocupa sitio y no mueve el texto. */
+#arbol-cuentas .actual {
+    background-color: var(--color-papel-oscuro);
+    box-shadow: inset 3px 0 0 var(--color-enlace);
+    font-weight: bold;
+}
+
+#arbol-cuentas .actual .codigo-arbol {
+    color: var(--color-enlace);
 }
 
 /* Etiquetas de la ficha ("Cuenta"): cada una en su cajita,
