@@ -582,7 +582,23 @@ function mostrarFicha(cuenta) {
     const titulo = document.getElementById("ficha-titulo");
     const etiquetas = document.getElementById("ficha-etiquetas");
 
-    titulo.textContent = cuenta.codigo + " · " + cuenta.nombre;
+    // El título, como en la maqueta A: el código grande y en negrita, y el
+    // nombre al lado, más fino y en marrón. Cada uno en su <span> para que
+    // el CSS los pinte distinto. Entre los dos, un espacio y no el "·": en la
+    // maqueta los separa solo el aire.
+    titulo.replaceChildren();
+
+    const codigoTitulo = document.createElement("span");
+    codigoTitulo.className = "codigo-titulo";
+    codigoTitulo.textContent = cuenta.codigo;
+    titulo.appendChild(codigoTitulo);
+
+    titulo.appendChild(document.createTextNode(" "));
+
+    const nombreTitulo = document.createElement("span");
+    nombreTitulo.className = "nombre-titulo";
+    nombreTitulo.textContent = cuenta.nombre;
+    titulo.appendChild(nombreTitulo);
 
     // Las etiquetas se vacían primero: si antes se mostró otra cuenta,
     // sus etiquetas no deben quedarse.

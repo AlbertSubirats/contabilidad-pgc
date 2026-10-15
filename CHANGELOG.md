@@ -12,6 +12,28 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·5: el título de la ficha y las zonas, como en la maqueta A
+**Qué:** en `app.js`, el título de la ficha se arma con dos `<span>`: el
+código (`codigo-titulo`) y el nombre (`nombre-titulo`), separados por un
+espacio en vez del "·". En `styles.css`, el código va 1,3 veces más grande y
+en negrita, con cifras alineadas (`lining-nums`: las de Georgia, si no, suben
+y bajan como letras), y el nombre en un marrón oscuro nuevo,
+`--color-tinta-marron`. Otro color nuevo, `--color-papel-claro`, para la
+cabecera, el árbol y las cajas de la ficha rápida: la ficha se queda en el
+papel de fondo, un poco más oscuro, y las zonas se distinguen. El árbol mide
+siempre el alto de la ventana, para que su fondo llegue hasta abajo.
+Comprobado en el navegador a 1440 píxeles con la 430. Escrito por Claude, a
+petición de Albert.
+**Por qué:** idea de Albert, al comparar con la maqueta A: el código es lo
+que se busca y lo que se recuerda, y con todas las zonas del mismo color la
+página parecía una sola mancha.
+
+### Decisión · Un marrón para el nombre que no es el del Haber
+**Qué:** el nombre de la cuenta va en `#6B4A35`, más oscuro y más rojizo que
+el ámbar del Haber (`#8A5A14`).
+**Por qué:** el ámbar quiere decir Haber en esta web; un título en ese color
+diría algo que no es. Lo pidió Albert ("un tono más marroncete").
+
 ### Cambio · Paso 19 bis: abrir el árbol desde un botón en el móvil
 **Qué:** un `<button>` "☰ Cuadro de cuentas" en la cabecera, al lado del
 nombre, que solo se ve por debajo de 64em. Al pulsarlo, `app.js` pone la

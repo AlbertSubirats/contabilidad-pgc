@@ -13,6 +13,14 @@
        Un azul petróleo, a propósito distinto del azul del Debe: en esta web
        el azul del movimiento quiere decir Debe, y no se puede gastar en otra cosa. */
     --color-enlace: #2A6B7C;
+    /* Un marrón oscuro para el nombre de la cuenta en el título de la ficha.
+       A propósito más oscuro y más rojizo que el ámbar del Haber, que tiene
+       su propio significado. */
+    --color-tinta-marron: #6B4A35;
+    /* Un papel más claro que el de fondo, para la cabecera, el árbol y las
+       cajas de la ficha rápida: así se distinguen las zonas de la página,
+       como en la maqueta A, donde el centro es un poco más oscuro. */
+    --color-papel-claro: #FFFEFB;
 }
 
 body {
@@ -72,6 +80,7 @@ body {
     align-items: center;
     gap: 0.6em;
     padding: 1em 1.5em;
+    background-color: var(--color-papel-claro);
     border-bottom: 1px solid var(--color-linea);
 }
 
@@ -126,8 +135,11 @@ body {
     text-decoration: none;
 }
 
+/* El árbol y la cabecera, en el papel más claro; la ficha, en el de fondo.
+   Es la diferencia de tono entre zonas de la maqueta A. */
 .columna-arbol {
     grid-area: arbol;
+    background-color: var(--color-papel-claro);
     border-right: 1px solid var(--color-linea);
 }
 
@@ -165,6 +177,13 @@ body {
         max-height: 100vh;
         overflow-y: auto;
         box-sizing: border-box;
+    }
+
+    /* El árbol, siempre del alto de la ventana, aunque tenga los grupos
+       plegados y ocupe poco: así su fondo más claro y su raya llegan hasta
+       abajo, como una columna de verdad, y no se cortan a media página. */
+    .columna-arbol {
+        height: 100vh;
     }
 }
 
@@ -373,6 +392,21 @@ body {
     font-family: Georgia, serif;
     font-size: 2em;
     font-weight: normal;
+    line-height: 1.15;
+}
+
+/* En el título, el código manda, como en la maqueta A: más grande y en
+   negrita, en el color de la tinta. El nombre va al lado, normal y en
+   marrón, para que se lea como "el código, y lo que es". */
+.codigo-titulo {
+    margin-right: 0.15em;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-variant-numeric: lining-nums;
+}
+
+.nombre-titulo {
+    color: var(--color-tinta-marron);
 }
 
 /* "Definición", "Presentación en el balance" y "Movimiento". */
@@ -432,9 +466,12 @@ body {
 /* Las cajas de la ficha rápida (maqueta D): un borde con las esquinas
    redondeadas y aire entre una y otra. overflow: hidden recorta lo de dentro
    por el borde redondeado; sin él, el fondo de la franja del título asomaría
-   por las esquinas. */
+   por las esquinas.
+   El fondo, del papel más claro, como el árbol: sobre el papel de la ficha
+   se ven como tarjetas. */
 .caja {
     margin-bottom: 1.2em;
+    background-color: var(--color-papel-claro);
     border: 1px solid var(--color-linea);
     border-radius: 0.5em;
     overflow: hidden;
