@@ -35,8 +35,7 @@ function crearEnlaceACuenta(codigo, texto) {
     return enlace;
 }
 
-// Fabrica el <li> de una cuenta, con su enlace dentro. La usan la lista y el
-// árbol, así que cómo se pinta una cuenta se decide aquí.
+// Fabrica el <li> de una cuenta del árbol, con su enlace dentro.
 function crearElementoDeCuenta(cuenta) {
     const elemento = document.createElement("li");
     const enlace = crearEnlaceACuenta(cuenta.codigo, cuenta.codigo + " · " + cuenta.nombre);
@@ -44,14 +43,45 @@ function crearElementoDeCuenta(cuenta) {
     return elemento;
 }
 
-// Vacía la lista de la página y la vuelve a llenar con las cuentas que reciba.
+// Fabrica el <li> de un resultado del buscador. Como en la maqueta B, el
+// código y el nombre van cada uno en su <span>, para que el CSS los ponga en
+// dos columnas: así todos los nombres empiezan a la misma altura.
+function crearResultado(cuenta) {
+    const elemento = document.createElement("li");
+    const enlace = crearEnlaceACuenta(cuenta.codigo, "");
+
+    const codigo = document.createElement("span");
+    codigo.className = "codigo-resultado";
+    codigo.textContent = cuenta.codigo;
+    enlace.appendChild(codigo);
+
+    const nombre = document.createElement("span");
+    nombre.textContent = cuenta.nombre;
+    enlace.appendChild(nombre);
+
+    elemento.appendChild(enlace);
+    return elemento;
+}
+
+// Vacía la lista de resultados y la vuelve a llenar con las cuentas que reciba.
 function pintarLista(cuentasAMostrar) {
     const lista = document.getElementById("lista-cuentas");
     lista.replaceChildren();
 
     for (const cuenta of cuentasAMostrar) {
-        const elemento = crearElementoDeCuenta(cuenta);
+        const elemento = crearResultado(cuenta);
         lista.appendChild(elemento);
+    }
+}
+
+// Escribe en la caja cuántas cuentas se han encontrado: "34 resultados", o
+// "1 resultado" en singular.
+function pintarContador(cantidad) {
+    const contador = document.getElementById("contador-resultados");
+    if (cantidad === 1) {
+        contador.textContent = "1 resultado";
+    } else {
+        contador.textContent = cantidad + " resultados";
     }
 }
 
@@ -67,15 +97,18 @@ function normalizar(texto) {
 }
 
 // La llama el navegador cada vez que cambia el texto de la caja de búsqueda.
-// Enseña los resultados en la lista desplegable, o la esconde si la caja
-// se ha quedado vacía.
+// Enseña los resultados en el desplegable, o lo esconde si la caja se ha
+// quedado vacía.
 function filtrarCuentas() {
+    const desplegable = document.getElementById("desplegable-buscador");
     const lista = document.getElementById("lista-cuentas");
     const textoBuscado = normalizar(cajaBuscador.value);
 
-    // Sin texto no hay nada que buscar: la lista se esconde y ya está.
+    // Sin texto no hay nada que buscar: el desplegable se esconde, el
+    // contador se vacía y ya está.
     if (textoBuscado === "") {
-        lista.hidden = true;
+        desplegable.hidden = true;
+        document.getElementById("contador-resultados").textContent = "";
         return;
     }
 
@@ -90,6 +123,7 @@ function filtrarCuentas() {
     });
 
     pintarLista(encontradas);
+    pintarContador(encontradas.length);
 
     // Si nada coincide, se dice, en vez de enseñar una lista vacía.
     if (encontradas.length === 0) {
@@ -99,14 +133,16 @@ function filtrarCuentas() {
         lista.appendChild(aviso);
     }
 
-    lista.hidden = false;
+    desplegable.hidden = false;
 }
 
-// Cierra el buscador: vacía la caja y esconde la lista. Se llama al pulsar un
-// resultado, porque entonces ya se ha encontrado lo que se buscaba.
+// Cierra el buscador: vacía la caja y el contador y esconde el desplegable.
+// Se llama al pulsar un resultado, porque entonces ya se ha encontrado lo que
+// se buscaba.
 function cerrarBuscador() {
     cajaBuscador.value = "";
-    document.getElementById("lista-cuentas").hidden = true;
+    document.getElementById("contador-resultados").textContent = "";
+    document.getElementById("desplegable-buscador").hidden = true;
 }
 
 // La llama el navegador cada vez que se pulsa una tecla dentro de la caja.
@@ -118,12 +154,13 @@ function abrirPrimerResultado(evento) {
         return;
     }
 
-    // Con la lista escondida no hay resultados que abrir. Hay que mirarlo:
-    // al cerrar el buscador, la lista se esconde pero sus enlaces se quedan.
-    const lista = document.getElementById("lista-cuentas");
-    if (lista.hidden) {
+    // Con el desplegable escondido no hay resultados que abrir. Hay que
+    // mirarlo: al cerrar el buscador, se esconde pero sus enlaces se quedan.
+    if (document.getElementById("desplegable-buscador").hidden) {
         return;
     }
+
+    const lista = document.getElementById("lista-cuentas");
 
     // querySelector busca dentro de la lista el primer elemento que cumpla
     // el selector, escrito igual que en el CSS: "a" es el primer enlace. Si

@@ -16,13 +16,34 @@
              se quitaron en el paso 19; el nombre de la web sigue en <title>. -->
         <header class="cabecera">
             <div class="buscador">
-                <!-- El "for" de la label apunta al "id" del input: así quedan unidos -->
-                <label for="buscador">Buscar cuenta</label>
-                <input type="search" id="buscador" placeholder="Código o nombre, por ejemplo 430 o clientes" autocomplete="off">
+                <!-- La caja, como en la maqueta B: la lupa, el sitio para
+                     escribir y el número de resultados, en una fila. El borde
+                     es de este div, no del input, para que los tres queden
+                     dentro del mismo recuadro. -->
+                <div class="caja-busqueda">
+                    <!-- La lupa, dibujada con SVG: un círculo y una raya.
+                         aria-hidden="true" le dice al lector de pantalla
+                         que es decoración y no la lea. -->
+                    <svg class="lupa" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10" cy="10" r="6.5"></circle>
+                        <line x1="15" y1="15" x2="21" y2="21"></line>
+                    </svg>
 
-                <!-- Los resultados, como lista desplegable bajo la caja. Empieza
-                     vacía y escondida: app.js la rellena y la enseña al escribir. -->
-                <ul id="lista-cuentas" hidden></ul>
+                    <!-- Ya no hay <label> a la vista. aria-label da al input
+                         el nombre que leería el lector de pantalla. -->
+                    <input type="search" id="buscador" aria-label="Buscar cuenta" placeholder="Código o nombre, por ejemplo 430 o clientes" autocomplete="off">
+
+                    <!-- "34 resultados". Vacío hasta que se escribe; lo rellena app.js. -->
+                    <span id="contador-resultados"></span>
+                </div>
+
+                <!-- Los resultados, como lista desplegable bajo la caja, con su
+                     título encima. Empieza escondida: app.js rellena la lista
+                     y enseña el desplegable al escribir. -->
+                <div id="desplegable-buscador" hidden>
+                    <p class="titulo-desplegable">Cuentas</p>
+                    <ul id="lista-cuentas"></ul>
+                </div>
             </div>
         </header>
 

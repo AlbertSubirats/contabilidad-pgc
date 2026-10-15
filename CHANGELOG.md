@@ -12,6 +12,46 @@ El historial de **decisiones** y **cambios** del proyecto, con su *por qué*.
 
 ## 2026-10-15
 
+### Cambio · Paso 20·1: el buscador como en la maqueta B
+**Qué:** en `index.html`, la caja es un `div.caja-busqueda` con tres cosas en
+fila (flex): una lupa dibujada en SVG, el input sin borde y un contador
+("19 resultados"). Los resultados van en un `#desplegable-buscador` con el
+título "Cuentas" encima de la lista; ahora es el desplegable, y no la lista,
+lo que se esconde y se enseña. En `app.js`, `crearResultado` pone el código y
+el nombre en dos `<span>` (el árbol sigue con `crearElementoDeCuenta`) y
+`pintarContador` escribe el número, en singular si es uno. En `styles.css`,
+cada fila es una rejilla de dos columnas (código en 4em, nombre en lo que
+sobra) y el primer resultado va resaltado (`:first-child`), porque es el que
+abre Enter. La caja enseña dónde está el foco con `:focus-within`.
+Comprobado en el navegador a 1280 y 375 píxeles: "clientes" da 19
+resultados con los nombres alineados, "zzz" da 0 con su aviso, la caja
+vacía esconde el desplegable y el contador, Enter sigue funcionando y en el
+móvil no se sale nada por la derecha. Escrito por Claude, a petición de Albert.
+**Por qué:** idea de Albert: la lista se lee mejor con los códigos en su
+columna, y el resaltado dice qué abre Enter.
+
+### Decisión · Del buscador de la maqueta B, la forma y no los colores
+**Qué:** se toman la lupa, el contador, el título del desplegable, las dos
+columnas y el resaltado del primero. No se toman el blanco y el azul de la
+maqueta B (manda la piel de papel de la A) ni el apartado "En el articulado",
+que es de la fase 5. El resaltado va en el color de la tinta y no en azul,
+que en esta web quiere decir Debe.
+**Por qué:** lo dice la sección 6 de CLAUDE.md: de la B, solo la estructura.
+
+### Decisión · Sin etiqueta visible, con aria-label
+**Qué:** el texto "Buscar cuenta" de encima de la caja se quita; el input
+lleva `aria-label="Buscar cuenta"` y la lupa, `aria-hidden="true"`.
+**Por qué:** en la maqueta B no hay etiqueta a la vista; la lupa y el texto
+de ejemplo ya dicen para qué es la caja. El lector de pantalla sigue
+teniendo el nombre gracias a `aria-label`.
+
+### Decisión · Los resultados, todavía por orden de código
+**Qué:** "clientes" da primero el subgrupo 43 y luego la 430, así que Enter
+abre el 43.
+**Por qué:** ordenar por lo bien que coincide cada nombre (como en la
+maqueta B, con la 430 la primera) es un cambio de lógica y no de aspecto, y
+no estaba en el paso. Queda como idea si Albert la echa en falta.
+
 ### Cambio · Paso 19 quater: Enter abre el primer resultado
 **Qué:** nueva función `abrirPrimerResultado` en `app.js`, que escucha el
 evento `keydown` de la caja del buscador. Si la tecla (`evento.key`) es

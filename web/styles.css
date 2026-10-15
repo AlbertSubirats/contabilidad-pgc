@@ -130,13 +130,67 @@ body {
     position: relative;
 }
 
-.buscador input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.4em 0.6em;
+/* La caja de búsqueda (maqueta B): la lupa, el input y el contador en una
+   fila con flex. El borde y el fondo los pone este div, y el input va sin
+   borde, así parece que los tres están dentro de la misma caja. */
+.caja-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.35em 0.8em;
+    background-color: var(--color-papel-oscuro);
+    border: 1px solid var(--color-linea);
+    border-radius: 0.4em;
 }
 
-/* La lista de resultados, desplegada bajo la caja:
+/* Al input se le quita el recuadro del navegador al escribir dentro (el
+   "outline"), porque ya no se ve como caja: el recuadro lo dibuja el div.
+   :focus-within se cumple cuando lo que tiene el foco está DENTRO del
+   elemento: aquí, cuando el cursor está en el input. Así quien llegue con el
+   teclado sigue viendo dónde está. */
+.caja-busqueda:focus-within {
+    outline: 2px solid var(--color-tinta-suave);
+    outline-offset: 1px;
+}
+
+/* El input ocupa lo que dejan la lupa y el contador (flex: 1).
+   min-width: 0 hace falta por una regla de flex: un elemento no encoge por
+   debajo de su ancho "natural", y el de un input es bastante grande. Sin
+   esto, en el móvil la caja se saldría por la derecha. */
+.caja-busqueda input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.3em 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+}
+
+/* La lupa del SVG: sin relleno (fill: none) y dibujada con una raya
+   (stroke) del color del texto suave. currentColor quiere decir "el color
+   que tenga el elemento", que aquí pone la propiedad color. */
+.lupa {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    color: var(--color-tinta-suave);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+/* "34 resultados", pequeño y en gris. white-space: nowrap no deja que se
+   parta en dos líneas cuando hay poco sitio. */
+#contador-resultados {
+    font-size: 0.8em;
+    color: var(--color-tinta-suave);
+    white-space: nowrap;
+}
+
+/* El desplegable de resultados (el título y la lista), bajo la caja:
    - position: absolute la saca del orden normal de la página: no empuja nada,
      flota por encima. top: 100% la pone justo debajo del buscador (el 100%
      de su alto), y left: 0 y right: 0 le dan el mismo ancho.
@@ -146,8 +200,8 @@ body {
      queda encima. Sin él, los márgenes (que con sticky también se colocan
      aparte) se pintarían por encima de la lista, porque van después en el HTML.
    Ojo: aquí no se pone "display". Si se pusiera, mandaría sobre el
-   atributo hidden y la lista no se escondería nunca. */
-#lista-cuentas {
+   atributo hidden y el desplegable no se escondería nunca. */
+#desplegable-buscador {
     position: absolute;
     top: 100%;
     left: 0;
@@ -155,17 +209,75 @@ body {
     z-index: 1;
     max-height: 50vh;
     overflow-y: auto;
-    margin: 0.2em 0 0;
-    padding: 0.4em 0;
-    list-style: none;
+    margin-top: 0.3em;
     background-color: var(--color-papel);
     border: 1px solid var(--color-linea);
-    border-radius: 0.3em;
+    border-radius: 0.4em;
     box-shadow: 0 0.3em 1em rgba(0, 0, 0, 0.12);
 }
 
-#lista-cuentas li {
-    padding: 0.3em 0.8em;
+/* "CUENTAS", encima de los resultados: pequeño, en mayúsculas y en gris,
+   sobre una franja de papel más oscuro, como los nombres de la ficha rápida. */
+.titulo-desplegable {
+    margin: 0;
+    padding: 0.6em 0.8em 0.4em;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-tinta-suave);
+    background-color: var(--color-papel-oscuro);
+    border-bottom: 1px solid var(--color-linea);
+}
+
+#lista-cuentas {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Cada resultado es una fila entera que se puede pulsar: el padding va en el
+   enlace y no en el <li>, para que el enlace ocupe toda la fila.
+   Dentro, una rejilla de dos columnas: el código en una de 4em fija y el
+   nombre en lo que sobra (1fr). Así los nombres empiezan todos a la misma
+   altura, sea el código de dos cifras o de cinco.
+   El borde izquierdo es transparente (no se ve) y solo toma color en el
+   primer resultado; si solo lo tuviera el primero, su texto quedaría
+   3 píxeles más a la derecha que el de los demás. */
+#lista-cuentas a {
+    display: grid;
+    grid-template-columns: 4em 1fr;
+    padding: 0.45em 0.8em;
+    border-left: 3px solid transparent;
+    color: inherit;
+    text-decoration: none;
+}
+
+.codigo-resultado {
+    color: var(--color-tinta-suave);
+}
+
+/* Al pasar el ratón o llegar con el teclado, la fila se oscurece un poco. */
+#lista-cuentas a:hover,
+#lista-cuentas a:focus-visible {
+    background-color: var(--color-papel-oscuro);
+}
+
+/* El primer resultado, resaltado: es el que abre Enter (paso 19 quater).
+   :first-child se cumple cuando el elemento es el primero dentro de su
+   padre: aquí, el primer <li> de la lista. */
+#lista-cuentas li:first-child a {
+    background-color: var(--color-papel-oscuro);
+    border-left-color: var(--color-tinta);
+    font-weight: bold;
+}
+
+#lista-cuentas li:first-child .codigo-resultado {
+    color: var(--color-tinta);
+}
+
+/* El aviso "Ninguna cuenta coincide", con el mismo aire que un resultado. */
+#lista-cuentas .aviso-sin-texto {
+    padding: 0.45em 0.8em;
 }
 
 /* Migas de pan, encima del título: pequeñas y en gris, porque orientan pero
@@ -287,18 +399,15 @@ details details {
     color: var(--color-tinta-suave);
 }
 
-/* Las cuentas de la lista y del árbol son enlaces (#430), pero conservan el
-   color del texto y van sin subrayar: solo se subrayan al pasar el ratón
-   (:hover) o al llegar con el teclado (:focus-visible), para que se note que
-   se pueden pulsar. */
-#lista-cuentas a,
+/* Las cuentas del árbol son enlaces (#430), pero conservan el color del
+   texto y van sin subrayar: solo se subrayan al pasar el ratón (:hover) o al
+   llegar con el teclado (:focus-visible), para que se note que se pueden
+   pulsar. Las de la lista del buscador tienen sus propias reglas, arriba. */
 #arbol-cuentas a {
     color: inherit;
     text-decoration: none;
 }
 
-#lista-cuentas a:hover,
-#lista-cuentas a:focus-visible,
 #arbol-cuentas a:hover,
 #arbol-cuentas a:focus-visible {
     text-decoration: underline;
